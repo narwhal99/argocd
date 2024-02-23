@@ -22,7 +22,7 @@ data:
         static_configs:
         - targets:
           - vmdocker04.bukla.hu:9100
-          - raspi.bukla.hu:9100
-          - pve01.bukla.hu:9100
-          - vmeproxy.bukla.hu:9100
-          - vmgames.bukla.hu:9100
+          # - raspi.bukla.hu:9100
+          # - pve01.bukla.hu:9100
+          # - vmeproxy.bukla.hu:9100
+          # - vmgames.bukla.hu:9100
