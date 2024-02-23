@@ -33,9 +33,9 @@ spec:
         ports:
         - name: web
           containerPort: 9090
-        # volumeMounts:
-        # - name: prometheus-config-volume
-        #   mountPath: /etc/prometheus
+        volumeMounts:
+        - name: prometheus-config-volume
+          mountPath: /etc/prometheus
         # - name: prometheus-storage-volume
         #   mountPath: /prometheus
       restartPolicy: Always
