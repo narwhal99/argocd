@@ -18,3 +18,12 @@ data:
       - job_name: 'prometheus'
         static_configs:
         - targets: ['localhost:9090']
+      - job_name: node-exporter
+        scrape_interval: 15s
+        static_configs:
+        - targets:
+          - vmdocker04.bukla.hu:9100
+          - raspi.bukla.hu:9100
+          - pve01.bukla.hu:9100
+          - vmeproxy.bukla.hu:9100
+          - vmgames.bukla.hu:9100
