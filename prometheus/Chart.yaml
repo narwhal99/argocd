@@ -4,11 +4,11 @@ metadata:
   name: prometheus
   namespace: argocd
 spec:
+  destination:
+    name: in-cluster
+    namespace: argocd
   project: default
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 13.7.2
+    targetRevision: 45.6.0
     chart: kube-prometheus-stack
-destination:
-  server: https://kubernetes.default.svc
-  namespace: prometheus
