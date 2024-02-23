@@ -1,0 +1,17 @@
+apiVersion: v2
+name: prometheus
+appVersion: v2.49.1
+version: 25.13.0
+kubeVersion: ">=1.19.0-0"
+description: Prometheus is a monitoring system and time series database.
+type: application
+keywords:
+  - monitoring
+  - prometheus
+# annotations:
+#   "artifacthub.io/license": Apache-2.0
+#   "artifacthub.io/links": |
+#     - name: Chart Source
+#       url: https://github.com/prometheus-community/helm-charts
+#     - name: Upstream Project
+#       url: https://github.com/prometheus/prometheus
