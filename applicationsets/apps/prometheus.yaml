@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL:
+    repoURL: git@github.com:narwhal99/argocd.git
     targetRevision: HEAD
     path: applicationsets/prometheus
   destination:
