@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  project: default
+  source:
+    repoURL:
+    targetRevision: HEAD
+    path: applicationsets/prometheus
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      alloweEmpty: false
+    syncOptions:
+      - CreateNamespace=true
