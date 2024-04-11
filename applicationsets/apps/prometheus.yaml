@@ -16,7 +16,7 @@ spec:
     automated:
       prune: true
       selfHeal: true
-      alloweEmpty: true
+      # alloweEmpty: true
     syncOptions:
       - Validate=true
       - CreateNamespace=true
