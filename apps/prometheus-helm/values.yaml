@@ -1,0 +1,5 @@
+image:
+  releaseName: prometheus-blackbox-exporter
+  chart: prometheus-blackbox-exporter
+  repo: https://prometheus-community.github.io/helm-charts
+replicas: 1
