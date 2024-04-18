@@ -1,21 +1,25 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: test-argocd
+  name: prometheus
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: git@github.com:narwhal99/argocd.git
     targetRevision: HEAD
-    path: applicationsets/test
+    path: apps/prometheus
   destination:
     server: https://kubernetes.default.svc
-    namespace: test
+    # namespace: monitoring
   syncPolicy:
-    syncOptions:
-    - CreateNameSpace=true
     automated:
-       selfHeal: true
-       prune: true 
-      #  allowEmpty: true
+      prune: true
+      selfHeal: true
+      # alloweEmpty: true
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true

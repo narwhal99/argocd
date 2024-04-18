@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: git@github.com:narwhal99/argocd.git
     targetRevision: HEAD
-    path: applicationsets/prometheus
+    path: apps/prometheus-helm
   destination:
     server: https://kubernetes.default.svc
     # namespace: monitoring
