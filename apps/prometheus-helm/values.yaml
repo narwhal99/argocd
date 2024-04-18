@@ -1,3 +1,4 @@
+nameOverride: prometheus-helm
 alertmanager:
   enabled: false
 prometheus:
