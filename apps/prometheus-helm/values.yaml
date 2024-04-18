@@ -1,5 +1,6 @@
-image:
-  releaseName: prometheus-blackbox-exporter
-  chart: prometheus-blackbox-exporter
-  repo: https://prometheus-community.github.io/helm-charts
-replicas: 1
+prometheus:
+  enabled: true
+  prometheusSpec:
+    image:
+      repository: quay.io/prometheus/prometheus
+      tag: v2.18.2

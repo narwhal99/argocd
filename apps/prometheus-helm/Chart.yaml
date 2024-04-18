@@ -1,7 +1,0 @@
-apiVersion: v2
-name: Prometheus-helm
-description: A prometheus with helm :)
-
-type: application
-
-version: 8.15.1
