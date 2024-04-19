@@ -6,10 +6,10 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
+  sources:
     - chart: prometheus
       repoURL: https://prometheus-community.github.io/helm-charts
-      targetRevision: 45.31.1
+      # targetRevision: 45.31.1
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
