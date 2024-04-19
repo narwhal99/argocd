@@ -1,3 +1,8 @@
+serviceAccounts:
+  server:
+    create: true
+    name: ""
+    annotations: {}
 configmapReload:
   prometheus:
     enabled: true
@@ -12,6 +17,7 @@ server:
     repository: quay.io/prometheus/prometheus
     pullPolicy: IfNotPresent
   replicaCount: 1
+  configPath: /etc/config/prometheus.yml
 
 alertmanager:
   enabled: true
