@@ -1,6 +1,7 @@
-image:
-  repository: quay.io/prometheus/prometheus
-  pullPolicy: always
+application:
+  image:
+    repository: quay.io/prometheus/prometheus
+    pullPolicy: always
 replicas: 10
 # helm:
 #   releaseName: prometheus-helm
