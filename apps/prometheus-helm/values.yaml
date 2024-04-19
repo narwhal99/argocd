@@ -1,6 +1,6 @@
 nameOverride: prometheus-helm
-alertmanager:
-  enabled: false
+# alertmanager:
+#   enabled: false
 prometheus:
   enabled: true
   prometheusSpec:
