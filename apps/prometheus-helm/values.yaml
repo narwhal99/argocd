@@ -1,18 +1,14 @@
-nameOverride: prometheus-helm
-# alertmanager:
-#   enabled: false
+rbac:
+  create: true
 prometheus:
   enabled: true
   name: configmap-reload
   image:
     repository: quay.io/prometheus-operator/prometheus-config-reloader
     tag: v0.72.0
-    digest: ""
     pullPolicy: IfNotPresent
 server:
   name: server
   image:
     repository: quay.io/prometheus/prometheus
-    tag: ""
-    digest: ""
     pullPolicy: IfNotPresent
