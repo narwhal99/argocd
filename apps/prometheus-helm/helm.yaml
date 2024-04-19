@@ -1,6 +1,6 @@
 helm:
   releaseName: prometheus-helm
-  chart: prometheus
+  chart: prometheus-community
   repo: https://prometheus-community.github.io/helm-charts
   # version: "45.31.1"
   valueFiles:
