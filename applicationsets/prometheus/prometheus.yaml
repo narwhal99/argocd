@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: prometheus
+  name: prometheus-applicationset
   namespace: argocd
 spec:
   goTemplate: true
@@ -18,7 +18,7 @@ spec:
     spec:
       destination:
         namespace: '{{ .namespace }}'
-        server: argocd
+        server: '{{ .server }}'
       syncPolicy:
         automated: { }
         syncOptions:
