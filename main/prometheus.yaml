@@ -4,22 +4,16 @@ kind: Application
 metadata:
   name: prometheus
   namespace: argocd
-  # finalizers:
-  #   - resources-finalizer.argocd.argoproj.io
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
-  source:
-    repoURL: git@github.com:narwhal99/argocd.git
-    targetRevision: HEAD
-    path: applicationsets/prometheus
-  project: default
   syncPolicy:
     automated: {}
-      # alloweEmpty: true
-    # syncOptions:
-    #   - Validate=true
-    #   - CreateNamespace=true
-    #   - PrunePropagationPolicy=foreground
-    #   - PruneLast=true
+  project: default
+  sources:
+    - repoURL: git@github.com:narwhal99/argocd.git
+      targetRevision: HEAD
+      path: applicationsets/prometheus
