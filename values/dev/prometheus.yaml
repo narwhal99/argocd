@@ -1,5 +1,13 @@
 server:
   persistentVolume:
     enabled: false
+  ingress:
+    enabled: true
+    hosts:
+      - prom-rke.bukla.hu
+    tls:
+      - secretName: wildcard-bukla-tls
+        hosts:
+          - prom-rke.bukla.hu
 alertmanager:
   enabled: false
