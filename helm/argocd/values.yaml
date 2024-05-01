@@ -5,14 +5,20 @@ server:
     enabled: true
   replicas: 1
   ingress:
+    https: true
     enabled: true
     annotations:
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     hostname: argocd.bukla.hu
+    extraTls:
+      - hosts:
+        - argocd.bukla.hu
+        secretName: wildcard-bukla-tls
 
 configs:
-  # params:
-  #   server.insecure: true
+  rbac:
+    policy.csv: | 
+      g, authentik Admins, role:admin
   cm:
     dex.config: |
       connectors:

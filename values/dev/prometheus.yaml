@@ -1,3 +1,16 @@
 application:
   image:
     tag: latest
+alertmanager:
+  enabled: false
+
+prometheus:
+  enabled: true
+  ingress:
+    enabled: true
+    host:
+      - prom-rke.bukla.hu
+    tls:
+      - secretName: wildcard-bukla-tls
+        hosts:
+          - prom-rke.bukla.hu
