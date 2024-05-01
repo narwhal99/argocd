@@ -8,7 +8,7 @@ prometheus:
   enabled: true
   ingress:
     enabled: true
-    host:
+    hosts:
       - prom-rke.bukla.hu
     tls:
       - secretName: wildcard-bukla-tls
