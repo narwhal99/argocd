@@ -13,7 +13,7 @@ spec:
             server: https://kubernetes.default.svc
   template:
     metadata:
-      name: 'prometheus-{{ .namespace }}'
+      name: 'prometheus-stack-{{ .namespace }}'
       namespace: argocd
     spec:
       destination:
