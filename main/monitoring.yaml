@@ -16,4 +16,4 @@ spec:
   sources:
     - repoURL: git@github.com:narwhal99/argocd.git
       targetRevision: HEAD
-      path: applicationsets/prometheus
+      path: applicationsets/monitoring

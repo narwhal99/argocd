@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    app: prometheus-operator
+  name: general-rules
+spec:
+  groups:
+    - name: ./general-rules
+      rules:
+        - alert: TargetDownWarning
+          annotations:
+            message: Target is down for more than 5m
+          expr: 'up == 0'
+          for: 5m
+          labels:
+            severity: warning
+
+

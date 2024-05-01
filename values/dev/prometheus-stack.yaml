@@ -1,0 +1,29 @@
+grafana:
+  enabled: false
+thanos:
+  enabled: false
+thanosRuler:
+  enabled: false
+prometheus:
+  persistentVolume:
+    enabled: false
+  ingress:
+    enabled: true
+    hosts:
+      - prom-rke.bukla.hu
+    tls:
+      - secretName: wildcard-bukla-tls
+        hosts:
+          - prom-rke.bukla.hu
+
+alertmanager:
+  persistentVolume:
+    enabled: false
+  ingress:
+    enabled: true
+    hosts:
+      - alertmanager-rke.bukla.hu
+    tls:
+      - secretName: wildcard-bukla-tls
+        hosts:
+          - alertmanager-rke.bukla.hu
