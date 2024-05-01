@@ -14,3 +14,14 @@ prometheus:
       - secretName: wildcard-bukla-tls
         hosts:
           - prom-rke.bukla.hu
+  prometheusSpec:
+    storageSpec:
+      volumeClaimTemplate:
+        metadata:
+          name: prometheus-dev
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
