@@ -1,27 +1,3 @@
-application:
-  image:
-    tag: latest
-alertmanager:
-  enabled: false
-
-prometheus:
-  enabled: true
-  ingress:
-    enabled: true
-    hosts:
-      - prom-rke.bukla.hu
-    tls:
-      - secretName: wildcard-bukla-tls
-        hosts:
-          - prom-rke.bukla.hu
-  prometheusSpec:
-    storageSpec:
-      volumeClaimTemplate:
-        metadata:
-          name: prometheus-dev
-        spec:
-          accessModes:
-            - ReadWriteOnce
-          resources:
-            requests:
-              storage: 1Gi
+server:
+  persistentVolume:
+    enabled: false
