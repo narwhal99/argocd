@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: prometheus-applicationset
+  name: prometheus-rules-applicationset
   namespace: argocd
 spec:
   goTemplate: true
@@ -13,7 +13,7 @@ spec:
             server: https://kubernetes.default.svc
   template:
     metadata:
-      name: 'prometheus-{{ .namespace }}'
+      name: 'prometheus-rules-{{ .namespace }}'
       namespace: argocd
     spec:
       destination:
