@@ -3,6 +3,10 @@ grafana:
 thanos:
   enabled: false
 prometheus:
+  ruleSelectorNiUsesHelmValues: false
+  ruleSelector:
+    matchLabels:
+      rules: bukla
   persistentVolume:
     enabled: false
   ingress:
