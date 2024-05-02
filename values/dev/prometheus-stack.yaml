@@ -3,8 +3,16 @@ grafana:
 thanos:
   enabled: false
 prometheus:
-  persistentVolume:
-    enabled: false
+  storage:
+    VolumeClaimTemplate:
+      metadata:
+        name: prometheus-dev
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          request:
+            storage: 1Gi
   ingress:
     enabled: true
     hosts:
