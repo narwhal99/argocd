@@ -13,6 +13,7 @@ prometheus:
         resources:
           request:
             storage: 1Gi
+        storageClassName: random-name
   ingress:
     enabled: true
     hosts:
@@ -37,6 +38,7 @@ alertmanager:
         resources:
           request:
             storage: 1Gi
+        storageClassName: random-name
   ingress:
     enabled: true
     hosts:
