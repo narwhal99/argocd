@@ -16,30 +16,30 @@ prometheus:
     ruleSelector:
       matchLabels:
         rules: bukla
-    storageSpec:
-      VolumeClaimTemplate:
-        metadata:
-          name: prometheus-dev
-        spec:
-          accessModes:
-            - ReadWriteOnce
-          resources:
-            request:
-              storage: 1Gi
-          storageClassName: random-name
+    # storageSpec:
+    #   VolumeClaimTemplate:
+    #     metadata:
+    #       name: prometheus-dev
+    #     spec:
+    #       accessModes:
+    #         - ReadWriteOnce
+    #       resources:
+    #         request:
+    #           storage: 1Gi
+    #       storageClassName: random-name
 alertmanager:
-  alertmanagerSpec:
-    storage:
-      VolumeClaimTemplate:
-        metadata:
-          name: alertmanager-dev
-        spec:
-          accessModes:
-            - ReadWriteOnce
-          resources:
-            request:
-              storage: 1Gi
-          storageClassName: random-name
+  # alertmanagerSpec:
+  #   storage:
+  #     VolumeClaimTemplate:
+  #       metadata:
+  #         name: alertmanager-dev
+  #       spec:
+  #         accessModes:
+  #           - ReadWriteOnce
+  #         resources:
+  #           request:
+  #             storage: 1Gi
+  #         storageClassName: random-name
   ingress:
     enabled: true
     hosts:
