@@ -2,8 +2,6 @@ grafana:
   enabled: false
 thanos:
   enabled: false
-thanosRuler:
-  enabled: false
 prometheus:
   persistentVolume:
     enabled: false
