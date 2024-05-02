@@ -3,7 +3,7 @@ grafana:
 thanos:
   enabled: false
 prometheus:
-  storage:
+  storageSpec:
     VolumeClaimTemplate:
       metadata:
         name: prometheus-dev
@@ -27,8 +27,16 @@ prometheus:
       matchLabels:
         rules: bukla
 alertmanager:
-  persistentVolume:
-    enabled: false
+  storage:
+    VolumeClaimTemplate:
+      metadata:
+        name: alertmanager-dev
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          request:
+            storage: 1Gi
   ingress:
     enabled: true
     hosts:
