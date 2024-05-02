@@ -4,9 +4,7 @@ thanos:
   enabled: false
 prometheus:
   ruleSelectorNiUsesHelmValues: false
-  ruleSelector:
-    matchLabels:
-      rules: bukla
+
   persistentVolume:
     enabled: false
   ingress:
@@ -17,7 +15,10 @@ prometheus:
       - secretName: wildcard-bukla-tls
         hosts:
           - prom-rke.bukla.hu
-
+  prometheusSpec:
+    ruleSelector:
+      matchLabels:
+        rules: bukla
 alertmanager:
   persistentVolume:
     enabled: false
