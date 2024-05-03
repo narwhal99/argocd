@@ -22,15 +22,13 @@ prometheus:
         rules: bukla
     storageSpec:
       VolumeClaimTemplate:
-        metadata:
-          name: prometheus-dev
+        storageClassName: gp2
         spec:
           accessModes:
             - ReadWriteOnce
           resources:
             request:
               storage: 1Gi
-          storageClassName: random-name
 alertmanager:
   # alertmanagerSpec:
   #   storage:
