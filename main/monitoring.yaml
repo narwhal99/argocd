@@ -12,9 +12,9 @@ spec:
     namespace: argocd
   syncPolicy:
     automated: {}
-    syncOptions:
-      - ServerSideApply=true
-      - Replace=true
+    # syncOptions:
+    #   - ServerSideApply=true
+    #   - Replace=true
   project: default
   sources:
     - repoURL: git@github.com:narwhal99/argocd.git

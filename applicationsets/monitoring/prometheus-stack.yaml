@@ -20,7 +20,7 @@ spec:
         namespace: '{{ .namespace }}'
         server: '{{ .server }}'
       syncPolicy:
-        automated: { }
+        automated: {}
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true
