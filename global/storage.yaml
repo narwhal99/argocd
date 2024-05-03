@@ -7,3 +7,4 @@ parameters:
   server: 10.20.0.21
   path: /mnt/tank/containers
   readOnly: "false"
+allowVolumeExpansion: true

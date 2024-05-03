@@ -22,6 +22,8 @@ prometheus:
         rules: bukla
     storageSpec:
       VolumeClaimTemplate:
+        metadata:
+          name: prometheus-dev
         spec:
           storageClassName: example-nfs
           accessModes:
