@@ -23,7 +23,7 @@ prometheus:
     storageSpec:
       VolumeClaimTemplate:
         spec:
-          storageClassName: gp2
+          storageClassName: example-nfs
           accessModes:
             - ReadWriteOnce
           resources:
