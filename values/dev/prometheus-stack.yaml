@@ -22,8 +22,8 @@ prometheus:
         rules: bukla
     storageSpec:
       VolumeClaimTemplate:
-        storageClassName: gp2
         spec:
+          storageClassName: gp2
           accessModes:
             - ReadWriteOnce
           resources:
