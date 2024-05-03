@@ -8,3 +8,4 @@ parameters:
   path: /mnt/tank/containers
   readOnly: "false"
 allowVolumeExpansion: true
+reclaimPolicy: Retain
