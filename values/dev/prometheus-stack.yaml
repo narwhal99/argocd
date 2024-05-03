@@ -11,6 +11,10 @@ prometheus:
       - secretName: wildcard-bukla-tls
         hosts:
           - prom-rke.bukla.hu
+  prometheusOperator:
+    admissionWebhooks:
+      certManager:
+        enabled: true
   prometheusSpec:
     ruleSelectorNiUsesHelmValues: false
     ruleSelector:
