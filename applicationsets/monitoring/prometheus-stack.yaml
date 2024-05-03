@@ -25,6 +25,7 @@ spec:
           - CreateNamespace=true
           - ServerSideApply=true
           - Replace=true
+          - PruneLast=true
       project: default
       sources:
         - repoURL: https://prometheus-community.github.io/helm-charts
