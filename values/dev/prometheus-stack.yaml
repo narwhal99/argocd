@@ -20,17 +20,17 @@ prometheus:
     ruleSelector:
       matchLabels:
         rules: bukla
-    # storageSpec:
-    #   VolumeClaimTemplate:
-    #     metadata:
-    #       name: prometheus-dev
-    #     spec:
-    #       accessModes:
-    #         - ReadWriteOnce
-    #       resources:
-    #         request:
-    #           storage: 1Gi
-    #       storageClassName: random-name
+    storageSpec:
+      VolumeClaimTemplate:
+        metadata:
+          name: prometheus-dev
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            request:
+              storage: 1Gi
+          storageClassName: random-name
 alertmanager:
   # alertmanagerSpec:
   #   storage:
