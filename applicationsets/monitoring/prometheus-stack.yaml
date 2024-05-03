@@ -24,7 +24,7 @@ spec:
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true
-          - Replace=true
+          # - Replace=true
           - PruneLast=true
       project: default
       sources:
