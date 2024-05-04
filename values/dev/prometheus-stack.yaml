@@ -33,12 +33,12 @@ prometheus:
 alertmanager:
   alertmanagerSpec:
     storage:
-      volumeClaimTemplates:
-        metadata:
+      volumeClaimTemplate:
+      - metadata:
           name: alertmanager-dev
         spec:
           accessModes:
-            - ReadWriteOnce
+          - ReadWriteOnce
           resources:
             request:
               storage: 1Gi
