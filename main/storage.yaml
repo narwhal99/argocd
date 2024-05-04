@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: global-storage
+  name: global
   namespace: argocd
 spec:
   project: default
@@ -15,7 +15,5 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true
     syncOptions:
       - Validate=true
-      - PruneLast=true
