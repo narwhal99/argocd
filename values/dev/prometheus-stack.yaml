@@ -30,7 +30,7 @@ prometheus:
           resources:
             requests:
               storage: 1Gi
-          storageClassName: example-nfs
+          storageClassName: shared-storage
 alertmanager:
   alertmanagerSpec:
     storage:
@@ -43,7 +43,7 @@ alertmanager:
           resources:
             requests:
               storage: 1Gi
-          storageClassName: example-nfs
+          storageClassName: shared-storage
   ingress:
     enabled: true
     hosts:
