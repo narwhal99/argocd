@@ -11,10 +11,10 @@ prometheus:
       - secretName: wildcard-bukla-tls
         hosts:
           - prom-rke.bukla.hu
-  prometheusOperator: #lehet nem kell
-    admissionWebhooks:
-      certManager:
-        enabled: true
+  # prometheusOperator: #lehet nem kell
+  #   admissionWebhooks:
+  #     certManager:
+  #       enabled: true
   prometheusSpec:
     ruleSelectorNiUsesHelmValues: false
     ruleSelector:
@@ -22,12 +22,11 @@ prometheus:
         rules: bukla
     storageSpec:
       VolumeClaimTemplate:
-        metadata:
-          name: prometheus-dev
+        # metadata:
+        #   name: prometheus-dev
         spec:
           storageClassName: example-nfs
-          accessModes:
-            - ReadWriteOnce
+          accessModes: ["ReadWriteOnce"]
           resources:
             request:
               storage: 1Gi

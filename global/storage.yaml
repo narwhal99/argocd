@@ -2,10 +2,15 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: example-nfs
-provisioner: storage.io/nfs
+  # annotations:
+    # storageclass.beta.kubernetes.io/is-default-class: "true"
+    # storageclass.kubernetes.io/is-default-class: "true"
+provisioner: nfs.csi.k8s.io
 parameters:
   server: 10.20.0.21
-  path: /mnt/tank/containers
-  readOnly: "false"
-allowVolumeExpansion: true
-reclaimPolicy: Retain
+  share: /mnt/tank/containers
+# allowVolumeExpansion: true
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+mountOptions:
+  - nfsvers=3
