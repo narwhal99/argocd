@@ -4,15 +4,11 @@ kind: Application
 metadata:
   name: global
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: git@github.com:narwhal99/argocd.git
     targetRevision: HEAD
-    path: applicationsets/global
+    path: global/
   destination:
     server: https://kubernetes.default.svc
-  syncPolicy:
-    automated: {}
