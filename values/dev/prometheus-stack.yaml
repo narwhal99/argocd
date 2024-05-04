@@ -33,7 +33,7 @@ prometheus:
 alertmanager:
   alertmanagerSpec:
     storage:
-      VolumeClaimTemplate:
+      volumeClaimTemplates:
         metadata:
           name: alertmanager-dev
         spec:
