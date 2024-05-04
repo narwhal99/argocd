@@ -20,16 +20,16 @@ prometheus:
     ruleSelector:
       matchLabels:
         rules: bukla
-    # storageSpec:
-    VolumeClaimTemplate:
-      metadata:
-        name: prometheus-dev
-      spec:
-        storageClassName: example-nfs
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          request:
-            storage: 1Gi
+    storageSpec:
+      VolumeClaimTemplate:
+        metadata:
+          name: prometheus-dev
+        spec:
+          storageClassName: example-nfs
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            request:
+              storage: 1Gi
 alertmanager:
   # alertmanagerSpec:
   #   storage:
