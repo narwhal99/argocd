@@ -20,29 +20,29 @@ prometheus:
     ruleSelector:
       matchLabels:
         rules: bukla
-    storageSpec:
+    # storageSpec:
+    #   VolumeClaimTemplate:
+    #     metadata:
+    #       name: prometheus-dev
+    #     spec:
+    #       storageClassName: example-nfs
+    #       accessModes: ["ReadWriteOnce"]
+    #       resources:
+    #         request:
+    #           storage: 1Gi
+alertmanager:
+  alertmanagerSpec:
+    storage:
       VolumeClaimTemplate:
         metadata:
-          name: prometheus-dev
+          name: alertmanager-dev
         spec:
-          storageClassName: example-nfs
-          accessModes: ["ReadWriteOnce"]
+          accessModes:
+            - ReadWriteOnce
           resources:
             request:
               storage: 1Gi
-alertmanager:
-  # alertmanagerSpec:
-  #   storage:
-  #     VolumeClaimTemplate:
-  #       metadata:
-  #         name: alertmanager-dev
-  #       spec:
-  #         accessModes:
-  #           - ReadWriteOnce
-  #         resources:
-  #           request:
-  #             storage: 1Gi
-  #         storageClassName: random-name
+          storageClassName: example-nfs
   ingress:
     enabled: true
     hosts:
