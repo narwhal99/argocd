@@ -38,7 +38,7 @@ alertmanager:
           name: alertmanager-dev
         spec:
           accessModes:
-          - ReadWriteOnce
+            - ReadWriteOnce
           resources:
             request:
               storage: 1Gi
