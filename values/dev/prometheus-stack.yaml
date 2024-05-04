@@ -40,7 +40,7 @@ alertmanager:
           accessModes:
             - ReadWriteOnce
           resources:
-            request:
+            requests:
               storage: 1Gi
           storageClassName: example-nfs
   ingress:
