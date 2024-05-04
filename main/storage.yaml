@@ -13,7 +13,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
-    automated:
-      prune: true
+    automated: {}
     syncOptions:
     - Replace=true
+    - Prune=true
