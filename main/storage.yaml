@@ -12,3 +12,8 @@ spec:
     path: global/
   destination:
     server: https://kubernetes.default.svc
+  syncPolicy:
+    automated: {}
+    syncOptions:
+    - Replace=true
+    - PrunePropagationPolicy=foreground
