@@ -20,10 +20,10 @@ prometheus:
     ruleSelector:
       matchLabels:
         rules: bukla
-    storageSpec:
+    storage:
       VolumeClaimTemplate:
-        # metadata:
-        #   name: prometheus-dev
+        metadata:
+          name: prometheus-dev
         spec:
           storageClassName: example-nfs
           accessModes: ["ReadWriteOnce"]
