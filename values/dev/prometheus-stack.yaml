@@ -34,7 +34,7 @@ alertmanager:
   alertmanagerSpec:
     storage:
       volumeClaimTemplate:
-      - metadata:
+        metadata:
           name: alertmanager-dev
         spec:
           accessModes:
