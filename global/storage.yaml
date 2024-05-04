@@ -11,6 +11,6 @@ parameters:
   share: /mnt/tank/containers
 # allowVolumeExpansion: true
 reclaimPolicy: Delete
-volumeBindingMode: Immediate
+volumeBindingMode: WaitForFirstConsumer 
 mountOptions:
   - nfsvers=3
