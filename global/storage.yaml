@@ -10,7 +10,7 @@ parameters:
   server: 10.20.0.21
   share: /mnt/tank/containers
 # allowVolumeExpansion: true
-reclaimPolicy: Delete
+reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer 
 mountOptions:
   - nfsvers=3
