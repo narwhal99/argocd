@@ -34,6 +34,7 @@ spec:
           helm:
             valueFiles:
               - $values/values/{{ .namespace }}/prometheus-stack.yaml
+              - $values/values/{{ .namespace }}/static_scraper_configs.yaml
         - repoURL: git@github.com:narwhal99/argocd.git
           targetRevision: HEAD
           ref: values
