@@ -29,7 +29,7 @@ spec:
       project: default
       sources:
         - repoURL: https://bjw-s.github.io/helm-charts/
-          chart: bjw-s
+          chart: app-template
           targetRevision: x
           helm:
             valueFiles:
