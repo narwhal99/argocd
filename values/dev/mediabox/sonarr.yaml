@@ -18,7 +18,7 @@ service:
 ingress:
   main:
     enabled: true
-    ingressClassName: nginx
+    # ingressClassName: nginx
     hosts:
       - host: sonarr.bukla.hu
         paths:
