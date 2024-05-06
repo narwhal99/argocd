@@ -33,7 +33,7 @@ spec:
           targetRevision: x
           helm:
             valueFiles:
-              - $values/values/{{ .namespace }}/mediabox/mediabox-stack.yaml
+              - $values/values/{{ .namespace }}/mediabox/sonarr.yaml
         - repoURL: git@github.com:narwhal99/argocd.git
           targetRevision: HEAD
           ref: values
