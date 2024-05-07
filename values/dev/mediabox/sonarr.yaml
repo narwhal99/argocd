@@ -2,10 +2,11 @@ controllers:
   main:
     strategy: Recreate
     containers:
-      image:
-        repository: ghcr.io/linuxserver/sonarr
-        tag: latest
-        pullPolicy: IfNotPresent
+      main:
+        image:
+          repository: ghcr.io/linuxserver/sonarr
+          tag: latest
+          pullPolicy: IfNotPresent
 service:
   main:
     controller: main
