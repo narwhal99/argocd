@@ -47,8 +47,8 @@ alertmanager:
   ingress:
     enabled: true
     hosts:
-      - alertmanager-rke.bukla.hu
+      - alertmanager-k.bukla.hu
     tls:
       - secretName: wildcard-bukla-tls
         hosts:
-          - alertmanager-rke.bukla.hu
+          - alertmanager-k.bukla.hu
