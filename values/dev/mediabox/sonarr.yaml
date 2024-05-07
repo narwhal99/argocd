@@ -25,7 +25,8 @@ ingress:
           - path: /
             pathType: Prefix
             service:
-              port: 8989
+              identifier: main
+              port: http
     tls:
       - secretName: wildcard-bukla-tls
         hosts:
