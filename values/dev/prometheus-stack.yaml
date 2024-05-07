@@ -6,11 +6,11 @@ prometheus:
   ingress:
     enabled: true
     hosts:
-      - prom-rke.bukla.hu
+      - prom-k.bukla.hu
     tls:
       - secretName: wildcard-bukla-tls
         hosts:
-          - prom-rke.bukla.hu
+          - prom-k.bukla.hu
   # prometheusOperator: #lehet nem kell
   #   admissionWebhooks:
   #     certManager:
