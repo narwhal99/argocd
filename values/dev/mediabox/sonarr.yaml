@@ -16,7 +16,7 @@ service:
 ingress:
   main:
     hosts:
-      - host: sonarr-rke.bukla.hu
+      - host: sonarr-k.bukla.hu
         paths:
           - path: /
             pathType: Prefix
