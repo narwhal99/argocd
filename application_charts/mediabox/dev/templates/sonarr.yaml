@@ -19,7 +19,7 @@ spec:
       helm:
         valueFiles:
           - $values/values/{{ .namespace }}/mediabox/sonarr.yaml
-        valueObject:
+        valuesObject:
           global:
             labels:
               stage: {{ .Values.spec.destination.namespace }}    
