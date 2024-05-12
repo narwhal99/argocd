@@ -26,10 +26,9 @@ ingress:
 persistence:
   config:
     enabled: true
-    type: pvc
     existingClaim: sonarr-config
-    mountPath: "/config"
-
+    globalMounts:
+      - path: /config
     # storageClass: shared-storage
     # storageClassName: shared-storage
   # data:
