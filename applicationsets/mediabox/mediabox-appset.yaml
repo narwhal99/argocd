@@ -32,7 +32,7 @@ spec:
       sources:
         - repoURL: git@github.com:narwhal99/argocd.git
           targetRevision: HEAD
-          path: application_chart/mediabox/dev
+          path: application_charts/mediabox/dev
           helm:
             valuesObject:
               spec:
