@@ -24,8 +24,8 @@ spec:
             labels:
               stage: {{ .Values.spec.destination.namespace }}    
             env: {{ .Values.spec.destination.namespace }}
-    - repoURL: {{ .Values.spec.destination.namespace }}
-      targetRevision: {{ .Values.spec.destination.targetRevision }}
+    - repoURL: {{ .Values.spec.source.namespace }}
+      targetRevision: {{ .Values.spec.source.targetRevision }}
       ref: values
       # sources:
       #   - repoURL: https://bjw-s.github.io/helm-charts/
