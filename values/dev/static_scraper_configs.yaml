@@ -27,6 +27,23 @@ prometheus:
           - vmeproxy.bukla.hu:9100
           - vmgames.bukla.hu:9100
           - lb.bukla.hu:9100
+    # - job_name: blackbox_bukla
+    #   metrics_path: /probe
+    #   params:
+    #     module: [http_2xx_bukla] 
+    #   static_configs:
+    #     - targets:
+    #       - https://sonarr.bukla.hu
+    #       - https://radarr.bukla.hu
+    #       - https://qbittorrent.bukla.hu
+    #       - https://scan.bukla.hu
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: vmdocker04.bukla.hu:9115  # The blackbox exporter's real hostname:port.
     - job_name: blackbox
       metrics_path: /probe
       params:
@@ -56,41 +73,23 @@ prometheus:
           target_label: instance
         - target_label: __address__
           replacement: vmdocker04.bukla.hu:9115  # The blackbox exporter's real hostname:port.
-    - job_name: mktxp
-      static_configs:
-        - targets: 
-          - raspi.bukla.hu:49090
     - job_name: graphite-exporter 
       metrics_path: /metrics
       scrape_interval: 15s
       static_configs:
         - targets:
           - raspi.bukla.hu:9108
-    # - job_name: mikrotik
-    #   static_configs:
-    #     - targets:
-    #         - 10.10.0.1 #mikrotik ip
-      # metrics_path: /snmp
-      # params:
-      #   module: [mikrotik]
-      # relabel_configs:
-      #   - source_labels: [__address__]
-      #     target_label: __param_target
-      #   - source_labels: [__param_target]
-      #     target_label: instance
-      #   - target_label: __address__
-      #     replacement: raspi.bukla.hu:9116
-  #  - job_name: blackbox_bukla
-  #    metrics_path: /probe
-  #    params:
-  #      module: [http_2xx_bukla] 
-  #    static_configs:
-  #      - targets:
-  #        - 
-  #    relabel_configs:
-  #      - source_labels: [__address__]
-  #        target_label: __param_target
-  #      - source_labels: [__param_target]
-  #        target_label: instance
-  #      - target_label: __address__
-  #        replacement: vmdocker04.bukla.hu:9115  # The blackbox exporter's real hostname:port.
+    - job_name: mikrotik
+      static_configs:
+        - targets:
+            - 10.10.0.1 #mikrotik ip
+      metrics_path: /snmp
+      params:
+        module: [mikrotik]
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: raspi.bukla.hu:9116

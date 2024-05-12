@@ -1,0 +1,60 @@
+---
+# Configure options applied to all pods
+defaultPodOptions:
+  automountServiceAccountToken: false
+
+controllers:
+  # Configure the main controller
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+
+    # Configure the pod-specific securityContext
+    pod:
+      securityContext:
+        fsGroup: 568
+        fsGroupChangePolicy: "OnRootMismatch"
+
+    containers:
+      # Configure the main application container
+      main:
+        image:
+          # -- image repository
+          repository: lscr.io/linuxserver/qbittorrent
+          # -- image tag
+          # this example is not automatically updated, so be sure to use the latest image
+          tag: latest
+        # Configure the container-specific securityContext
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+service:
+  # Configure a service for the main application
+  main:
+    controller: main
+    type: ClusterIP
+    ports:
+      http:
+        port: 8080
+
+ingress:
+  # Configure an Ingress for the main application
+  main:
+    # className: "external-nginx"
+    hosts:
+      - host: qbittorrent-k.bukla.hu
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: main
+              port: http
+
+# persistence:
+#   # Configure the main configuration storage location
+#   config:
+#     existingClaim: qbittorrent-config
+#     advancedMounts:
+#       main:
+#         main:
+#           - path: /config
