@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: mediabox-applicationset
+  name: mediabox-dev-applicationset
   namespace: argocd
 spec:
   goTemplate: true
@@ -11,9 +11,11 @@ spec:
         elements:
           - namespace: dev
             server: https://kubernetes.default.svc
+            repo: git@github.com:narwhal99/argocd.git
+            targetRevision: HEAD
   template:
     metadata:
-      name: 'mediabox-stack-{{ .namespace }}'
+      name: 'mediabox-{{ .namespace }}'
       namespace: argocd
     spec:
       destination:
@@ -28,13 +30,14 @@ spec:
           - PruneLast=true
       project: default
       sources:
-        - repoURL: https://bjw-s.github.io/helm-charts/
-          chart: app-template
-          targetRevision: x
-          helm:
-            valueFiles:
-              - $values/values/{{ .namespace }}/mediabox/sonarr.yaml
-              - $values/values/{{ .namespace }}/mediabox/qbittorrent.yaml
         - repoURL: git@github.com:narwhal99/argocd.git
           targetRevision: HEAD
-          ref: values
+          helm:
+            valuesObject:
+              spec:
+                destination:
+                  server: '{{ .server }}'
+                  namespace: '{{ .namespace }}'
+                source:
+                  repoURL: '{{ .repo }}'
+                  targetRevision: '{{ .targetRevision }}'
