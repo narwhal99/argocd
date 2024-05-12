@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: qbitorrent-{{ .Values.spec.destination.namespace }}
+  name: qbittorrent-{{ .Values.spec.destination.namespace }}
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -18,7 +18,7 @@ spec:
       targetRevision: x
       helm:
         valueFiles:
-          - $values/values/{{ .Values.spec.destination.namespace }}/mediabox/qbitorrent.yaml
+          - $values/values/{{ .Values.spec.destination.namespace }}/mediabox/qbittorrent.yaml
         valuesObject:
           global:
             labels:
