@@ -24,7 +24,7 @@ spec:
             labels:
               stage: {{ .Values.spec.destination.namespace }}    
             env: {{ .Values.spec.destination.namespace }}
-    - repoURL: {{ .Values.spec.source.namespace }}
+    - repoURL: {{ .Values.spec.source.repoURL }}
       targetRevision: {{ .Values.spec.source.targetRevision }}
       ref: values
       # sources:
