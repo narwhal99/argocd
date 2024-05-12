@@ -23,6 +23,18 @@ ingress:
             service:
               identifier: main
               port: http
+persistence:
+  config:
+    enabled: true
+    type: pvc
+    existingClaim: sonarr-config
+    mountPath: "/config"
+    storageClass: shared-storage
+  # data:
+  #   enabled: true
+  #   type: pvc
+  #   existingClaim: sonarr-media
+  #   mountPath: "/data"
 # image:
 #   repository: ghcr.io/linuxserver/sonarr
 #   pullPolicy: IfNotPresent
