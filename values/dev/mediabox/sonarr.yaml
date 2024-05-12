@@ -29,7 +29,7 @@ persistence:
     type: persistentVolumeClaim
     existingClaim: sonarr-config
     mountPath: "/config"
-    storageClassName: shared-storage
+    # storageClassName: shared-storage
   # data:
   #   enabled: true
   #   type: pvc
