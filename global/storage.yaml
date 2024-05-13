@@ -12,5 +12,6 @@ parameters:
 # allowVolumeExpansion: true
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer 
+allowVolumeExpansion: true
 mountOptions:
   - nfsvers=3
