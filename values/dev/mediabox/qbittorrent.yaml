@@ -52,7 +52,7 @@ ingress:
 persistence:
   config:
     enabled: true
-    # existingClaim: sonarr-config
+    existingClaim: qbittorrent-config
     storageClass: shared-storage
     accessMode: ReadWriteOnce
     size: 1Gi
