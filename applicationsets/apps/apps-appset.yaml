@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: prometheus-applicationset
+  name: apps-dev-applicationset
   namespace: argocd
 spec:
   goTemplate: true
@@ -11,9 +11,11 @@ spec:
         elements:
           - namespace: dev
             server: https://kubernetes.default.svc
+            repo: git@github.com:narwhal99/argocd.git
+            targetRevision: HEAD
   template:
     metadata:
-      name: 'prometheus-stack-{{ .namespace }}'
+      name: 'apps-{{ .namespace }}'
       namespace: argocd
     spec:
       destination:
@@ -24,17 +26,19 @@ spec:
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true
-          # - Replace=true
+          - Replace=true
           - PruneLast=true
       project: default
       sources:
-        - repoURL: https://prometheus-community.github.io/helm-charts
-          chart: kube-prometheus-stack
-          targetRevision: x
-          helm:
-            valueFiles:
-              - $values/values/{{ .namespace }}/monitoring/prometheus-stack.yaml
-              - $values/values/{{ .namespace }}/monitoring/static_scraper_configs.yaml
         - repoURL: git@github.com:narwhal99/argocd.git
           targetRevision: HEAD
-          ref: values
+          path: application_charts/dev/apps
+          helm:
+            valuesObject:
+              spec:
+                destination:
+                  server: '{{ .server }}'
+                  namespace: '{{ .namespace }}'
+                source:
+                  repoURL: '{{ .repo }}'
+                  targetRevision: '{{ .targetRevision }}'
