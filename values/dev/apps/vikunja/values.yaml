@@ -74,7 +74,7 @@ persistence:
     accessMode: ReadWriteOnce
     size: 1Gi
     globalMounts:
-      - path: /app/vikunja
+      - path: /app/vikunja/files
 # persistence:
 #   # Configure the main configuration storage location
 #   config:
