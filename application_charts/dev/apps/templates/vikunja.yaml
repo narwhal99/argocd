@@ -27,22 +27,7 @@ spec:
     - repoURL: {{ .Values.spec.source.repoURL }}
       targetRevision: {{ .Values.spec.source.targetRevision }}
       ref: values
----
 
-apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
-metadata:
-  name: vikunja-secret
-spec:
-  secretStoreRef:
-    name: vault
-    kind: ClusterSecretStore
-  data:
-    - secretKey: vikunja-database-pw
-      remoteRef:
-        key: kv/dev/vikunja
-        property: VIKUNJA_DATABASE_PASSWORD
-    - secretKey: vikunja-service-jwtsecret
-      remoteRef:
-        key: kv/dev/vikunja
-        property: VIKUNJA_SERVICE_JWTSECRET
+    - repoURL: {{ .Values.spec.source.repoURL }}
+      targetRevision: {{ .Values.spec.source.targetRevision }}
+      path: /values/dev/apps/test
