@@ -28,7 +28,22 @@ controllers:
         # securityContext:
         #   runAsUser: 568
         #   runAsGroup: 568
-        # env:
+        env:
+        - name: VIKUNJA_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: vikunja-secret
+              key: vikunja-database-pw
+        - name: VIKUNJA_SERVICE_JWTSECRET
+          valueFrom:
+            secretKeyRef:
+              name: vikunja-secret
+              key: vikunja-service-jwtsecret
+          VIKUNJA_SERVICE_PUBLICURL: https://vikunja.bukla.hu
+          VIKUNJA_DATABASE_HOST: mariadb.bukla.hu:3306
+          VIKUNJA_DATABASE_TYPE: mysql
+          VIKUNJA_DATABASE_USER: vikunja
+          VIKUNJA_DATABASE_DATABASE: vikunja
 
 service:
   # Configure a service for the main application
