@@ -66,9 +66,9 @@ ingress:
             service:
               identifier: main
               port: http
-persistence:
-  config:
-    enabled: false
+# persistence:
+#   config:
+#     enabled: true
     # existingClaim: qbittorrent-config
     # storageClass: shared-storage
     # accessMode: ReadWriteOnce
