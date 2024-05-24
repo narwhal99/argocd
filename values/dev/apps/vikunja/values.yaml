@@ -74,7 +74,7 @@ ingress:
 persistence:
   config:
     enabled: true
-    type: pvc
+    type: persistentVolumeClaim
     retain: true
     # existingClaim: vikunja-config
     storageClass: shared-storage
