@@ -68,13 +68,13 @@ ingress:
               port: http
 persistence:
   config:
-    enabled: true
+    enabled: false
     # existingClaim: qbittorrent-config
-    storageClass: shared-storage
-    accessMode: ReadWriteOnce
-    size: 5Gi
-    globalMounts:
-      - path: /app/vikunja/files
+    # storageClass: shared-storage
+    # accessMode: ReadWriteOnce
+    # size: 5Gi
+    # globalMounts:
+    #   - path: /app/vikunja/files
 # persistence:
 #   # Configure the main configuration storage location
 #   config:
