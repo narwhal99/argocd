@@ -18,7 +18,7 @@ spec:
       targetRevision: x
       helm:
         valueFiles:
-          - $values/values/{{ .Values.spec.destination.namespace }}/apps/vikunja.yaml
+          - $values/values/{{ .Values.spec.destination.namespace }}/apps/vikunja/values.yaml
         valuesObject:
           global:
             labels:
@@ -29,4 +29,4 @@ spec:
       ref: values
     - repoURL: {{ .Values.spec.source.repoURL }}
       targetRevision: {{ .Values.spec.source.targetRevision }}
-      path: values/dev/apps/test
+      path: values/dev/apps/vikunja/additional/
