@@ -69,7 +69,7 @@ ingress:
 persistence:
   config:
     enabled: true
-    existingClaim: vikunja-config
+    # existingClaim: vikunja-config
     storageClass: shared-storage
     accessMode: ReadWriteOnce
     size: 1Gi
