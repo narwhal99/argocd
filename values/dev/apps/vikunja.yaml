@@ -39,11 +39,11 @@ controllers:
             secretKeyRef:
               name: vikunja-secret
               key: vikunja-service-jwtsecret
-        VIKUNJA_SERVICE_PUBLICURL: https://vikunja.bukla.hu
-        VIKUNJA_DATABASE_HOST: mariadb.bukla.hu:3306
-        VIKUNJA_DATABASE_TYPE: mysql
-        VIKUNJA_DATABASE_USER: vikunja
-        VIKUNJA_DATABASE_DATABASE: vikunja
+        # VIKUNJA_SERVICE_PUBLICURL: https://vikunja.bukla.hu
+        # VIKUNJA_DATABASE_HOST: mariadb.bukla.hu:3306
+        # VIKUNJA_DATABASE_TYPE: mysql
+        # VIKUNJA_DATABASE_USER: vikunja
+        # VIKUNJA_DATABASE_DATABASE: vikunja
 
 service:
   # Configure a service for the main application
