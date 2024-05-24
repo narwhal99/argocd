@@ -9,7 +9,7 @@ provisioner: nfs.csi.k8s.io
 parameters:
   server: 10.20.0.21
   share: /mnt/tank/containers
-reclaimPolicy: Retain
+reclaimPolicy: Delete
 volumeBindingMode: WaitForFirstConsumer 
 allowVolumeExpansion: true
 mountOptions:
