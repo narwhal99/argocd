@@ -29,4 +29,4 @@ spec:
       ref: values
     - repoURL: {{ .Values.spec.source.repoURL }}
       targetRevision: {{ .Values.spec.source.targetRevision }}
-      path: /values/dev/apps/test
+      path: values/dev/apps/test
