@@ -72,9 +72,9 @@ persistence:
     # existingClaim: qbittorrent-config
     storageClass: shared-storage
     accessMode: ReadWriteOnce
-    size: 5Gi
+    size: 1Gi
     globalMounts:
-      - path: /app/vikunja/files
+      - path: /app/vikunja/
 # persistence:
 #   # Configure the main configuration storage location
 #   config:
