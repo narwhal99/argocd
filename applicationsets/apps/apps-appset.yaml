@@ -27,7 +27,7 @@ spec:
           - CreateNamespace=true
           - ServerSideApply=true
           - Replace=true
-          - PruneLast=true
+          # - PruneLast=true
       project: default
       sources:
         - repoURL: git@github.com:narwhal99/argocd.git
