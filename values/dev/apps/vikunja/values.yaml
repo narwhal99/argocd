@@ -82,11 +82,3 @@ persistence:
     size: 1Gi
     globalMounts:
       - path: /app/vikunja/files
-# persistence:
-#   # Configure the main configuration storage location
-#   config:
-#     existingClaim: qbittorrent-config
-#     advancedMounts:
-#       main:
-#         main:
-#           - path: /config
