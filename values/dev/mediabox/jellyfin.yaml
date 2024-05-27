@@ -12,7 +12,7 @@ service:
     controller: main
     ports:
       http:
-        port: 8989
+        port: 8096
 ingress:
   main:
     hosts:
