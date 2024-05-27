@@ -63,7 +63,7 @@ persistence:
     type: persistentVolumeClaim
     existingClaim: torrent
     globalMounts:
-      - path: /config
+      - path: /torrent
 # persistence:
 #   # Configure the main configuration storage location
 #   config:
