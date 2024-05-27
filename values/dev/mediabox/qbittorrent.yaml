@@ -51,7 +51,6 @@ ingress:
               port: http
 persistence:
   config:
-    enabled: true
     type: persistentVolumeClaim
     retain: true
     # existingClaim: qbittorrent-config
@@ -60,6 +59,14 @@ persistence:
     size: 1Gi
     globalMounts:
       - path: /config
+  media:
+    type: persistentVolumeClaim
+    existingClaim: torrent
+    advancedMounts:
+      main:
+        main:
+          - path: /torrent
+
 # persistence:
 #   # Configure the main configuration storage location
 #   config:

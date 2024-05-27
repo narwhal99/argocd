@@ -27,7 +27,6 @@ persistence:
   config:
     enabled: true
     retain: true
-    # existingClaim: sonarr-config
     storageClass: shared-storage
     accessMode: ReadWriteOnce
     size: 1Gi
