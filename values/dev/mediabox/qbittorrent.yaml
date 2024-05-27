@@ -51,6 +51,7 @@ ingress:
               port: http
 persistence:
   config:
+    enabled: true
     type: persistentVolumeClaim
     retain: true
     # existingClaim: qbittorrent-config
@@ -60,6 +61,7 @@ persistence:
     globalMounts:
       - path: /config
   media:
+    enabled: true
     type: persistentVolumeClaim
     existingClaim: torrent
     advancedMounts:
