@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jellyfin-{{ .Values.spec.destination.namespace }}
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ .Values.spec.destination.namespace }}
+    server: {{ .Values.spec.destination.server }}
+  syncPolicy:
+    automated: { }
+  project: default
+  sources:
+    - repoURL: https://bjw-s.github.io/helm-charts/
+      chart: app-template
+      targetRevision: x
+      helm:
+        valueFiles:
+          - $values/values/{{ .Values.spec.destination.namespace }}/mediabox/jellyfin.yaml
+        valuesObject:
+          global:
+            labels:
+              stage: {{ .Values.spec.destination.namespace }}    
+            env: {{ .Values.spec.destination.namespace }}
+    - repoURL: {{ .Values.spec.source.repoURL }}
+      targetRevision: {{ .Values.spec.source.targetRevision }}
+      ref: values
