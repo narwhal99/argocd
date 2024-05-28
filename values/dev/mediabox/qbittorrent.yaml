@@ -12,7 +12,7 @@ controllers:
     # # Configure the pod-specific securityContext
     pod:
       securityContext:
-        fsGroup: 568
+        fsGroup: 1001
         fsGroupChangePolicy: "OnRootMismatch"
 
     containers:
@@ -26,8 +26,8 @@ controllers:
           tag: latest
         # Configure the container-specific securityContext
         securityContext:
-          runAsUser: 568
-          runAsGroup: 568
+          runAsUser: 911
+          runAsGroup: 1001
 service:
   # Configure a service for the main application
   main:
