@@ -28,7 +28,6 @@ controllers:
         securityContext:
           runAsUser: 568
           runAsGroup: 568
-          fsGroup: 568
 service:
   # Configure a service for the main application
   main:
