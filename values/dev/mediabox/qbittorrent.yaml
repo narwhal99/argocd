@@ -27,7 +27,7 @@ controllers:
         # Configure the container-specific securityContext
         securityContext:
           runAsUser: 911
-          runAsGroup: 1001
+          runAsGroup: 911
 service:
   # Configure a service for the main application
   main:
