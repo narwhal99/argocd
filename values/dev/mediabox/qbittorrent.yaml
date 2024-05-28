@@ -10,9 +10,8 @@ controllers:
       reloader.stakater.com/auto: "true"
 
     # # Configure the pod-specific securityContext
-    pod:
-      securityContext:
-        readOnlyRootFilesystem: false
+    # pod:
+    #   securityContext:
         # fsGroup: 0
         # fsGroupChangePolicy: "OnRootMismatch"
 
@@ -26,7 +25,8 @@ controllers:
           # this example is not automatically updated, so be sure to use the latest image
           tag: latest
         # Configure the container-specific securityContext
-        # securityContext:
+        securityContext:
+          readOnlyRootFilesystem: false
         #   runAsUser: 0
         #   runAsGroup: 0
 service:
