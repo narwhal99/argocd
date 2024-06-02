@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: mediabox-applicationset
+  name: monitoring-applicationset
   namespace: argocd
 spec:
   goTemplate: true
@@ -10,13 +10,13 @@ spec:
     - list:
         elements:
           - cluster: dev
-            namespace: mediabox
+            namespace: monitoring
             server: https://kubernetes.default.svc
             repo: git@github.com:narwhal99/argocd.git
             targetRevision: HEAD
   template:
     metadata:
-      name: 'mediabox-{{ .cluster }}'
+      name: 'monitoring-stack-{{ .cluster }}'
       namespace: argocd
     spec:
       destination:
@@ -33,7 +33,7 @@ spec:
       sources:
         - repoURL: git@github.com:narwhal99/argocd.git
           targetRevision: HEAD
-          path: application_charts/{{ .cluster }}/mediabox
+          path: application_charts/{{ .cluster }}/monitoring
           helm:
             valuesObject:
               spec:
@@ -43,3 +43,14 @@ spec:
                 source:
                   repoURL: '{{ .repo }}'
                   targetRevision: '{{ .targetRevision }}'
+
+        # - repoURL: https://prometheus-community.github.io/helm-charts
+        #   chart: kube-prometheus-stack
+        #   targetRevision: x
+        #   helm:
+        #     valueFiles:
+        #       - $values/values/{{ .namespace }}/monitoring/prometheus-stack.yaml
+        #       - $values/values/{{ .namespace }}/monitoring/static_scraper_configs.yaml
+        # - repoURL: git@github.com:narwhal99/argocd.git
+        #   targetRevision: HEAD
+        #   ref: values

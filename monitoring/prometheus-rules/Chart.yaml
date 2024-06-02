@@ -1,9 +1,0 @@
-apiVersion: v2
-name: prometheus-rules
-description: A helm chart for Prometheus role parameters
-
-type: application
-
-version: 1.0.0
-
-appVersion: "0.0.1"
