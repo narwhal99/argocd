@@ -38,6 +38,7 @@ spec:
             valuesObject:
               spec:
                 destination:
+                  cluster: '{{ .cluster }}'
                   server: '{{ .server }}'
                   namespace: '{{ .namespace }}'
                 source:
