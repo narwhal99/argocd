@@ -18,8 +18,8 @@ spec:
       targetRevision: x
       helm:
         valueFiles:
-          - $values/values/{{ .cluster }}/monitoring/prometheus-stack.yaml
-          - $values/values/{{ .cluster }}/monitoring/static_scraper_configs.yaml
+          - $values/values/{{ .Values.spec.source.cluster }}/monitoring/prometheus-stack.yaml
+          - $values/values/{{ .Values.spec.source.cluster }}/monitoring/static_scraper_configs.yaml
         valuesObject:
           global:
             labels:
