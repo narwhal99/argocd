@@ -18,7 +18,7 @@ spec:
       targetRevision: x
       helm:
         valueFiles:
-          - $values/values/{{ .Values.spec.destination.namespace }}/mediabox/qbittorrent.yaml
+          - $values/values/{{ .Values.spec.destination.cluster }}/mediabox/qbittorrent.yaml
         valuesObject:
           global:
             labels:

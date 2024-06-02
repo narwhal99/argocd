@@ -18,7 +18,7 @@ spec:
       targetRevision: x
       helm:
         valueFiles:
-          - $values/values/{{ .Values.spec.destination.namespace }}/mediabox/jellyfin.yaml
+          - $values/values/{{ .Values.spec.destination.cluster }}/mediabox/jellyfin.yaml
         valuesObject:
           global:
             labels:

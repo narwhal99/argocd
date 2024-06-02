@@ -42,5 +42,6 @@ spec:
                   server: '{{ .server }}'
                   namespace: '{{ .namespace }}'
                 source:
+                  cluster: '{{ .cluster }}'
                   repoURL: '{{ .repo }}'
                   targetRevision: '{{ .targetRevision }}'

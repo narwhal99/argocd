@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: apps-dev-applicationset
+  name: apps-applicationset
   namespace: argocd
 spec:
   goTemplate: true
@@ -9,13 +9,14 @@ spec:
   generators:
     - list:
         elements:
-          - namespace: dev
+          - cluster: dev
+            namespace: apps
             server: https://kubernetes.default.svc
             repo: git@github.com:narwhal99/argocd.git
             targetRevision: HEAD
   template:
     metadata:
-      name: 'apps-{{ .namespace }}'
+      name: 'apps-{{ .cluster }}'
       namespace: argocd
     spec:
       destination:
@@ -32,13 +33,15 @@ spec:
       sources:
         - repoURL: git@github.com:narwhal99/argocd.git
           targetRevision: HEAD
-          path: application_charts/dev/apps
+          path: application_charts/{{ .cluster }}/apps
           helm:
             valuesObject:
               spec:
                 destination:
+                  cluster: '{{ .cluster }}'
                   server: '{{ .server }}'
                   namespace: '{{ .namespace }}'
                 source:
+                  cluster: '{{ .cluster }}'
                   repoURL: '{{ .repo }}'
                   targetRevision: '{{ .targetRevision }}'
