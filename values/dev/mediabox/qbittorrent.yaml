@@ -26,8 +26,8 @@ controllers:
           tag: latest
         # Configure the container-specific securityContext
         securityContext:
-          runAsUser: 911
-          runAsGroup: 911
+          runAsUser: 1000
+          runAsGroup: 1000
 service:
   # Configure a service for the main application
   main:
