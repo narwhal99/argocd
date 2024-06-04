@@ -60,11 +60,11 @@ persistence:
     size: 1Gi
     globalMounts:
       - path: /config
-  data:
+  torrent:
     type: persistentVolumeClaim
     existingClaim: torrent-data
     globalMounts:
-      - path: /downloads
+      - path: /torrent
 
 
     #   volumeMounts:
