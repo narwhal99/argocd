@@ -62,6 +62,7 @@ persistence:
   media:
     type: persistentVolumeClaim
     existingClaim: torrent-data
+    subPath: /torrent
     globalMounts:
       - path: /torrent
 # persistence:
