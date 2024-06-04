@@ -15,17 +15,17 @@
 #     - hard
 #     - nfsvers=3
 #   storageClassName: "torrent-data"
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: torrent-data
-#   namespace: mediabox
-# spec:
-#   volumeMode: Filesystem
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 5Gi
-#   storageClassName: "torrent-data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: torrent-data
+  namespace: mediabox
+spec:
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: "shared-storage"
