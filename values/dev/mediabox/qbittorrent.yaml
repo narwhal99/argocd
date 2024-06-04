@@ -68,7 +68,7 @@ persistence:
       main:
         main:
           - path: /torrent
-            subPath: /torrent
+            subPath: torrent
 
     #   volumeMounts:
     #   - mountPath: /var/www/html
