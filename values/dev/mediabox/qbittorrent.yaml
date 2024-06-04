@@ -2,11 +2,6 @@
 # Configure options applied to all pods
 defaultPodOptions:
   automountServiceAccountToken: false
-  securityContext:
-    runAsUser: 568
-    runAsGroup: 568
-    fsGroup: 568
-    fsGroupChangePolicy: "OnRootMismatch"
 
 controllers:
   # Configure the main controller
@@ -30,10 +25,10 @@ controllers:
           # this example is not automatically updated, so be sure to use the latest image
           tag: latest
         # Configure the container-specific securityContext
-        # securityContext:
+        securityContext:
+          fsGroup: 911
         #   runAsUser: 568
         #   runAsGroup: 568
-        #   fsGroup: 568
 service:
   # Configure a service for the main application
   main:
