@@ -10,10 +10,10 @@ controllers:
       reloader.stakater.com/auto: "true"
 
     # # Configure the pod-specific securityContext
-    # pod:
-    #   securityContext:
-    #     fsGroup: 0
-        # fsGroupChangePolicy: "OnRootMismatch"
+    pod:
+      securityContext:
+        fsGroup: 911
+        fsGroupChangePolicy: "OnRootMismatch"
 
     containers:
       # Configure the main application container
@@ -25,8 +25,8 @@ controllers:
           # this example is not automatically updated, so be sure to use the latest image
           tag: latest
         # Configure the container-specific securityContext
-        securityContext:
-          fsGroup: 911
+        # securityContext:
+        #   fsGroup: 911
         #   runAsUser: 568
         #   runAsGroup: 568
 service:
