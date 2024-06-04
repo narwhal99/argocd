@@ -62,13 +62,8 @@ persistence:
   media:
     type: persistentVolumeClaim
     existingClaim: torrent-data
-    # globalMounts:
-    #   - path: /torrent
-    advancedMounts:
-      main:
-        main:
-          - path: /torrent
-            subPath: torrent
+    globalMounts:
+      - path: /torrent
 
     #   volumeMounts:
     #   - mountPath: /var/www/html
