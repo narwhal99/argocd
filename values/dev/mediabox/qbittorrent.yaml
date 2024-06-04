@@ -64,7 +64,7 @@ persistence:
     type: persistentVolumeClaim
     existingClaim: torrent-data
     globalMounts:
-      - path: /torrent
+      - path: /fikusz
 
     #   volumeMounts:
     #   - mountPath: /var/www/html
