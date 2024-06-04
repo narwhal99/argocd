@@ -62,9 +62,23 @@ persistence:
   media:
     type: persistentVolumeClaim
     existingClaim: torrent-data
-    path: /torrent
-    globalMounts:
-      - path: /torrent
+    # globalMounts:
+    #   - path: /torrent
+    advancedMounts:
+      main:
+        main:
+          - path: /torrent
+            subPath: /torrent
+
+    #   volumeMounts:
+    #   - mountPath: /var/www/html
+    #     name: site-data
+    #     subPath: html
+    # volumes:
+    # - name: site-data
+    #   persistentVolumeClaim:
+    #     claimName: my-lamp-site-data
+
 # persistence:
 #   # Configure the main configuration storage location
 #   config:
