@@ -2,6 +2,11 @@
 # Configure options applied to all pods
 defaultPodOptions:
   automountServiceAccountToken: false
+  securityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
+    fsGroupChangePolicy: "OnRootMismatch"
 
 controllers:
   # Configure the main controller
@@ -10,9 +15,9 @@ controllers:
       reloader.stakater.com/auto: "true"
 
     # # Configure the pod-specific securityContext
-    pod:
-      securityContext:
-        fsGroup: 0
+    # pod:
+    #   securityContext:
+    #     fsGroup: 0
         # fsGroupChangePolicy: "OnRootMismatch"
 
     containers:
