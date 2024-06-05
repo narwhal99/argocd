@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: mediabox-development
+  name: mediabox
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
