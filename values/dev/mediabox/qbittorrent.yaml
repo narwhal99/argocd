@@ -62,7 +62,7 @@ persistence:
       - path: /config
   torrent:
     type: persistentVolumeClaim
-    existingClaim: torrent-pvc
+    existingClaim: torrent-data
     globalMounts:
       - path: /torrent
 
