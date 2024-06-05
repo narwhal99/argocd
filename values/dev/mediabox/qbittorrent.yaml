@@ -25,10 +25,10 @@ controllers:
           # this example is not automatically updated, so be sure to use the latest image
           tag: latest
         # Configure the container-specific securityContext
-        # securityContext:
-        #   fsGroup: 911
-        #   runAsUser: 568
-        #   runAsGroup: 568
+        securityContext:
+          fsGroup: 911
+          runAsUser: 911
+          runAsGroup: 911
 service:
   # Configure a service for the main application
   main:
