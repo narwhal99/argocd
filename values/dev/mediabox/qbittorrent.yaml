@@ -37,7 +37,7 @@ ingress:
               identifier: app
               port: http
 persistence:
-  config:
+  config-random-doaidoiwja:
     type: persistentVolumeClaim
     retain: true
     # existingClaim: qbittorrent-config
@@ -46,7 +46,7 @@ persistence:
     size: 1Gi
     globalMounts:
       - path: /config
-  torrent-data:
+  torrent:
     existingClaim: torrent-data
     globalMounts:
       - path: /torrent
