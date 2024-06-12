@@ -13,7 +13,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/onedr0p/sonarr
-          tag: latest
+          tag: 4.0.5.1710
           pullPolicy: IfNotPresent
 service:
   app:
