@@ -1,39 +1,25 @@
 ---
-# Configure options applied to all pods
-defaultPodOptions:
-  automountServiceAccountToken: false
+controller:
+  annotations:
+    reloader.stakater.com/auto: "true"
 
-controllers:
-  # Configure the main controller
-  main:
-    annotations:
-      reloader.stakater.com/auto: "true"
+image:
+  repository: ghcr.io/onedr0p/qbittorrent
+  tag: 4.6.5
 
-    # # Configure the pod-specific securityContext
-    pod:
-      securityContext:
-        fsGroup: 911
-        fsGroupChangePolicy: "OnRootMismatch"
+podAnnotations:
+  setGateway: "true"
 
-    containers:
-      # Configure the main application container
-      main:
-        image:
-          # -- image repository
-          repository: lscr.io/linuxserver/qbittorrent
-          # -- image tag
-          # this example is not automatically updated, so be sure to use the latest image
-          tag: latest
-        # Configure the container-specific securityContext
-        securityContext:
-          fsGroup: 911
-          # runAsUser: 911
-          # runAsGroup: 911
+podSecurityContext:
+  runAsUser: 568
+  runAsGroup: 568
+  fsGroup: 568
+  fsGroupChangePolicy: "OnRootMismatch"
+
+hostname: qbittorrent
+
 service:
-  # Configure a service for the main application
   main:
-    controller: main
-    type: ClusterIP
     ports:
       http:
         port: 8080
@@ -41,17 +27,16 @@ service:
 ingress:
   # Configure an Ingress for the main application
   main:
-    # className: "external-nginx"
+    enabled: true
+    ingressClassName: "nginx"
     hosts:
       - host: qbittorrent-k.bukla.hu
         paths:
           - path: /
-            pathType: Prefix
-            service:
-              identifier: main
-              port: http
+
 persistence:
   config:
+    enabled: true
     type: persistentVolumeClaim
     retain: true
     # existingClaim: qbittorrent-config
@@ -61,6 +46,7 @@ persistence:
     globalMounts:
       - path: /config
   torrent:
+    enabled: true
     type: persistentVolumeClaim
     existingClaim: torrent-data
     globalMounts:

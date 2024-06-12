@@ -1,8 +1,4 @@
 ---
-# Configure options applied to all pods
-defaultPodOptions:
-  automountServiceAccountToken: false
-
 controllers:
   # Configure the main controller
   main:
