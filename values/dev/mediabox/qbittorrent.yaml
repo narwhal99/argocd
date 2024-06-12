@@ -37,7 +37,7 @@ ingress:
               identifier: app
               port: http
 persistence:
-  config-random-doaidoiwja:
+  config:
     type: persistentVolumeClaim
     retain: true
     # existingClaim: qbittorrent-config
