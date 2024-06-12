@@ -27,7 +27,7 @@ service:
 
 ingress:
   main:
-    className: "ingress-nginx"
+    # className: "ingress-nginx"
     hosts:
       - host: qbittorrent-k.bukla.hu
         paths:
