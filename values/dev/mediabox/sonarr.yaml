@@ -1,15 +1,23 @@
+defaultPodOptions:
+  securityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
+    fsGroupChangePolicy: "OnRootMismatch"
+    supplementalGroups:
+      - 65539
+
 controllers:
-  main:
-    strategy: Recreate
+  sonarr:
     containers:
-      main:
+      app:
         image:
           repository: ghcr.io/linuxserver/sonarr
           tag: latest
           pullPolicy: IfNotPresent
 service:
-  main:
-    controller: main
+  app:
+    controller: sonarr
     ports:
       http:
         port: 8989
@@ -21,11 +29,11 @@ ingress:
           - path: /
             pathType: Prefix
             service:
-              identifier: main
+              identifier: app
               port: http
 persistence:
   config:
-    enabled: true
+    type: persistentVolumeClaim
     retain: true
     storageClass: shared-storage
     accessMode: ReadWriteOnce
@@ -33,65 +41,6 @@ persistence:
     globalMounts:
       - path: /config
   torrent:
-    type: persistentVolumeClaim
     existingClaim: torrent-data
     globalMounts:
       - path: /torrent
-    # storageClass: shared-storage
-    # storageClassName: shared-storage
-  # data:
-  #   enabled: true
-  #   type: pvc
-  #   existingClaim: sonarr-media
-  #   mountPath: "/data"
-# image:
-#   repository: ghcr.io/linuxserver/sonarr
-#   pullPolicy: IfNotPresent
-#   tag: latest
-# strategy:
-#   type: Recreate
-# podSecurityContext:
-#   fsGroup: 1000
-# env:
-#   PUID: 1000
-#   PGID: 1000
-#   TZ: UTC
-# service:
-#   main:
-#     ports:
-#       http:
-#         port: 8989
-# ingress:
-#   main:
-#     enabled: true
-#     # ingressClassName: nginx
-#     hosts:
-#       - host: sonarr.bukla.hu
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             service:
-#               port: http
-#     tls:
-#       - secretName: wildcard-bukla-tls
-#         hosts:
-#           - sonarr-rke.bukla.hu
-# # persistence:
-# #   config:
-# #     enabled: true
-# #     type: pvc
-# #     existingClaim: sonarr-config
-# #     mountPath: "/config"
-# #   data:
-# #     enabled: true
-# #     type: pvc
-# #     existingClaim: sonarr-media
-# #     mountPath: "/data"
-# probes:
-#   liveness:
-#     enabled: true
-#     custom: true
-#     spec:
-#       httpGet:
-#         path: /
-#         port: http

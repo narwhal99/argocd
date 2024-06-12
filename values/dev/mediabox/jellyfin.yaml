@@ -1,8 +1,18 @@
+---
+defaultPodOptions:
+  securityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
+    fsGroupChangePolicy: "OnRootMismatch"
+    supplementalGroups:
+      - 65539
+
 controllers:
-  main:
+  jellyfin:
     strategy: Recreate
     containers:
-      main:
+      app:
         image:
           repository: jellyfin/jellyfin
           tag: latest
@@ -13,6 +23,7 @@ service:
     ports:
       http:
         port: 8096
+
 ingress:
   main:
     hosts:
@@ -21,11 +32,11 @@ ingress:
           - path: /
             pathType: Prefix
             service:
-              identifier: main
+              identifier: app
               port: http
 persistence:
   config:
-    enabled: true
+    type: persistentVolumeClaim
     retain: true
     storageClass: shared-storage
     accessMode: ReadWriteOnce
@@ -33,7 +44,6 @@ persistence:
     globalMounts:
       - path: /config
   torrent:
-    type: persistentVolumeClaim
     existingClaim: torrent-data
     globalMounts:
       - path: /torrent
