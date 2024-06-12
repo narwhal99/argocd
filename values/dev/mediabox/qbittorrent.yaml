@@ -20,6 +20,8 @@ hostname: qbittorrent
 
 service:
   main:
+    controller: main
+    type: ClusterIP
     ports:
       http:
         port: 8080
@@ -33,6 +35,10 @@ ingress:
       - host: qbittorrent-k.bukla.hu
         paths:
           - path: /
+            pathType: Prefix
+            service:
+              identifier: main
+              port: http
 
 persistence:
   config:
