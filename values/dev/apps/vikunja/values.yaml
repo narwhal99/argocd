@@ -42,7 +42,7 @@ controllers:
         - name: VIKUNJA_SERVICE_PUBLICURL
           value: https://vikunja.bukla.hu
         - name: VIKUNJA_DATABASE_HOST 
-          value: mariadb.bukla.hu:3306
+          value: mariadb.bukla.hu
         - name: VIKUNJA_DATABASE_TYPE 
           value: mysql
         - name: VIKUNJA_DATABASE_USER 
