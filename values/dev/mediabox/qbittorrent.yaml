@@ -28,7 +28,7 @@ ingress:
   # Configure an Ingress for the main application
   main:
     enabled: true
-    ingressClassName: "nginx"
+    # ingressClassName: "nginx"
     hosts:
       - host: qbittorrent-k.bukla.hu
         paths:
