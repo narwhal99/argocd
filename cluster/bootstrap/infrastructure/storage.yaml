@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: storageclass
+  name: storage
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: git@github.com:narwhal99/argocd.git
-    path: cluster/values/infrastructure/storageclass
+    path: cluster/values/infrastructure/storage
     targetRevision: HEAD
   destination:
     name: in-cluster
