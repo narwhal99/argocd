@@ -9,7 +9,7 @@ metadata:
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: apps
   syncPolicy:
     automated: {}
     # syncOptions:
@@ -19,4 +19,4 @@ spec:
   sources:
     - repoURL: git@github.com:narwhal99/argocd.git
       targetRevision: HEAD
-      path: applicationsets/apps
+      path: application_charts/dev/apps

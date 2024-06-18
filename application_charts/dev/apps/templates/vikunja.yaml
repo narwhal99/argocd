@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: vikunja-{{ .Values.spec.destination.cluster }}
+  name: vikunja
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -18,12 +18,12 @@ spec:
       targetRevision: x
       helm:
         valueFiles:
-          - $values/values/{{ .Values.spec.destination.cluster }}/apps/vikunja/values.yaml
+          - $values/values/dev/apps/vikunja/values.yaml
         valuesObject:
           global:
             labels:
-              stage: {{ .Values.spec.destination.cluster }}    
-            env: {{ .Values.spec.destination.cluster }}
+              stage: dev 
+            env: dev
     - repoURL: {{ .Values.spec.source.repoURL }}
       targetRevision: {{ .Values.spec.source.targetRevision }}
       ref: values
