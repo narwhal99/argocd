@@ -13,10 +13,10 @@ spec:
     targetRevision: 3.0.2
     helm:
       valueFiles:
-      - $repo/cluster/values/downloads/qbittorrent/values.yaml
+      - $repo/cluster/values/media/qbittorrent/values.yaml
       releaseName: qbittorrent
   - repoURL: https://github.com/clearlybaffled/homelab
-    path: cluster/values/downloads/qbittorrent
+    path: cluster/values/media/qbittorrent
     targetRevision: main
     ref: repo
   destination:

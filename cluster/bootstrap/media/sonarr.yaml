@@ -13,10 +13,10 @@ spec:
     targetRevision: 3.0.2
     helm:
       valueFiles:
-      - $repo/cluster/values/downloads/sonarr/values.yaml
+      - $repo/cluster/values/media/sonarr/values.yaml
       releaseName: sonarr
   - repoURL: https://github.com/clearlybaffled/homelab
-    path: cluster/values/downloads/sonarr
+    path: cluster/values/media/sonarr
     targetRevision: main
     ref: repo
   destination:
