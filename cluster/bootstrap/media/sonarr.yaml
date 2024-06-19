@@ -15,9 +15,9 @@ spec:
       valueFiles:
       - $repo/cluster/values/media/sonarr/values.yaml
       releaseName: sonarr
-  - repoURL: https://github.com/clearlybaffled/homelab
+  - repoURL: git@github.com:narwhal99/argocd.git
     path: cluster/values/media/sonarr
-    targetRevision: main
+    targetRevision: HEAD
     ref: repo
   destination:
     name: in-cluster
