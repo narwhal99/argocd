@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sonarr
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: app-template
+    repoURL: https://bjw-s.github.io/helm-charts/
+    targetRevision: 3.0.2
+    helm:
+      valueFiles:
+      - $repo/cluster/values/downloads/sonarr/values.yaml
+      releaseName: sonarr
+  - repoURL: https://github.com/clearlybaffled/homelab
+    path: cluster/values/downloads/sonarr
+    targetRevision: main
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: media
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true

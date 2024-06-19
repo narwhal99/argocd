@@ -47,3 +47,7 @@ persistence:
     existingClaim: torrent-data
     globalMounts:
       - path: /torrent
+  transcode:
+    type: emptyDir
+  cache:
+    type: emptyDir
