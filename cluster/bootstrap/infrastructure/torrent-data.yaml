@@ -40,10 +40,10 @@ spec:
   accessModes:
     - ReadWriteMany
   nfs:
-    path: /mnt/tank/containers/torrent
+    path: /mnt/tank/torrent
     server: 10.20.0.21
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: shared-storage
+  storageClassName: torrent-data
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -58,4 +58,4 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: shared-storage
+  storageClassName: torrent-data
