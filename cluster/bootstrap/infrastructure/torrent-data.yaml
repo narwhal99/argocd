@@ -40,7 +40,7 @@ spec:
   accessModes:
     - ReadWriteMany
   nfs:
-    path: /mnt/tank/torrent
+    path: /mnt/tank/containers/torrent
     server: 10.20.0.21
   persistentVolumeReclaimPolicy: Retain
   storageClassName: torrent-data
