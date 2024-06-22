@@ -20,6 +20,7 @@ configs:
     policy.csv: | 
       g, authentik Admins, role:admin
   cm:
+    kustomize.buildOptions: '--enable-helm --enable-alpha-plugins --enable-exec'
     dex.config: |
       connectors:
       - config:
