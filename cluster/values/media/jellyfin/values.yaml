@@ -37,16 +37,15 @@ ingress:
 persistence:
   config:
     type: persistentVolumeClaim
-    retain: true
     storageClass: shared-storage
     accessMode: ReadWriteOnce
     size: 1Gi
     globalMounts:
       - path: /config
   torrent:
-    existingClaim: torrent-data
-    globalMounts:
-      - path: /torrent
+    type: nfs
+    server: 10.20.0.21
+    path: /mnt/tank/containers/torrent
   transcode:
     type: emptyDir
   cache:

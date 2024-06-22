@@ -30,32 +30,32 @@
 #       storage: 5Gi
 #   storageClassName: "torrent-data"
 
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: torrent-data
-spec:
-  capacity:
-    storage: 3Ti
-  accessModes:
-    - ReadWriteMany
-  nfs:
-    path: /mnt/tank/containers/torrent
-    server: 10.20.0.21
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: torrent-data
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: torrent-data
-  namespace: media
-  finalizers:
-  - kubernetes.io/pvc-protection
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 1Gi
-  storageClassName: torrent-data
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: torrent-data
+# spec:
+#   capacity:
+#     storage: 3Ti
+#   accessModes:
+#     - ReadWriteMany
+#   nfs:
+#     path: /mnt/tank/containers/torrent
+#     server: 10.20.0.21
+#   persistentVolumeReclaimPolicy: Retain
+#   storageClassName: torrent-data
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: torrent-data
+#   namespace: media
+#   finalizers:
+#   - kubernetes.io/pvc-protection
+# spec:
+#   accessModes:
+#     - ReadWriteMany
+#   resources:
+#     requests:
+#       storage: 1Gi
+#   storageClassName: torrent-data
