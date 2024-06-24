@@ -78,3 +78,19 @@ persistence:
     size: 1Gi
     globalMounts:
       - path: /app/vikunja/files
+
+configMaps:
+      config:
+        enabled: true
+        data:
+          config.yml: |
+            auth:
+              openid:
+                enabled: true
+                redirecturl: https://vikunja.bukla.com/auth/openid/
+                providers:
+                  - name: Keycloak
+                    authurl: https://keycloak.bukla.com/auth/realms/REALM
+                    logouturl: https://keycloak.bukla.com/auth/realms/REALM/protocol/openid-connect/logout
+                    clientid: vikunja
+                    clientsecret: XXXX
