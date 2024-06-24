@@ -89,8 +89,8 @@ configMaps:
                 enabled: true
                 redirecturl: https://vikunja.bukla.com/auth/openid/
                 providers:
-                  - name: Keycloak
-                    authurl: https://keycloak.bukla.com/auth/realms/REALM
-                    logouturl: https://keycloak.bukla.com/auth/realms/REALM/protocol/openid-connect/logout
-                    clientid: vikunja
-                    clientsecret: XXXX
+                  - name: Authentik
+                    authurl: https://authentik.bukla.hu/application/o/authorize/
+                    logouturl: https://authentik.bukla.hu/application/o/vikunja/end-session/
+                    clientid: authentik-client-id
+                    clientsecret: authentik-client-secret
