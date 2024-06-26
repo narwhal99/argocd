@@ -16,7 +16,7 @@ spec:
         - $repo/cluster/values/monitoring/prometheus-stack/values.yaml
         - $repo/cluster/values/monitoring/prometheus-stack/static_scraper_configs.yaml
   - repoURL: git@github.com:narwhal99/argocd.git
-    path: cluster/values/media/monitoring
+    path: cluster/values/monitoring/prometheus-stack
     targetRevision: HEAD
     ref: repo
   destination:
