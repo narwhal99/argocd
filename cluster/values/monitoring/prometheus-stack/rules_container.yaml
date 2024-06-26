@@ -1,0 +1,35 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    app: prometheus-operator
+    rules: bukla
+  name: rules-container
+spec:
+  groups:
+    - name: ./rules-container
+      rules:
+        - alert: ContainerAbsent
+          expr: absent(container_last_seen)
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: Container absent (instance {{ $labels.instance }})
+            description: "A container is absent for 5 min\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        # - alert: ContainerKilled
+        #   expr: time() - container_last_seen > 60
+        #   for: 1m
+        #   labels:
+        #     severity: warning
+        #   annotations:
+        #     summary: Container killed (instance {{ $labels.instance }})
+        #     description: "A container has disappeared\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        - alert: Container is probably zombie
+          expr: sum(rate(container_cpu_usage_seconds_total{name=~".+"}[5m])) by (name) *100 > 50
+          for: 60m
+          labels:
+            severity: warning
+          annotations:
+            summary: Container is probably zombie (name {{ $labels.name }})
+            description: "A container is using 50% CPU for 15m\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
