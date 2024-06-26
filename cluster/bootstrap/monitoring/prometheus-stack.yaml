@@ -21,7 +21,7 @@ spec:
     ref: repo
   destination:
     name: in-cluster
-    namespace: media
+    namespace: monitoring
   syncPolicy:
     automated:
       prune: true
