@@ -17,15 +17,15 @@ grafana:
     size: 20Gi
     finalizers:
       - kubernetes.io/pvc-protection
-  # sidecar:
-  #   dashboards:
-  #     enabled: true
-  #   datasources:
-  #     enabled: true
-  #     defaultDatasourceEnabled: true
-  #     isDefaultDatasource: true
-  #     name: Prometheus
-  #     uid: prometheus
+  sidecar:
+    dashboards:
+      enabled: true
+    datasources:
+      enabled: true
+      defaultDatasourceEnabled: true
+      isDefaultDatasource: true
+      name: Prometheus
+      uid: prometheus
   #     alertmanager:
   #       enabled: true
   #       name: Alertmanager
