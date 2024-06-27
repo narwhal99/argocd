@@ -26,6 +26,14 @@ grafana:
       isDefaultDatasource: true
       name: Prometheus
       uid: prometheus
+    additionalDataSources:
+      - name: influxdb
+        uri: https://influxdb.bukla.hu
+        type: influxdb
+        jsonData:
+          tlsSkipVerify: true
+          organization: "bukla"
+        editable: true
   #     alertmanager:
   #       enabled: true
   #       name: Alertmanager
