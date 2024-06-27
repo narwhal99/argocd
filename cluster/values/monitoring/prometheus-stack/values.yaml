@@ -30,6 +30,7 @@ grafana:
       - name: influxdb
         uri: https://influxdb.bukla.hu
         type: influxdb
+        isDefault: false
         jsonData:
           tlsSkipVerify: true
           organization: "bukla"
