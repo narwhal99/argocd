@@ -1,9 +1,14 @@
-nfs:
-  server: 10.20.0.21
-  path: /mnt/tank/containers
+storageClass:
+  create: true
+  name: nfs-csi
+  parameters:
+    server: 10.20.0.21
+    share: /mnt/tank/containers
+    mountPermissions: "0"
+    # csi.storage.k8s.io/provisioner-secret is only needed for providing mountOptions in DeleteVolume
+    # csi.storage.k8s.io/provisioner-secret-name: "mount-options"
+    # csi.storage.k8s.io/provisioner-secret-namespace: "default"
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
   mountOptions:
     - nfsvers=3
-  volumeName: testing-volumename
-storageClass:
-  reclaimPolicy: Retain
-  archiveOnDelete: false

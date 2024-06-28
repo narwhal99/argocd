@@ -73,7 +73,6 @@ persistence:
   #   name: vikunja-config
   #   globalMounts:
   #     - path: /app/vikunja/config.yml
-
   config:
     enabled: true
     type: persistentVolumeClaim
