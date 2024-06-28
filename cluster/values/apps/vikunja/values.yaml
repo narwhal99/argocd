@@ -84,7 +84,13 @@ configMaps:
         enabled: true
         data:
           config.yml: |
+            service:
+              enableregistration: false
+              timezone: Europe/Budapest
+              frontendUrl: https://vikunja.bukla.hu
             auth:
+              local:
+                enabled: false
               openid:
                 enabled: true
                 redirecturl: https://vikunja.bukla.com/auth/openid/
