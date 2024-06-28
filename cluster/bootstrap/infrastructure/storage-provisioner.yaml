@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: storage
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    - chart: nfs-subdir-external-provisioner
+      repoURL: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
+      targetRevision: x
+      helm:
+        valueFiles:
+        - $repo/cluster/values/infrastructure/storage-provisioner/values.yaml
+        releaseName: nfs-subdir-external-provisioner
+    - repoURL: git@github.com:narwhal99/argocd.git
+      path: cluster/values/infrastructure/storage-provisioner
+      targetRevision: HEAD
+      ref: repo
+  destination:
+    name: in-cluster
+    namespace: storage-provisioner
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
