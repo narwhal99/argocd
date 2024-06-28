@@ -72,7 +72,7 @@ persistence:
     type: configMap
     name: vikunja-config
     globalMounts:
-      - path: /app/vikunja/config
+      - path: /app/vikunja/config.yml
 
   config:
     enabled: true
