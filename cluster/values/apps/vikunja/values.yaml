@@ -70,7 +70,7 @@ ingress:
 persistence:
   config-file:
     type: configMap
-    name: test-config
+    name: vikunja-config
     globalMounts:
       - path: /app/vikunja/config
 
