@@ -45,13 +45,6 @@ controllers:
             value: vikunja
           - name: VIKUNJA_DATABASE_DATABASE 
             value: vikunja
-        volumeMounts:
-          - name: config-file
-            mountPath: /app/vikunja/config.yml
-            subPath: config.yml
-      volumes:
-        - name: config-file-volume
-          configMap:  test-config
 
 service:
   # Configure a service for the main application
@@ -75,6 +68,12 @@ ingress:
               identifier: main
               port: http
 persistence:
+  config-file:
+    type: ConfigMap
+    name: test-config
+    globalMounts:
+      - path: /app/vikunja/config
+
   config:
     enabled: true
     type: persistentVolumeClaim
