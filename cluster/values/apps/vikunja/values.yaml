@@ -68,11 +68,11 @@ ingress:
               identifier: main
               port: http
 persistence:
-  config-file:
-    type: configMap
-    name: vikunja-config
-    globalMounts:
-      - path: /app/vikunja/config.yml
+  # config-file:
+  #   type: configMap
+  #   name: vikunja-config
+  #   globalMounts:
+  #     - path: /app/vikunja/config.yml
 
   config:
     enabled: true
@@ -86,23 +86,23 @@ persistence:
       - path: /app/vikunja/files
 
 configMaps:
-      config:
-        enabled: true
-        data:
-          config.yml: |
-            service:
-              enableregistration: false
-              timezone: Europe/Budapest
-              frontendUrl: https://vikunja.bukla.hu
-            auth:
-              local:
-                enabled: false
-              openid:
-                enabled: true
-                redirecturl: https://vikunja.bukla.com/auth/openid/
-                providers:
-                  - name: Authentik
-                    authurl: https://authentik.bukla.hu/application/o/authorize/
-                    logouturl: https://authentik.bukla.hu/application/o/vikunja/end-session/
-                    clientid: ${authentik-client-id}
-                    clientsecret: "$authentik-client-secret"
+      # config:
+      #   enabled: true
+      #   data:
+      #     config.yml: |
+      #       service:
+      #         enableregistration: false
+      #         timezone: Europe/Budapest
+      #         frontendUrl: https://vikunja.bukla.hu
+      #       auth:
+      #         local:
+      #           enabled: false
+      #         openid:
+      #           enabled: true
+      #           redirecturl: https://vikunja.bukla.com/auth/openid/
+      #           providers:
+      #             - name: Authentik
+      #               authurl: https://authentik.bukla.hu/application/o/authorize/
+      #               logouturl: https://authentik.bukla.hu/application/o/vikunja/end-session/
+      #               clientid: ${authentik-client-id}
+      #               clientsecret: "$authentik-client-secret"
