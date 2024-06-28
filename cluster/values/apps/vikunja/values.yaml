@@ -74,14 +74,14 @@ persistence:
   #   globalMounts:
   #     - path: /app/vikunja/config.yml
   config:
-    enabled: true
-    type: persistentVolumeClaim
-    # existingClaim: vikunja-config
-    storageClass: nfs-client
-    accessMode: ReadWriteOnce
-    size: 1Gi
-    globalMounts:
-      - path: /app/vikunja/files
+    existingClaim: vikunja-config
+    storageClass: nfs-csi
+    # enabled: true
+    # type: persistentVolumeClaim
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    # globalMounts:
+    #   - path: /app/vikunja/files
 
 # configMaps:
 #       config:
