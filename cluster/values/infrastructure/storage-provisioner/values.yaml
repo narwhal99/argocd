@@ -3,4 +3,4 @@ nfs:
   path: /mnt/tank/containers
   mountOptions:
     - nfsvers=3
-  volumeName: testing_volumeName
+  volumeName: testing-volumename
