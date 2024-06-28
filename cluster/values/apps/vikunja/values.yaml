@@ -68,17 +68,8 @@ ingress:
               identifier: main
               port: http
 persistence:
-  # config-file:
-  #   type: configMap
-  #   name: vikunja-config
-  #   globalMounts:
-  #     - path: /app/vikunja/config.yml
   config:
-    storageClass: nfs-csi
-    size: 1Gi
-    accessMode: ReadWriteOnce
-    globalMounts:
-      - path: /app/vikunja/files
+    existingClaim: vikunja-config
 
 # configMaps:
 #       config:
