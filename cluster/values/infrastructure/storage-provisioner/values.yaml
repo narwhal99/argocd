@@ -4,3 +4,6 @@ nfs:
   mountOptions:
     - nfsvers=3
   volumeName: testing-volumename
+storageClass:
+  reclaimPolicy: Retain
+  archiveOnDelete: false
