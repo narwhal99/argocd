@@ -104,5 +104,5 @@ configMaps:
                   - name: Authentik
                     authurl: https://authentik.bukla.hu/application/o/authorize/
                     logouturl: https://authentik.bukla.hu/application/o/vikunja/end-session/
-                    clientid: "$authentik-client-id"
+                    clientid: "${authentik-client-id}"
                     clientsecret: "$authentik-client-secret"
