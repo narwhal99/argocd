@@ -37,7 +37,6 @@ ingress:
 persistence:
   config:
     type: persistentVolumeClaim
-    retain: true
     storageClass: shared-storage
     accessMode: ReadWriteOnce
     size: 1Gi
