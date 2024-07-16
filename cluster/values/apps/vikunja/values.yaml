@@ -69,7 +69,12 @@ ingress:
               port: http
 persistence:
   config:
-    existingClaim: vikunja-config
+    type: persistentVolumeClaim
+    storageClass: shared-storage
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    globalMounts:
+      - path: /config
 
 # configMaps:
 #       config:
