@@ -15,7 +15,6 @@ spec:
     namespace: monitoring
   syncPolicy:
     automated:
-      prune: true
       selfHeal: true
       # alloweEmpty: true
     syncOptions:
