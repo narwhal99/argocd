@@ -34,7 +34,7 @@ ingress:
 persistence:
   config:
     type: persistentVolumeClaim
-    storageClass: shared-storage
+    storageClass: nfs-csi
     accessMode: ReadWriteOnce
     size: 1Gi
     globalMounts:
