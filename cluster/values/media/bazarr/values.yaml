@@ -38,6 +38,7 @@ persistence:
   config:
     type: persistentVolumeClaim
     storageClass: shared-storage
+    retain: true
     accessMode: ReadWriteOnce
     size: 1Gi
     globalMounts:

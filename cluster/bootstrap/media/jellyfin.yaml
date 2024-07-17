@@ -1,30 +1,30 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: jellyfin
-#   namespace: argocd
-#   finalizers:
-#   - resources-finalizer.argocd.argoproj.io
-# spec:
-#   project: default
-#   sources:
-#   - chart: app-template
-#     repoURL: https://bjw-s.github.io/helm-charts/
-#     targetRevision: 3.0.2
-#     helm:
-#       valueFiles:
-#       - $repo/cluster/values/media/jellyfin/values.yaml
-#       releaseName: jellyfin
-#   - repoURL: git@github.com:narwhal99/argocd.git
-#     path: cluster/values/media/jellyfin
-#     targetRevision: HEAD
-#     ref: repo
-#   destination:
-#     name: in-cluster
-#     namespace: media
-#   syncPolicy:
-#     automated:
-#       selfHeal: true
-#     syncOptions:
-#     - CreateNamespace=true
-#     - ServerSideApply=true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jellyfin
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: app-template
+    repoURL: https://bjw-s.github.io/helm-charts/
+    targetRevision: 3.0.2
+    helm:
+      valueFiles:
+      - $repo/cluster/values/media/jellyfin/values.yaml
+      releaseName: jellyfin
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/media/jellyfin
+    targetRevision: HEAD
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: media
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
