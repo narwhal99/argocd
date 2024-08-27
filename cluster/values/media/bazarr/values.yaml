@@ -15,7 +15,6 @@ controllers:
     statefulset:
       volumeClaimTemplates:
         - name: backup
-          mountPath: /backup
           accessMode: ReadWriteOnce
           size: 500Mi
           storageClass: nfs-csi
