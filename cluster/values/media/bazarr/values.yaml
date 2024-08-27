@@ -19,8 +19,6 @@ controllers:
           pullPolicy: IfNotPresent
     statefulset:
       volumeClaimTemplates:
-      - metadata:
-          name: bazarr-test
         spec:
           accessModes: [ "ReadWriteOnce" ]
           storageClassName: "nfs-csi"
