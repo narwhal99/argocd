@@ -10,14 +10,14 @@ defaultPodOptions:
 
 controllers:
   bazarr:
-    type: statefulset
     strategy: Recreate
+    type: statefulset
     statefulset:
       volumeClaimTemplates:
-        - name: backup
-          accessMode: ReadWriteOnce
-          size: 500Mi
-          storageClass: nfs-csi
+      - name: "storage"
+        accessMode: "ReadWriteOnce"
+        size: "1Gi"
+        storageClass: "nfs-csi"
     containers:
       app:
         image:
