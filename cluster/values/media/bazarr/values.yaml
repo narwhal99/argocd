@@ -19,12 +19,14 @@ controllers:
           pullPolicy: IfNotPresent
     statefulset:
       volumeClaimTemplates:
-        spec:
-          accessModes: [ "ReadWriteOnce" ]
-          storageClassName: "nfs-csi"
-          resources:
-            requests:
-              storage: 1Gi
+      - name: backup
+        labels: {}
+        annotations: {}
+        globalMounts:
+          - path: /config
+        accessMode: "ReadWriteOnce"
+        size: 1Gi
+        storageClass:  nfs-csi
 service:
   app:
     controller: bazarr
