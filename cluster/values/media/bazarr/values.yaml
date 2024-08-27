@@ -17,6 +17,16 @@ controllers:
           repository: ghcr.io/onedr0p/bazarr
           tag: 1.4.2
           pullPolicy: IfNotPresent
+    statefulset:
+      volumeClaimTemplates:
+      - metadata:
+          name: bazarr-test
+        spec:
+          accessModes: [ "ReadWriteOnce" ]
+          storageClassName: "nfs-csi"
+          resources:
+            requests:
+              storage: 1Gi
 service:
   app:
     controller: bazarr
@@ -34,21 +44,6 @@ ingress:
             service:
               identifier: app
               port: http
-spec:
-  template:
-    containers:
-      volumeMounts:
-        - name: redis-data
-          mountPath: /usr/share/redis
-  volumeClaimTemplates:
-  - metadata:
-      name: bazarr-test
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "nfs-csi"
-      resources:
-        requests:
-          storage: 1Gi
 persistence:
   # config:
   #   type: persistentVolumeClaim
