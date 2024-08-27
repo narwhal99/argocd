@@ -11,8 +11,7 @@ defaultPodOptions:
 controllers:
   bazarr:
     strategy: Recreate
-    statefulset:
-      volumeClaimTemplates: []
+    statefulset: []
     containers:
       app:
         image:
