@@ -12,16 +12,7 @@ controllers:
   bazarr:
     strategy: Recreate
     statefulset:
-      volumeClaimTemplates:
-        - name: backup
-          labels: {}
-          annotations: {}
-          globalMounts:
-            - path: /backup
-              subPath: theSubPath
-          accessMode: "ReadWriteOnce"
-          size: 1Gi
-          storageClass: nfs-csi
+      volumeClaimTemplates: []
     containers:
       app:
         image:
