@@ -10,7 +10,7 @@ defaultPodOptions:
 
 controllers:
   bazarr:
-    strategy: Recreate
+    # strategy: Recreate
     statefulset:
       volumeClaimTemplates:
         - name: backup
