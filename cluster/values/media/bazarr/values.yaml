@@ -14,12 +14,14 @@ controllers:
     statefulset:
       volumeClaimTemplates:
         - name: backup
-          accessModes:
-            - ReadWriteOnce
-          resources:
-            requests:
-              storage: 1Gi
-          storageClassName: nfs-csi
+          labels: {}
+          annotations: {}
+          globalMounts:
+            - path: /backup
+              subPath: theSubPath
+          accessMode: "ReadWriteOnce"
+          size: 1Gi
+          storageClass: nfs-csi
     containers:
       app:
         image:
