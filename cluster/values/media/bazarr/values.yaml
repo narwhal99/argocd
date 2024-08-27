@@ -11,7 +11,7 @@ defaultPodOptions:
 controllers:
   bazarr:
     strategy: Recreate
-    statefulset: []
+    statefulset: {}
     containers:
       app:
         image:
