@@ -12,6 +12,7 @@ controllers:
   bazarr:
     # strategy: Recreate
     type: statefulset
+    replicas: 3
     statefulset:
       volumeClaimTemplates:
       - name: "storage"
