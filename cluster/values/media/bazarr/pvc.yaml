@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: bazarr
+  name: bazarr-test
 spec:
   accessModes: ["ReadWriteMany"]
   resources:
