@@ -10,17 +10,17 @@ defaultPodOptions:
 
 controllers:
   bazarr:
-    # strategy: Recreate
-    type: statefulset
-    replicas: 3
-    statefulset:
-      volumeClaimTemplates:
-      - name: "storage"
-        globalMounts:
-          - path: /config
-        accessMode: "ReadWriteOnce"
-        size: "1Gi"
-        storageClass: "nfs-csi"
+    strategy: Recreate
+    # type: statefulset
+    # replicas: 3
+    # statefulset:
+    #   volumeClaimTemplates:
+    #   - name: "storage"
+    #     globalMounts:
+    #       - path: /config
+    #     accessMode: "ReadWriteOnce"
+    #     size: "1Gi"
+    #     storageClass: "nfs-csi"
     containers:
       app:
         image:
@@ -45,6 +45,10 @@ ingress:
               identifier: app
               port: http
 persistence:
+  config:
+    enabled: true
+    type: persistentVolumeClaim
+    existingClaim: bazarr-test
   # config:
   #   type: persistentVolumeClaim
   #   storageClass: nfs-csi
