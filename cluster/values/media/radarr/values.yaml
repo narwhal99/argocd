@@ -35,6 +35,7 @@ persistence:
   config:
     type: persistentVolumeClaim
     storageClass: nfs-csi
+    retain: true
     accessMode: ReadWriteOnce
     size: 1Gi
     globalMounts:
