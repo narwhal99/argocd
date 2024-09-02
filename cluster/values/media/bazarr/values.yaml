@@ -61,5 +61,8 @@ persistence:
     type: nfs
     server: 10.20.0.21
     path: /mnt/tank/containers/torrent
+    globalMounts:
+      - path: /torrent
+        readOnly: true
   tmp:
     type: emptyDir
