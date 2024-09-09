@@ -45,4 +45,4 @@ persistence:
     path: /mnt/tank/torrent
     globalMounts:
       - path: /torrent
-        readOnly: true
+        readOnly: false
