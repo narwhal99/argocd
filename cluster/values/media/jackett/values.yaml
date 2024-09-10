@@ -1,15 +1,17 @@
 ---
 defaultPodOptions:
+  automountServiceAccountToken: false
   securityContext:
     # runAsUser: 568
     # runAsGroup: 568
     # fsGroup: 568
     fsGroupChangePolicy: "OnRootMismatch"
-    supplementalGroups:
-      - 65539
+    # supplementalGroups:
+    #   - 65539
 
 controllers:
   jackett:
+    type: statefulset
     containers:
       app:
         image:
@@ -25,7 +27,7 @@ service:
         port: 9117
 
 ingress:
-  main:
+  app:
     # className: "ingress-nginx"
     hosts:
       - host: jackett-k.bukla.hu
