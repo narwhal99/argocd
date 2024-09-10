@@ -9,6 +9,7 @@ defaultPodOptions:
 
 controllers:
   sonarr:
+    type: statefulset
     containers:
       app:
         image:
@@ -22,7 +23,7 @@ service:
       http:
         port: 8989
 ingress:
-  main:
+  app:
     hosts:
       - host: sonarr-k.bukla.hu
         paths:

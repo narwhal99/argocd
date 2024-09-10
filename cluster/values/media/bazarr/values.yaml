@@ -10,7 +10,7 @@ defaultPodOptions:
 
 controllers:
   bazarr:
-    strategy: Recreate
+    type: statefulset
     # type: statefulset
     # replicas: 3
     # statefulset:
@@ -35,7 +35,7 @@ service:
         port: 6767
 
 ingress:
-  main:
+  app:
     hosts:
       - host: bazarr-k.bukla.hu
         paths:

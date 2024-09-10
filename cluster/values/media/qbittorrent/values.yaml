@@ -10,6 +10,7 @@ defaultPodOptions:
 
 controllers:
   qbittorrent:
+    type: statefulset
     containers:
       app:
         image:
@@ -25,7 +26,7 @@ service:
         port: 8080
 
 ingress:
-  main:
+  app:
     # className: "ingress-nginx"
     hosts:
       - host: qbittorrent-k.bukla.hu

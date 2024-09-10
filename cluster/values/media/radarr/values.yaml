@@ -9,6 +9,7 @@ defaultPodOptions:
 
 controllers:
   radarr:
+    type: statefulset
     containers:
       app:
         image:
@@ -22,7 +23,7 @@ service:
       http:
         port: 7878
 ingress:
-  main:
+  app:
     hosts:
       - host: radarr-k.bukla.hu
         paths:
