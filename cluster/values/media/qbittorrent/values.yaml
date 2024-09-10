@@ -49,7 +49,6 @@ persistence:
     path: /mnt/tank/torrent
     globalMounts:
       - path: /torrent
-        readOnly: false
 
 
     #   volumeMounts:
