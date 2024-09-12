@@ -8,3 +8,4 @@ nfs:
   reclaimPolicy: Retain
 storageClass:
   reclaimPolicy: Retain
+pathPattern: "${.PVC.namespace}/${.PVC.annotations.nfs.io/storage-path}"
