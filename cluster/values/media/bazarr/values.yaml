@@ -50,10 +50,7 @@ persistence:
   #   type: persistentVolumeClaim
     # existingClaim: bazarr-test
   config:
-    type: persistentVolumeClaim
-    storageClass: nfs-csi
-    accessMode: ReadWriteOnce
-    size: 1Gi
+    existingclaim: bazarr-config
     globalMounts:
       - path: /config
   torrent:
