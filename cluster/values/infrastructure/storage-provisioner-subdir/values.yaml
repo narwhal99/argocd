@@ -7,5 +7,5 @@ nfs:
   # Reclaim policy for the main nfs volume
   reclaimPolicy: Retain
 storageClass:
-  reclaimPolicy: Retain
+  #reclaimPolicy: Retain
   pathPattern: "${.PVC.namespace}/${.PVC.name}"
