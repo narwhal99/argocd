@@ -51,7 +51,7 @@ persistence:
     # existingClaim: bazarr-test
   config:
     type: persistentVolumeClaim
-    storageClass: nfs-csi
+    storageClass: nfs-client
     accessMode: ReadWriteOnce
     size: 1Gi
     globalMounts:
