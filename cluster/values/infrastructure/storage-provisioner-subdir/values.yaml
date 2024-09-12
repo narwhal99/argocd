@@ -9,5 +9,4 @@ nfs:
 storageClass:
   #reclaimPolicy: Retain
   name: nfs-subdir
-  provisionerName: testg
   pathPattern: "${.PVC.namespace}/${.PVC.name}"
