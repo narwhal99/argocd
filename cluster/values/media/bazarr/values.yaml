@@ -50,7 +50,7 @@ persistence:
   #   type: persistentVolumeClaim
     # existingClaim: bazarr-test
   config:
-    existingclaim: bazarr-config
+    existingClaim: bazarr-config
     globalMounts:
       - path: /config
   torrent:
