@@ -50,6 +50,12 @@ persistence:
     path: /mnt/tank/torrent
     globalMounts:
       - path: /torrent
+  vault:
+    type: nfs
+    server: 10.20.0.21
+    path: /mnt/tank/vault/temp
+    globalMounts:
+      - path: /vault
 
 
     #   volumeMounts:
