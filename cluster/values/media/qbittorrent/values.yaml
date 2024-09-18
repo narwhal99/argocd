@@ -27,7 +27,6 @@ service:
   p2p:
     controller: qbittorrent
     type: NodePort
-    externalTrafficPolicy: Local
     ports:
       p2p:
         nodePort: 32344
