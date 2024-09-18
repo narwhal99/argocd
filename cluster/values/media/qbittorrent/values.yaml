@@ -24,6 +24,8 @@ service:
     ports:
       http:
         port: 8080
+  p2p:
+    ports:
       p2p:
         type: NodePort
         port: 4989
