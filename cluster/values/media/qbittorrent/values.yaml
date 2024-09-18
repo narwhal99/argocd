@@ -25,6 +25,7 @@ service:
       http:
         port: 8080
   p2p:
+    controller: p2p
     ports:
       p2p:
         type: NodePort
