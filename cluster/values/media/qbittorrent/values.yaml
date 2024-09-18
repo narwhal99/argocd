@@ -25,7 +25,7 @@ service:
       http:
         port: 8080
   p2p:
-    controller: p2p
+    controller: qbittorrent
     ports:
       p2p:
         type: NodePort
