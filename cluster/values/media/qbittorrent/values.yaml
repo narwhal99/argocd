@@ -26,11 +26,11 @@ service:
         port: 8080
   p2p:
     controller: qbittorrent
+    type: NodePort
     ports:
       p2p:
-        type: NodePort
+        nodePort: 4989
         port: 4989
-        targetPort: 4989
 
 ingress:
   app:
