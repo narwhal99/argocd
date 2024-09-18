@@ -31,6 +31,7 @@ service:
       p2p:
         nodePort: 32222
         port: 32222
+        protocol: TCP
 
 ingress:
   app:
