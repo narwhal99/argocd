@@ -29,8 +29,8 @@ service:
     type: NodePort
     ports:
      p2p:
-      port: 4989
-      nodePort: 4989
+      - port: 4989
+        nodePort: 4989
 
 ingress:
   app:
