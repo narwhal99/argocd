@@ -28,7 +28,6 @@ service:
         type: NodePort
         port: 4989
         targetPort: 4989
-        nodePort: 4989
 
 ingress:
   app:
