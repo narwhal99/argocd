@@ -24,6 +24,9 @@ service:
     ports:
       http:
         port: 8080
+      p2p:
+        port: 4989
+        nodePort: 4989
 
 ingress:
   app:
