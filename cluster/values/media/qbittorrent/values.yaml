@@ -30,8 +30,8 @@ service:
     externalTrafficPolicy: Local
     ports:
       p2p:
-        nodePort: 4989
-        port: 4989
+        nodePort: 32344
+        port: 32344
         protocol: TCP
 
 ingress:
