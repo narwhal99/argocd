@@ -27,7 +27,7 @@ service:
 ingress:
   app:
     hosts:
-      - host: prowlarr-k.bukla.hu
+      - host: prowlarr.bukla.hu
         paths:
           - path: /
             pathType: Prefix
