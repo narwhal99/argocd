@@ -27,7 +27,7 @@ service:
 ingress:
   app:
     hosts:
-      - host: readarr-k.bukla.hu
+      - host: readarr.bukla.hu
         paths:
           - path: /
             pathType: Prefix
