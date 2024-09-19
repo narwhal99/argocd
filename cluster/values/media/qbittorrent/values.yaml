@@ -24,12 +24,21 @@ service:
     ports:
       http:
         port: 8080
+  # p2p:
+  #   controller: qbittorrent
+  #   type: NodePort
+  #   ports:
+  #     p2p:
+  #       nodePort: 32344
+  #       port: 32344
+  #       targetPort: 32344
+  #       protocol: TCP
 
 ingress:
   app:
     # className: "ingress-nginx"
     hosts:
-      - host: qbittorrent-k.bukla.hu
+      - host: qbittorrent.bukla.hu
         paths:
           - path: /
             pathType: Prefix

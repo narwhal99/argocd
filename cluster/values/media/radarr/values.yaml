@@ -25,7 +25,7 @@ service:
 ingress:
   app:
     hosts:
-      - host: radarr-k.bukla.hu
+      - host: radarr.bukla.hu
         paths:
           - path: /
             pathType: Prefix
