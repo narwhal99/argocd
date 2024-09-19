@@ -30,7 +30,7 @@ ingress:
   app:
     # className: "ingress-nginx"
     hosts:
-      - host: jackett-k.bukla.hu
+      - host: jackett.bukla.hu
         paths:
           - path: /
             pathType: Prefix
