@@ -85,8 +85,8 @@ prometheus:
         rules: bukla
     storageSpec:
       volumeClaimTemplate:
-        metadata:
-          name: prometheus-dev
+      - metadata:
+          name: prometheus-data 
         spec:
           accessModes:
             - ReadWriteOnce
