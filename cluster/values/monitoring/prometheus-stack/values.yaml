@@ -10,7 +10,7 @@ grafana:
           - grafana-k.bukla.hu
   persistence:
     enabled: true
-    # type: persistentVolumeClaim
+    type: sts
     storageClassName: nfs-csi
     accessModes:
       - ReadWriteOnce
