@@ -17,6 +17,10 @@ controllers:
           repository: ghcr.io/onedr0p/qbittorrent
           tag: 4.6.5
           pullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: 1Gi
+
 
 service:
   app:
