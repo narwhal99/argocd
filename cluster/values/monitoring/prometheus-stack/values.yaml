@@ -85,7 +85,7 @@ prometheus:
         rules: bukla
     storageSpec:
       volumeClaimTemplate:
-      - metadata:
+        metadata:
           name: prometheus-data 
         spec:
           accessModes:
