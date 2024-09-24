@@ -11,7 +11,7 @@ grafana:
   persistence:
     enabled: true
     type: sts
-    storageClassName: shared-storage
+    storageClassName: nfs-subdir
     accessModes:
       - ReadWriteOnce
     size: 20Gi
@@ -94,8 +94,8 @@ prometheus:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 1Gi
-          storageClassName: shared-storage
+              storage: 10Gi
+          storageClassName: nfs-subdir
 alertmanager:
   alertmanagerSpec:
     storage:
@@ -108,7 +108,7 @@ alertmanager:
           resources:
             requests:
               storage: 1Gi
-          storageClassName: shared-storage
+          storageClassName: nfs-subdir
   ingress:
     enabled: true
     hosts:
