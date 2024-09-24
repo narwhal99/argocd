@@ -79,7 +79,7 @@ prometheus:
   #     certManager:
   #       enabled: true
   prometheusSpec:
-    replicas: 3
+    replicas: 1
     ruleSelectorNiUsesHelmValues: false
     ruleSelector:
       matchLabels:
