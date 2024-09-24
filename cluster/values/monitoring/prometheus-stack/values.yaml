@@ -99,7 +99,7 @@ alertmanager:
     storage:
       volumeClaimTemplate:
         metadata:
-          name: alertmanager-dev
+          name: alertmanager-data
         spec:
           accessModes:
             - ReadWriteOnce
