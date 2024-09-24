@@ -13,7 +13,7 @@ spec:
     targetRevision: v4.7.0
     helm:
       valueFiles:
-      - $repo/cluster/values/infrastructure/storage-provisioner/values.yaml
+      - $repo/cluster/values/infrastructure/storage-provisioner-csi/values.yaml
       releaseName: csi-driver-nfs
   - repoURL: git@github.com:narwhal99/argocd.git
     path: cluster/values/infrastructure/storage-provisioner

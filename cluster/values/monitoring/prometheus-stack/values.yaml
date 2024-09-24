@@ -11,7 +11,7 @@ grafana:
   persistence:
     enabled: true
     # type: persistentVolumeClaim
-    storageClassName: nfs-subdir
+    storageClassName: nfs-csi
     accessModes:
       - ReadWriteOnce
     size: 20Gi
@@ -94,7 +94,7 @@ prometheus:
           resources:
             requests:
               storage: 10Gi
-          storageClassName: nfs-subdir
+          storageClassName: nfs-csi
 alertmanager:
   alertmanagerSpec:
     storage:
@@ -107,7 +107,7 @@ alertmanager:
           resources:
             requests:
               storage: 1Gi
-          storageClassName: nfs-subdir
+          storageClassName: nfs-csi
   ingress:
     enabled: true
     hosts:
