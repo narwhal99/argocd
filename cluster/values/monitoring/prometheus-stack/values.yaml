@@ -41,9 +41,9 @@ grafana:
   #       implementation: prometheus
   env:
     - name: GF_SERVER_DOMAIN
-      value: grafana.bukla.hu
-    - name: GF_AUTH_GENERIC_OAUTH_ENABLED
-      value: true
+      value: "grafana.bukla.hu"
+    # - name: GF_AUTH_GENERIC_OAUTH_ENABLED
+    #   value: true
     # - name: GF_AUTH_GENERIC_OAUTH_NAME
     #   value: Authentik
     # - name: GF_AUTH_GENERIC_OAUTH_CLIENT_ID
