@@ -17,7 +17,7 @@ controllers:
         image:
           repository: ghcr.io/museofficial/muse
           tag: latest
-          pullPolicy: ifNotPresent
+          pullPolicy: IfNotPresent
         env:
           - name: DISCORD_TOKEN
             valueFrom:
