@@ -40,3 +40,9 @@ spec:
   #   kind: StatefulSet
   #   jsonPointers:
   #   - /spec/volumeClaimTemplates
+  ignoreDifferences:
+    - group: ''
+      kind: Secret
+      name: monitoring-secret
+      jsonPointers:
+        - /data
