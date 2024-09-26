@@ -42,7 +42,7 @@ spec:
   #   - /spec/volumeClaimTemplates
   ignoreDifferences:
     - group: ''
-      kind: Secret
+      kind: ExternalSecret
       name: monitoring-secret
       jsonPointers:
         - /data
