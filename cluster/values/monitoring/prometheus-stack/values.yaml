@@ -40,11 +40,11 @@ grafana:
   #       handleGrafanaManagedAlerts: false
   #       implementation: prometheus
   grafana.ini:
-    check_for_updates: false
+    check_for_updates: "false"
     server:
-      root_url: https://grafana.bukla.hu
+      root_url: "https://grafana.bukla.hu"
     auth.generic_oauth:
-      enabled: true
+      enabled: "true"
       name: Authentik
       client_id: hN3EgtiDqzqUwvvZJit5ExeYCVROMqjOyX4P0bNb
       client_secret:
@@ -53,7 +53,7 @@ grafana:
       token_url: "https://authentik.bukla.hu/application/o/token/"
       api_url: "https://authentik.bukla.hu/application/o/userinfo/"
       signout_redirect_url: "https://authentik.bukla.hu/application/o/grafana/end-session/"
-      auto_login: true
+      auto_login: "true"
   # env:
   #   - name: GF_SERVER_DOMAIN
   #     value: grafana.bukla.hu
