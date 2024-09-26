@@ -65,11 +65,8 @@ grafana:
         secretKeyRef:
           name: monitoring-secret
           key: oidc_client_secret
-    - name: GF_SECURITY_ADMIN_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: release-name-grafana
-          key: admin-password
+    - name: GF_SECURITY_ADMIN_PASSWORD__FILE
+      value: "/tmp/asd"
 
 thanos:
   enabled: false
