@@ -30,3 +30,9 @@ spec:
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
+  ignoreDifferences:
+    - group: ''
+      kind: Secret
+      name: monitoring-secret
+      jsonPointers:
+        - /data
