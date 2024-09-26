@@ -43,6 +43,6 @@ spec:
   ignoreDifferences:
     - group: ''
       kind: ExternalSecret
-      name: monitoring-secret
+      name: muse-secret
       jsonPointers:
         - /data
