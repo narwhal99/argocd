@@ -1,29 +1,12 @@
 ---
 controllers:
-  # Configure the main controller
-  main:
-    annotations:
-      reloader.stakater.com/auto: "true"
-
-    # # Configure the pod-specific securityContext
-    pod:
-      securityContext:
-        fsGroup: 568
-        fsGroupChangePolicy: "OnRootMismatch"
-
     containers:
-      # Configure the main application container
+      type: statefulset
       main:
         image:
-          # -- image repository
           repository: vikunja/vikunja
-          # -- image tag
-          # this example is not automatically updated, so be sure to use the latest image
           tag: latest
-        # Configure the container-specific securityContext
-        # securityContext:
-        #   runAsUser: 568
-        #   runAsGroup: 568
+          pullPolicy: IfNotPresent
         env:
           - name: VIKUNJA_DATABASE_PASSWORD
             valueFrom:
