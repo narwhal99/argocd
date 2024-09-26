@@ -29,7 +29,7 @@ spec:
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
-  #   - RespectIgnoreDifferences=true
+    - RespectIgnoreDifferences=true
   # ignoreDifferences:
   # - kind: PersistentVolume
   #   jsonPointers:
@@ -41,7 +41,7 @@ spec:
   #   jsonPointers:
   #   - /spec/volumeClaimTemplates
   ignoreDifferences:
-    - group: ''
+    - group: external-secrets.io
       kind: ExternalSecret
       name: muse-secret
       jsonPointers:
