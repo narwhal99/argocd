@@ -39,7 +39,11 @@ grafana:
   #       uid: alertmanager
   #       handleGrafanaManagedAlerts: false
   #       implementation: prometheus
+  tlsConfig:
+    insecureSkipVerify: true
   grafana.ini:
+    "auth.generic_oauth":
+      enabled: true
     "auth.anonymous":
       enabled: true
     check_for_updates: "false"
