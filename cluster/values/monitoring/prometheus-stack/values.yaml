@@ -39,8 +39,10 @@ grafana:
   #       uid: alertmanager
   #       handleGrafanaManagedAlerts: false
   #       implementation: prometheus
-  tlsConfig:
-    insecureSkipVerify: true
+  extraSecretMounts:
+  - name: wildcard-bukla-tls
+    mountPath: "/etc/ssl/certs"
+    secretName: wildcard-bukla-tls
   grafana.ini:
     "auth.generic_oauth":
       enabled: true
