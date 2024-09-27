@@ -46,34 +46,15 @@ grafana:
     server:
       root_url: "https://grafana.bukla.hu"
   envFromSecret: "grafana-secret"
-  # env:
-  #   - name: GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION
-  #     value: true
-  #   - name: GF_SERVER_DOMAIN
-  #     value: grafana.bukla.hu
-  #   - name: GF_AUTH_GENERIC_OAUTH_ENABLED
-  #     value: "true"
-  #   - name: GF_AUTH_GENERIC_OAUTH_NAME
-  #     value: Authentik
-  #   - name: GF_AUTH_GENERIC_OAUTH_CLIENT_ID
-  #     value: hN3EgtiDqzqUwvvZJit5ExeYCVROMqjOyX4P0bNb
-  #   - name: GF_AUTH_GENERIC_OAUTH_SCOPES
-  #     value: "openid profile email"
-  #   - name: GF_AUTH_GENERIC_OAUTH_AUTH_URL
-  #     value: "https://authentik.bukla.hu/application/o/authorize/"
-  #   - name: GF_AUTH_GENERIC_OAUTH_TOKEN_URL
-  #     value: "https://authentik.bukla.hu/application/o/token/"
-  #   - name: GF_AUTH_GENERIC_OAUTH_API_URL
-  #     value: "https://authentik.bukla.hu/application/o/userinfo/"
-  #   - name: GF_AUTH_SIGNOUT_REDIRECT_URL
-  #     value: "https://authentik.bukla.hu/application/o/grafana/end-session/"
-  #   - name: GF_AUTH_OAUTH_AUTO_LOGIN
-  #     value: "true"
-  #   - name: GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
-  #     valueFrom:
-  #       secretKeyRef:
-  #         name: monitoring-secret
-  #         key: oidc_client_secret
+  volumes:
+    - name: grafana-secret
+      secret:
+        secretName: grafana-secret
+        optional: false
+  volumeMounts:
+    - name: grafana-secret-vol
+      mountPath: "/etc/grafana/grafana-secret"
+      readOnly: true
 thanos:
   enabled: false
 prometheus:
