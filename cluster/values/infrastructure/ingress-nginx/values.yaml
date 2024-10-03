@@ -1,0 +1,15 @@
+controller:
+  kind: DaemonSet
+  extraArgs:
+    default-ssl-certificate: ""
+    # enable-ssl-passthough: "true"
+  # metrics:
+  #   enabled: true
+  #   serviceMonitor:
+  #     enabled: true
+  #     scrapeInterval: 15s
+  config:
+    # server-tokens: "true"
+    # allow-snipper-annotations: "true"
+    user-forwarded-headers: "true"
+    forwarded-for-header: "X-Forwarded-For"

@@ -1,0 +1,10 @@
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: default
+  namespace: metallb
+spec:
+  adresses:
+    - 10.20.0.60-10.20.0.70
+  avoidBuggyIPs: true
