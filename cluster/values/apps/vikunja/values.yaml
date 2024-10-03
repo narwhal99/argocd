@@ -41,7 +41,7 @@ service:
 ingress:
   # Configure an Ingress for the main application
   main:
-    # className: "external-nginx"
+    className: "nginx"
     hosts:
       - host: vikunja.bukla.hu
         paths:
