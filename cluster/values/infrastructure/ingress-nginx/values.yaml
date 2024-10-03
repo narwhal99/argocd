@@ -1,24 +1,24 @@
-# controller:
-#   kind: DaemonSet
-#   # extraArgs:
-#     # default-ssl-certificate: ""
-#     # enable-ssl-passthough: "true"
-#   # metrics:
-#   #   enabled: true
-#   #   serviceMonitor:
-#   #     enabled: true
-#   #     scrapeInterval: 15s
-#   service:
-#     externalTrafficPolicy: Local
-#     # annotations:
-#     #   metallb.universe.tf/allow-shared-ip: 10.20.0.60
-#     #   metallb.universe.tf/ip-allocated-from-pool: default
-#     #   metallb.universe.tf/loadBalancerIPs: 10.20.0.60
-#   config:
-#     enable-underscores-in-headers: "true"
-#     server-tokens: "false"
-#     allow-snippet-annotations: "true"
-#     use-forwarded-headers: "true"
-#     forwarded-for-header: "X-Forwarded-For"
-# podSecurityPolicy:
-#   enabled: false
+controller:
+  kind: DaemonSet
+  # extraArgs:
+    # default-ssl-certificate: ""
+    # enable-ssl-passthough: "true"
+  # metrics:
+  #   enabled: true
+  #   serviceMonitor:
+  #     enabled: true
+  #     scrapeInterval: 15s
+  service:
+    externalTrafficPolicy: Local
+    # annotations:
+    #   metallb.universe.tf/allow-shared-ip: 10.20.0.60
+    #   metallb.universe.tf/ip-allocated-from-pool: default
+    #   metallb.universe.tf/loadBalancerIPs: 10.20.0.60
+  config:
+    enable-underscores-in-headers: "true"
+    server-tokens: "false"
+    allow-snippet-annotations: "true"
+    use-forwarded-headers: "true"
+    forwarded-for-header: "X-Forwarded-For"
+podSecurityPolicy:
+  enabled: false
