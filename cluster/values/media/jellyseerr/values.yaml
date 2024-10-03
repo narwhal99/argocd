@@ -36,6 +36,7 @@ service:
 
 ingress:
   app:
+    className: "nginx"
     hosts:
       - host: jellyseerr-k.bukla.hu
         paths:

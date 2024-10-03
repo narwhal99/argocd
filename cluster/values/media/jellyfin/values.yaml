@@ -26,6 +26,7 @@ service:
 
 ingress:
   app:
+    className: "nginx"
     hosts:
       - host: jellyfin-k.bukla.hu
         paths:

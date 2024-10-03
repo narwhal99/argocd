@@ -28,7 +28,7 @@ service:
 
 ingress:
   app:
-    # className: "ingress-nginx"
+    className: "nginx"
     hosts:
       - host: jackett.bukla.hu
         paths:
