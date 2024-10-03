@@ -1,7 +1,7 @@
 controller:
   kind: DaemonSet
   # extraArgs:
-  #   default-ssl-certificate: ""
+    # default-ssl-certificate: ""
     # enable-ssl-passthough: "true"
   # metrics:
   #   enabled: true
@@ -9,7 +9,7 @@ controller:
   #     enabled: true
   #     scrapeInterval: 15s
   service:
-    externalTrafficPolicy: local
+    externalTrafficPolicy: Local
     # annotations:
     #   metallb.universe.tf/allow-shared-ip: 10.20.0.60
     #   metallb.universe.tf/ip-allocated-from-pool: default
@@ -19,3 +19,5 @@ controller:
     allow-snippet-annotations: "true"
     use-forwarded-headers: "true"
     forwarded-for-header: "X-Forwarded-For"
+podSecurityPolicy:
+  enabled: false
