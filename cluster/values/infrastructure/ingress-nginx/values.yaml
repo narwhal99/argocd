@@ -10,10 +10,10 @@ controller:
   #     scrapeInterval: 15s
   service:
     externalTrafficPolicy: local
-    annotations:
-      metallb.universe.tf/allow-shared-ip: 10.20.0.60
-      metallb.universe.tf/ip-allocated-from-pool: default
-      metallb.universe.tf/loadBalancerIPs: 10.20.0.60
+    # annotations:
+    #   metallb.universe.tf/allow-shared-ip: 10.20.0.60
+    #   metallb.universe.tf/ip-allocated-from-pool: default
+    #   metallb.universe.tf/loadBalancerIPs: 10.20.0.60
   config:
     server-tokens: "true"
     allow-snipper-annotations: "true"
