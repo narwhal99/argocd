@@ -15,6 +15,7 @@ controller:
     #   metallb.universe.tf/ip-allocated-from-pool: default
     #   metallb.universe.tf/loadBalancerIPs: 10.20.0.60
   config:
+    enable-underscores-in-headers: "true"
     server-tokens: "false"
     allow-snippet-annotations: "true"
     use-forwarded-headers: "true"
