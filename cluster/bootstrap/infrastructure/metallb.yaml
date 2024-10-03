@@ -11,9 +11,9 @@ spec:
   - chart: metallb
     repoURL: https://metallb.github.io/metallb
     targetRevision: 0.14.8
-    helm:
-      valueFiles:
-      - $repo/cluster/values/infrastructure/metallb/values.yaml
+    # helm:
+    #   valueFiles:
+    #   - $repo/cluster/values/infrastructure/metallb/values.yaml
       releaseName: metallb
   - repoURL: git@github.com:narwhal99/argocd.git
     path: cluster/values/infrastructure/metallb
