@@ -15,7 +15,7 @@ controller:
       metallb.universe.tf/ip-allocated-from-pool: default
       metallb.universe.tf/loadBalancerIPs: 10.20.0.60
   config:
-    # server-tokens: "true"
-    # allow-snipper-annotations: "true"
+    server-tokens: "true"
+    allow-snipper-annotations: "true"
     user-forwarded-headers: "true"
     forwarded-for-header: "X-Forwarded-For"
