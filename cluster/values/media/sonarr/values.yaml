@@ -23,6 +23,7 @@ service:
       http:
         port: 8989
 ingress:
+  ingressClassName: nginx
   app:
     hosts:
       - host: sonarr.bukla.hu
