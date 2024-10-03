@@ -33,6 +33,10 @@ ingress:
             service:
               identifier: app
               port: http
+    tls:
+      - hosts:
+          - radarr.bukla.hu
+        secretName: wildcard-bukla-tls
 persistence:
   config:
     type: persistentVolumeClaim

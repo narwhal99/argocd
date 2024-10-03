@@ -45,6 +45,10 @@ ingress:
             service:
               identifier: app
               port: http
+    tls:
+      - hosts:
+          - jellyseerr-k.bukla.hu
+        secretName: wildcard-bukla-tls
 persistence:
   config:
     type: persistentVolumeClaim

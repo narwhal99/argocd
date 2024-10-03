@@ -35,6 +35,10 @@ ingress:
             service:
               identifier: app
               port: http
+    tls:
+      - hosts:
+          - jellyfin-k.bukla.hu
+        secretName: wildcard-bukla-tls
 persistence:
   config:
     type: persistentVolumeClaim
