@@ -21,6 +21,7 @@ configs:
     policy.csv: | 
       g, authentik Admins, role:admin
   cm:
+    create: true
     dex.config: |
       connectors:
       - config:

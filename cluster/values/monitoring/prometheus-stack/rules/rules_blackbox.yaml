@@ -10,7 +10,7 @@ spec:
     - name: ./rules-blackbox
       rules:
         - alert: SSLCertExpiringSoon
-          expr: probe_ssl_earliest_cert_expiry{job="blackbox"} - time() < 86400 * 30
+          expr: probe_ssl_earliest_cert_expiry{job="blackbox"} - time() < 86400 * 14
           for: 60m
           labels:
             severity: "warning"
@@ -30,3 +30,9 @@ spec:
             severity: "critical"
           annotations:
             description: Blackbox probe not successful on {{ $labels.instance }}
+        - alert: BlackboxDnsSuccessError
+          expr: probe_dns_query_succeeded{instance=~"10.10.0.*"} == 0
+          labels:
+            severity: "critical"
+          annotations:
+            description: Blackbox DNS probe not successful on {{ $labels.instance }}
