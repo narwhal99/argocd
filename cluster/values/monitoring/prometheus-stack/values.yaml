@@ -54,6 +54,7 @@ grafana:
       root_url: "https://grafana.bukla.hu"
   envFromSecret: "grafana-secret"
   env:
+    GF_AUTH_GENERIC_OAUTH_CLIENT_ID: hN3EgtiDqzqUwvvZJit5ExeYCVROMqjOyX4P0bNb
     GF_AUTH_GENERIC_OAUTH_API_URL: https://authentik.bukla.hu/application/o/userinfo/
     GF_AUTH_GENERIC_OAUTH_AUTH_URL: https://authentik.bukla.hu/application/o/authorize/
     GF_AUTH_GENERIC_OAUTH_ENABLED: true
