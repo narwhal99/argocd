@@ -143,9 +143,6 @@ alertmanager:
       receiver: discord
       repeat_interval: 12h
       routes:
-        - match:
-            alertname: Watchdog
-          receiver: 'null'
         - receiver: 'discord'
           continue: true
     receivers:
