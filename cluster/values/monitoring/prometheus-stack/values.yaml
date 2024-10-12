@@ -103,8 +103,12 @@ alertmanager:
             requests:
               storage: 1Gi
           storageClassName: nfs-csi
-    secrets:
-      - grafana-secret
+  extraSecretMounts:
+    - name: secret-files
+      mountPath: /etc/alertmanager/secrets
+      subPath: ""
+      secretName: grafana-secret
+      readOnly: true
   ingress:
     ingressClassName: nginx
     enabled: true
