@@ -19,18 +19,12 @@ grafana:
   sidecar:
     dashboards:
       enabled: true
-    datasources:
-      enabled: true
-      defaultDatasourceEnabled: true
-      isDefaultDatasource: true
-      name: Prometheus
-      uid: prometheus
   additionalDataSources:
-    - name: influxdb
+    - name: influxdb-asd
       type: influxdb
       access: proxy
       url: https://influxdb.bukla.hu
-      uid: influxdb
+      uid: influxdb-asd
       jsonData:
         tlsSkipVerify: true
         organization: "bukla"
