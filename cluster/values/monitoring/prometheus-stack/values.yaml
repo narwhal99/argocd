@@ -27,7 +27,7 @@ grafana:
       uid: prometheus
   additionalDataSources:
     - name: influxdb
-      url: https://influxdb.bukla.hu
+      uri: https://influxdb.bukla.hu
       type: influxdb
       uid: influxdb
       access: proxy
