@@ -153,7 +153,7 @@ alertmanager:
         slack_configs:
         - channel: 'alerts'
           username: "Alertmanager"
-          api_url: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
+          slack_api_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
           send_resolved: true
     templates:
     - '/etc/alertmanager/config/*.tmpl'
