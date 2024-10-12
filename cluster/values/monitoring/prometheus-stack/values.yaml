@@ -29,11 +29,11 @@ grafana:
     - name: influxdb
       url: https://influxdb.bukla.hu
       type: influxdb
-      isDefault: false
+      uid: influxdb
+      access: proxy
       jsonData:
         tlsSkipVerify: true
         organization: "bukla"
-      editable: true
   #     alertmanager:
   #       enabled: true
   #       name: Alertmanager
