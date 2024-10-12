@@ -145,24 +145,23 @@ alertmanager:
       routes:
         - receiver: 'discord'
           continue: true
-    # receivers:
+    # receivers: <-- CRASH AT ALERTING
     #   - name: discord
     #     webhook_configs:
     #     - url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
     #       send_resolved: true
     #       max_alerts: 1
-    receivers: #<-- THIS WONT WORK on v0.27.0 https://github.com/prometheus/alertmanager/issues/3894
-      - name: discord
-        discord_configs:
-        - send_resolved: true
-          webhook_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
-
-    # receivers:
+    # receivers: #<-- THIS WONT WORK on v0.27.0 https://github.com/prometheus/alertmanager/issues/3894
     #   - name: discord
-    #     slack_configs:
-    #     - channel: 'alerts'
-    #       username: "Alertmanager"
-    #       api_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
-    #       send_resolved: true
+    #     discord_configs:
+    #     - send_resolved: true
+    #       webhook_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
+    receivers:
+      - name: discord
+        slack_configs:
+        - channel: 'alerts'
+          username: "Alertmanager"
+          api_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
+          send_resolved: true
     templates:
     - '/etc/alertmanager/config/*.tmpl'
