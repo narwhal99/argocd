@@ -92,10 +92,6 @@ prometheus:
           storageClassName: nfs-csi
 alertmanager:
   alertmanagerSpec:
-    image:
-      registry: quay.io
-      repository: prometheus/alertmanager
-      tag: "main"
     # useExistingSecret: true
     secrets:
       - alertmanager-secrets
@@ -149,16 +145,16 @@ alertmanager:
       routes:
         - receiver: 'discord'
           continue: true
-    # receivers:
-    #   - name: discord
-    #     webhook_configs:
-    #     - url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
-    #       send_resolved: true
     receivers:
       - name: discord
-        discord_configs:
-        - send_resolved: true
-          webhook_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
+        webhook_configs:
+        - url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
+          send_resolved: true
+    # receivers:
+    #   - name: discord
+    #     discord_configs:
+    #     - send_resolved: true
+    #       webhook_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
 
     # receivers:
     #   - name: discord
