@@ -103,8 +103,14 @@ alertmanager:
             requests:
               storage: 1Gi
           storageClassName: nfs-csi
-    secrets:
-      - alertmanager-secrets
+    volumes:
+      - name: config-volume
+        secret:
+          defaultMode: 420
+          secretName: alertmanager-secrets
+    volumeMounts:
+    - mountPath: /etc/alertmanager/config
+      name: config-volume
   ingress:
     ingressClassName: nginx
     enabled: true
