@@ -19,8 +19,8 @@ spec:
     path: cluster/values/monitoring/prometheus-stack
     targetRevision: HEAD
     ref: repo
-    # directory:
-    #   recurse: true
+    directory:
+      recurse: true
   destination:
     name: in-cluster
     namespace: monitoring
