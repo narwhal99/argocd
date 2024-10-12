@@ -21,18 +21,13 @@ grafana:
       enabled: true
   additionalDataSources:
     - name: influxdb
-      type: influxdb
-      access: proxy
+      type: flux
       editable: false
-      version: 5
       url: https://influxdb.bukla.hu
       uid: influxdb
-      basicAuth: false
-      basicAuthUser:
-      basicAuthPassword:
-      # jsonData:
-      #   tlsSkipVerify: true
-      #   organization: "bukla"
+      jsonData:
+        tlsSkipVerify: true
+        organization: "bukla"
   #     alertmanager:
   #       enabled: true
   #       name: Alertmanager
