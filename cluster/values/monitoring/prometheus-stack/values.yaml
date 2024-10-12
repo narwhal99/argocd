@@ -4,11 +4,11 @@ grafana:
     ingressClassName: nginx
     enabled: true
     hosts:
-      - grafana-k.bukla.hu
+      - grafana.bukla.hu
     tls:
       - secretName: wildcard-bukla-tls
         hosts:
-          - grafana-k.bukla.hu
+          - grafana.bukla.hu
   persistence:
     enabled: true
     type: sts
