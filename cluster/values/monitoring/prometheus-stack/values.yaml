@@ -92,9 +92,9 @@ prometheus:
           storageClassName: nfs-csi
 alertmanager:
   alertmanagerSpec:
-    useExistingSecret: true
-    secrets:
-      - alertmanager-secrets
+    # useExistingSecret: true
+    # secrets:
+      # - alertmanager-secrets
     storage:
       volumeClaimTemplate:
         metadata:
