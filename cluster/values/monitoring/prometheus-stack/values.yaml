@@ -155,6 +155,7 @@ alertmanager:
         discord_configs:
         - send_resolved: true
           webhook_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
+          webhook_url: "null"
           
     # receivers:
     #   - name: discord
