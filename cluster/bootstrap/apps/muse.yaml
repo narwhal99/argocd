@@ -45,5 +45,7 @@ spec:
       kind: ExternalSecret
       jqPathExpressions:
         - .spec.data[].remoteRef.conversionStrategy
+        - .spec.data[].remoteRef.decodingStrategy
+        - .spec.data[].remoteRef.metadataPolicy
         # - /*/decodingStrategy
         # - /spec/data/*/remoteRef/metadataPolicy
