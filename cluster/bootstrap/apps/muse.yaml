@@ -48,3 +48,4 @@ spec:
         - /data/conversionStrategy
         - /data/decodingStrategy
         - /data/metadataPolicy
+        - conversionStrategy
