@@ -45,5 +45,5 @@ spec:
       kind: ExternalSecret
       jsonPointers:
         - /spec/data/*/remoteRef/conversionStrategy
-        - /spec/data/*/remoteRef/decodingStrategy
+        - /*/decodingStrategy
         - /spec/data/*/remoteRef/metadataPolicy
