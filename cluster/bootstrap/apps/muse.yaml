@@ -3,8 +3,8 @@ kind: Application
 metadata:
   name: muse
   namespace: argocd
-  # finalizers:
-  # - resources-finalizer.argocd.argoproj.io
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   sources:
@@ -29,7 +29,7 @@ spec:
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
-    - RespectIgnoreDifferences=true
+    # - RespectIgnoreDifferences=true
   # ignoreDifferences:
   # - kind: PersistentVolume
   #   jsonPointers:
@@ -40,12 +40,12 @@ spec:
   #   kind: StatefulSet
   #   jsonPointers:
   #   - /spec/volumeClaimTemplates
-  ignoreDifferences:
-    - group: external-secrets.io
-      kind: ExternalSecret
-      name: muse-secret
-      jsonPointers:
-        - /data/conversionStrategy
-        - /data/decodingStrategy
-        - /data/metadataPolicy
-        - conversionStrategy
+  # ignoreDifferences:
+  #   - group: external-secrets.io
+  #     kind: ExternalSecret
+  #     name: muse-secret
+  #     jsonPointers:
+  #       - /data/conversionStrategy
+  #       - /data/decodingStrategy
+  #       - /data/metadataPolicy
+  #       - conversionStrategy
