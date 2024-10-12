@@ -41,12 +41,12 @@ spec:
   #   jsonPointers:
   #   - /spec/volumeClaimTemplates
   ignoreDifferences:
-    - kind: ExternalSecret
-      name: muse-secret
+    - group: external-secrets.io
+      kind: ExternalSecret
       jsonPointers:
+        - /spec/data/remoteRef/conversionStrategy
+        - /spec/data/secretKey/remoteRef/conversionStrategy
         - /data/conversionStrategy
         - /data/decodingStrategy
         - /data/metadataPolicy
         - conversionStrategy
-        - /spec/conversionStrategy
-        - /spec/remoteRef/conversionStrategy
