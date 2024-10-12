@@ -92,8 +92,6 @@ prometheus:
           storageClassName: nfs-csi
 alertmanager:
   alertmanagerSpec:
-    image:
-      tag: main
     # useExistingSecret: true
     secrets:
       - alertmanager-secrets
