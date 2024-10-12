@@ -19,15 +19,15 @@ grafana:
   sidecar:
     dashboards:
       enabled: true
-  additionalDataSources:
-    - name: influxdb
-      type: flux
-      editable: false
-      url: https://influxdb.bukla.hu
-      uid: influxdb
-      jsonData:
-        tlsSkipVerify: true
-        organization: "bukla"
+  # additionalDataSources: <-- Not adding it
+  #   - name: influxdb
+  #     type: flux
+  #     editable: false
+  #     url: https://influxdb.bukla.hu
+  #     uid: influxdb
+  #     jsonData:
+  #       tlsSkipVerify: true
+  #       organization: "bukla"
   #     alertmanager:
   #       enabled: true
   #       name: Alertmanager
