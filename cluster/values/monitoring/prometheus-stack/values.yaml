@@ -142,16 +142,12 @@ alertmanager:
       group_wait: 30s
       receiver: discord
       repeat_interval: 12h
-      routes:
-        - continue: true
-          match:
-            alertname: Watchdog
-          receiver: discord
-        # - match:
-        #   alertname: Watchdog
-        #   receiver: 'null'
-        # - receiver: 'discord'
-        #   continue: true
+      # routes:
+      #   - match:
+      #     alertname: Watchdog
+      #     receiver: 'null'
+      #   - receiver: 'discord'
+      #     continue: true
     receivers:
       - name: discord
         webhook_configs:
