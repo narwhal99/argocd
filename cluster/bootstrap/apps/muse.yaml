@@ -29,7 +29,7 @@ spec:
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
-    # - RespectIgnoreDifferences=true
+    - RespectIgnoreDifferences=true
   # ignoreDifferences:
   # - kind: PersistentVolume
   #   jsonPointers:
