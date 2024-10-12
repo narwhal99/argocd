@@ -40,9 +40,11 @@ spec:
   #   kind: StatefulSet
   #   jsonPointers:
   #   - /spec/volumeClaimTemplates
-  # ignoreDifferences:
-  #   - group: external-secrets.io
-  #     kind: ExternalSecret
-  #     name: muse-secret
-  #     jsonPointers:
-  #       - /data
+  ignoreDifferences:
+    - group: external-secrets.io
+      kind: ExternalSecret
+      name: muse-secret
+      jsonPointers:
+        - /data/conversionStrategy
+        - /data/decodingStrategy
+        - /data/metadataPolicy
