@@ -26,7 +26,7 @@ spec:
         #     summary: Container killed (instance {{ $labels.instance }})
         #     description: "A container has disappeared\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
         - alert: Container is probably zombie
-          expr: sum(rate(container_cpu_usage_seconds_total{name=~".+"}[5m])) by (name) *100 > 50
+          expr: sum(rate(container_cpu_usage_seconds_total{job="cadvisor",name=~".+"}[5m])) by (name) *100 > 50
           for: 60m
           labels:
             severity: warning
