@@ -103,6 +103,8 @@ alertmanager:
             requests:
               storage: 1Gi
           storageClassName: nfs-csi
+    secrets:
+      - grafana-secret
   ingress:
     ingressClassName: nginx
     enabled: true
@@ -147,6 +149,5 @@ alertmanager:
 
     receivers:
       - name: discord
-        webhook_configs:
-          - url: "asd"
-            send_resolved: true
+        discord_configs:
+          - webhook_url: 'https://discord.com/api/webhooks/<WEB_HOOK_TOKEN>'
