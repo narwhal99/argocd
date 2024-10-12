@@ -24,6 +24,7 @@ grafana:
       type: influxdb
       access: proxy
       editable: false
+      version: 5
       url: https://influxdb.bukla.hu
       uid: influxdb
       basicAuth: false
