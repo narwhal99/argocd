@@ -70,11 +70,11 @@ prometheus:
     enabled: true
     ingressClassName: nginx
     hosts:
-      - prom-k.bukla.hu
+      - prom.bukla.hu
     tls:
       - secretName: wildcard-bukla-tls
         hosts:
-          - prom-k.bukla.hu
+          - prom.bukla.hu
   # prometheusOperator: #lehet nem kell
   #   admissionWebhooks:
   #     certManager:
@@ -113,8 +113,8 @@ alertmanager:
     ingressClassName: nginx
     enabled: true
     hosts:
-      - alertmanager-k.bukla.hu
+      - alertmanager.bukla.hu
     tls:
       - secretName: wildcard-bukla-tls
         hosts:
-          - alertmanager-k.bukla.hu
+          - alertmanager.bukla.hu
