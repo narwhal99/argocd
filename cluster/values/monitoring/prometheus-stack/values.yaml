@@ -143,11 +143,15 @@ alertmanager:
       receiver: discord
       repeat_interval: 12h
       routes:
-        - match:
-          alertname: Watchdog
-          receiver: 'null'
-        - receiver: 'discord'
-          continue: true
+        - continue: true
+          match:
+            alertname: Watchdog
+          receiver: discord
+        # - match:
+        #   alertname: Watchdog
+        #   receiver: 'null'
+        # - receiver: 'discord'
+        #   continue: true
     receivers:
       - name: discord
         webhook_configs:
