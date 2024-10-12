@@ -43,7 +43,7 @@ spec:
   ignoreDifferences:
     - group: external-secrets.io
       kind: ExternalSecret
-      jsonPointers:
-        - /spec/data/*/remoteRef/conversionStrategy
-        - /*/decodingStrategy
-        - /spec/data/*/remoteRef/metadataPolicy
+      jqPathExpressions:
+        - .spec.data[].remoteRef.conversionStrategy
+        # - /*/decodingStrategy
+        # - /spec/data/*/remoteRef/metadataPolicy
