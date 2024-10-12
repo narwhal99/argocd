@@ -92,6 +92,8 @@ prometheus:
           storageClassName: nfs-csi
 alertmanager:
   alertmanagerSpec:
+    secrets:
+      - alertmanager-secrets
     storage:
       volumeClaimTemplate:
         metadata:
@@ -103,14 +105,7 @@ alertmanager:
             requests:
               storage: 1Gi
           storageClassName: nfs-csi
-    volumeMounts:
-      - mountPath: /etc/alertmanager/config
-        name: config-volume
-    volumes:
-      - name: config-volume
-        secret:
-          defaultMode: 420
-          secretName: alertmanager-secrets
+
   ingress:
     ingressClassName: nginx
     enabled: true
