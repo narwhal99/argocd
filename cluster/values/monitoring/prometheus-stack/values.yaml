@@ -144,7 +144,7 @@ alertmanager:
       repeat_interval: 12h
       routes:
         - match:
-          alertname: Watchdog
+            alertname: Watchdog
           receiver: 'null'
         - receiver: 'discord'
           continue: true
