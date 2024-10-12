@@ -44,9 +44,4 @@ spec:
     - group: external-secrets.io
       kind: ExternalSecret
       jsonPointers:
-        - /spec/data/remoteRef/conversionStrategy
-        - /spec/data/secretKey/remoteRef/conversionStrategy
-        - /data/conversionStrategy
-        - /data/decodingStrategy
-        - /data/metadataPolicy
-        - conversionStrategy
+        - /spec/data/*/remoteRef/conversionStrategy
