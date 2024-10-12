@@ -20,14 +20,18 @@ grafana:
     dashboards:
       enabled: true
   additionalDataSources:
-    - name: influxdb-asd
+    - name: influxdb
       type: influxdb
       access: proxy
+      editable: false
       url: https://influxdb.bukla.hu
-      uid: influxdb-asd
-      jsonData:
-        tlsSkipVerify: true
-        organization: "bukla"
+      uid: influxdb
+      basicAuth: false
+      basicAuthUser:
+      basicAuthPassword:
+      # jsonData:
+      #   tlsSkipVerify: true
+      #   organization: "bukla"
   #     alertmanager:
   #       enabled: true
   #       name: Alertmanager
