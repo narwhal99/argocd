@@ -92,6 +92,10 @@ prometheus:
           storageClassName: nfs-csi
 alertmanager:
   alertmanagerSpec:
+    image:
+      registry: quay.io
+      repository: prometheus/alertmanager
+      tag: "main"
     # useExistingSecret: true
     secrets:
       - alertmanager-secrets
