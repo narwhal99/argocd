@@ -1,4 +1,13 @@
 ---
+defaultPodOptions:
+  securityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
+    fsGroupChangePolicy: "OnRootMismatch"
+    supplementalGroups:
+      - 65539
+
 controllers:
     vikunja:
       type: statefulset
@@ -32,8 +41,8 @@ controllers:
 
 service:
   # Configure a service for the main application
-  main:
-    controller: main
+  app:
+    controller: vikunja
     type: ClusterIP
     ports:
       http:
@@ -41,7 +50,7 @@ service:
 
 ingress:
   # Configure an Ingress for the main application
-  main:
+  app:
     className: "nginx"
     hosts:
       - host: vikunja.bukla.hu
