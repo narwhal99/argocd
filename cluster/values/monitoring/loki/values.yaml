@@ -1,0 +1,29 @@
+enterprise:
+  enabled: false
+  adminApi:
+    enabled: false
+  useExternalLicense: false
+
+  config: |
+    admin_client:
+      storage:
+        gcs:
+          bucket_name: {YOUR_GCS_BUCKET}
+    auth:
+      type: trust
+    auth_enabled: false
+    cluster_name: loki-logs
+
+loki:
+  auth_enabled: false
+
+  commonConfig:
+    path_prefix: /var/loki
+    replication_factor: 3
+
+  storage:
+    type: gcs
+    bucketNames:
+      chunks: {YOUR_GCS_BUCKET}
+      ruler: {YOUR_GCS_BUCKET}
+      admin: {YOUR_GCS_BUCKET}
