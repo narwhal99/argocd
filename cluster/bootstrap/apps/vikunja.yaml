@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: app-template
     repoURL: https://bjw-s.github.io/helm-charts/
-    targetRevision: x
+    targetRevision: 3.5.1
     helm:
       valueFiles:
       - $repo/cluster/values/apps/vikunja/values.yaml

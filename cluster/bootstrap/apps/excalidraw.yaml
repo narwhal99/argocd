@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: muse
+  name: excalidraw
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -13,10 +13,10 @@ spec:
     targetRevision: 3.5.1
     helm:
       valueFiles:
-      - $repo/cluster/values/apps/muse/values.yaml
-      releaseName: muse
+      - $repo/cluster/values/apps/excalidraw/values.yaml
+      releaseName: excalidraw
   - repoURL: git@github.com:narwhal99/argocd.git
-    path: cluster/values/apps/muse
+    path: cluster/values/apps/excalidraw
     targetRevision: HEAD
     ref: repo
   destination:
@@ -40,12 +40,12 @@ spec:
   #   kind: StatefulSet
   #   jsonPointers:
   #   - /spec/volumeClaimTemplates
-  ignoreDifferences:
-    - group: external-secrets.io
-      kind: ExternalSecret
-      jqPathExpressions:
-        - .spec.data[].remoteRef.conversionStrategy
-        - .spec.data[].remoteRef.decodingStrategy
-        - .spec.data[].remoteRef.metadataPolicy
+  # ignoreDifferences:
+  #   - group: external-secrets.io
+  #     kind: ExternalSecret
+  #     jqPathExpressions:
+  #       - .spec.data[].remoteRef.conversionStrategy
+  #       - .spec.data[].remoteRef.decodingStrategy
+  #       - .spec.data[].remoteRef.metadataPolicy
         # - /*/decodingStrategy
         # - /spec/data/*/remoteRef/metadataPolicy
