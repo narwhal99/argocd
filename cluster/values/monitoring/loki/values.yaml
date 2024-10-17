@@ -19,14 +19,19 @@ loki:
   querier:
     max_concurrent: 4
 
-#gateway:
-#  ingress:
-#    enabled: true
-#    hosts:
-#      - host: FIXME
-#        paths:
-#          - path: /
-#            pathType: Prefix
+gateway:
+  ingress:
+    ingressClassName: "nginx"
+    enabled: true
+    hosts:
+      - host: gateway-loki.bukla.hu
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - hosts:
+          - gateway-loki.bukla.hu
+        secretName: wildcard-bukla-tls
 
 deploymentMode: SingleBinary
 
