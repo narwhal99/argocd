@@ -47,6 +47,8 @@ write:
 # Enable minio for storage
 minio:
   enabled: true
+  persistence:
+    storageClass: nfs-csi
 
 singleBinary:
   replicas: 0
