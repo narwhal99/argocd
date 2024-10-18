@@ -19,6 +19,8 @@ spec:
     path: cluster/values/media/alternatrr
     targetRevision: HEAD
     ref: repo
+    directory:
+      recurse: true
   destination:
     name: in-cluster
     namespace: media
