@@ -23,7 +23,16 @@ controllers:
             value: Data Source=/opt/alternatrr/app/alternatrr.db
           - name: ConnectionStrings__sonarr
             value: Data Source=/opt/sonarr/sonarr.db
-
+          - name: username
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: alternatrr-secret
+          - name: password
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: alternatrr-secret
 service:
   app:
     controller: alternatrr
