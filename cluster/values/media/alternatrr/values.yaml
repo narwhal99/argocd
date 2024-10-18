@@ -1,13 +1,4 @@
 ---
-defaultPodOptions:
-  securityContext:
-    runAsUser: 568
-    runAsGroup: 568
-    fsGroup: 568
-    fsGroupChangePolicy: "OnRootMismatch"
-    supplementalGroups:
-      - 65539
-
 controllers:
   alternatrr:
     type: statefulset
