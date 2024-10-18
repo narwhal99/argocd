@@ -27,6 +27,12 @@ controllers:
           repository: ghcr.io/theultimatec0der/alternatrr
           tag: latest
           pullPolicy: IfNotPresent
+        env:
+          - name: ConnectionStrings__DefaultConnection
+            value: Data Source=/opt/alternatrr/app/alternatrr.db
+          - name: ConnectionStrings__sonarr
+            value: Data Source=/opt/sonarr/sonarr.db
+
 service:
   app:
     controller: alternatrr
