@@ -58,7 +58,13 @@ singleBinary:
     storageClass: nfs-csi
     enabled: true
     size: 5Gi
-
+  extraVolumeMounts:
+    - name: rules
+      mountPath: "/var/loki/rules/fake"
+  extraVolumes:
+    - name: rules
+      configMap:
+        name: loki-alerting-rules
 # Zero out replica counts of other deployment modes
 backend:
   replicas: 0

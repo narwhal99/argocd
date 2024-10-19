@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: loki-alerting-rules
+data:
+  rules.yaml: |
+    groups:
+      - name: Jellyfin_auth
+        rules:
+          - alert: Jellyfin_auth
+            expr: |
+              count_over_time({container="jellyfin"} |~ `Authentication` |= `denied`[5m]) > 0
+            labels:
+              severity: "critical"
+            annotations:
+              title: 'Wrong auth within 5 min'
+      - name: SSH Login failed
+        rules:
+          - alert: SSH_login_failed
+            expr: |
+              count_over_time({job="varlogs"} |= `sshd` |= `failure`[2m]) > 0
+            labels:
+              severity: "critical"
+            annotations:
+              title: 'SSH Login failed'
+      - name: Mikrotik login failed
+        rules:
+          - alert: Mikrotik_login_failed
+            expr: |
+              count_over_time({host="10.10.0.1"} |= `failure`[2m]) > 0
+            labels:
+              severity: "critical"
+            annotations:
+              title: 'Mikrotik Login failed'
+      # - name: Vault_sealed
+      #   rules:
+      #     - alert: Vault-sealed
+      #       expr: |
+      #         (count_over_time({container="vault"} |~ `vault is sealed`[5m])) > 0
+      #       labels:
+      #         severity: "critical"
+      #       annotations:
+      #         title: 'The vault is sealed!'
+      # - name: Mikrotik_user_logged_in
+      #   rules:
+      #     - alert: Mikrotik_user_logged_in
+      #       expr: |
+      #         (count_over_time({mikrotik="10.10.0.1"} |= "logged in"[5m])) > 0
+      #       labels:
+      #         severity: "warning"
+      #       annotations:
+      #         title: 'The user is logged in mikrotik!'
