@@ -25,6 +25,17 @@ loki:
     enabled: true
   querier:
     max_concurrent: 4
+  rulerConfig:
+    storage:
+      type: local
+      local:
+        directory: /var/loki/rules/
+    rule_path: "/var/loki/rules-temp"
+    ring:
+      kvstore:
+        store: inmemory
+    alertmanager_url: http://alertmanager-operated.monitoring:9093
+    enable_alertmanager_v2: true
 
 gateway:
   ingress:
@@ -84,6 +95,15 @@ chunksCache:
   # -- Amount of memory allocated to chunks-cache for object storage (in MB).
   allocatedMemory: 8192
 
+networkPolicy:
+  alertmanager:
+    # -- Specify the alertmanager port used for alerting
+    port: 9093
+    # -- Specifies the alertmanager Pods.
+    # As this is cross-namespace communication, you also need the namespaceSelector.
+    podSelector:
+    # -- Specifies the namespace the alertmanager is running in
+    namespaceSelector: {}
 # Zero out replica counts of other deployment modes
 backend:
   replicas: 0
