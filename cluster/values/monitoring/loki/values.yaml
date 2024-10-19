@@ -65,6 +65,25 @@ singleBinary:
     - name: rules
       configMap:
         name: loki-alerting-rules
+
+chunksCache:
+  # -- Specifies whether memcached based chunks-cache should be enabled
+  enabled: false
+  # -- Batchsize for sending and receiving chunks from chunks cache
+  batchSize: 4
+  # -- Parallel threads for sending and receiving chunks from chunks cache
+  parallelism: 5
+  # -- Memcached operation timeout
+  timeout: 2000ms
+  # -- Specify how long cached chunks should be stored in the chunks-cache before being expired
+  defaultValidity: 0s
+  # -- Total number of chunks-cache replicas
+  replicas: 1
+  # -- Port of the chunks-cache service
+  port: 11211
+  # -- Amount of memory allocated to chunks-cache for object storage (in MB).
+  allocatedMemory: 8192
+
 # Zero out replica counts of other deployment modes
 backend:
   replicas: 0
