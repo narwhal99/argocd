@@ -18,8 +18,8 @@ spec:
     path: cluster/values/monitoring/loki
     targetRevision: HEAD
     ref: repo
-    # directory:
-    #   recurse: true
+    directory:
+      recurse: true
   destination:
     name: in-cluster
     namespace: logging
