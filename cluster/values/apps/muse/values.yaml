@@ -39,6 +39,9 @@ controllers:
               secretKeyRef:
                 name: muse-secret
                 key: spotify_client_secret
+persistence:
+  data:
+    type: emptyDir
 # persistence:
 #   data:
 #     type: persistentVolumeClaim
