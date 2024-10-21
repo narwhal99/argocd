@@ -12,7 +12,6 @@ controllers:
   # Configure the main controller
   main:
     type: statefulset
-    replicas: 3
     containers:
       main:
         image:
