@@ -28,6 +28,7 @@ service:
         port: 27015
       udp:
         port: 34197
+        protocol: UDP
     annotations:
       metallb.universe.tf/allow-shared-ip: 10.20.0.65
       metallb.universe.tf/ip-allocated-from-pool: default
