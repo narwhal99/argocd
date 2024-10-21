@@ -30,6 +30,8 @@ service:
         port: 34197
     annotations:
       metallb.universe.tf/allow-shared-ip: 10.20.0.65
+      metallb.universe.tf/ip-allocated-from-pool: default
+      metallb.universe.tf/loadBalancerIPs: 10.20.0.65
 
 persistence:
   config:
