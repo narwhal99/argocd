@@ -41,9 +41,11 @@ controllers:
                 key: spotify_client_secret
 persistence:
   data:
-    type: persistentVolumeClaim
-    storageClass: nfs-subdir
-    accessMode: ReadWriteOnce
-    size: 1Gi
-    globalMounts:
-      - path: /data
+    type: emptyDir
+#   data:
+#     type: persistentVolumeClaim
+#     storageClass: nfs-subdir
+#     accessMode: ReadWriteOnce
+#     size: 1Gi
+#     globalMounts:
+#       - path: /data
