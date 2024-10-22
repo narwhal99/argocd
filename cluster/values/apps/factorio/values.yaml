@@ -16,7 +16,7 @@ controllers:
           image:
             repository: factoriotools/factorio
             tag: latest
-            pullPolicy: IfNotPresent
+            pullPolicy: Always
 
 service:
   # Configure a service for the main application
