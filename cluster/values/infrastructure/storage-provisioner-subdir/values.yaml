@@ -2,7 +2,7 @@ nfs:
   server: 10.20.0.21
   path: /mnt/tank/containers
   mountOptions:
-    - nfsvers=3
+    - nfsvers=4
   volumeName: nfs-subdir-external-provisioner-root
   # Reclaim policy for the main nfs volume
   reclaimPolicy: Retain
