@@ -12,4 +12,4 @@ storageClass:
   volumeBindingMode: Immediate
   allowVolumeExpansion: true
   mountOptions:
-    - nfsvers=3
+    - nfsvers=4
