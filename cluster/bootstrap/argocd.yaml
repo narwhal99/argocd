@@ -21,7 +21,7 @@ spec:
     targetRevision: HEAD
     ref: repo
   destination:
-    name: argocd
+    name: in-cluster
     namespace: argocd
   syncPolicy:
     automated:
