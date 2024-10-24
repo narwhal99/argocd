@@ -37,6 +37,10 @@ configs:
         type: oidc
         id: authentik
 dex:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
   volumeMounts:
   - mountPath: /etc/ssl/certs
     name: etc-ssl-certs
