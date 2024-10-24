@@ -57,6 +57,7 @@ grafana:
   #   GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups, 'authentik Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'"
   #   GF_AUTH_GENERIC_OAUTH_SCOPES: "openid profile email"
   #   GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: true
+namespaceOverride: "testing"
 prometheus-adapter:
   enabled: false
 thanos:
