@@ -5,6 +5,7 @@ server:
     enabled: true
   replicas: 1
   ingress:
+    ingressClassName: nginx
     https: true
     enabled: true
     annotations:
@@ -20,7 +21,7 @@ configs:
     policy.csv: | 
       g, authentik Admins, role:admin
   cm:
-    kustomize.buildOptions: '--enable-helm --enable-alpha-plugins --enable-exec'
+    create: true
     dex.config: |
       connectors:
       - config:
