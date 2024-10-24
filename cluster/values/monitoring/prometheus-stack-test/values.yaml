@@ -59,7 +59,8 @@ grafana:
   #   GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: true
 namespaceOverride: "testing"
 prometheus-adapter:
-  enabled: false
+  prometheus:
+    url: http://rancher-monitoring-prometheus.testing.svc
 thanos:
   enabled: false
 prometheus:
