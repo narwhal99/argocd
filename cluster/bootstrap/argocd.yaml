@@ -12,7 +12,7 @@ spec:
   sources:
   - chart: argo-cd
     repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: 3.35.4
+    targetRevision: 2.14.4
     helm:
       valueFiles:
         - $repo/cluster/argocd/values.yaml
