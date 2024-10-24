@@ -2,22 +2,22 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: argocd
-  namespace: argo-cd
+  namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd.argoproj.io/sync-wave: '0'
 spec:
   project: default
-  source:
-  - chart: argocd
+  sources:
+  - chart: argo-cd
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 3.35.4
     helm:
       valueFiles:
         - $repo/cluster/argocd/values.yaml
   - repoURL: git@github.com:narwhal99/argocd.git
-    path: cluster/values/monitoring/loki
+    path: cluster/argocd/
     targetRevision: HEAD
     ref: repo
   destination:
