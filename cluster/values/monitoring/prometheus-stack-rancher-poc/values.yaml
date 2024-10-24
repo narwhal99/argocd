@@ -94,7 +94,8 @@ prometheus:
   #           requests:
   #             storage: 10Gi
   #         storageClassName: nfs-csi
-# alertmanager:
+alertmanager:
+  enabled: false
 #   alertmanagerSpec:
 #     # useExistingSecret: true
 #     secrets:
