@@ -156,7 +156,7 @@ alertmanager:
     #     - url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
     #       send_resolved: true
     #       max_alerts: 1
-    receivers: #<-- THIS WONT WORK on v0.27.0 https://github.com/prometheus/alertmanager/issues/3894
+    receivers:
       - name: discord
         discord_configs:
         - send_resolved: true
