@@ -2,5 +2,14 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
-  ]
+  ],
+  "argocd": {
+    "fileMatch": ["cluster/bootstrap/.+\\.yaml$","cluster/argocd/.+\\.yaml$","cluster/cluster\\.yaml$"]
+  },
+  "helm-values": {
+    "commitMessageTopic": "helm values {{depName}}",
+    "fileMatch": [
+      "cluster/values/.*\\.yaml$"
+    ]
+  },
 }
