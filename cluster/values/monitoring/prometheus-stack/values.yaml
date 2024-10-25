@@ -159,7 +159,7 @@ alertmanager:
     receivers:
       - name: discord
         discord_configs:
-        - webhook_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
+        - api_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
           send_resolved: true
     # receivers:
     #   - name: discord
