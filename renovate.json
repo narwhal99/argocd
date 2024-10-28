@@ -11,5 +11,32 @@
     "fileMatch": [
       "cluster/values/.*\\.yaml$"
     ]
-  }
+  },
+  "packageRules": [
+    {
+      "description": "Auto merge container digests",
+      "matchDatasources": ["docker"],
+      "automerge": true,
+      "ignoreTests": true,
+      "automergeType": "pr",
+      "matchUpdateTypes": ["patch", "minor", "digest"],
+      "matchPackagePatterns": ["ghcr.io/bjw-s", "ghcr.io/onedr0p"]
+    },
+    {
+      "description": "Auto merge container digests",
+      "matchDatasources": ["docker"],
+      "automerge": true,
+      "ignoreTests": true,
+      "automergeType": "pr",
+      "matchUpdateTypes": ["patch"]
+    },
+    {
+      "description": "Auto merge helm deps",
+      "matchDatasources": ["helm","git-tags"],
+      "automerge": true,
+      "ignoreTests": true,
+      "automergeType": "pr",
+      "matchUpdateTypes": ["patch"]
+    }
+  ]
 }
