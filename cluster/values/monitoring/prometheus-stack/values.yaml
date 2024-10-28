@@ -9,13 +9,13 @@ grafana:
       - secretName: wildcard-bukla-tls
         hosts:
           - grafana.bukla.hu
-  # persistence:
-  #   enabled: true
-  #   type: sts
-  #   storageClassName: nfs-csi
-  #   accessModes:
-  #     - ReadWriteOnce
-  #   size: 20Gi
+  persistence:
+    enabled: true
+    type: sts
+    storageClassName: nfs-csi
+    accessModes:
+      - ReadWriteOnce
+    size: 20Gi
   sidecar:
     dashboards:
       enabled: true
