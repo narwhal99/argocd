@@ -3,7 +3,7 @@ kind: PrometheusRule
 metadata:
   labels:
     app: prometheus-operator
-    # rules: bukla
+    rules: bukla
   name: rules-general
 spec:
   groups:

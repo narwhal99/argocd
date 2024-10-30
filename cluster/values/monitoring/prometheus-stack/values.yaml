@@ -76,7 +76,7 @@ prometheus:
         enabled: true
   prometheusSpec:
     # replicas: 1
-    # ruleSelectorNiUsesHelmValues: true
+    # ruleSelectorNiUsesHelmValues: false
     ruleSelector:
       matchLabels:
         rules: bukla
