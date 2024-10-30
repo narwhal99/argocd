@@ -77,9 +77,9 @@ prometheus:
   prometheusSpec:
     # replicas: 1
     # ruleSelectorNiUsesHelmValues: false
-    ruleSelector:
-      matchLabels:
-        rules: bukla
+    # ruleSelector:
+    #   matchLabels:
+    #     rules: bukla
     storageSpec:
       volumeClaimTemplate:
         metadata:
