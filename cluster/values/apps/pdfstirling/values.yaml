@@ -44,11 +44,11 @@ ingress:
           - pdf.bukla.hu
         secretName: wildcard-bukla-tls
 persistence:
-  trainingData:
-    type: emptyDir
-    advancedMounts:
-      pdfstirling:
-        - path: /usr/share/tessdata
+  # trainingData:
+  #   type: emptyDir
+  #   advancedMounts:
+  #     pdfstirling:
+  #       - path: /usr/share/tessdata
   config:
     type: persistentVolumeClaim
     storageClass: nfs-subdir
