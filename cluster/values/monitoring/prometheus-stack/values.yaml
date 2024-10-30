@@ -59,6 +59,9 @@ grafana:
     GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: true
 thanos:
   enabled: false
+
+defaultRules:
+  create: true
 prometheus:
   ingress:
     enabled: true
