@@ -60,8 +60,6 @@ grafana:
 thanos:
   enabled: false
 
-defaultRules:
-  create: true
 prometheus:
   ingress:
     enabled: true
@@ -78,10 +76,10 @@ prometheus:
         enabled: true
   prometheusSpec:
     # replicas: 1
-    # ruleSelectorNiUsesHelmValues: false
-    ruleSelector:
-      matchLabels:
-        rules: bukla
+    ruleSelectorNiUsesHelmValues: false
+    # ruleSelector:
+    #   matchLabels:
+    #     rules: bukla
     storageSpec:
       volumeClaimTemplate:
         metadata:
