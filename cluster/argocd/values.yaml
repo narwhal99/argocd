@@ -42,7 +42,7 @@ dex:
     serviceMonitor:
       enabled: true
   volumeMounts:
-  - mountPath: /etc/ssl/certs
+  - mountPath: /etc/ssl/certs # -- REWWORK THIS!!!
     name: etc-ssl-certs
     readOnly: true
 
