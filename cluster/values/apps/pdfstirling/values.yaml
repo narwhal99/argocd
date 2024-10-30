@@ -9,30 +9,30 @@
 #       - 65539
 
 controllers:
-    vikunja:
+    pdfstirling:
       type: statefulset
       containers:
         main:
           image:
-            repository: excalidraw/excalidraw
-            tag: latest
+            repository: frooodle/s-pdf
+            tag: 0.31.0
             pullPolicy: IfNotPresent
 
 service:
   # Configure a service for the main application
   app:
-    controller: vikunja
+    controller: pdfstirling
     type: ClusterIP
     ports:
       http:
-        port: 80
+        port: 8080
 
 ingress:
   # Configure an Ingress for the main application
   app:
     className: "nginx"
     hosts:
-      - host: draw.bukla.hu
+      - host: pdf.bukla.hu
         paths:
           - path: /
             pathType: Prefix
@@ -43,14 +43,18 @@ ingress:
       - hosts:
           - pdf.bukla.hu
         secretName: wildcard-bukla-tls
-# persistence:
-#   config:
-#     type: persistentVolumeClaim
-#     storageClass: nfs-subdir
-#     accessMode: ReadWriteOnce
-#     size: 1Gi
-#     globalMounts:
-#       - path: /config
+persistence:
+  trainingData:
+    type: emptyDir
+    globalMounts:
+      - path: /usr/share/tessdata
+  config:
+    type: persistentVolumeClaim
+    storageClass: nfs-subdir
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    globalMounts:
+      - path: /configs
 
 # configMaps:
 #       config:
