@@ -3,5 +3,5 @@ rfc2136:
   host: raspi.bukla.hu
   zone: bukla.hu
   tsigKeyname: externaldnsrke2
-  tsigSecretAlg: hmac-sha256
+  tsigSecretAlg: hmac-sha512
   secretName: tsig-secret
