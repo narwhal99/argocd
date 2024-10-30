@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: externaldns
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: external-dns
+    repoURL: https://kubernetes-sigs.github.io/external-dns/
+    targetRevision: 1.15.0
+    helm:
+      valueFiles:
+      - $repo/cluster/values/infrastructure/externaldns/values.yaml
+      releaseName: external-dns
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/infrastructure/externaldns
+    targetRevision: HEAD
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: externaldns
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
