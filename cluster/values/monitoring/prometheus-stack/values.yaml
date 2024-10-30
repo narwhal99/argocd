@@ -76,10 +76,10 @@ prometheus:
         enabled: true
   prometheusSpec:
     # replicas: 1
-    ruleSelectorNiUsesHelmValues: false
-    # ruleSelector:
-    #   matchLabels:
-    #     rules: bukla
+    # ruleSelectorNiUsesHelmValues: true
+    ruleSelector:
+      matchLabels:
+        rules: bukla
     storageSpec:
       volumeClaimTemplate:
         metadata:
