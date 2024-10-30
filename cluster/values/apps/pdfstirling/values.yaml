@@ -47,9 +47,8 @@ persistence:
   trainingData:
     type: emptyDir
     advancedMounts:
-      main:
-        pdfstirling:
-          - path: /usr/share/tessdata
+      pdfstirling:
+        - path: /usr/share/tessdata
   config:
     type: persistentVolumeClaim
     storageClass: nfs-subdir
