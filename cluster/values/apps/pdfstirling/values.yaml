@@ -46,8 +46,9 @@ ingress:
 persistence:
   trainingData:
     type: emptyDir
-    globalMounts:
-      - path: /usr/share/tessdata
+    advancedMounts:
+      pdfstirling:
+        - path: /usr/share/tessdata
   config:
     type: persistentVolumeClaim
     storageClass: nfs-subdir
