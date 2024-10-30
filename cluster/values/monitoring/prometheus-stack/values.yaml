@@ -74,8 +74,8 @@ prometheus:
       certManager:
         enabled: true
   prometheusSpec:
-    replicas: 1
-    ruleSelectorNiUsesHelmValues: false
+    # replicas: 1
+    # ruleSelectorNiUsesHelmValues: false
     ruleSelector:
       matchLabels:
         rules: bukla
