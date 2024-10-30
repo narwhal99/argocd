@@ -69,10 +69,10 @@ prometheus:
       - secretName: wildcard-bukla-tls
         hosts:
           - prom.bukla.hu
-  # prometheusOperator: #lehet nem kell
-  #   admissionWebhooks:
-  #     certManager:
-  #       enabled: true
+  prometheusOperator: #DE KELL!
+    admissionWebhooks:
+      certManager:
+        enabled: true
   prometheusSpec:
     replicas: 1
     ruleSelectorNiUsesHelmValues: false
