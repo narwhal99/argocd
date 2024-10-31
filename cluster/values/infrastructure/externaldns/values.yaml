@@ -1,7 +1,14 @@
 provider: rfc2136
+domainFilters:
+  - bukla.hu
 rfc2136:
   host: raspi.bukla.hu
   zone: bukla.hu
   tsigKeyname: externaldnsrke2
   tsigSecretAlg: hmac-sha512
   secretName: tsig-secret
+
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
