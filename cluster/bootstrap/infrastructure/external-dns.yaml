@@ -9,7 +9,7 @@ spec:
   project: default
   sources:
   - chart: external-dns
-    repoURL: https://kubernetes-sigs.github.io/external-dns/
+    repoURL: oci://registry-1.docker.io/bitnamicharts/external-dns
     targetRevision: 0.15.0
     helm:
       valueFiles:
