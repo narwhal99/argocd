@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: external-dns
     repoURL: oci://registry-1.docker.io/bitnamicharts/external-dns
-    targetRevision: 0.15.0
+    targetRevision: 8.3.12
     helm:
       valueFiles:
       - $repo/cluster/values/infrastructure/externaldns/values.yaml
