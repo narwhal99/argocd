@@ -1,0 +1,14 @@
+ingress:
+  # Configure an Ingress for the main application
+  main:
+    enabled: true
+    ingressClassName: "nginx"
+    hosts:
+      - host: chef.bukla.hu
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - hosts:
+          - chef.bukla.hu
+        secretName: wildcard-bukla-tls
