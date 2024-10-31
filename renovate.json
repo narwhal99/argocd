@@ -20,7 +20,7 @@
       "ignoreTests": true,
       "automergeType": "pr",
       "matchUpdateTypes": ["patch", "minor", "digest"],
-      "matchPackagePatterns": ["ghcr.io/bjw-s", "ghcr.io/onedr0p"]
+      "matchPackagePatterns": ["ghcr.io/bjw-s", "ghcr.io/onedr0p", "linuxserver"]
     },
     {
       "description": "Auto merge container digests",
