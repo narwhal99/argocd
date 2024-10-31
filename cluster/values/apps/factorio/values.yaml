@@ -25,6 +25,8 @@ controllers:
                   key: token
             - name: UPDATE_MODS_ON_START
               value: true
+            - name: USERNAME
+              value: narwhal99
 service:
   # Configure a service for the main application
   app:
