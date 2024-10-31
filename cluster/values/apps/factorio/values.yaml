@@ -17,7 +17,12 @@ controllers:
             repository: factoriotools/factorio
             tag: 2.0.13
             pullPolicy: Always
-
+          env:
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: factorio-secret
+                  key: token
 service:
   # Configure a service for the main application
   app:
