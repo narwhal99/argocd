@@ -21,7 +21,7 @@ spec:
     ref: repo
   destination:
     name: in-cluster
-    namespace: cyberchef
+    namespace: apps
   syncPolicy:
     automated:
       selfHeal: true
