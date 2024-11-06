@@ -20,5 +20,10 @@ controller:
     allow-snippet-annotations: "true"
     use-forwarded-headers: "true"
     forwarded-for-header: "X-Forwarded-For"
+  tolerations:
+   - key: "HAsrv"
+     operator: "Equal"
+     value: "true"
+     effect: "NoExecute"
 podSecurityPolicy:
   enabled: false
