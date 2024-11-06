@@ -15,6 +15,11 @@ server:
       - hosts:
         - argocd.bukla.hu
         secretName: wildcard-bukla-tls
+  tolerations:
+   - key: "HAsrv"
+     operator: "Equal"
+     value: "true"
+     effect: "NoExecute"
 
 configs:
   rbac:
