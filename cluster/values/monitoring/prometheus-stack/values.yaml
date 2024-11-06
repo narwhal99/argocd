@@ -91,6 +91,12 @@ prometheus:
             requests:
               storage: 10Gi
           storageClassName: nfs-csi
+prometheus-node-exporter:
+  tolerations:
+    - key: "HAsrv"
+      operator: "Equal"
+      value: "true"
+      effect: "NoExecute"
 alertmanager:
   alertmanagerSpec:
     # useExistingSecret: true
