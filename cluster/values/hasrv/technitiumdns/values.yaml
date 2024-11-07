@@ -14,7 +14,7 @@ defaultPodOptions:
      value: "true"
      effect: "NoExecute"
   nodeSelector:
-    node: hasrv
+    node: HAsrv
 controllers:
     technitiumdns:
       type: statefulset
