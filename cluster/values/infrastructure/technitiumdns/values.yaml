@@ -8,11 +8,11 @@
 #     supplementalGroups:
 #       - 65539
 defaultPodOptions:
-  tolerations:
-   - key: "HAsrv"
-     operator: "Equal"
-     value: "true"
-     effect: "NoExecute"
+  # tolerations:
+  #  - key: "HAsrv"
+  #    operator: "Equal"
+  #    value: "true"
+  #    effect: "NoExecute"
   # nodeSelector:
   #   node: HAsrv
 controllers:

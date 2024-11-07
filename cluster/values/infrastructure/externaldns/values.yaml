@@ -13,8 +13,8 @@ metrics:
   serviceMonitor:
     enabled: true
 
-tolerations:
-  - key: "HAsrv"
-    operator: "Equal"
-    value: "true"
-    effect: "NoExecute"
+# tolerations:
+#   - key: "HAsrv"
+#     operator: "Equal"
+#     value: "true"
+#     effect: "NoExecute"
