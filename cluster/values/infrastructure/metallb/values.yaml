@@ -7,6 +7,6 @@ controller:
 speaker:
   tolerations:
     - key: "HAsrv"
-    operator: "Equal"
-    value: "true"
-    effect: "NoExecute"
+      operator: "Equal"
+      value: "true"
+      effect: "NoExecute"
