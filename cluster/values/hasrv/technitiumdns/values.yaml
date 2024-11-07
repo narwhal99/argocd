@@ -7,7 +7,14 @@
 #     fsGroupChangePolicy: "OnRootMismatch"
 #     supplementalGroups:
 #       - 65539
-
+defaultPodOptions:
+  tolerations:
+   - key: "HAsrv"
+     operator: "Equal"
+     value: "true"
+     effect: "NoExecute"
+  nodeSelector:
+    node: hasrv
 controllers:
     technitiumdns:
       type: statefulset
