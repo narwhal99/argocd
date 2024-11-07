@@ -13,8 +13,8 @@ defaultPodOptions:
      operator: "Equal"
      value: "true"
      effect: "NoExecute"
-  nodeSelector:
-    node: HAsrv
+  # nodeSelector:
+  #   node: HAsrv
 controllers:
     technitiumdns:
       type: statefulset
