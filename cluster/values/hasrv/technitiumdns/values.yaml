@@ -19,7 +19,7 @@ controllers:
             pullPolicy: Always
           env:
             - name: DNS_SERVER_DOMAIN
-              value: tech-dns01.bukla.hu
+              value: tech-dns02.bukla.hu
 service:
   # Configure a service for the main application
   app:
