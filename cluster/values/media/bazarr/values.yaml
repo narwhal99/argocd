@@ -38,7 +38,7 @@ ingress:
   app:
     className: "nginx"
     hosts:
-      - host: bazarr-k.bukla.hu
+      - host: bazarr.bukla.hu
         paths:
           - path: /
             pathType: Prefix
@@ -47,7 +47,7 @@ ingress:
               port: http
     tls:
       - hosts:
-          - bazarr-k.bukla.hu
+          - bazarr.bukla.hu
         secretName: wildcard-bukla-tls
 persistence:
   # config:
