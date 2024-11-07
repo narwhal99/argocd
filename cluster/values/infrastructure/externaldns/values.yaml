@@ -2,7 +2,7 @@ provider: rfc2136
 domainFilters:
   - bukla.hu
 rfc2136:
-  host: raspi.bukla.hu
+  host: 10.20.0.61
   zone: bukla.hu
   tsigKeyname: externaldnsrke2
   tsigSecretAlg: hmac-sha512
