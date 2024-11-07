@@ -17,6 +17,9 @@ controllers:
             repository: technitium/dns-server
             tag: 13.1
             pullPolicy: Always
+          env:
+            - name: DNS_SERVER_DOMAIN
+              value: tech-dns01.bukla.hu
 service:
   # Configure a service for the main application
   app:
