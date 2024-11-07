@@ -13,15 +13,15 @@ spec:
     targetRevision: 3.5.1
     helm:
       valueFiles:
-      - $repo/cluster/values/hasrv/technitiumdns/values.yaml
+      - $repo/cluster/values/infrastructure/technitiumdns/values.yaml
       releaseName: technitiumdns
   - repoURL: git@github.com:narwhal99/argocd.git
-    path: cluster/values/hasrv/technitiumdns
+    path: cluster/values/infrastructure/technitiumdns
     targetRevision: HEAD
     ref: repo
   destination:
     name: in-cluster
-    namespace: hasrv
+    namespace: infraservices
   syncPolicy:
     automated:
       prune: true
