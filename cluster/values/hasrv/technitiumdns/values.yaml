@@ -21,7 +21,7 @@ service:
   # Configure a service for the main application
   app:
     controller: technitiumdns
-    type: ClusterIP
+    type: LoadBalancer
     ports:
       tcp:
         port: 53
