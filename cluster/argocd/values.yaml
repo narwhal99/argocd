@@ -47,9 +47,7 @@ configs:
       clientID: oU1vXwPUBb2lxv9QvLTaLIc3na2lpkgVbsAaPdky
       clientSecret: $dex.authentik.clientSecret
       rootCA: |
-        -----BEGIN CERTIFICATE-----
-        ... encoded certificate data here ...
-        -----END CERTIFICATE-----
+        $oidc.azuread.clientSecret
       requestedIDTokenClaims:
         groups:
           essential: true
