@@ -18,6 +18,7 @@ defaultPodOptions:
 controllers:
     technitiumdns:
       type: statefulset
+      replicas: 2
       containers:
         main:
           image:
