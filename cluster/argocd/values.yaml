@@ -87,21 +87,21 @@ configs:
         - openid
         - profile
         - email
-dex:
-  metrics:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-  volumeMounts:
-  - mountPath: /etc/ssl/certs # -- REWWORK THIS!!!
-    name: etc-ssl-certs
-    readOnly: true
+# dex:
+#   metrics:
+#     enabled: true
+#     serviceMonitor:
+#       enabled: true
+#   volumeMounts:
+#   - mountPath: /etc/ssl/certs # -- REWWORK THIS!!!
+#     name: etc-ssl-certs
+#     readOnly: true
 
-  volumes:
-   - name: etc-ssl-certs
-     hostPath:
-       path: /etc/ssl/certs
-       type: DirectoryOrCreate
+#   volumes:
+#    - name: etc-ssl-certs
+#      hostPath:
+#        path: /etc/ssl/certs
+#        type: DirectoryOrCreate
 
 # url: http://argocd.company
 # dex.config: |
