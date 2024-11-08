@@ -27,20 +27,36 @@ configs:
       g, authentik Admins, role:admin
   cm:
     create: true
-    dex.config: |
-      connectors:
-      - config:
-          issuer: https://authentik.bukla.hu/application/o/argocd/
-          clientID: oU1vXwPUBb2lxv9QvLTaLIc3na2lpkgVbsAaPdky
-          clientSecret: $dex.authentik.clientSecret
-          insecureEnableGroups: true
-          scopes:
-            - openid
-            - profile
-            - email
-        name: authentik
-        type: oidc
-        id: authentik
+    # dex.config: |
+    #   connectors:
+    #   - config:
+    #       issuer: https://authentik.bukla.hu/application/o/argocd/
+    #       clientID: oU1vXwPUBb2lxv9QvLTaLIc3na2lpkgVbsAaPdky
+    #       clientSecret: $dex.authentik.clientSecret
+    #       insecureEnableGroups: true
+    #       scopes:
+    #         - openid
+    #         - profile
+    #         - email
+    #     name: authentik
+    #     type: oidc
+    #     id: authentik
+    oidc.config: |
+      name: Authentik
+      issuer: https://authentik.bukla.hu/application/o/argocd/
+      clientID: oU1vXwPUBb2lxv9QvLTaLIc3na2lpkgVbsAaPdky
+      clientSecret: $dex.authentik.clientSecret
+      rootCA: |
+        -----BEGIN CERTIFICATE-----
+        ... encoded certificate data here ...
+        -----END CERTIFICATE-----
+      requestedIDTokenClaims:
+        groups:
+          essential: true
+      requestedScopes:
+        - openid
+        - profile
+        - email
 dex:
   metrics:
     enabled: true
