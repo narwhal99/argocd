@@ -7,7 +7,7 @@
 #     fsGroupChangePolicy: "OnRootMismatch"
 #     supplementalGroups:
 #       - 65539
-defaultPodOptions:
+# defaultPodOptions:
   # tolerations:
   #  - key: "HAsrv"
   #    operator: "Equal"
