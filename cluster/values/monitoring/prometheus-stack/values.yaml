@@ -21,13 +21,16 @@ grafana:
       enabled: true
   additionalDataSources: # Not working yet
     - name: influxdb
-      type: flux
+      type: influxdb
       editable: false
       url: https://influxdb.bukla.hu
       uid: influxdb
       jsonData:
+        version: Flux
         tlsSkipVerify: true
         organization: "bukla"
+      secureJsonData:
+        token: $influxdb_token
       alertmanager:
         enabled: true
         name: Alertmanager
