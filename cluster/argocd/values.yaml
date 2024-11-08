@@ -41,6 +41,7 @@ configs:
     #     name: authentik
     #     type: oidc
     #     id: authentik
+    url: https://argocd.bukla.hu
     oidc.config: |
       name: Authentik
       issuer: https://authentik.bukla.hu/application/o/argocd/
