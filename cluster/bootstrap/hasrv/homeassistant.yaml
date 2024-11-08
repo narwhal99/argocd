@@ -13,10 +13,10 @@ spec:
     targetRevision: 3.5.1
     helm:
       valueFiles:
-      - $repo/cluster/values/infrastructure/homeassistant/values.yaml
+      - $repo/cluster/values/hasrv/homeassistant/values.yaml
       releaseName: homeassistant
   - repoURL: git@github.com:narwhal99/argocd.git
-    path: cluster/values/infrastructure/homeassistant
+    path: cluster/values/hasrv/homeassistant
     targetRevision: HEAD
     ref: repo
   destination:
