@@ -34,12 +34,12 @@ grafana:
     - name: Loki
       type: Loki
       url: https://loki-gateway.bukla.hu
-      alertmanager:
-        enabled: true
-        name: Alertmanager
-        uid: alertmanager
-        handleGrafanaManagedAlerts: false
-        implementation: prometheus
+      # alertmanager:
+      #   enabled: true
+      #   name: Alertmanager
+      #   uid: alertmanager
+      #   handleGrafanaManagedAlerts: false
+      #   implementation: prometheus
   extraSecretMounts:
   - name: wildcard-bukla-tls
     mountPath: "/etc/ssl/certs"
