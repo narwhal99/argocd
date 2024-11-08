@@ -19,7 +19,7 @@ grafana:
   sidecar:
     dashboards:
       enabled: true
-  additionalDataSources: # Not working yet
+  additionalDataSources:
     - name: influxdb
       type: influxdb
       editable: false
@@ -37,6 +37,9 @@ grafana:
         uid: alertmanager
         handleGrafanaManagedAlerts: false
         implementation: prometheus
+    - name: Loki
+      type: loki
+      url: https://loki-gateway.bukla.hu
   extraSecretMounts:
   - name: wildcard-bukla-tls
     mountPath: "/etc/ssl/certs"
