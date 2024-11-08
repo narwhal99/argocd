@@ -22,7 +22,7 @@ controllers:
         main:
           image:
             repository: homeassistant/home-assistant
-            tag: 2024.11.0
+            tag: 2024.11.1
             pullPolicy: Always
           env:
             - name: DNS_SERVER_DOMAIN
