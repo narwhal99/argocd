@@ -1,0 +1,62 @@
+---
+# defaultPodOptions:
+#   securityContext:
+#     runAsUser: 568
+#     runAsGroup: 568
+#     fsGroup: 568
+#     fsGroupChangePolicy: "OnRootMismatch"
+#     supplementalGroups:
+#       - 65539
+defaultPodOptions:
+  # tolerations:
+  #  - key: "HAsrv"
+  #    operator: "Equal"
+  #    value: "true"
+  #    effect: "NoExecute"
+  nodeSelector:
+    node: HAsrv
+controllers:
+    technitiumdns:
+      type: statefulset
+      containers:
+        main:
+          image:
+            repository: homeassistant/home-assistant
+            tag: 2024.11.0
+            pullPolicy: Always
+          env:
+            - name: DNS_SERVER_DOMAIN
+              value: homeassistant.bukla.hu
+service:
+  # Configure a service for the main application
+  app:
+    controller: technitiumdns
+    type: ClusterIP
+    ports:
+      http:
+        port: 8123
+ingress:
+  # Configure an Ingress for the main application
+  app:
+    className: "nginx"
+    hosts:
+      - host: homeassistant.bukla.hu
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: app
+              port: http
+    tls:
+      - hosts:
+          - homeassistant.bukla.hu
+        secretName: wildcard-bukla-tls
+
+persistence:
+  config:
+    type: persistentVolumeClaim
+    storageClass: nfs-subdir
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    globalMounts:
+      - path: /config
