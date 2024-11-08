@@ -31,15 +31,15 @@ grafana:
         organization: "bukla"
       secureJsonData:
         token: $influxdb_token
+    - name: Loki
+      type: loki
+      url: https://loki-gateway.bukla.hu
       alertmanager:
         enabled: true
         name: Alertmanager
         uid: alertmanager
         handleGrafanaManagedAlerts: false
         implementation: prometheus
-    - name: Loki
-      type: loki
-      url: https://loki-gateway.bukla.hu
   extraSecretMounts:
   - name: wildcard-bukla-tls
     mountPath: "/etc/ssl/certs"
