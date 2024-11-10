@@ -1,0 +1,25 @@
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hosts:
+    - karma.bukla.hu
+  tls:
+    - secretName: wildcard-bukla-tls
+      hosts:
+        - karma.bukla.hu
+
+configMap:
+  enabled: true
+  rawConfig:
+    alertmanager:
+      interval: 30s
+      servers:
+        - name: prometheus
+          url: https://prometheus-stack-kube-prom-alertmanager:9093
+          external_uri: "https://alertmanager.bukla.hu"
+          proxy: true
+          healthcheck:
+            filters:
+              Watchdog:
+                - alertname=Watchdog
+                - severity=nonde

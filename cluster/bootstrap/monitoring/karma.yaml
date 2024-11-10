@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: karma
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: karma
+    repoURL: https://wiremind.github.io/wiremind-helm-charts
+    targetRevision: 2.9.1
+    helm:
+      valueFiles:
+        - $repo/cluster/values/monitoring/karma/values.yaml
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/monitoring/karma
+    targetRevision: HEAD
+    ref: repo
+    directory:
+      recurse: true
+  destination:
+    name: in-cluster
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+  # ignoreDifferences:
+  #   - group: external-secrets.io
+  #     kind: ExternalSecret
+  #     jqPathExpressions:
+  #       - .spec.data[].remoteRef.conversionStrategy
+  #       - .spec.data[].remoteRef.decodingStrategy
+  #       - .spec.data[].remoteRef.metadataPolicy
