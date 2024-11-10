@@ -15,7 +15,7 @@ configMap:
       interval: 30s
       servers:
         - name: prometheus
-          uri: https://prometheus-stack-kube-prom-alertmanager:9093
+          uri: http://prometheus-stack-kube-prom-alertmanager:9093
           external_uri: "https://alertmanager.bukla.hu"
           proxy: true
           healthcheck:
