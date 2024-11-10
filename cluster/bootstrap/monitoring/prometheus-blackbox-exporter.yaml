@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-blackbox-exporter
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: prometheus-blackbox-exporter
+    repoURL: https://prometheus-community.github.io/helm-charts 
+    targetRevision: 9.1.0
+    helm:
+      valueFiles:
+        - $repo/cluster/values/monitoring/prometheus-blackbox-exporter/values.yaml
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/monitoring/prometheus-blackbox-exporter
+    targetRevision: HEAD
+    ref: repo
+    directory:
+      recurse: true
+  destination:
+    name: in-cluster
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+  ignoreDifferences:
+    - group: external-secrets.io
+      kind: ExternalSecret
+      jqPathExpressions:
+        - .spec.data[].remoteRef.conversionStrategy
+        - .spec.data[].remoteRef.decodingStrategy
+        - .spec.data[].remoteRef.metadataPolicy
