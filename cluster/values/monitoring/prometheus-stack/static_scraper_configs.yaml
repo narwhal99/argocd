@@ -59,7 +59,7 @@ prometheus:
     #      - source_labels: [__param_target]
     #        target_label: instance
     #      - target_label: __address__
-    #        replacement: vmdocker04.bukla.hu:9115  # The blackbox exporter's real hostname:port.
+    #        replacement: prometheus-blackbox-exporter.monitoring:9115  # The blackbox exporter's real hostname:port.
       - job_name: blackbox
         metrics_path: /probe
         params:
@@ -75,7 +75,7 @@ prometheus:
           - source_labels: [__param_target]
             target_label: instance
           - target_label: __address__
-            replacement: vmdocker04.bukla.hu:9115  # The blackbox exporter's real hostname:port.
+            replacement: prometheus-blackbox-exporter.monitoring:9115  # The blackbox exporter's real hostname:port.
       - job_name: blackbox_icmp
         metrics_path: /probe
         params:
@@ -90,7 +90,7 @@ prometheus:
           - source_labels: [__param_target]
             target_label: instance
           - target_label: __address__
-            replacement: vmdocker04.bukla.hu:9115  # The blackbox exporter's real hostname:port.
+            replacement: prometheus-blackbox-exporter.monitoring:9115  # The blackbox exporter's real hostname:port.
       - job_name: blackbox_dns
         metrics_path: /probe
         params:
@@ -107,7 +107,7 @@ prometheus:
           - source_labels: [__param_target]
             target_label: instance
           - target_label: __address__
-            replacement: vmdocker04.bukla.hu:9115  # The blackbox exporter's real hostname:port.
+            replacement: prometheus-blackbox-exporter.monitoring:9115  # The blackbox exporter's real hostname:port.
       - job_name: graphite-exporter 
         metrics_path: /metrics
         scrape_interval: 15s
