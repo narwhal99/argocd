@@ -60,3 +60,8 @@ persistence:
     size: 1Gi
     globalMounts:
       - path: /config
+  bluetooth:
+    enabled: true
+    type: hostPath
+    hostPath: /run/dbus
+    readOnly: true
