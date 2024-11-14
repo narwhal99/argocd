@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: bjws-applicationset
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: [ "missingkey=error" ]
+  generators:
+    - list:
+        elements:
+          - name: muse
+            releaseName: muse
+            namespace: apps
+            repo: git@github.com:narwhal99/argocd.git
+            targetRevision: HEAD
+  template:
+    metadata:
+      name: '{{ .name }}'
+      namespace: argocd
+    spec:
+      project: default
+      sources:
+        - chart: app-template
+          repoURL: https://bjw-s.github.io/helm-charts/
+          targetRevision: 3.5.1
+          helm:
+            valueFiles:
+            - $repo/cluster/values/apps/{{ .name }}/values.yaml
+            releaseName: '{{ .releaseName }}'
+        - repoURL: git@github.com:narwhal99/argocd.git
+          path: cluster/values/apps/{{ .name }}
+          targetRevision: '{{ .targetRevision }}'
+          ref: repo
+      destination:
+        namespace: '{{ .namespace }}'
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+          # - Replace=true
+          # - PruneLast=true
