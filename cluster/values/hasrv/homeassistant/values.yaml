@@ -64,4 +64,3 @@ persistence:
     enabled: true
     type: hostPath
     hostPath: /run/dbus
-    readOnly: true
