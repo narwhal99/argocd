@@ -9,23 +9,23 @@
 #       - 65539
 
 controllers:
-    vikunja:
+    excalidraw:
       type: statefulset
       containers:
         main:
           image:
             repository: excalidraw/excalidraw
-            tag: latest
+            tag: v0.17.3
             pullPolicy: IfNotPresent
 
 service:
   # Configure a service for the main application
   app:
-    controller: vikunja
+    controller: excalidraw
     type: ClusterIP
     ports:
       http:
-        port: 8123
+        port: 80
 
 ingress:
   # Configure an Ingress for the main application
@@ -41,7 +41,7 @@ ingress:
               port: http
     tls:
       - hosts:
-          - pdf.bukla.hu
+          - draw.bukla.hu
         secretName: wildcard-bukla-tls
 # persistence:
 #   config:
