@@ -1,0 +1,77 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: media-applicationset
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: [ "missingkey=error" ]
+  generators:
+    - list:
+        elements:
+          - name: bazarr
+            namespace: media
+            targetRevision: HEAD
+          - name: jackett
+            namespace: media
+            targetRevision: HEAD
+          - name: jellyfin
+            namespace: media
+            targetRevision: HEAD
+          - name: jellyseerr
+            namespace: media
+            targetRevision: HEAD
+          - name: prowlarr
+            namespace: media
+            targetRevision: HEAD
+          - name: qbittorrent
+            namespace: media
+            targetRevision: HEAD
+          - name: radarr
+            namespace: media
+            targetRevision: HEAD
+          - name: readarr
+            namespace: media
+            targetRevision: HEAD
+          - name: sabnzbd
+            namespace: media
+            targetRevision: HEAD
+          - name: sonarr
+            namespace: media
+            targetRevision: HEAD
+  template:
+    metadata:
+      name: '{{ .name }}'
+      namespace: argocd
+    spec:
+      project: default
+      sources:
+        - chart: app-template
+          repoURL: https://bjw-s.github.io/helm-charts/
+          targetRevision: 3.5.1
+          helm:
+            valueFiles:
+            - $repo/cluster/values/media/{{ .name }}/values.yaml
+            releaseName: '{{ .name }}'
+        - repoURL: git@github.com:narwhal99/argocd.git
+          path: cluster/values/media/{{ .name }}
+          targetRevision: '{{ .targetRevision }}'
+          ref: repo
+      destination:
+        namespace: '{{ .namespace }}'
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+          - RespectIgnoreDifferences=true
+          # - Replace=true
+          # - PruneLast=true
+      ignoreDifferences:
+        - group: external-secrets.io
+          kind: ExternalSecret
+          jqPathExpressions:
+            - .spec.data[].remoteRef.conversionStrategy
+            - .spec.data[].remoteRef.decodingStrategy
+            - .spec.data[].remoteRef.metadataPolicy
