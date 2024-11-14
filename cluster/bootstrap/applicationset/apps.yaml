@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: bjws-applicationset
+  name: apps-applicationset
   namespace: argocd
 spec:
   goTemplate: true
@@ -9,10 +9,23 @@ spec:
   generators:
     - list:
         elements:
-          - name: muse
-            releaseName: muse
+          - name: pdfstirling
             namespace: apps
-            repo: git@github.com:narwhal99/argocd.git
+            targetRevision: HEAD
+          - name: excalidraw
+            namespace: apps
+            targetRevision: HEAD
+          - name: muse
+            namespace: apps
+            targetRevision: HEAD
+          - name: vikunja
+            namespace: apps
+            targetRevision: HEAD
+          - name: factorio
+            namespace: apps
+            targetRevision: HEAD
+          - name: homeassistant
+            namespace: apps
             targetRevision: HEAD
   template:
     metadata:
@@ -27,7 +40,7 @@ spec:
           helm:
             valueFiles:
             - $repo/cluster/values/apps/{{ .name }}/values.yaml
-            releaseName: '{{ .releaseName }}'
+            releaseName: '{{ .name }}'
         - repoURL: git@github.com:narwhal99/argocd.git
           path: cluster/values/apps/{{ .name }}
           targetRevision: '{{ .targetRevision }}'
@@ -42,3 +55,12 @@ spec:
           - ServerSideApply=true
           # - Replace=true
           # - PruneLast=true
+  ignoreDifferences:
+    - group: external-secrets.io
+      kind: ExternalSecret
+      jqPathExpressions:
+        - .spec.data[].remoteRef.conversionStrategy
+        - .spec.data[].remoteRef.decodingStrategy
+        - .spec.data[].remoteRef.metadataPolicy
+        - /*/decodingStrategy
+        - /spec/data/*/remoteRef/metadataPolicy
