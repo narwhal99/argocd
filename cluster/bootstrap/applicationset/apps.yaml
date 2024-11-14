@@ -60,8 +60,8 @@ spec:
         - group: external-secrets.io
           kind: ExternalSecret
           jqPathExpressions:
-            - .spec.data[].remoteRef.conversionStrategy
-            - .spec.data[].remoteRef.decodingStrategy
-            - .spec.data[].remoteRef.metadataPolicy
-            - /*/decodingStrategy
-            - /spec/data/*/remoteRef/metadataPolicy
+            - ".spec.data[].remoteRef.conversionStrategy"
+            - ".spec.data[].remoteRef.decodingStrategy"
+            - ".spec.data[].remoteRef.metadataPolicy"
+            - "/*/decodingStrategy"
+            - "/spec/data/*/remoteRef/metadataPolicy"
