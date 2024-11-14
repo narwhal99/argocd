@@ -56,12 +56,12 @@ spec:
           - RespectIgnoreDifferences=true
           # - Replace=true
           # - PruneLast=true
-      ignoreDifferences:
-        - group: external-secrets.io
-          kind: ExternalSecret
-          jqPathExpressions:
-            - ".spec.data[].remoteRef.conversionStrategy"
-            - ".spec.data[].remoteRef.decodingStrategy"
-            - ".spec.data[].remoteRef.metadataPolicy"
-            - "/*/decodingStrategy"
-            - "/spec/data/*/remoteRef/metadataPolicy"
+      # ignoreDifferences:
+      #   - group: external-secrets.io
+      #     kind: ExternalSecret
+      #     jqPathExpressions:
+      #       - .spec.data[].remoteRef.conversionStrategy
+      #       - .spec.data[].remoteRef.decodingStrategy
+      #       - .spec.data[].remoteRef.metadataPolicy
+      #       - /*/decodingStrategy
+      #       - /spec/data/*/remoteRef/metadataPolicy
