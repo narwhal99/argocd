@@ -27,6 +27,9 @@ spec:
           - name: homeassistant
             namespace: apps
             targetRevision: HEAD
+          - name: drawio
+            namespace: apps
+            targetRevision: HEAD
   template:
     metadata:
       name: '{{ .name }}'
