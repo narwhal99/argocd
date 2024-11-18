@@ -15,7 +15,7 @@ controllers:
         main:
           image:
             repository: prom/snmp-exporter
-            tag: 0.26.0
+            tag: v0.26.0
             pullPolicy: IfNotPresent
 
 
