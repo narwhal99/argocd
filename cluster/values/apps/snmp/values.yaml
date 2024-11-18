@@ -18,16 +18,8 @@ controllers:
             tag: 0.26.0
             pullPolicy: IfNotPresent
 
-service:
-  # Configure a service for the main application
-  app:
-    controller: snmp
-    type: ClusterIP
-    ports:
-      http:
-        port: 9116
 
-ingress:
+service:
   # Configure an Ingress for the main application
   app:
     controller: snmp
