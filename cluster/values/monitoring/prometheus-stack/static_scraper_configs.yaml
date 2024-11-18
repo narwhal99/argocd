@@ -35,7 +35,7 @@ prometheus:
         scrape_interval: 10s
         static_configs:
           - targets:
-              - 10.20.0.1 #mikrotik ip
+              - 10.10.0.1 #mikrotik ip
         metrics_path: /snmp
         params:
           module: [mikrotik]
