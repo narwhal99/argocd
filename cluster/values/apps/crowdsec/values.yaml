@@ -29,8 +29,8 @@ agent:
   additionalAcquisition:
     - source: loki
       log_level: info
-      # url: http://loki.logging.svc.cluster.local:3100/
-      url: https://loki-gateway.bukla.hu
+      url: http://loki.logging.svc.cluster.local:3100/
+      # url: https://loki-gateway.bukla.hu
       limit: 1000
       query: |
         {container="haproxy"}
