@@ -1,3 +1,5 @@
+container_runtime: containerd
+
 lapi:
   persistentVolume:
     # -- Persistent volume for data folder. Stores e.g. registered bouncer api keys
@@ -18,7 +20,7 @@ lapi:
       size: 100Mi
 
 agent:
-  additionalAcquisition:
+  acquisition:
     - source: loki
       log_level: info
       # url: http://loki.logging.svc.cluster.local:3100/
