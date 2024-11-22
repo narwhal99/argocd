@@ -1,0 +1,6 @@
+ingress:
+  ingressClassName: nginx
+  enabled: true
+  host: longhorn.bukla.hu
+  tls: true
+  tlsSecret: wildcard-bukla-tls
