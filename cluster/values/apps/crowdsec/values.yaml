@@ -18,6 +18,15 @@ lapi:
       storageClassName: ""
       existingClaim: ""
       size: 100Mi
+    # -- UI for crowdsec
+  dashboard:
+    enabled: true
+    ingress:
+      enabled: true
+      ingressClassName: "nginx"
+      host: "crowdsec.bukla.hu"
+      tls: 
+        - secretName: wildcard-bukla-tls
 
 agent:
   acquisition:
