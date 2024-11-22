@@ -21,6 +21,12 @@ lapi:
 
 agent:
   acquisition:
+    - namespace: "ingress-nginx"
+      podName: "ingress-nginx-controller-*"
+      program: "nginx"
+      # -- If set to true, will poll the files using os.Stat instead of using inotify
+      poll_without_inotify: false
+  additionalAcquisition:
     - source: loki
       log_level: info
       # url: http://loki.logging.svc.cluster.local:3100/
