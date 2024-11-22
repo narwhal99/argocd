@@ -34,3 +34,5 @@ agent:
       limit: 1000
       query: |
         {container="haproxy"}
+      labels:
+        type: haproxy
