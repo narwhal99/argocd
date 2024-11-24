@@ -45,7 +45,8 @@ prometheus:
           - source_labels: [__param_target]
             target_label: instance
           - target_label: __address__
-            replacement: 10.20.0.61:9116
+            # replacement: 10.20.0.61:9116 # KUBE SNMP NOT WORKING
+            replacement: raspi.bukla.hu:9116
     #  - job_name: blackbox_bukla
     #    metrics_path: /probe
     #    params:
