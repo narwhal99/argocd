@@ -8,5 +8,8 @@ ingress:
     - secretName: wildcard-bukla-tls
       hosts:
         - snmp-exporter.bukla.hu
-module:
-  - mikrotik
+params:
+  - name: main-mikrotik
+    module:
+      - if_mib
+    target: 10.10.0.1
