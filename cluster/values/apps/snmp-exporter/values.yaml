@@ -1,6 +1,6 @@
 ---
 ingress:
-  ingressClassName: nginx
+  : nginx
   enabled: true
   hosts:
     - snmp-exporter.bukla.hu
