@@ -1,0 +1,10 @@
+---
+ingress:
+  ingressClassName: nginx
+  enabled: true
+  hosts:
+    - snmp-exporter.bukla.hu
+  tls:
+    - secretName: wildcard-bukla-tls
+      hosts:
+        - snmp-exporter.bukla.hu

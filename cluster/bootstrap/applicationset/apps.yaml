@@ -33,9 +33,6 @@ spec:
           - name: technitiumdns
             namespace: infraservices
             targetRevision: HEAD
-          - name: snmp
-            namespace: apps
-            targetRevision: HEAD
   template:
     metadata:
       name: '{{ .name }}'

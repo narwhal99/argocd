@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: snmp-exporter
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: prometheus-snmp-exporter
+    repoURL: https://prometheus-community.github.io/helm-charts 
+    targetRevision: 5.6.0
+    helm:
+      valueFiles:
+        - $repo/cluster/values/apps/snmp-exporter/values.yaml
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/apps/snmp-exporter
+    targetRevision: HEAD
+    ref: repo
+    directory:
+      recurse: true
+  destination:
+    name: in-cluster
+    namespace: apps
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+  # ignoreDifferences:
+  #   - group: external-secrets.io
+  #     kind: ExternalSecret
+  #     jqPathExpressions:
+  #       - .spec.data[].remoteRef.conversionStrategy
+  #       - .spec.data[].remoteRef.decodingStrategy
+  #       - .spec.data[].remoteRef.metadataPolicy
