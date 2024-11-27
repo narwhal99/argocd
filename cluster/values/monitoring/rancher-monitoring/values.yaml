@@ -163,9 +163,10 @@ alertmanager:
       receiver: discord
       repeat_interval: 24h
       routes:
-        - receiver: "null"
+        - continue: true
           match:
             alertname: Watchdog
+          receiver: "null"
         - receiver: 'discord'
           continue: true
     # receivers: <-- CRASH AT ALERTING
