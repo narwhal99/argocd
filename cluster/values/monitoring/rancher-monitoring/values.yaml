@@ -5,83 +5,83 @@ rancherMonitoring:
   enabled: false
 namespaceOverride: "testing"
 grafana:
+  enabled: true
+  ingress:
+    ingressClassName: nginx
+    enabled: true
+    hosts:
+      - grafana.bukla.hu
+    tls:
+      - secretName: wildcard-bukla-tls
+        hosts:
+          - grafana.bukla.hu
+  persistence:
+    enabled: true
+    type: sts
+    storageClassName: nfs-csi
+    accessModes:
+      - ReadWriteOnce
+    size: 20Gi
+  sidecar:
+    dashboards:
+      enabled: true
+  additionalDataSources:
+    - name: influxdb
+      type: influxdb
+      editable: false
+      url: https://influxdb.bukla.hu
+      uid: influxdb
+      jsonData:
+        version: Flux
+        tlsSkipVerify: true
+        organization: "bukla"
+      secureJsonData:
+        token: $influxdb_token
+    - name: Loki
+      type: Loki
+      url: https://loki-gateway.bukla.hu
+      # alertmanager:
+      #   enabled: true
+      #   name: Alertmanager
+      #   uid: alertmanager
+      #   handleGrafanaManagedAlerts: false
+      #   implementation: prometheus
+  extraSecretMounts:
+  - name: wildcard-bukla-tls
+    mountPath: "/etc/ssl/certs"
+    secretName: wildcard-bukla-tls
+  grafana.ini:
+    "auth.generic_oauth":
+      enabled: true
+    "auth.anonymous":
+      enabled: true
+    check_for_updates: "false"
+    server:
+      root_url: "https://grafana.bukla.hu"
+  envFromSecret: "grafana-secret"
+  env:
+    GF_AUTH_GENERIC_OAUTH_API_URL: https://authentik.bukla.hu/application/o/userinfo/
+    GF_AUTH_GENERIC_OAUTH_AUTH_URL: https://authentik.bukla.hu/application/o/authorize/
+    GF_AUTH_GENERIC_OAUTH_TOKEN_URL: https://authentik.bukla.hu/application/o/token/
+    GF_AUTH_SIGNOUT_REDIRECT_URL: https://authentik.bukla.hu/application/o/grafana/end-session/
+    GF_AUTH_GENERIC_OAUTH_ENABLED: true
+    GF_AUTH_GENERIC_OAUTH_NAME: Authentik
+    GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups, 'authentik Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'"
+    GF_AUTH_GENERIC_OAUTH_SCOPES: "openid profile email"
+    GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: true
+thanos:
   enabled: false
-#   ingress:
-#     ingressClassName: nginx
-#     enabled: true
-#     hosts:
-#       - grafana.bukla.hu
-#     tls:
-#       - secretName: wildcard-bukla-tls
-#         hosts:
-#           - grafana.bukla.hu
-#   persistence:
-#     enabled: true
-#     type: sts
-#     storageClassName: nfs-csi
-#     accessModes:
-#       - ReadWriteOnce
-#     size: 20Gi
-#   sidecar:
-#     dashboards:
-#       enabled: true
-#   additionalDataSources:
-#     - name: influxdb
-#       type: influxdb
-#       editable: false
-#       url: https://influxdb.bukla.hu
-#       uid: influxdb
-#       jsonData:
-#         version: Flux
-#         tlsSkipVerify: true
-#         organization: "bukla"
-#       secureJsonData:
-#         token: $influxdb_token
-#     - name: Loki
-#       type: Loki
-#       url: https://loki-gateway.bukla.hu
-#       # alertmanager:
-#       #   enabled: true
-#       #   name: Alertmanager
-#       #   uid: alertmanager
-#       #   handleGrafanaManagedAlerts: false
-#       #   implementation: prometheus
-#   extraSecretMounts:
-#   - name: wildcard-bukla-tls
-#     mountPath: "/etc/ssl/certs"
-#     secretName: wildcard-bukla-tls
-#   grafana.ini:
-#     "auth.generic_oauth":
-#       enabled: true
-#     "auth.anonymous":
-#       enabled: true
-#     check_for_updates: "false"
-#     server:
-#       root_url: "https://grafana.bukla.hu"
-#   envFromSecret: "grafana-secret"
-#   env:
-#     GF_AUTH_GENERIC_OAUTH_API_URL: https://authentik.bukla.hu/application/o/userinfo/
-#     GF_AUTH_GENERIC_OAUTH_AUTH_URL: https://authentik.bukla.hu/application/o/authorize/
-#     GF_AUTH_GENERIC_OAUTH_TOKEN_URL: https://authentik.bukla.hu/application/o/token/
-#     GF_AUTH_SIGNOUT_REDIRECT_URL: https://authentik.bukla.hu/application/o/grafana/end-session/
-#     GF_AUTH_GENERIC_OAUTH_ENABLED: true
-#     GF_AUTH_GENERIC_OAUTH_NAME: Authentik
-#     GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups, 'authentik Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'"
-#     GF_AUTH_GENERIC_OAUTH_SCOPES: "openid profile email"
-#     GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: true
-# thanos:
-#   enabled: false
 
 prometheus:
   ingress:
     enabled: true
     ingressClassName: nginx
     hosts:
-      - prom-poc.bukla.hu
+      - prom.bukla.hu
     tls:
       - secretName: wildcard-bukla-tls
         hosts:
-          - prom-poc.bukla.hu
+          - prom.bukla.hu
   prometheusOperator: #DE KELL!
     admissionWebhooks:
       certManager:
@@ -103,84 +103,85 @@ prometheus:
             requests:
               storage: 10Gi
           storageClassName: nfs-csi
-# prometheus-node-exporter:
-  # tolerations:
-  #   - key: "HAsrv"
-  #     operator: "Equal"
-  #     value: "true"
-  #     effect: "NoExecute"
-# alertmanager:
-#   alertmanagerSpec:
-#     # useExistingSecret: true
-#     secrets:
-#       - alertmanager-secrets
-#     storage:
-#       volumeClaimTemplate:
-#         metadata:
-#           name: alertmanager-data
-#         spec:
-#           accessModes:
-#             - ReadWriteOnce
-#           resources:
-#             requests:
-#               storage: 1Gi
-#           storageClassName: nfs-csi
 
-  # ingress:
-  #   ingressClassName: nginx
-  #   enabled: true
-  #   hosts:
-  #     - alertmanager-poc.bukla.hu
-  #   tls:
-  #     - secretName: wildcard-bukla-tls
-  #       hosts:
-  #         - alertmanager-poc.bukla.hu
-  # config:
-  #   global:
-  #     resolve_timeout: 5m
-  #   inhibit_rules:
-  #     - source_matchers:
-  #         - severity="critical"
-  #       target_matchers:
-  #         - severity=~"warning|info"
-  #       equal:
-  #         - instance
-  #         - job
-  #     - source_matchers:
-  #         - severity="critical"
-  #       target_matchers:
-  #         - severity=~"warning|info"
-  #       equal:
-  #         - alertname
-  #   route:
-  #     group_by:
-  #       - job
-  #       - alertname
-  #       - severity
-  #     group_interval: 5m
-  #     group_wait: 30s
-  #     receiver: discord
-  #     repeat_interval: 24h
-  #     routes:
-  #       - receiver: 'discord'
-  #         continue: true
-  #   # receivers: <-- CRASH AT ALERTING
-  #   #   - name: discord
-  #   #     webhook_configs:
-  #   #     - url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
-  #   #       send_resolved: true
-  #   #       max_alerts: 1
-  #   # receivers: #WAITING FOR INCLUDE KUBE_PROMETHEUS_STACK alertmanager v.0.28.0
-  #   #   - name: discord # failed: provision alertmanager configuration: failed to initialize from secret: no discord webhook URL provided 
-  #   #     discord_configs:
-  #   #     - send_resolved: true
-  #   #       webhook_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"          
-  #   receivers:
-  #     - name: discord
-  #       slack_configs:
-  #       - channel: 'alerts'
-  #         username: "Alertmanager"
-  #         api_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
-  #         send_resolved: true
-  #   templates:
-  #   - '/etc/alertmanager/config/*.tmpl'
+# prometheus-node-exporter:
+#   tolerations:
+#     - key: "HAsrv"
+#       operator: "Equal"
+#       value: "true"
+#       effect: "NoExecute"
+alertmanager:
+  alertmanagerSpec:
+    # useExistingSecret: true
+    secrets:
+      - alertmanager-secrets
+    storage:
+      volumeClaimTemplate:
+        metadata:
+          name: alertmanager-data
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
+          storageClassName: nfs-csi
+
+  ingress:
+    ingressClassName: nginx
+    enabled: true
+    hosts:
+      - alertmanager.bukla.hu
+    tls:
+      - secretName: wildcard-bukla-tls
+        hosts:
+          - alertmanager.bukla.hu
+  config:
+    global:
+      resolve_timeout: 5m
+    inhibit_rules:
+      - source_matchers:
+          - severity="critical"
+        target_matchers:
+          - severity=~"warning|info"
+        equal:
+          - instance
+          - job
+      - source_matchers:
+          - severity="critical"
+        target_matchers:
+          - severity=~"warning|info"
+        equal:
+          - alertname
+    route:
+      group_by:
+        - job
+        - alertname
+        - severity
+      group_interval: 5m
+      group_wait: 30s
+      receiver: discord
+      repeat_interval: 24h
+      routes:
+        - receiver: 'discord'
+          continue: true
+    # receivers: <-- CRASH AT ALERTING
+    #   - name: discord
+    #     webhook_configs:
+    #     - url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
+    #       send_resolved: true
+    #       max_alerts: 1
+    # receivers: #WAITING FOR INCLUDE KUBE_PROMETHEUS_STACK alertmanager v.0.28.0
+    #   - name: discord # failed: provision alertmanager configuration: failed to initialize from secret: no discord webhook URL provided 
+    #     discord_configs:
+    #     - send_resolved: true
+    #       webhook_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"          
+    receivers:
+      - name: discord
+        slack_configs:
+        - channel: 'alerts'
+          username: "Alertmanager"
+          api_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
+          send_resolved: true
+    templates:
+    - '/etc/alertmanager/config/*.tmpl'
