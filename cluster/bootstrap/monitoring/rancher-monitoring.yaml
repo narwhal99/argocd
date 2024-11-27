@@ -23,7 +23,7 @@ spec:
       recurse: true
   destination:
     name: in-cluster
-    namespace: testing
+    namespace: monitoring
   syncPolicy:
     automated:
       selfHeal: true
