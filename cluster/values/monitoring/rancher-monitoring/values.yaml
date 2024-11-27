@@ -38,7 +38,7 @@ grafana:
       secureJsonData:
         token: $influxdb_token
     - name: Loki
-      type: Loki
+      type: loki
       url: https://loki-gateway.bukla.hu
       # alertmanager:
       #   enabled: true
