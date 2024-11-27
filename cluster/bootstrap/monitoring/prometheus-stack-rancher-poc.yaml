@@ -1,38 +1,38 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: prometheus-stack-rancher-poc
-#   namespace: argocd
-#   finalizers:
-#     - resources-finalizer.argocd.argoproj.io
-# spec:
-#   project: default
-#   sources:
-#   - chart: rancher-monitoring
-#     repoURL: https://charts.rancher.io
-#     targetRevision: 104.1.2+up57.0.3
-#     helm:
-#       valueFiles:
-#         - $repo/cluster/values/monitoring/prometheus-stack-rancher-poc/values.yaml
-#         # - $repo/cluster/values/monitoring/prometheus-stack/static_scraper_configs.yaml
-#   - repoURL: git@github.com:narwhal99/argocd.git
-#     path: cluster/values/monitoring/prometheus-stack-rancher-poc
-#     targetRevision: HEAD
-#     ref: repo
-#     # directory:
-#     #   recurse: true
-#   destination:
-#     name: in-cluster
-#     namespace: testing
-#   syncPolicy:
-#     automated:
-#       selfHeal: true
-#     syncOptions:
-#     - CreateNamespace=true
-#   # ignoreDifferences:
-#   #   - group: external-secrets.io
-#   #     kind: ExternalSecret
-#   #     jqPathExpressions:
-#   #       - .spec.data[].remoteRef.conversionStrategy
-#   #       - .spec.data[].remoteRef.decodingStrategy
-#   #       - .spec.data[].remoteRef.metadataPolicy
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-stack-rancher-poc
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: rancher-monitoring
+    repoURL: https://charts.rancher.io
+    targetRevision: 104.1.2+up57.0.3
+    helm:
+      valueFiles:
+        - $repo/cluster/values/monitoring/prometheus-stack-rancher-poc/values.yaml
+        - $repo/cluster/values/monitoring/prometheus-stack-rancher-poc/static_scraper_configs.yaml
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/monitoring/prometheus-stack-rancher-poc
+    targetRevision: HEAD
+    ref: repo
+    directory:
+      recurse: true
+  destination:
+    name: in-cluster
+    namespace: testing
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+  # ignoreDifferences:
+  #   - group: external-secrets.io
+  #     kind: ExternalSecret
+  #     jqPathExpressions:
+  #       - .spec.data[].remoteRef.conversionStrategy
+  #       - .spec.data[].remoteRef.decodingStrategy
+  #       - .spec.data[].remoteRef.metadataPolicy
