@@ -15,11 +15,11 @@ server:
     enabled: true
     ingressClassName: nginx
     hosts:
-      - authentik-poc.bukla.hu
+      - authentik.bukla.hu
     tls:
       - secretName: wildcard-bukla-tls
         hosts:
-          - authentik-poc.bukla.hu
+          - authentik.bukla.hu
 
   volumes:
     - name: postgres-creds
