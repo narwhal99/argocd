@@ -5,6 +5,11 @@ authentik:
     password: file:///postgres-creds/password
 
 server:
+  env:
+    - name: AUTHENTIK_SECRET_KEY
+      secretKeyRef:
+        name: authentik-secret
+        key: secret-key
   ingress:
     enabled: true
     hosts:
@@ -22,6 +27,11 @@ server:
       mountPath: /postgres-creds
       readOnly: true
 worker:
+  env:
+    - name: AUTHENTIK_SECRET_KEY
+      secretKeyRef:
+        name: authentik-secret
+        key: secret-key
   volumes:
     - name: postgres-creds
       secret:
@@ -30,9 +40,3 @@ worker:
     - name: postgres-creds
       mountPath: /postgres-creds
       readOnly: true
-globaL:
-  env:
-    - name: AUTHENTIK_SECRET_KEY
-      secretKeyRef:
-        name: authentik-secret
-        key: secret-key
