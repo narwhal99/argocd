@@ -44,3 +44,6 @@ worker:
       readOnly: true
 redis:
   enabled: true
+  master:
+    persistence:
+      storageClass: "longhorn"
