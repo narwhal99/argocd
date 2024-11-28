@@ -23,3 +23,6 @@ configMap:
               Watchdog:
                 - alertname=Watchdog
                 - severity=nonde
+      filters:
+        default:
+          - "@state=active"
