@@ -16,7 +16,7 @@ server:
   volumes:
     - name: postgres-creds
       secret:
-        secretName: authentik-secrets
+        secretName: authentik-secret
   volumeMounts:
     - name: postgres-creds
       mountPath: /postgres-creds
@@ -25,7 +25,7 @@ worker:
   volumes:
     - name: postgres-creds
       secret:
-        secretName: authentik-secrets
+        secretName: authentik-secret
   volumeMounts:
     - name: postgres-creds
       mountPath: /postgres-creds
