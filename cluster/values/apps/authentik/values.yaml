@@ -29,6 +29,10 @@ server:
     - name: postgres-creds
       mountPath: /postgres-creds
       readOnly: true
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
 worker:
   env:
     - name: AUTHENTIK_SECRET_KEY
