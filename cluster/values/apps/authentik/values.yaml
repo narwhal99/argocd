@@ -1,0 +1,32 @@
+authentik:
+  postgresql:
+    host: psql.bukla.hu
+    user: file:///postgres-creds/username
+    password: file:///postgres-creds/password
+
+server:
+  ingress:
+    enabled: true
+    hosts:
+      - authentik-poc.bukla.hu
+    tls:
+      - secretName: wildcard-bukla-tls
+        hosts:
+          - authentik-poc.bukla.hu
+  volumes:
+    - name: postgres-creds
+      secret:
+        secretName: authentik-secrets
+  volumeMounts:
+    - name: postgres-creds
+      mountPath: /postgres-creds
+      readOnly: true
+worker:
+  volumes:
+    - name: postgres-creds
+      secret:
+        secretName: authentik-secrets
+  volumeMounts:
+    - name: postgres-creds
+      mountPath: /postgres-creds
+      readOnly: true
