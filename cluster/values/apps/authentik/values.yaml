@@ -7,9 +7,10 @@ authentik:
 server:
   env:
     - name: AUTHENTIK_SECRET_KEY
-      secretKeyRef:
-        name: authentik-secret
-        key: secret-key
+      valueFrom:
+        secretKeyRef:
+          name: authentik-secret
+          key: secret-key
   ingress:
     enabled: true
     hosts:
@@ -29,9 +30,10 @@ server:
 worker:
   env:
     - name: AUTHENTIK_SECRET_KEY
-      secretKeyRef:
-        name: authentik-secret
-        key: secret-key
+      valueFrom:
+        secretKeyRef:
+          name: authentik-secret
+          key: secret-key
   volumes:
     - name: postgres-creds
       secret:
