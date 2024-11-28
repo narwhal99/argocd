@@ -3,10 +3,11 @@ authentik:
     host: psql.bukla.hu
     user: file:///postgres-creds/username
     password: file:///postgres-creds/password
-  secret_key: |
-    {{- with (lookup "v1" "Secret" .Release.Namespace "authentik-secret") }}
-    {{ .data.secret-key | b64dec }}
-    {{- end }}
+  env:
+    - name: AUTHENTIK_SECRET_KEY
+      secretKeyRef:
+        name: authentik-secret
+        key: secret-key
 server:
   ingress:
     enabled: true
@@ -25,6 +26,11 @@ server:
       mountPath: /postgres-creds
       readOnly: true
 worker:
+  env:
+    - name: AUTHENTIK_SECRET_KEY
+      secretKeyRef:
+        name: authentik-secret
+        key: secret-key
   volumes:
     - name: postgres-creds
       secret:
@@ -33,3 +39,9 @@ worker:
     - name: postgres-creds
       mountPath: /postgres-creds
       readOnly: true
+globaL:
+  env:
+    - name: AUTHENTIK_SECRET_KEY
+      secretKeyRef:
+        name: authentik-secret
+        key: secret-key
