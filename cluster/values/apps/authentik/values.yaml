@@ -13,12 +13,14 @@ server:
           key: secret-key
   ingress:
     enabled: true
+    ingressClassName: nginx
     hosts:
       - authentik-poc.bukla.hu
     tls:
       - secretName: wildcard-bukla-tls
         hosts:
           - authentik-poc.bukla.hu
+
   volumes:
     - name: postgres-creds
       secret:
@@ -42,6 +44,7 @@ worker:
     - name: postgres-creds
       mountPath: /postgres-creds
       readOnly: true
+
 redis:
   enabled: true
   master:
