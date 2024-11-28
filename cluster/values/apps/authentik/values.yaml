@@ -3,11 +3,7 @@ authentik:
     host: psql.bukla.hu
     user: file:///postgres-creds/username
     password: file:///postgres-creds/password
-  env:
-    - name: AUTHENTIK_SECRET_KEY
-      secretKeyRef:
-        name: authentik-secret
-        key: secret-key
+
 server:
   ingress:
     enabled: true
@@ -26,11 +22,6 @@ server:
       mountPath: /postgres-creds
       readOnly: true
 worker:
-  env:
-    - name: AUTHENTIK_SECRET_KEY
-      secretKeyRef:
-        name: authentik-secret
-        key: secret-key
   volumes:
     - name: postgres-creds
       secret:
