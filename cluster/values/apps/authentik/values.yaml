@@ -30,9 +30,9 @@ worker:
     - name: postgres-creds
       mountPath: /postgres-creds
       readOnly: true
-
-env:
-  - name: AUTHENTIK_SECRET_KEY
-    secretKeyRef:
-      name: authentik-secret
-      key: secret-key
+globaL:
+  env:
+    - name: AUTHENTIK_SECRET_KEY
+      secretKeyRef:
+        name: authentik-secret
+        key: secret-key
