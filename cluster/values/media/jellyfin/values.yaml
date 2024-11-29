@@ -11,9 +11,6 @@ defaultPodOptions:
 controllers:
   jellyfin:
     type: statefulset
-    persistentVolumeClaimRetentionPolicy:
-      whenDeleted: Retain
-      whenScaled: Retain
     containers:
       app:
         image:
@@ -45,6 +42,7 @@ ingress:
 persistence:
   config:
     type: persistentVolumeClaim
+    retain: true
     storageClass: nfs-subdir
     # storageClass: longhorn
     accessMode: ReadWriteOnce
