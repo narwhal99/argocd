@@ -9,7 +9,7 @@ prometheus:
               # - vmdocker02.bukla.hu:8080
               - raspi.bukla.hu:8080
               - vmeproxy.bukla.hu:8080
-              - vmgames.bukla.hu:8080
+              # - vmgames.bukla.hu:8080
               - lb.bukla.hu:8080
               # - vmfail2ban.bukla.hu:8080
       - job_name: haproxy
@@ -28,7 +28,7 @@ prometheus:
             - raspi.bukla.hu:9100
             - pve01.bukla.hu:9100
             - vmeproxy.bukla.hu:9100
-            - vmgames.bukla.hu:9100
+            # - vmgames.bukla.hu:9100
             - lb.bukla.hu:9100
             # - vmfail2ban.bukla.hu:9100
       - job_name: mikrotik
