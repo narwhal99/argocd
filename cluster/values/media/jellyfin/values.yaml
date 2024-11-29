@@ -11,6 +11,9 @@ defaultPodOptions:
 controllers:
   jellyfin:
     type: statefulset
+    persistentVolumeClaimRetentionPolicy:
+      whenDeleted: Retain
+      whenScaled: Retain
     containers:
       app:
         image:
