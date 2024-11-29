@@ -3,11 +3,11 @@ controller:
   extraArgs:
     # default-ssl-certificate: ""
     enable-ssl-passthrough: "true"
-  # metrics:
-  #   enabled: true
-  #   serviceMonitor:
-  #     enabled: true
-  #     scrapeInterval: 15s
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      scrapeInterval: 15s
   service:
     externalTrafficPolicy: Local
     annotations:
@@ -15,6 +15,7 @@ controller:
       metallb.universe.tf/ip-allocated-from-pool: default
       metallb.universe.tf/loadBalancerIPs: 10.20.0.60
   config:
+    enable-real-ip: "true"
     enable-underscores-in-headers: "true"
     server-tokens: "false"
     allow-snippet-annotations: "true"
