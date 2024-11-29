@@ -43,8 +43,8 @@ persistence:
   config:
     type: persistentVolumeClaim
     retain: true
-    storageClass: nfs-subdir
-    # storageClass: longhorn
+    # storageClass: nfs-subdir
+    storageClass: longhorn
     accessMode: ReadWriteOnce
     size: 1Gi
     globalMounts:
