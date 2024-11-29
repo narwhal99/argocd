@@ -11,7 +11,6 @@ defaultPodOptions:
 controllers:
   jellyfin:
     type: statefulset
-    replicas: 2
     containers:
       app:
         image:
@@ -45,7 +44,7 @@ persistence:
     type: persistentVolumeClaim
     # storageClass: nfs-subdir
     storageClass: longhorn
-    accessMode: ReadWriteMany
+    accessMode: ReadWriteOnce
     size: 1Gi
     globalMounts:
       - path: /config
