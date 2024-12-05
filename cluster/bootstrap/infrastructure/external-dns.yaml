@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: external-dns
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: 8.6.0
+    targetRevision: 8.6.1
     helm:
       valueFiles:
       - $repo/cluster/values/infrastructure/externaldns/values.yaml
