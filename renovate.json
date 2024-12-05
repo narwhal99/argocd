@@ -46,7 +46,8 @@
       "ignoreTests": true,
       "automergeType": "pr",
       "matchUpdateTypes": [
-        "patch"
+        "patch",
+        "minor"
       ]
     }
   ]
