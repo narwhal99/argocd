@@ -11,8 +11,7 @@ spec:
   sources:
   - chart: reflector
     repoURL: https://emberstack.github.io/helm-charts
-    targetRevision: v7.1.288
-      releaseName: reflector
+    targetRevision: 7.1.288
   destination:
     name: in-cluster
     namespace: cert-manager
