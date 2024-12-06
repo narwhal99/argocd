@@ -10,9 +10,9 @@ controllers:
             pullPolicy: IfNotPresent
           env:
             - name: WEBDRIVER_URL
-              value: http://browser-chrome:4444/wd/hub
+              value: http://localhost:4444/wd/hub
             - name: PLAYWRIGHT_DRIVER_URL
-              value: ws://playwright-chrome:3000/?stealth=1&--disable-web-security=true
+              value: ws://localhost:3000/?stealth=1&--disable-web-security=true
         playwright-chrome:
           image:
             repository: browserless/chrome
