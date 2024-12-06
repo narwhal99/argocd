@@ -50,11 +50,12 @@ ingress:
           - scraper.bukla.hu
         secretName: wildcard-bukla-tls
 
-# persistence:
-#   config:
-#     type: persistentVolumeClaim
-#     storageClass: nfs-subdir
-#     accessMode: ReadWriteOnce
-#     size: 10Gi
-#     globalMounts:
-#       - path: /factorio
+persistence:
+  config:
+    type: persistentVolumeClaim
+    storageClass: nfs-subdir
+    accessMode: ReadWriteOnce
+    advancedMounts:
+      main:
+        changedetection:
+          - path: /datastore
