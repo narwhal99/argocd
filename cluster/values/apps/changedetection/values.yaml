@@ -24,7 +24,7 @@ ingress:
           - path: /
             pathType: Prefix
             service:
-              identifier: app
+              identifier: main
               port: http
     tls:
       - hosts:
