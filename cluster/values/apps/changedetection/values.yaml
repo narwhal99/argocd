@@ -54,6 +54,7 @@ persistence:
   config:
     type: persistentVolumeClaim
     storageClass: nfs-subdir
+    size: 1Gi
     accessMode: ReadWriteOnce
     advancedMounts:
       main:
