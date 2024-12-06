@@ -1,0 +1,41 @@
+---
+controllers:
+    main:
+      type: statefulset
+      containers:
+        changedetection:
+          image:
+            repository: lscr.io/linuxserver/changedetection.io
+            tag: 0.48.01-ls149
+            pullPolicy: IfNotPresent
+service:
+  main:
+    controller: changedetection
+    type: ClusterIP
+    ports:
+      http:
+        port: 5000
+ingress:
+  main:
+    className: "nginx"
+    hosts:
+      - host: scraper.bukla.hu
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: app
+              port: http
+    tls:
+      - hosts:
+          - scraper.bukla.hu
+        secretName: wildcard-bukla-tls
+
+# persistence:
+#   config:
+#     type: persistentVolumeClaim
+#     storageClass: nfs-subdir
+#     accessMode: ReadWriteOnce
+#     size: 10Gi
+#     globalMounts:
+#       - path: /factorio

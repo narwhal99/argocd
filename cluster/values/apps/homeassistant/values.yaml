@@ -16,21 +16,21 @@ defaultPodOptions:
   nodeSelector:
     node: HAsrv
 controllers:
-    technitiumdns:
+    homeassistant:
       type: statefulset
       containers:
         main:
           image:
             repository: homeassistant/home-assistant
             tag: 2024.12.0
-            pullPolicy: Always
+            pullPolicy: IfNotPresent
           env:
             - name: DNS_SERVER_DOMAIN
               value: homeassistant.bukla.hu
 service:
   # Configure a service for the main application
   app:
-    controller: technitiumdns
+    controller: homeassistant
     type: ClusterIP
     ports:
       http:
