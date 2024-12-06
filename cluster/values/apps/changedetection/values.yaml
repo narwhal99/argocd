@@ -10,7 +10,7 @@ controllers:
             pullPolicy: IfNotPresent
 service:
   main:
-    controller: changedetection
+    controller: main
     type: ClusterIP
     ports:
       http:
