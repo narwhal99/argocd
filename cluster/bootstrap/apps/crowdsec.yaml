@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: crowdsec
     repoURL: https://crowdsecurity.github.io/helm-charts
-    targetRevision: 0.15.0
+    targetRevision: 0.16.0
     helm:
       valueFiles:
       - $repo/cluster/values/apps/crowdsec/values.yaml
