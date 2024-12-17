@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: rancher-monitoring
     repoURL: https://charts.rancher.io
-    targetRevision: 105.1.0+up61.3.2
+    targetRevision: 105.1.1+up61.3.2
     helm:
       valueFiles:
         - $repo/cluster/values/monitoring/rancher-monitoring/values.yaml
