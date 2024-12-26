@@ -16,7 +16,7 @@ controllers:
         playwright-chrome:
           image:
             repository: browserless/chrome
-            tag: 1.60-chrome-stable
+            tag: 1.61-chrome-stable
             pullPolicy: IfNotPresent
         browser-chrome:
           image:
