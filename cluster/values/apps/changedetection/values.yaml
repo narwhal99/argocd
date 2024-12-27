@@ -23,7 +23,7 @@ controllers:
               cpu: 1
               memory: 1Gi
             requests:
-              cpu: 500Mi
+              cpu: 500m
               memory: 512Mi
         browser-chrome:
           image:
@@ -38,7 +38,7 @@ controllers:
               cpu: 1
               memory: 1Gi
             requests:
-              cpu: 500Mi
+              cpu: 500m
               memory: 512Mi
 
 service:
