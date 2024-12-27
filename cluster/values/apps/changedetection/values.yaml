@@ -20,11 +20,11 @@ controllers:
             pullPolicy: IfNotPresent
           resources:
             limits:
+              cpu: 1
+              memory: 1Gi
+            requests:
               cpu: 500Mi
               memory: 512Mi
-            requests:
-              cpu: 1
-              memory: 1024Mi
         browser-chrome:
           image:
             repository: selenium/standalone-chrome
@@ -35,11 +35,11 @@ controllers:
               value: 1
           resources:
             limits:
+              cpu: 1
+              memory: 1Gi
+            requests:
               cpu: 500Mi
               memory: 512Mi
-            requests:
-              cpu: 1
-              memory: 1024Mi
 
 service:
   main:
