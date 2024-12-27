@@ -18,6 +18,13 @@ controllers:
             repository: browserless/chrome
             tag: 1.61-chrome-stable
             pullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 500Mi
+              memory: 512Mi
+            requests:
+              cpu: 1
+              memory: 1024Mi
         browser-chrome:
           image:
             repository: selenium/standalone-chrome
@@ -26,6 +33,13 @@ controllers:
           env:
             - name: VNC_NO_PASSWORD
               value: 1
+          resources:
+            limits:
+              cpu: 500Mi
+              memory: 512Mi
+            requests:
+              cpu: 1
+              memory: 1024Mi
 
 service:
   main:
