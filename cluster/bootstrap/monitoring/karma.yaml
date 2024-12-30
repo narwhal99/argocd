@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: karma
     repoURL: https://wiremind.github.io/wiremind-helm-charts
-    targetRevision: 2.9.1
+    targetRevision: 2.9.3
     helm:
       valueFiles:
         - $repo/cluster/values/monitoring/karma/values.yaml
