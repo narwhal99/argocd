@@ -44,7 +44,7 @@ configs:
     url: https://argocd.bukla.hu
     oidc.config: |
       name: Authentik
-      issuer: https://authentik.bukla.hu/application/o/argocd/
+      issuer: https://auth.bukla.hu/application/o/argocd/
       clientID: oU1vXwPUBb2lxv9QvLTaLIc3na2lpkgVbsAaPdky
       clientSecret: $dex.authentik.clientSecret
       # rootCA: |
