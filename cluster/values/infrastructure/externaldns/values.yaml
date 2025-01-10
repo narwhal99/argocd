@@ -13,6 +13,7 @@ metrics:
   serviceMonitor:
     enabled: true
 
+policy: sync
 # tolerations:
 #   - key: "HAsrv"
 #     operator: "Equal"
