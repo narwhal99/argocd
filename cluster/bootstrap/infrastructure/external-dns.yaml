@@ -7,9 +7,9 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  sources:
-  - chart: external-dns
-    repoURL: oci://registry-1.docker.io/bitnamicharts/
+  source:
+  - repoURL: oci://registry-1.docker.io/bitnamicharts/
+    chart: external-dns
     targetRevision: 8.7.1
     helm:
       valueFiles:
