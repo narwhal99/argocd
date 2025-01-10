@@ -29,11 +29,6 @@
         "patch",
         "minor",
         "digest"
-      ],
-      "matchPackageNames": [
-        "/ghcr.io/bjw-s/",
-        "/ghcr.io/onedr0p/",
-        "/linuxserver/"
       ]
     },
     {
@@ -49,6 +44,12 @@
         "patch",
         "minor"
       ]
+    },
+    {
+      "description": "Do Not automerge these",
+      "matchSourceUrls": ["https://bjw-s.github.io/helm-charts/"],
+      "matchNames": ["app-template"],
+      "automerge": false
     }
   ]
 }
