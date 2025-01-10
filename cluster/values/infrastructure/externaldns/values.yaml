@@ -14,6 +14,7 @@ metrics:
   serviceMonitor:
     enabled: true
 
+logLevel: debug
 policy: sync
 # tolerations:
 #   - key: "HAsrv"
