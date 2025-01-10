@@ -2,9 +2,9 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: default
+  name: internal
   namespace: metallb
 spec:
   addresses:
-    - 10.20.0.60-10.20.0.70
+    - 10.20.0.110-10.20.0.120
   avoidBuggyIPs: true
