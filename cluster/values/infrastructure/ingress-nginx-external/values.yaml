@@ -28,3 +28,6 @@ controller:
   #    effect: "NoExecute"
 podSecurityPolicy:
   enabled: false
+ingressClassResource:
+  name: external-nginx
+ingressClass: external-nginx

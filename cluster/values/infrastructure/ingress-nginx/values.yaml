@@ -12,7 +12,7 @@ controller:
     externalTrafficPolicy: Local
     annotations:
       metallb.universe.tf/allow-shared-ip: 10.20.0.110
-      metallb.universe.tf/ip-allocated-from-pool: default
+      metallb.universe.tf/ip-allocated-from-pool: internal
       metallb.universe.tf/loadBalancerIPs: 10.20.0.110
   config:
     enable-real-ip: "true"
