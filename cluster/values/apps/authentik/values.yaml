@@ -13,7 +13,7 @@ server:
           key: secret-key
   ingress:
     enabled: true
-    ingressClassName: nginx
+    ingressClassName: nginx-internal
     hosts:
       - auth.bukla.hu
     tls:

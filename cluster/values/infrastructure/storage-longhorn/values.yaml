@@ -1,5 +1,5 @@
 ingress:
-  ingressClassName: nginx
+  ingressClassName: nginx-internal
   enabled: true
   host: longhorn.bukla.hu
   tls: true

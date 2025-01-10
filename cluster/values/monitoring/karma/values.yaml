@@ -1,6 +1,6 @@
 ingress:
   enabled: true
-  ingressClassName: nginx
+  ingressClassName: nginx-internal
   hosts:
     - karma.bukla.hu
   tls:

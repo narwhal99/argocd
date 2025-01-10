@@ -7,7 +7,7 @@ namespaceOverride: "monitoring"
 grafana:
   enabled: true
   ingress:
-    ingressClassName: nginx
+    ingressClassName: nginx-internal
     enabled: true
     hosts:
       - grafana.bukla.hu
@@ -75,7 +75,7 @@ thanos:
 prometheus:
   ingress:
     enabled: true
-    ingressClassName: nginx
+    ingressClassName: nginx-internal
     hosts:
       - prom.bukla.hu
     tls:
@@ -128,7 +128,7 @@ alertmanager:
           storageClassName: nfs-csi
 
   ingress:
-    ingressClassName: nginx
+    ingressClassName: nginx-internal
     enabled: true
     hosts:
       - alertmanager.bukla.hu
