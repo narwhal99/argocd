@@ -21,7 +21,7 @@ spec:
     ref: repo
   destination:
     name: in-cluster
-    namespace: ngress-nginx-external
+    namespace: ingress-nginx-external
   syncPolicy:
     automated:
       selfHeal: true
