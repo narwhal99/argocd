@@ -7,13 +7,13 @@ rfc2136:
   tsigKeyname: externaldnsrke2
   tsigSecretAlg: hmac-sha512
   secretName: tsig-secret
+  tsigAxfr: true
 
 metrics:
   enabled: true
   serviceMonitor:
     enabled: true
-extraArgs:
-  - rfc2136-tsig-axfr
+
 policy: sync
 # tolerations:
 #   - key: "HAsrv"
