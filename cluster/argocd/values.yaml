@@ -5,7 +5,7 @@ server:
     enabled: true
   replicas: 1
   ingress:
-    ingressClassName: nginx
+    ingressClassName: nginx-internal
     https: true
     enabled: true
     annotations:
