@@ -30,7 +30,7 @@ service:
 ingress:
   # Configure an Ingress for the main application
   app:
-    className: "nginx"
+    className: "nginx-internal"
     hosts:
       - host: pdf.bukla.hu
         paths:

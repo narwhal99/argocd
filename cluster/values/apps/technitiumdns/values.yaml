@@ -49,7 +49,7 @@ service:
 ingress:
   # Configure an Ingress for the main application
   app:
-    className: "nginx"
+    className: "nginx-internal"
     hosts:
       - host: tech-dns02.bukla.hu
         paths:

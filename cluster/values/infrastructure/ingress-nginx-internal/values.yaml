@@ -21,6 +21,10 @@ controller:
     allow-snippet-annotations: "true"
     use-forwarded-headers: "true"
     forwarded-for-header: "X-Forwarded-For"
+  ingressClassResource:
+    name: nginx-internal
+    controllerValue: k8s.io/ingress-nginx-internal
+  ingressClass: internal-nginx
   # tolerations:
   #  - key: "HAsrv"
   #    operator: "Equal"

@@ -40,7 +40,7 @@ service:
 
 ingress:
   app:
-    className: "nginx"
+    className: "nginx-internal"
     hosts:
       - host: qbittorrent.bukla.hu
         paths:

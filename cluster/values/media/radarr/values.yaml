@@ -24,7 +24,7 @@ service:
         port: 7878
 ingress:
   app:
-    className: "nginx"
+    className: "nginx-internal"
     hosts:
       - host: radarr.bukla.hu
         paths:

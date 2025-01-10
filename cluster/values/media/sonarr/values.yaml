@@ -24,7 +24,7 @@ service:
         port: 8989
 ingress:
   app:
-    className: "nginx"
+    className: "nginx-internal"
     hosts:
       - host: sonarr.bukla.hu
         paths:

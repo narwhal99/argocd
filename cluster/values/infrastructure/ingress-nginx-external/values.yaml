@@ -22,7 +22,8 @@ controller:
     use-forwarded-headers: "true"
     forwarded-for-header: "X-Forwarded-For"
   ingressClassResource:
-    name: external-nginx
+    name: nginx-external
+    controllerValue: k8s.io/ingress-nginx-external
   ingressClass: external-nginx
   # tolerations:
   #  - key: "HAsrv"

@@ -2,7 +2,7 @@ ingress:
   # Configure an Ingress for the main application
   main:
     enabled: true
-    ingressClassName: "nginx"
+    ingressClassName: "nginx-internal"
     hosts:
       - host: chef.bukla.hu
         paths:

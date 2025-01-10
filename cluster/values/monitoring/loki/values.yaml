@@ -39,7 +39,7 @@ loki:
 
 gateway:
   ingress:
-    ingressClassName: "nginx"
+    ingressClassName: "nginx-internal"
     enabled: true
     hosts:
       - host: loki-gateway.bukla.hu

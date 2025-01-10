@@ -23,7 +23,7 @@ lapi:
     enabled: true
     ingress:
       enabled: true
-      ingressClassName: "nginx"
+      ingressClassName: "nginx-internal"
       host: "crowdsec.bukla.hu"
       tls: 
         - secretName: wildcard-bukla-tls

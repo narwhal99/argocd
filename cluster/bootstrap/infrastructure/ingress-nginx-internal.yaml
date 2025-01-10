@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ingress-nginx
+  name: ingress-nginx-internal
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -13,15 +13,15 @@ spec:
     targetRevision: 4.12.0
     helm:
       valueFiles:
-      - $repo/cluster/values/infrastructure/ingress-nginx/values.yaml
-      releaseName: ingress-nginx
+      - $repo/cluster/values/infrastructure/ingress-nginx-internal/values.yaml
+      releaseName: ingress-nginx-internal
   - repoURL: git@github.com:narwhal99/argocd.git
     path: cluster/values/infrastructure/ingress-nginx
     targetRevision: HEAD
     ref: repo
   destination:
     name: in-cluster
-    namespace: ingress-nginx
+    namespace: ingress-nginx-internal
   syncPolicy:
     automated:
       selfHeal: true
