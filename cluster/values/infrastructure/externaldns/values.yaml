@@ -13,7 +13,7 @@ metrics:
   serviceMonitor:
     enabled: true
 extraArgs:
-  - --rfc2136-tsig-axfr
+  rfc2136-tsig-axfr: "true"
 policy: sync
 # tolerations:
 #   - key: "HAsrv"
