@@ -47,8 +47,11 @@
     },
     {
       "description": "Do Not automerge these",
-      "matchSourceUrls": ["https://bjw-s.github.io/helm-charts/"],
-      "matchNames": ["app-template", "factorio"],
+      "matchPackageNames": [
+        "/app-template/",
+        "/factorio/",
+        "/linuxserver/"
+      ],
       "automerge": false
     }
   ]
