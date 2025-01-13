@@ -30,9 +30,9 @@ spec:
           - name: drawio
             namespace: apps
             targetRevision: HEAD
-          - name: technitiumdns
-            namespace: infraservices
-            targetRevision: HEAD
+          # - name: technitiumdns
+          #   namespace: infraservices
+          #   targetRevision: HEAD
           - name: changedetection
             namespace: apps
             targetRevision: HEAD
