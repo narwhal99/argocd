@@ -21,10 +21,10 @@ controllers:
           resources:
             limits:
               cpu: 1
-              memory: 1Gi
+              memory: 5Gi
             requests:
               cpu: 500m
-              memory: 512Mi
+              memory: 2Gi
         browser-chrome:
           image:
             repository: selenium/standalone-chrome
@@ -36,10 +36,10 @@ controllers:
           resources:
             limits:
               cpu: 1
-              memory: 1Gi
+              memory: 5Gi
             requests:
               cpu: 500m
-              memory: 512Mi
+              memory: 2Gi
 
 service:
   main:
