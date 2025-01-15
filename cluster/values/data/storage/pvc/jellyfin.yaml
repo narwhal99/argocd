@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: jellyfin-storage
+  name: jellyfin-config
   namespace: media
 spec:
   accessModes:
