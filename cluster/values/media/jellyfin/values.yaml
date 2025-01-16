@@ -40,22 +40,15 @@ ingress:
           - jellyfin-k.bukla.hu
         secretName: wildcard-bukla-tls
 persistence:
-  config:
-    type: persistentVolumeClaim
-    retain: true
-    # storageClass: nfs-subdir
-    storageClass: longhorn
-    accessMode: ReadWriteOnce
-    size: 5Gi
-    globalMounts:
-      - path: /config
   torrent:
     type: nfs
     server: 10.20.0.21
     path: /mnt/tank/torrent
     globalMounts:
       - path: /torrent
-  transcode:
-    type: emptyDir
+  config:
+    existingClaim: jellyfin-config
   cache:
+    existingClaim: jellyfin-cache
+  transcode:
     type: emptyDir

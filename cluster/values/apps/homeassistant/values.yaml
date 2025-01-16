@@ -54,13 +54,7 @@ ingress:
 
 persistence:
   config:
-    type: persistentVolumeClaim
-    storageClass: longhorn
-    retain: true
-    accessMode: ReadWriteOnce
-    size: 1Gi
-    globalMounts:
-      - path: /config
+    existingClaim: homeassistant-config
   bluetooth:
     enabled: true
     type: hostPath
