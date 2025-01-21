@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: cyberchef
     repoURL: https://charts.obeone.cloud
-    targetRevision: 1.3.2
+    targetRevision: 1.3.3
     helm:
       valueFiles:
       - $repo/cluster/values/apps/cyberchef/values.yaml
