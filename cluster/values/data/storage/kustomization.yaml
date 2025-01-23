@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - pvc/jellyfin.yaml
   - pvc/homeassistant.yaml
+  - pvc/filebrowser.yaml
 
 commonAnnotations:
   argocd.argoproj.io/sync-options: Delete=false

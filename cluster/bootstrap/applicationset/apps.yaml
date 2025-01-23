@@ -36,6 +36,9 @@ spec:
           - name: changedetection
             namespace: apps
             targetRevision: HEAD
+          - name: filebrowser
+            namespace: apps
+            targetRevision: HEAD
   template:
     metadata:
       name: '{{ .name }}'
