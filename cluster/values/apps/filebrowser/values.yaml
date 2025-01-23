@@ -49,6 +49,12 @@ persistence:
           - path: /.filebrowser.json
             readOnly: false
             subPath: config.yaml
+  torrent:
+    type: nfs
+    server: 10.20.0.21
+    path: /mnt/tank/media/filebrowser/
+    globalMounts:
+      - path: /srv
 
 configMaps:
       config:
