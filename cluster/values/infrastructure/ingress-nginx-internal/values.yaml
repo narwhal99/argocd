@@ -20,7 +20,8 @@ controller:
     server-tokens: "false"
     allow-snippet-annotations: "true"
     use-forwarded-headers: "true"
-    forwarded-for-header: "X-Forwarded-For"
+    # forwarded-for-header: "X-Forwarded-For"
+    forwarded-for-header: "proxy_protocol"
   ingressClassResource:
     name: nginx-internal
     controllerValue: k8s.io/ingress-nginx-internal
