@@ -54,7 +54,7 @@ configMaps:
       config:
         enabled: true
         data:
-          config.yml: |
+          config.yaml: |
             {
               "port": 80,
               "baseURL": "",
