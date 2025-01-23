@@ -49,10 +49,10 @@ persistence:
           - path: /.filebrowser.json
             readOnly: false
             subPath: config.yaml
-  torrent:
+  data:
     type: nfs
     server: 10.20.0.21
-    path: /mnt/tank/media/filebrowser
+    path: /mnt/tank/media
     globalMounts:
       - path: /srv
 
