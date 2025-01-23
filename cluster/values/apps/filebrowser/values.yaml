@@ -52,7 +52,7 @@ persistence:
   torrent:
     type: nfs
     server: 10.20.0.21
-    path: /mnt/tank/media/filebrowser/
+    path: /mnt/tank/media/filebrowser
     globalMounts:
       - path: /srv
 
