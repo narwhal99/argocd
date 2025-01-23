@@ -48,7 +48,7 @@ persistence:
         main: 
           - path: config.yaml
             readOnly: false
-            subPath: /.filebrowser.json
+            subPath: ./.filebrowser.json
 
 configMaps:
       config:
