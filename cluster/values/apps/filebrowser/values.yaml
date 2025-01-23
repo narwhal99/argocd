@@ -38,7 +38,6 @@ ingress:
 persistence:
   database:
     existingClaim: filebrowser-database
-    accessMode: ReadWriteOnce
     globalMounts:
       - path: /database
   config:
