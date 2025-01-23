@@ -52,7 +52,7 @@ persistence:
   data:
     type: nfs
     server: 10.20.0.21
-    path: /mnt/tank/media
+    path: /mnt/tank/media/filebrowser
     globalMounts:
       - path: /srv
 
