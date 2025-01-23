@@ -26,9 +26,9 @@ service:
 
 ingress:
   app:
-    className: "nginx-internal"
+    className: "nginx-external"
     hosts:
-      - host: jellyfin-k.bukla.hu
+      - host: jellyfin.bukla.hu
         paths:
           - path: /
             pathType: Prefix
@@ -37,7 +37,7 @@ ingress:
               port: http
     tls:
       - hosts:
-          - jellyfin-k.bukla.hu
+          - jellyfin.bukla.hu
         secretName: wildcard-bukla-tls
 persistence:
   torrent:
