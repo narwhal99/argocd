@@ -46,7 +46,7 @@ persistence:
     advancedMounts:
       filebrowser: 
         main: 
-          - path: .filebrowser.json
+          - path: /.filebrowser.json
             readOnly: false
             subPath: config.yaml
 
