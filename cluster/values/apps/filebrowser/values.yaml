@@ -40,15 +40,15 @@ persistence:
     existingClaim: filebrowser-database
     globalMounts:
       - path: /database
-  # config:
-  #   type: configMap
-  #   name: filebrowser-config
-  #   advancedMounts:
-  #     filebrowser: 
-  #       main: 
-  #         - path: /.filebrowser.json
-  #           readOnly: false
-  #           subPath: config.yaml
+  config:
+    type: configMap
+    name: filebrowser-config
+    advancedMounts:
+      filebrowser: 
+        main: 
+          - path: config.yaml
+            readOnly: false
+            subPath: /.filebrowser.json
 
 configMaps:
       config:
