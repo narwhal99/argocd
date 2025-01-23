@@ -42,7 +42,7 @@ persistence:
       - path: /database
   config:
     type: configMap
-    name: my-configMap
+    name: filebrowser-config
     advancedMounts:
       filebrowser: 
         main: 
