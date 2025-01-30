@@ -155,7 +155,7 @@ alertmanager:
           - alertname
     route:
       group_by:
-        # - job
+        - job
         - alertname
         - severity
       group_interval: 5m
@@ -189,7 +189,7 @@ alertmanager:
         - send_resolved: true
           webhook_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"          
     # receivers:
-    #   - name: "null"
+      - name: "null"
     #   - name: discord
     #     slack_configs:
     #     - channel: 'alerts'
