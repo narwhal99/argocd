@@ -60,9 +60,7 @@
     {
       "description": "Do Not automerge these",
       "matchPackageNames": [
-        "/app-template/",
-        "/factorio/",
-        "/linuxserver/"
+        "/app-template/"
       ],
       "automerge": false
     }
