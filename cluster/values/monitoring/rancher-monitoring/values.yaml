@@ -170,7 +170,7 @@ alertmanager:
           match:
             alertname: Watchdog
         - receiver: 'discord'
-          continue: true
+          # continue: true
         # - continue: true
         #   match:
         #     alertname: Watchdog
