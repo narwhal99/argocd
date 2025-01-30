@@ -5,13 +5,13 @@ prometheus:
         scrape_interval: 15s
         static_configs:
           - targets:
-              - vmdocker04.bukla.hu:8080
               # - vmdocker02.bukla.hu:8080
+              # - vmfail2ban.bukla.hu:8080
+              # - vmgames.bukla.hu:8080
+              - vmdocker04.bukla.hu:8080
               - raspi.bukla.hu:8080
               - vmeproxy.bukla.hu:8080
-              # - vmgames.bukla.hu:8080
               - lb.bukla.hu:8080
-              # - vmfail2ban.bukla.hu:8080
       - job_name: haproxy
         scrape_interval: 5s
         metrics_path: /metrics
