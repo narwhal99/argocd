@@ -166,9 +166,11 @@ alertmanager:
         - receiver: "null"
           match:
             severity: none
+          continue: true
         - receiver: "null"
           match:
             alertname: Watchdog
+          continue: true
         - receiver: 'discord'
           # continue: true
         # - continue: true
