@@ -166,12 +166,15 @@ alertmanager:
         - receiver: "null"
           match:
             severity: none
-        - continue: true
+        - receiver: "null"
           match:
             alertname: Watchdog
-          receiver: "null"
         - receiver: 'discord'
           continue: true
+        # - continue: true
+        #   match:
+        #     alertname: Watchdog
+          # receiver: "null"
     # receivers: <-- CRASH AT ALERTING
     #   - name: discord
     #     webhook_configs:
