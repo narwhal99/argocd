@@ -163,11 +163,11 @@ alertmanager:
       receiver: discord
       repeat_interval: 24h
       routes:
-        - receiver: "null"
+        - receiver: null
           match:
             severity: none
           continue: true
-        - receiver: "null"
+        - receiver: null
           match:
             alertname: Watchdog
           continue: true
@@ -189,7 +189,7 @@ alertmanager:
         - send_resolved: true
           webhook_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"          
     # receivers:
-      - name: "null"
+      - name: null
     #   - name: discord
     #     slack_configs:
     #     - channel: 'alerts'
