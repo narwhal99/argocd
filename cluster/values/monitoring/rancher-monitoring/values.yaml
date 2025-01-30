@@ -155,7 +155,7 @@ alertmanager:
           - alertname
     route:
       group_by:
-        - job
+        # - job
         - alertname
         - severity
       group_interval: 5m
