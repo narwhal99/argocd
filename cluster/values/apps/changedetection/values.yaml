@@ -20,7 +20,7 @@ controllers:
             pullPolicy: IfNotPresent
           resources:
             limits:
-              cpu: 1
+              cpu: 3
               memory: 5Gi
             requests:
               cpu: 500m
@@ -35,7 +35,7 @@ controllers:
               value: 1
           resources:
             limits:
-              cpu: 1
+              cpu: 3
               memory: 5Gi
             requests:
               cpu: 500m
