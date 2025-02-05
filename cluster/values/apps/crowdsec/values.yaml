@@ -1,24 +1,27 @@
 container_runtime: containerd
 
 lapi:
-  persistentVolume:
-    # -- Persistent volume for data folder. Stores e.g. registered bouncer api keys
-    data:
-      enabled: false
-      accessModes:
-        - ReadWriteOnce
-      storageClassName: ""
-      existingClaim: ""
-      size: 1Gi
-    # -- Persistent volume for config folder. Stores e.g. online api credentials
-    config:
-      enabled: false
-      accessModes:
-        - ReadWriteOnce
-      storageClassName: ""
-      existingClaim: ""
-      size: 100Mi
-    # -- UI for crowdsec
+  env:
+    - name: DISABLE_ONLINE_API
+      value: "true"
+  # persistentVolume:
+  #   # -- Persistent volume for data folder. Stores e.g. registered bouncer api keys
+  #   data:
+  #     enabled: false
+  #     accessModes:
+  #       - ReadWriteOnce
+  #     storageClassName: ""
+  #     existingClaim: ""
+  #     size: 1Gi
+  #   # -- Persistent volume for config folder. Stores e.g. online api credentials
+  #   config:
+  #     enabled: false
+  #     accessModes:
+  #       - ReadWriteOnce
+  #     storageClassName: ""
+  #     existingClaim: ""
+  #     size: 100Mi
+  #   # -- UI for crowdsec
   dashboard:
     enabled: true
     ingress:
@@ -30,18 +33,21 @@ lapi:
 
 agent:
   acquisition:
-    - namespace: "ingress-nginx"
+    - namespace: "ingress-nginx-external"
       podName: "ingress-nginx-controller-*"
       program: "nginx"
       # -- If set to true, will poll the files using os.Stat instead of using inotify
       poll_without_inotify: false
-  additionalAcquisition:
-    - source: loki
-      log_level: info
-      url: http://loki.logging.svc.cluster.local:3100/
-      # url: https://loki-gateway.bukla.hu
-      limit: 1000
-      query: |
-        {container="haproxy"}
-      labels:
-        type: haproxy
+  env:
+    - name: COLLECTIONS
+      value: "crowdsecurity/nginx"
+  # additionalAcquisition:
+  #   - source: loki
+  #     log_level: info
+  #     # url: http://loki.logging.svc.cluster.local:3100/  
+  #     url: https://loki-gateway.bukla.hu
+  #     limit: 1000
+  #     query: |
+  #       {container="haproxy"}
+  #     labels:
+  #       type: haproxy
