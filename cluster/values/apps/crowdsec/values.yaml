@@ -7,7 +7,7 @@ lapi:
       enabled: true
       accessModes:
         - ReadWriteOnce
-      storageClassName: "nfs-subdir"
+      storageClassName: "longhorn"
   #     existingClaim: ""
       size: 1Gi
   #   # -- Persistent volume for config folder. Stores e.g. online api credentials
@@ -15,7 +15,7 @@ lapi:
       enabled: true
       accessModes:
         - ReadWriteOnce
-      storageClassName: "nfs-subdir"
+      storageClassName: "longhorn"
   #     existingClaim: ""
       size: 100Mi
   #   # -- UI for crowdsec
