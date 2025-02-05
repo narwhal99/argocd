@@ -31,7 +31,7 @@ lapi:
 agent:
   acquisition:
     - namespace: "ingress-nginx-external"
-      podName: "ingress-nginx-controller-*"
+      podName: "ingress-nginx-external-controller-*"
       program: "nginx"
   env:
     - name: COLLECTIONS
