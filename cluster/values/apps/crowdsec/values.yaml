@@ -4,20 +4,20 @@ lapi:
   persistentVolume:
   #   # -- Persistent volume for data folder. Stores e.g. registered bouncer api keys
     data:
-      enabled: false
-  #     accessModes:
-  #       - ReadWriteOnce
-  #     storageClassName: ""
+      enabled: true
+      accessModes:
+        - ReadWriteOnce
+      storageClassName: "nfs-subdir"
   #     existingClaim: ""
-  #     size: 1Gi
+      size: 1Gi
   #   # -- Persistent volume for config folder. Stores e.g. online api credentials
     config:
-      enabled: false
-  #     accessModes:
-  #       - ReadWriteOnce
-  #     storageClassName: ""
+      enabled: true
+      accessModes:
+        - ReadWriteOnce
+      storageClassName: "nfs-subdir"
   #     existingClaim: ""
-  #     size: 100Mi
+      size: 100Mi
   #   # -- UI for crowdsec
   dashboard:
     enabled: true
