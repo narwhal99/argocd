@@ -1,9 +1,6 @@
 container_runtime: containerd
 
 lapi:
-  env:
-    - name: DISABLE_ONLINE_API
-      value: "true"
   persistentVolume:
   #   # -- Persistent volume for data folder. Stores e.g. registered bouncer api keys
     data:
@@ -36,8 +33,6 @@ agent:
     - namespace: "ingress-nginx-external"
       podName: "ingress-nginx-controller-*"
       program: "nginx"
-      # -- If set to true, will poll the files using os.Stat instead of using inotify
-      poll_without_inotify: false
   env:
     - name: COLLECTIONS
       value: "crowdsecurity/nginx"
