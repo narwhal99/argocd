@@ -1,0 +1,68 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "argocd": {
+    "fileMatch": [
+      "cluster/bootstrap/.+\\.yaml$",
+      "cluster/argocd/.+\\.yaml$",
+      "cluster/cluster\\.yaml$"
+    ]
+  },
+  "helm-values": {
+    "commitMessageTopic": "helm values {{depName}}",
+    "fileMatch": [
+      "cluster/values/.*\\.yaml$"
+    ]
+  },
+  "packageRules": [
+    {
+      "description": "Auto merge container digests",
+      "matchDatasources": [
+        "docker"
+      ],
+      "automerge": true,
+      "ignoreTests": true,
+      "automergeType": "pr",
+      "matchUpdateTypes": [
+        "patch",
+        "minor",
+        "digest"
+      ]
+    },
+    {
+      "description": "Auto merge helm deps",
+      "matchDatasources": [
+        "helm",
+        "git-tags"
+      ],
+      "automerge": true,
+      "ignoreTests": true,
+      "automergeType": "pr",
+      "matchUpdateTypes": [
+        "patch",
+        "minor"
+      ]
+    },
+    {
+      "description": "Auto merge latest stable tags for factorio",
+      "matchPackageNames": [
+        "factoriotools/factorio"
+      ],
+      "matchDatasources": [
+        "docker"
+      ],
+      "versioning": "regex:^stable-(?<major>\\d+).(?<minor>\\d+).(?<patch>\\d+)?$",
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "Do Not automerge these",
+      "matchPackageNames": [
+        "/app-template/"
+      ],
+      "automerge": false
+    }
+  ]
+}

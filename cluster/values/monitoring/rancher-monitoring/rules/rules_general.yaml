@@ -1,0 +1,100 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  # labels:
+  #   app: prometheus-operator
+  #   rules: bukla
+  name: rules-general
+spec:
+  groups:
+    - name: rules-general
+      rules:
+        - alert: TargetDown
+          expr: |
+            up == 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            title: "Target down {{ $labels.instance }} on {{ $labels.job }}"
+            description: "Target down {{ $labels.instance }} on {{ $labels.job }}"
+    - name: rules-general-cpu
+      rules:
+        - alert: HostHighCpuLoad
+          expr: (sum by (instance) (avg by (mode, instance) (rate(node_cpu_seconds_total{mode!="idle"}[2m]))) > 0.8) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: Host high CPU load (instance {{ $labels.instance }})
+            description: "CPU load is > 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        - alert: HostCpuHighIowait
+          expr: (avg by (instance) (rate(node_cpu_seconds_total{mode="iowait", instance!="raspi.bukla.hu:9100"}[5m])) * 100 > 10) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: Host CPU high iowait (instance {{ $labels.instance }})
+            description: "CPU iowait > 10%. A high iowait means that you are disk or network bound.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+    - name: rules-general-memory
+      rules:
+        - alert: HostOutOfMemory
+          expr: (((node_memory_MemAvailable_bytes+node_zfs_arc_size) / node_memory_MemTotal_bytes * 100 < 10))  or ((node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10) unless node_zfs_arc_size)
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: Host out of memory (instance {{ $labels.instance }})
+            description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        - alert: HostOomKillDetected
+          expr: (increase(node_vmstat_oom_kill[1m]) > 0) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+          for: 0m
+          labels:
+            severity: warning
+          annotations:
+            summary: Host OOM kill detected (instance {{ $labels.instance }})
+            description: "OOM kill detected\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+    - name: rules-general-storage
+      rules:
+        - alert: HostUnusualDiskReadLatency
+          expr: (rate(node_disk_read_time_seconds_total{instance!="raspi.bukla.hu:9100"}[1m]) / rate(node_disk_reads_completed_total{instance!="raspi.bukla.hu:9100"}[1m]) > 0.1 and rate(node_disk_reads_completed_total{instance!="raspi.bukla.hu:9100"}[1m]) > 0) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: Host unusual disk read latency (instance {{ $labels.instance }})
+            description: "Disk latency is growing (read operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        - alert: HostUnusualDiskWriteLatency
+          expr: (rate(node_disk_write_time_seconds_total{instance!="raspi.bukla.hu:9100"}[1m]) / rate(node_disk_writes_completed_total[1m]) > 0.1 and rate(node_disk_writes_completed_total{instance!="raspi.bukla.hu:9100"}[1m]) > 0) * on (instance) group_left (nodename) node_uname_info{nodename=~".+"}
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: Host unusual disk write latency (instance {{ $labels.instance }})
+            description: "Disk latency is growing (write operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        - alert: HostOutOfDiskSpaceWarning
+          expr: (node_filesystem_avail_bytes * 100) / node_filesystem_size_bytes < 30 and ON (instance,device,mountpoint) node_filesystem_readonly == 0 and node_filesystem_free_bytes < 5*10^11
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: Host out of disk space (instance {{ $labels.instance }})
+            description: "Disk is almost full (< 30% left) \n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        - alert: ZfsOfflinePool
+          expr: node_zfs_zpool_state{state!="online"} > 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: ZFS offline pool (instance {{ $labels.instance }})
+            description: "A ZFS zpool is in a unexpected state: {{ $labels.state }}.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+    - name: rules-general-physical
+      rules:
+        - alert: HostNodeOvertemperatureAlarm
+          expr: (node_hwmon_temp_crit_alarm_celsius == 1) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+          for: 0m
+          labels:
+            severity: critical
+          annotations:
+            summary: Host node overtemperature alarm (instance {{ $labels.instance }})
+            description: "Physical node temperature alarm triggered\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"

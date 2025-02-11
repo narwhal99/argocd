@@ -1,0 +1,31 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: rancher-monitoring-crd
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: default
+#   sources:
+#   - chart: rancher-monitoring-crd
+#     repoURL: https://charts.rancher.io
+#     targetRevision: 104.1.2+up57.0.3
+#     # helm:
+#     #   valueFiles:
+#     #     - $repo/cluster/values/monitoring/prometheus-stack-rancher-poc/values.yaml
+#   destination:
+#     name: in-cluster
+#     namespace: testing
+#   syncPolicy:
+#     automated:
+#       selfHeal: true
+#     syncOptions:
+#     - CreateNamespace=true
+#   # ignoreDifferences:
+#   #   - group: external-secrets.io
+#   #     kind: ExternalSecret
+#   #     jqPathExpressions:
+#   #       - .spec.data[].remoteRef.conversionStrategy
+#   #       - .spec.data[].remoteRef.decodingStrategy
+#   #       - .spec.data[].remoteRef.metadataPolicy

@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: externaldns
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - repoURL: registry-1.docker.io/bitnamicharts
+    chart: external-dns
+    targetRevision: 8.7.4
+    helm:
+      valueFiles:
+      - $repo/cluster/values/infrastructure/externaldns/values.yaml
+      releaseName: external-dns
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/infrastructure/externaldns
+    targetRevision: HEAD
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: externaldns
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+  ignoreDifferences:
+    - group: external-secrets.io
+      kind: ExternalSecret
+      jqPathExpressions:
+        - .spec.data[].remoteRef.conversionStrategy
+        - .spec.data[].remoteRef.decodingStrategy
+        - .spec.data[].remoteRef.metadataPolicy

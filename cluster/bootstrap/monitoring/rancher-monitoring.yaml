@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rancher-monitoring
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: rancher-monitoring
+    repoURL: https://charts.rancher.io
+    targetRevision: 105.1.2+up61.3.2
+    helm:
+      valueFiles:
+        - $repo/cluster/values/monitoring/rancher-monitoring/values.yaml
+        - $repo/cluster/values/monitoring/rancher-monitoring/static_scraper_configs.yaml
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/monitoring/rancher-monitoring
+    targetRevision: HEAD
+    ref: repo
+    directory:
+      recurse: true
+  destination:
+    name: in-cluster
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+  # ignoreDifferences:
+  #   - group: external-secrets.io
+  #     kind: ExternalSecret
+  #     jqPathExpressions:
+  #       - .spec.data[].remoteRef.conversionStrategy
+  #       - .spec.data[].remoteRef.decodingStrategy
+  #       - .spec.data[].remoteRef.metadataPolicy

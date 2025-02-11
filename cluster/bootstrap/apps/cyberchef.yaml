@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cyberchef
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: cyberchef
+    repoURL: https://charts.obeone.cloud
+    targetRevision: 1.3.3
+    helm:
+      valueFiles:
+      - $repo/cluster/values/apps/cyberchef/values.yaml
+      releaseName: cyberchef
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/apps/cyberchef
+    targetRevision: HEAD
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: apps
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true

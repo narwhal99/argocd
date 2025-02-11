@@ -1,0 +1,12 @@
+# controller:
+#   tolerations:
+#     - key: "HAsrv"
+#       operator: "Equal"
+#       value: "true"
+#       effect: "NoExecute"
+# speaker:
+#   tolerations:
+#     - key: "HAsrv"
+#       operator: "Equal"
+#       value: "true"
+#       effect: "NoExecute"

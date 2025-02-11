@@ -1,0 +1,97 @@
+---
+defaultPodOptions:
+  securityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
+    fsGroupChangePolicy: "OnRootMismatch"
+    supplementalGroups:
+      - 65539
+
+controllers:
+  qbittorrent:
+    type: statefulset
+    containers:
+      app:
+        image:
+          repository: ghcr.io/onedr0p/qbittorrent
+          tag: 5.0.3
+          pullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 3
+            memory: 8Gi
+          requests:
+            cpu: 500m
+            memory: 4Gi
+
+service:
+  app:
+    controller: qbittorrent
+    ports:
+      http:
+        port: 8080
+  # p2p:
+  #   controller: qbittorrent
+  #   type: NodePort
+  #   ports:
+  #     p2p:
+  #       nodePort: 32344
+  #       port: 32344
+  #       targetPort: 32344
+  #       protocol: TCP
+
+ingress:
+  app:
+    className: "nginx-internal"
+    hosts:
+      - host: qbittorrent.bukla.hu
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: app
+              port: http
+    tls:
+      - hosts:
+          - qbittorrent.bukla.hu
+        secretName: wildcard-bukla-tls
+persistence:
+  config:
+    type: persistentVolumeClaim
+    storageClass: nfs-subdir
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    globalMounts:
+      - path: /config
+  torrent:
+    type: nfs
+    server: 10.20.0.21
+    path: /mnt/tank/torrent
+    globalMounts:
+      - path: /torrent
+  vault:
+    type: nfs
+    server: 10.20.0.21
+    path: /mnt/tank/vault/temp
+    globalMounts:
+      - path: /vault
+
+
+    #   volumeMounts:
+    #   - mountPath: /var/www/html
+    #     name: site-data
+    #     subPath: html
+    # volumes:
+    # - name: site-data
+    #   persistentVolumeClaim:
+    #     claimName: my-lamp-site-data
+
+# persistence:
+#   # Configure the main configuration storage location
+#   config:
+#     existingClaim: qbittorrent-config
+#     advancedMounts:
+#       main:
+#         main:
+#           - path: /config

@@ -1,0 +1,76 @@
+---
+controllers:
+    main:
+      type: statefulset
+      containers:
+        changedetection:
+          image:
+            repository: ghcr.io/dgtlmoon/changedetection.io
+            tag: 0.49.1
+            pullPolicy: IfNotPresent
+          env:
+            - name: WEBDRIVER_URL
+              value: http://localhost:4444/wd/hub
+            - name: PLAYWRIGHT_DRIVER_URL
+              value: ws://localhost:3000/?stealth=1&--disable-web-security=true
+        playwright-chrome:
+          image:
+            repository: browserless/chrome
+            tag: 1.61-chrome-stable
+            pullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 3
+              memory: 5Gi
+            requests:
+              cpu: 500m
+              memory: 2Gi
+        browser-chrome:
+          image:
+            repository: selenium/standalone-chrome
+            tag: 4
+            pullPolicy: IfNotPresent
+          env:
+            - name: VNC_NO_PASSWORD
+              value: 1
+          resources:
+            limits:
+              cpu: 3
+              memory: 5Gi
+            requests:
+              cpu: 500m
+              memory: 2Gi
+
+service:
+  main:
+    controller: main
+    type: ClusterIP
+    ports:
+      http:
+        port: 5000
+ingress:
+  main:
+    className: "nginx-internal"
+    hosts:
+      - host: scraper.bukla.hu
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: main
+              port: http
+    tls:
+      - hosts:
+          - scraper.bukla.hu
+        secretName: wildcard-bukla-tls
+
+persistence:
+  config:
+    type: persistentVolumeClaim
+    storageClass: nfs-subdir
+    size: 1Gi
+    accessMode: ReadWriteOnce
+    advancedMounts:
+      main:
+        changedetection:
+          - path: /datastore

@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: authentik
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: authentik
+    repoURL: https://charts.goauthentik.io
+    targetRevision: 2024.12.3
+    helm:
+      valueFiles:
+      - $repo/cluster/values/apps/authentik/values.yaml
+      releaseName: authentik
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/apps/authentik
+    targetRevision: HEAD
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: authentik
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+  ignoreDifferences:
+    - group: external-secrets.io
+      kind: ExternalSecret
+      jqPathExpressions:
+        - .spec.data[].remoteRef.conversionStrategy
+        - .spec.data[].remoteRef.decodingStrategy
+        - .spec.data[].remoteRef.metadataPolicy

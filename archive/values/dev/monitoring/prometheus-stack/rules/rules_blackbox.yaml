@@ -1,0 +1,38 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  # labels:
+    # app: prometheus-operator
+    # rules: bukla
+  name: rules-blackbox
+spec:
+  groups:
+    - name: ./rules-blackbox
+      rules:
+        - alert: SSLCertExpiringSoon
+          expr: probe_ssl_earliest_cert_expiry{job="blackbox"} - time() < 86400 * 14
+          for: 60m
+          labels:
+            severity: "warning"
+          annotations:
+            description: SSL Certificate for {{ $labels.instance }} expires in {{ .Value | humanizeDuration }}
+        - alert: SSLCertExpiringVERYSoon
+          expr: probe_ssl_earliest_cert_expiry{job="blackbox"} - time() < 86400 * 7
+          for: 60m
+          labels:
+            severity: "critical"
+          annotations:
+            description: SSL Certificate for {{ $labels.instance }} expires in {{ .Value | humanizeDuration }}
+        - alert: BlackboxSuccessError
+          expr: probe_success == 0
+          for: 1m
+          labels:
+            severity: "critical"
+          annotations:
+            description: Blackbox probe not successful on {{ $labels.instance }}
+        - alert: BlackboxDnsSuccessError
+          expr: probe_dns_query_succeeded{instance=~"10.10.0.*"} == 0
+          labels:
+            severity: "critical"
+          annotations:
+            description: Blackbox DNS probe not successful on {{ $labels.instance }}

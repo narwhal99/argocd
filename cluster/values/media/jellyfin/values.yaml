@@ -1,0 +1,54 @@
+---
+defaultPodOptions:
+  securityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
+    fsGroupChangePolicy: "OnRootMismatch"
+    supplementalGroups:
+      - 65539
+
+controllers:
+  jellyfin:
+    type: statefulset
+    containers:
+      app:
+        image:
+          repository: jellyfin/jellyfin
+          tag: 10.10.5
+          pullPolicy: IfNotPresent
+service:
+  app:
+    controller: jellyfin
+    ports:
+      http:
+        port: 8096
+
+ingress:
+  app:
+    className: "nginx-external"
+    hosts:
+      - host: jellyfin.bukla.hu
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: app
+              port: http
+    tls:
+      - hosts:
+          - jellyfin.bukla.hu
+        secretName: wildcard-bukla-tls
+persistence:
+  torrent:
+    type: nfs
+    server: 10.20.0.21
+    path: /mnt/tank/torrent
+    globalMounts:
+      - path: /torrent
+  config:
+    existingClaim: jellyfin-config
+  cache:
+    existingClaim: jellyfin-cache
+  transcode:
+    type: emptyDir

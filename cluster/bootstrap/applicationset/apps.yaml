@@ -1,0 +1,77 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: [ "missingkey=error" ]
+  generators:
+    - list:
+        elements:
+          - name: pdfstirling
+            namespace: apps
+            targetRevision: HEAD
+          - name: excalidraw
+            namespace: apps
+            targetRevision: HEAD
+          - name: muse
+            namespace: apps
+            targetRevision: HEAD
+          - name: vikunja
+            namespace: apps
+            targetRevision: HEAD
+          - name: factorio
+            namespace: apps
+            targetRevision: HEAD
+          - name: homeassistant
+            namespace: apps
+            targetRevision: HEAD
+          - name: drawio
+            namespace: apps
+            targetRevision: HEAD
+          # - name: technitiumdns
+          #   namespace: infraservices
+          #   targetRevision: HEAD
+          - name: changedetection
+            namespace: apps
+            targetRevision: HEAD
+          - name: filebrowser
+            namespace: apps
+            targetRevision: HEAD
+  template:
+    metadata:
+      name: '{{ .name }}'
+      namespace: argocd
+    spec:
+      project: default
+      sources:
+        - chart: app-template
+          repoURL: https://bjw-s.github.io/helm-charts/
+          targetRevision: 3.6.1
+          helm:
+            valueFiles:
+            - $repo/cluster/values/apps/{{ .name }}/values.yaml
+            releaseName: '{{ .name }}'
+        - repoURL: git@github.com:narwhal99/argocd.git
+          path: cluster/values/apps/{{ .name }}
+          targetRevision: '{{ .targetRevision }}'
+          ref: repo
+      destination:
+        namespace: '{{ .namespace }}'
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+          - RespectIgnoreDifferences=true
+          # - Replace=true
+          # - PruneLast=true
+      ignoreDifferences:
+        - group: external-secrets.io
+          kind: ExternalSecret
+          jqPathExpressions:
+            - .spec.data[].remoteRef.conversionStrategy
+            - .spec.data[].remoteRef.decodingStrategy
+            - .spec.data[].remoteRef.metadataPolicy

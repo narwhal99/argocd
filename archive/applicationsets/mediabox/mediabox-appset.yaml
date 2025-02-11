@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: mediabox-applicationset
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: [ "missingkey=error" ]
+  generators:
+    - list:
+        elements:
+          - cluster: dev
+            namespace: mediabox
+            server: https://kubernetes.default.svc
+            repo: git@github.com:narwhal99/argocd.git
+            targetRevision: HEAD
+  template:
+    metadata:
+      name: 'mediabox-{{ .cluster }}'
+      namespace: argocd
+    spec:
+      destination:
+        namespace: '{{ .namespace }}'
+        server: '{{ .server }}'
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+          # - Replace=true
+          - PruneLast=true
+      project: default
+      sources:
+        - repoURL: git@github.com:narwhal99/argocd.git
+          targetRevision: HEAD
+          path: application_charts/{{ .cluster }}/mediabox
+          helm:
+            valuesObject:
+              spec:
+                destination:
+                  cluster: '{{ .cluster }}'
+                  server: '{{ .server }}'
+                  namespace: '{{ .namespace }}'
+                source:
+                  cluster: '{{ .cluster }}'
+                  repoURL: '{{ .repo }}'
+                  targetRevision: '{{ .targetRevision }}'

@@ -1,0 +1,75 @@
+---
+# defaultPodOptions:
+#   securityContext:
+#     runAsUser: 568
+#     runAsGroup: 568
+#     fsGroup: 568
+#     fsGroupChangePolicy: "OnRootMismatch"
+#     supplementalGroups:
+#       - 65539
+
+controllers:
+    factorio:
+      type: statefulset
+      containers:
+        main:
+          image:
+            repository: factoriotools/factorio
+            tag: stable-2.0.32
+            pullPolicy: Always
+          env:
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: factorio-secret
+                  key: token
+            - name: UPDATE_MODS_ON_START
+              value: true
+            - name: USERNAME
+              value: narwhal99
+service:
+  # Configure a service for the main application
+  app:
+    controller: factorio
+    type: LoadBalancer
+    ports:
+      tcp:
+        port: 27015
+      udp:
+        port: 34197
+        protocol: UDP
+    annotations:
+      metallb.universe.tf/allow-shared-ip: 10.20.0.151
+      metallb.universe.tf/ip-allocated-from-pool: external
+      metallb.universe.tf/loadBalancerIPs: 10.20.0.151
+
+persistence:
+  config:
+    type: persistentVolumeClaim
+    storageClass: nfs-subdir
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    globalMounts:
+      - path: /factorio
+
+# configMaps:
+#       config:
+#         enabled: true
+#         data:
+#           config.yml: |
+#             service:
+#               enableregistration: false
+#               timezone: Europe/Budapest
+#               frontendUrl: https://vikunja.bukla.hu
+#             auth:
+#               local:
+#                 enabled: false
+#               openid:
+#                 enabled: true
+#                 redirecturl: https://vikunja.bukla.com/auth/openid/
+#                 providers:
+#                   - name: Authentik
+#                     authurl: https://authentik.bukla.hu/application/o/authorize/
+#                     logouturl: https://authentik.bukla.hu/application/o/vikunja/end-session/
+#                     clientid: $authentik-client-id
+#                     clientsecret: $authentik.client.secret

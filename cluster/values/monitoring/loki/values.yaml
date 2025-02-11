@@ -1,0 +1,132 @@
+
+---
+global:
+  dnsService: "rke2-coredns-rke2-coredns"
+loki:
+  auth_enabled: false
+  commonConfig:
+    replication_factor: 1
+  storage:
+    type: filesystem
+  commonStorageConfig:
+    type: filesystem
+  schemaConfig:
+    configs:
+      - from: 2023-01-01
+        store: tsdb
+        object_store: filesystem
+        schema: v13
+        index:
+          prefix: loki_index_
+          period: 24h
+  ingester:
+    chunk_encoding: snappy
+  tracing:
+    enabled: true
+  querier:
+    max_concurrent: 4
+  rulerConfig:
+    storage:
+      type: local
+      local:
+        directory: /var/loki/rules/
+    rule_path: "/var/loki/rules-temp"
+    ring:
+      kvstore:
+        store: inmemory
+    alertmanager_url: http://alertmanager-operated.monitoring:9093
+    enable_alertmanager_v2: true
+
+gateway:
+  ingress:
+    ingressClassName: "nginx-internal"
+    enabled: true
+    hosts:
+      - host: loki-gateway.bukla.hu
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - hosts:
+          - loki-gateway.bukla.hu
+        secretName: wildcard-bukla-tls
+
+deploymentMode: SingleBinary
+singleBinary:
+  replicas: 1
+  resources:
+    limits:
+      cpu: 3
+      memory: 4Gi
+    requests:
+      cpu: 2
+      memory: 2Gi
+  extraEnv:
+    # Keep a little bit lower than memory limits
+    - name: GOMEMLIMIT
+      value: 3750MiB
+  persistence:
+    storageClass: nfs-csi
+    enabled: true
+    size: 5Gi
+  extraVolumeMounts:
+    - name: rules
+      mountPath: "/var/loki/rules/fake"
+  extraVolumes:
+    - name: rules
+      configMap:
+        name: loki-alerting-rules
+
+chunksCache:
+  # -- Specifies whether memcached based chunks-cache should be enabled
+  enabled: false
+  # -- Batchsize for sending and receiving chunks from chunks cache
+  batchSize: 4
+  # -- Parallel threads for sending and receiving chunks from chunks cache
+  parallelism: 5
+  # -- Memcached operation timeout
+  timeout: 2000ms
+  # -- Specify how long cached chunks should be stored in the chunks-cache before being expired
+  defaultValidity: 0s
+  # -- Total number of chunks-cache replicas
+  replicas: 1
+  # -- Port of the chunks-cache service
+  port: 11211
+  # -- Amount of memory allocated to chunks-cache for object storage (in MB).
+  allocatedMemory: 8192
+
+networkPolicy:
+  alertmanager:
+    # -- Specify the alertmanager port used for alerting
+    port: 9093
+    # -- Specifies the alertmanager Pods.
+    # As this is cross-namespace communication, you also need the namespaceSelector.
+    podSelector:
+    # -- Specifies the namespace the alertmanager is running in
+    namespaceSelector: {}
+# Zero out replica counts of other deployment modes
+backend:
+  replicas: 0
+read:
+  replicas: 0
+write:
+  replicas: 0
+
+ingester:
+  replicas: 0
+querier:
+  replicas: 0
+queryFrontend:
+  replicas: 0
+queryScheduler:
+  replicas: 0
+distributor:
+  replicas: 0
+compactor:
+  replicas: 0
+indexGateway:
+  replicas: 0
+bloomCompactor:
+  replicas: 0
+bloomGateway:
+  replicas: 0

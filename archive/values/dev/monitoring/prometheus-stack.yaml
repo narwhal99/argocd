@@ -1,0 +1,54 @@
+grafana:
+  enabled: false
+thanos:
+  enabled: false
+prometheus:
+  ingress:
+    enabled: true
+    hosts:
+      - prom-k.bukla.hu
+    tls:
+      - secretName: wildcard-bukla-tls
+        hosts:
+          - prom-k.bukla.hu
+  # prometheusOperator: #lehet nem kell
+  #   admissionWebhooks:
+  #     certManager:
+  #       enabled: true
+  prometheusSpec:
+    ruleSelectorNiUsesHelmValues: false
+    ruleSelector:
+      matchLabels:
+        rules: bukla
+    storageSpec:
+      volumeClaimTemplate:
+        metadata:
+          name: prometheus-dev
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
+          storageClassName: shared-storage
+alertmanager:
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        metadata:
+          name: alertmanager-dev
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
+          storageClassName: shared-storage
+  ingress:
+    enabled: true
+    hosts:
+      - alertmanager-k.bukla.hu
+    tls:
+      - secretName: wildcard-bukla-tls
+        hosts:
+          - alertmanager-k.bukla.hu

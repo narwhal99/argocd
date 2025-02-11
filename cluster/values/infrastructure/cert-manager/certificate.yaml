@@ -1,0 +1,18 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-bukla-certificate
+  namespace: cert-manager
+spec:
+  secretName: wildcard-bukla-tls
+  issuerRef:
+    name: cloudflare-clusterissuer
+    kind: ClusterIssuer
+  secretTemplate:
+      annotations:
+        reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+        reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+        reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: ""
+  dnsNames:
+    - "*.bukla.hu"

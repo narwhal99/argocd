@@ -1,0 +1,52 @@
+---
+# defaultPodOptions:
+#   securityContext:
+#     runAsUser: 568
+#     runAsGroup: 568
+#     fsGroup: 568
+#     fsGroupChangePolicy: "OnRootMismatch"
+#     supplementalGroups:
+#       - 65539
+
+controllers:
+  # Configure the main controller
+  main:
+    type: statefulset
+    containers:
+      main:
+        image:
+          repository: ghcr.io/museofficial/muse
+          tag: latest
+          pullPolicy: IfNotPresent
+        env:
+          - name: DISCORD_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: muse-secret
+                key: discord_token
+          - name: YOUTUBE_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: muse-secret
+                key: youtube_api_key
+          - name: SPOTIFY_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: muse-secret
+                key: spotify_client_id
+          - name: SPOTIFY_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: muse-secret
+                key: spotify_client_secret
+persistence:
+  data:
+    type: emptyDir
+# persistence:
+#   data:
+#     type: persistentVolumeClaim
+#     storageClass: nfs-subdir
+#     accessMode: ReadWriteOnce
+#     size: 1Gi
+#     globalMounts:
+#       - path: /data

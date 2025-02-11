@@ -1,0 +1,13 @@
+spec:
+  # -- Source repo
+  source:
+    # -- Source repo for values
+    repoURL:
+    # -- Source repo revision for values
+    targetRevision:
+  # -- Destination cluster for the application deployment
+  destination:
+    # -- Destination namespace for resource
+    namespace:
+    # -- Destination server for resource
+    server:

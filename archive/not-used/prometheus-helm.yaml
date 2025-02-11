@@ -1,0 +1,24 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-helm
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:narwhal99/argocd.git
+    targetRevision: HEAD
+    path: apps/prometheus-helm
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      selfHeal: true
+      # alloweEmpty: true
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true

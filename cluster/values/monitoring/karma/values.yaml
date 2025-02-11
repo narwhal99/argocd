@@ -1,0 +1,28 @@
+ingress:
+  enabled: true
+  ingressClassName: nginx-internal
+  hosts:
+    - karma.bukla.hu
+  tls:
+    - secretName: wildcard-bukla-tls
+      hosts:
+        - karma.bukla.hu
+
+configMap:
+  enabled: true
+  rawConfig:
+    alertmanager:
+      interval: 30s
+      servers:
+        - name: prometheus
+          uri: http://rancher-monitoring-alertmanager:9093
+          external_uri: "https://alertmanager.bukla.hu"
+          proxy: true
+          healthcheck:
+            filters:
+              Watchdog:
+                - alertname=Watchdog
+                - severity=nonde
+    filters:
+      default:
+        - "@state=active"
