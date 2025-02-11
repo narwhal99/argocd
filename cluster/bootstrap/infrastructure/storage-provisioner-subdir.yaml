@@ -17,7 +17,7 @@ spec:
       releaseName: nfs-subdir-external-provisioner
   - repoURL: git@github.com:narwhal99/argocd.git
     path: cluster/values/infrastructure/storage-provisioner-subdir
-    targetRevision: HEAD
+    targetRevision: master
     ref: repo
   destination:
     name: in-cluster

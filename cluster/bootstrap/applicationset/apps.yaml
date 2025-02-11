@@ -11,34 +11,34 @@ spec:
         elements:
           - name: pdfstirling
             namespace: apps
-            targetRevision: HEAD
+            targetRevision: master
           - name: excalidraw
             namespace: apps
-            targetRevision: HEAD
+            targetRevision: master
           - name: muse
             namespace: apps
-            targetRevision: HEAD
+            targetRevision: master
           - name: vikunja
             namespace: apps
-            targetRevision: HEAD
+            targetRevision: master
           - name: factorio
             namespace: apps
-            targetRevision: HEAD
+            targetRevision: master
           - name: homeassistant
             namespace: apps
-            targetRevision: HEAD
+            targetRevision: master
           - name: drawio
             namespace: apps
-            targetRevision: HEAD
+            targetRevision: master
           # - name: technitiumdns
           #   namespace: infraservices
-          #   targetRevision: HEAD
+          #   targetRevision: master
           - name: changedetection
             namespace: apps
-            targetRevision: HEAD
+            targetRevision: master
           - name: filebrowser
             namespace: apps
-            targetRevision: HEAD
+            targetRevision: master
   template:
     metadata:
       name: '{{ .name }}'

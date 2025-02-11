@@ -7,7 +7,7 @@ spec:
   source:
     repoURL: git@github.com:narwhal99/argocd.git
     path: cluster/values/data/storage
-    targetRevision: HEAD
+    targetRevision: master
   destination:
     name: in-cluster
   syncPolicy:

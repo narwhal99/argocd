@@ -17,7 +17,7 @@ spec:
       releaseName: csi-driver-nfs
   - repoURL: git@github.com:narwhal99/argocd.git
     path: cluster/values/infrastructure/storage-provisioner-csi
-    targetRevision: HEAD
+    targetRevision: master
     ref: repo
   destination:
     name: in-cluster

@@ -16,7 +16,7 @@ spec:
         - $repo/cluster/values/monitoring/prometheus-blackbox-exporter/values.yaml
   - repoURL: git@github.com:narwhal99/argocd.git
     path: cluster/values/monitoring/prometheus-blackbox-exporter
-    targetRevision: HEAD
+    targetRevision: master
     ref: repo
     directory:
       recurse: true

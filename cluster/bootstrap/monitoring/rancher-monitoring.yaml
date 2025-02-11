@@ -17,7 +17,7 @@ spec:
         - $repo/cluster/values/monitoring/rancher-monitoring/static_scraper_configs.yaml
   - repoURL: git@github.com:narwhal99/argocd.git
     path: cluster/values/monitoring/rancher-monitoring
-    targetRevision: HEAD
+    targetRevision: master
     ref: repo
     directory:
       recurse: true

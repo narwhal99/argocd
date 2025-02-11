@@ -11,34 +11,34 @@ spec:
         elements:
           - name: bazarr
             namespace: media
-            targetRevision: HEAD
+            targetRevision: master
           - name: jackett
             namespace: media
-            targetRevision: HEAD
+            targetRevision: master
           - name: jellyfin
             namespace: media
-            targetRevision: HEAD
+            targetRevision: master
           - name: jellyseerr
             namespace: media
-            targetRevision: HEAD
+            targetRevision: master
           - name: prowlarr
             namespace: media
-            targetRevision: HEAD
+            targetRevision: master
           - name: qbittorrent
             namespace: media
-            targetRevision: HEAD
+            targetRevision: master
           - name: radarr
             namespace: media
-            targetRevision: HEAD
+            targetRevision: master
           - name: readarr
             namespace: media
-            targetRevision: HEAD
+            targetRevision: master
           - name: sabnzbd
             namespace: media
-            targetRevision: HEAD
+            targetRevision: master
           - name: sonarr
             namespace: media
-            targetRevision: HEAD
+            targetRevision: master
   template:
     metadata:
       name: '{{ .name }}'
