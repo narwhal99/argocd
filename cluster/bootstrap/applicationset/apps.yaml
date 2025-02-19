@@ -39,6 +39,9 @@ spec:
           - name: filebrowser
             namespace: apps
             targetRevision: master
+          - name: crowdsec-mikrotik-bouncer
+            namespace: apps
+            targetRevision: master
   template:
     metadata:
       name: '{{ .name }}'

@@ -1,0 +1,51 @@
+---
+controllers:
+    factorio:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/funkolab/cs-mikrotik-bouncer
+            tag: v0.6.0
+            pullPolicy: IfNotPresent
+          env:
+            - name: CROWDSEC_BOUNCER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: bouncer-secret
+                  key: bouncer_api_key
+            - name: MIKROTIK_USER
+              valueFrom:
+                secretKeyRef:
+                  name: bouncer-secret
+                  key: mikrotik_user
+            - name: MIKROTIK_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: bouncer-secret
+                  key: mikrotik_pw
+            - name: MIKROTIK_HOST
+              value: 10.10.0.1:8728
+            - name: CROWDSEC_URL
+              value: "http://crowdsec-service:8080/"
+
+# configMaps:
+#       config:
+#         enabled: true
+#         data:
+#           config.yml: |
+#             service:
+#               enableregistration: false
+#               timezone: Europe/Budapest
+#               frontendUrl: https://vikunja.bukla.hu
+#             auth:
+#               local:
+#                 enabled: false
+#               openid:
+#                 enabled: true
+#                 redirecturl: https://vikunja.bukla.com/auth/openid/
+#                 providers:
+#                   - name: Authentik
+#                     authurl: https://authentik.bukla.hu/application/o/authorize/
+#                     logouturl: https://authentik.bukla.hu/application/o/vikunja/end-session/
+#                     clientid: $authentik-client-id
+#                     clientsecret: $authentik.client.secret

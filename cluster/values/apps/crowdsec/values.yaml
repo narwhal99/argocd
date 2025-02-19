@@ -19,6 +19,12 @@ lapi:
   #     existingClaim: ""
       size: 100Mi
   #   # -- UI for crowdsec
+  env:
+    - name: BOUNCER_KEY_mikrotik
+      valueFrom:
+        secretKeyRef:
+          name: crowdsec-secret
+          key: BOUNCER_KEY_mikrotik
   dashboard:
     enabled: true
     ingress:
