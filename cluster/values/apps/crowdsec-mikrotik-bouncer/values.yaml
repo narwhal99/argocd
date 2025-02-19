@@ -1,0 +1,78 @@
+---
+defaultPodOptions:
+  annotations:
+    k8s.v1.cni.cncf.io/networks: |
+      [{
+        "name": "iot-vlan",
+        "namespace": "kube-system",
+        "ips": ["10.10.0.16/24"]
+      }]
+
+controllers:
+    cs-mikrotik-bouncer:
+      containers:
+        main:
+          image:
+            repository: quay.io/kaszpir/cs-mikrotik-bouncer-alt
+            tag: v0.8.0
+            pullPolicy: IfNotPresent
+          env:
+            - name: CROWDSEC_BOUNCER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: bouncer-secret
+                  key: bouncer_api_key
+            - name: MIKROTIK_USER
+              valueFrom:
+                secretKeyRef:
+                  name: bouncer-secret
+                  key: mikrotik_user
+            - name: MIKROTIK_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: bouncer-secret
+                  key: mikrotik_pw
+            - name: MIKROTIK_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: bouncer-secret
+                  key: mikrotik_host
+            - name: CROWDSEC_URL
+              value: "http://crowdsec-service:8080/"
+            - name: LOG_LEVEL
+              value: -1
+            - name: MIKROTIK_FIREWALL_FILTER_ENABLE
+              value: false
+            - name: MIKROTIK_FIREWALL_RAW_ENABLE
+              value: false
+            - name: MIKROTIK_IPV6
+              value: false
+            - name: MIKROTIK_IPV4
+              value: true
+            - name: MIKROTIK_TLS
+              value: false
+            - name: IP_FIREWALL_FILTER_RULES_SRC
+              value: 0,1
+            - name: IP_FIREWALL_FILTER_RULES_DST
+              value: 2,3
+            - name: IP_FIREWALL_RAW_RULES_DST
+              value: 1,2
+            - name: IP_FIREWALL_RAW_RULES_SRC
+              value: 0
+service:
+  prometheus:
+    controller: cs-mikrotik-bouncer
+    type: ClusterIP
+    ports:
+      metrics:
+        port: 2112
+        protocol: TCP
+
+serviceMonitor:
+  main:
+    enabled: true
+    endpoints:
+      - port: metrics
+        scheme: http
+        interval: 15s
+        path: /metrics
