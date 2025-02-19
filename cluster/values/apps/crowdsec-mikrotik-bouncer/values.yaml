@@ -1,0 +1,55 @@
+---
+controllers:
+    cs-mikrotik-bouncer:
+      containers:
+        main:
+          image:
+            repository: quay.io/kaszpir/cs-mikrotik-bouncer-alt
+            tag: v0.8.0
+            pullPolicy: IfNotPresent
+          env:
+            - name: CROWDSEC_BOUNCER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: bouncer-secret
+                  key: bouncer_api_key
+            - name: MIKROTIK_USER
+              valueFrom:
+                secretKeyRef:
+                  name: bouncer-secret
+                  key: mikrotik_user
+            - name: MIKROTIK_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: bouncer-secret
+                  key: mikrotik_pw
+            - name: MIKROTIK_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: bouncer-secret
+                  key: mikrotik_host
+            - name: CROWDSEC_URL
+              value: "http://crowdsec-service:8080/"
+            - name: MIKROTIK_FIREWALL_FILTER_ENABLE
+              value: false
+            - name: MIKROTIK_IPV6
+              value: false
+            - name: MIKROTIK_IPV4
+              value: false
+service:
+  prometheus:
+    controller: cs-mikrotik-bouncer
+    type: ClusterIP
+    ports:
+      metrics:
+        port: 2112
+        protocol: TCP
+
+serviceMonitor:
+  main:
+    enabled: true
+    endpoints:
+      - port: metrics
+        scheme: http
+        interval: 15s
+        path: /metrics
