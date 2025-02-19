@@ -36,6 +36,9 @@ spec:
           - name: frigate
             namespace: apps
             targetRevision: master
+          - name: crowdsec-mikrotik-bouncer
+            namespace: crowdsec
+            targetRevision: crowdsec
           # - name: excalidraw
           #   namespace: apps
           #   targetRevision: master

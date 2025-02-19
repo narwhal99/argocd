@@ -1,0 +1,38 @@
+container_runtime: containerd
+
+lapi:
+  persistentVolume:
+    data:
+      enabled: false
+    config:
+      enabled: false
+  env:
+    - name: BOUNCER_KEY_mikrotik
+      valueFrom:
+        secretKeyRef:
+          name: crowdsec-secret
+          key: BOUNCER_KEY_mikrotik
+
+agent:
+  # acquisition:
+  #   - namespace: "ingress-nginx-external"
+  #     podName: "ingress-nginx-external-controller-*"
+  #     program: "nginx"
+  # env:
+  #   - name: DISABLE_PARSERS
+  #     value: "crowdsecurity/whitelists"
+  #   - name: PARSERS
+  #     value: "crowdsecurity/cri-logs"
+  #   - name: COLLECTIONS
+  #     value: "crowdsecurity/nginx"
+  additionalAcquisition:
+    - source: loki
+      log_level: info
+      # url: http://loki.logging.svc.cluster.local:3100/  
+      url: https://loki-gateway.bukla.hu
+      limit: 1000
+      query: |
+        {namespace="ingress-nginx-external"}
+      labels:
+        type: ingress-nginx
+      no_ready_check: true
