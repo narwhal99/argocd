@@ -68,7 +68,6 @@ prometheus:
         static_configs:
           - targets:
             - https://jellyfin.bukla.hu
-            - https://nextcloud.bukla.hu
             - https://file.bukla.hu
         relabel_configs:
           - source_labels: [__address__]
