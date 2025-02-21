@@ -30,6 +30,8 @@ service:
 ingress:
   # Configure an Ingress for the main application
   app:
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: "100m"
     className: "nginx-internal"
     hosts:
       - host: pdf.bukla.hu
