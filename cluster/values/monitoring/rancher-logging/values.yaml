@@ -1,0 +1,32 @@
+additionalLoggingSources:
+  rke:
+    enabled: true
+
+disablePvc: false
+loggingOverlay:
+  spec:
+    fluentd:
+      security:
+        podSecurityContext:
+          runAsUser: 568
+fluentd:
+  metrics:
+    serviceMonitor: true
+    prometheusRules: true
+  bufferStorageVolume:
+    pvc:
+      spec:
+        storageClassName: longhorn
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 15Gi
+fluentbit:
+  metrics:
+    serviceMonitor: true
+    prometheusRules: true
+
+monitoring:
+  serviceMonitor:
+    enabled: true

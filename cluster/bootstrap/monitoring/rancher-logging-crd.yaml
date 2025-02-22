@@ -1,0 +1,22 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: rancher-logging-crd
+#   namespace: argocd
+#   finalizers:
+#   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: default
+#   sources:
+#   - chart: rancher-logging-crd
+#     repoURL: https://charts.rancher.io
+#     targetRevision: 105.2.0+up4.10.0
+#   destination:
+#     name: in-cluster
+#     namespace: logging
+#   syncPolicy:
+#     automated:
+#       selfHeal: true
+#     syncOptions:
+#     - CreateNamespace=true
+#     - ServerSideApply=true
