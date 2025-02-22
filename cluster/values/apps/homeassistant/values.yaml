@@ -26,7 +26,7 @@ controllers:
             pullPolicy: IfNotPresent
           env:
             - name: DNS_SERVER_DOMAIN
-              value: homeassistant.bukla.hu
+              value: hass.bukla.hu
 service:
   # Configure a service for the main application
   app:
@@ -40,7 +40,7 @@ ingress:
   app:
     className: "nginx-internal"
     hosts:
-      - host: homeassistant.bukla.hu
+      - host: hass.bukla.hu
         paths:
           - path: /
             pathType: Prefix
@@ -49,7 +49,7 @@ ingress:
               port: http
     tls:
       - hosts:
-          - homeassistant.bukla.hu
+          - hass.bukla.hu
         secretName: wildcard-bukla-tls
 
 persistence:

@@ -4,12 +4,22 @@ global:
   dnsService: "rke2-coredns-rke2-coredns"
 loki:
   auth_enabled: false
-  commonConfig:
-    replication_factor: 1
   storage:
     type: filesystem
-  commonStorageConfig:
-    type: filesystem
+  commonConfig:
+    replication_factor: 1
+  compactor:
+    retention_enabled: true
+    delete_request_store: filesystem
+  limits_config:
+    retention_period: 60d
+    # per_stream_rate_limit: 16M
+    # per_stream_rate_limit_burst: 32M
+    # ingestion_rate_mb: 16
+    # ingestion_burst_size_mb: 32
+  # server:
+  #   grpc_server_max_recv_msg_size: 104857600
+  #   grpc_server_max_send_msg_size: 104857600
   schemaConfig:
     configs:
       - from: 2023-01-01
@@ -19,7 +29,7 @@ loki:
         index:
           prefix: loki_index_
           period: 24h
-  ingester:
+  ingester: # In Loki, the chunk_encoding field specifies the type of encoding to use for compressing log data chunks
     chunk_encoding: snappy
   tracing:
     enabled: true
@@ -38,6 +48,8 @@ loki:
     enable_alertmanager_v2: true
 
 gateway:
+  nginxConfig:
+    clientMaxBodySize: 50M
   ingress:
     ingressClassName: "nginx-internal"
     enabled: true
@@ -76,24 +88,6 @@ singleBinary:
     - name: rules
       configMap:
         name: loki-alerting-rules
-
-chunksCache:
-  # -- Specifies whether memcached based chunks-cache should be enabled
-  enabled: false
-  # -- Batchsize for sending and receiving chunks from chunks cache
-  batchSize: 4
-  # -- Parallel threads for sending and receiving chunks from chunks cache
-  parallelism: 5
-  # -- Memcached operation timeout
-  timeout: 2000ms
-  # -- Specify how long cached chunks should be stored in the chunks-cache before being expired
-  defaultValidity: 0s
-  # -- Total number of chunks-cache replicas
-  replicas: 1
-  # -- Port of the chunks-cache service
-  port: 11211
-  # -- Amount of memory allocated to chunks-cache for object storage (in MB).
-  allocatedMemory: 8192
 
 networkPolicy:
   alertmanager:
