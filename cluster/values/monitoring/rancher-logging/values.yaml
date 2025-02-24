@@ -11,14 +11,14 @@ disablePvc: false
 loggingOverlay:
   spec:
     fluentd:
+      scaling:
+        replicas: 2
       security:
         podSecurityContext:
           runAsUser: 100
         podSecurityPolicyCreate: false
         roleBasedAccessControlCreate: true
 fluentd:
-  scaling:
-    replicas: 2
   resources:
     limits:
       cpu: 1
