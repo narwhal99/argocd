@@ -17,6 +17,10 @@ loggingOverlay:
         podSecurityPolicyCreate: false
         roleBasedAccessControlCreate: true
 fluentd:
+  resources:
+    limits:
+      cpu: 1
+      memory: 2Gi
   metrics:
     serviceMonitor: true
     prometheusRules: true
@@ -30,6 +34,13 @@ fluentd:
           requests:
             storage: 15Gi
 fluentbit:
+  resources:
+    limits:
+      cpu: 500m
+      memory: 250Mi
+    requests:
+      cpu: 200m
+      memory: 50Mi
   metrics:
     serviceMonitor: true
     prometheusRules: true
