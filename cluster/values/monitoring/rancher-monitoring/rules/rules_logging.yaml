@@ -4,10 +4,10 @@ metadata:
   labels:
     app: prometheus-operator
     release: bukla
-  name: rules-general
+  name: rules-logging
 spec:
   groups:
-    - name: ./rules-general
+    - name: ./rules-logging
       rules:
         - alert: Fluentd buffer is above 1Gi
           expr: sum by(job,service,namespace) (fluentd_output_status_buffer_total_bytes) > 1000000000
