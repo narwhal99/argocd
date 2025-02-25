@@ -34,7 +34,7 @@ fluentd:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 5Gi
+            storage: 1Gi
 fluentbit:
   resources:
     limits:
