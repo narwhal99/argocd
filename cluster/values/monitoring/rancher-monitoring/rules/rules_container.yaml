@@ -1,9 +1,9 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  # labels:
-  #   app: prometheus-operator
-  #   rules: bukla
+  labels:
+    app: prometheus-operator
+    release: bukla
   name: rules-container
 spec:
   groups:

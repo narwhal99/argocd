@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    app: prometheus-operator
+    release: bukla
+  name: rules-general
+spec:
+  groups:
+    - name: ./rules-general
+      rules:
+        - alert: Fluentd buffer is above 1Gi
+          expr: sum by(job,service,namespace) (fluentd_output_status_buffer_total_bytes) > 1000000000
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: Fluntd buffer is above 1Gi (instance {{ $labels.instance }})
+            description: "Fluntd buffer is above 1Gi for 15 min\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        - alert: Fluentd buffer is above 2Gi
+          expr: sum by(job,service,namespace) (fluentd_output_status_buffer_total_bytes) > 2000000000
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            summary: Fluntd buffer is above 2Gi (instance {{ $labels.instance }})
+            description: "Fluntd buffer is above 2Gi for 15 min\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"

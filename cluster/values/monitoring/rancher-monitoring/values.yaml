@@ -96,9 +96,13 @@ prometheus:
   prometheusSpec:
     # replicas: 1
     # ruleSelectorNiUsesHelmValues: false
-    # ruleSelector:
-    #   matchLabels:
-    #     rules: bukla
+    ruleSelector:
+      matchExpressions:
+      - key: release
+        operator: In
+        values:
+          - rancher-monitoring
+          - bukla
     storageSpec:
       volumeClaimTemplate:
         metadata:
