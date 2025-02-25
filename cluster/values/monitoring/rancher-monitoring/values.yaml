@@ -5,6 +5,8 @@ rancherMonitoring:
   enabled: false
 namespaceOverride: "monitoring"
 grafana:
+  plugins:
+    - grafana-lokiexplore-app
   enabled: true
   ingress:
     ingressClassName: nginx-internal
@@ -53,10 +55,10 @@ grafana:
       #   uid: alertmanager
       #   handleGrafanaManagedAlerts: false
       #   implementation: prometheus
-  extraSecretMounts:
-  - name: wildcard-bukla-tls
-    mountPath: "/etc/ssl/certs"
-    secretName: wildcard-bukla-tls
+  # extraSecretMounts:
+  # - name: wildcard-bukla-tls
+  #   mountPath: "/etc/ssl/certs"
+  #   secretName: wildcard-bukla-tls
   grafana.ini:
     "auth.generic_oauth":
       enabled: true
