@@ -5,6 +5,8 @@ rancherMonitoring:
   enabled: false
 namespaceOverride: "monitoring"
 grafana:
+  plugins:
+    - grafana-lokiexplore-app
   enabled: true
   ingress:
     ingressClassName: nginx-internal
