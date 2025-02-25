@@ -10,7 +10,6 @@
 
 controllers:
     drawio:
-      type: statefulset
       containers:
         main:
           image:

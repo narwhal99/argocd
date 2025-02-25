@@ -11,12 +11,11 @@
 controllers:
   # Configure the main controller
   main:
-    type: statefulset
     containers:
       main:
         image:
           repository: ghcr.io/museofficial/muse
-          tag: latest
+          tag: 2.10.1
           pullPolicy: IfNotPresent
         env:
           - name: DISCORD_TOKEN
@@ -41,7 +40,10 @@ controllers:
                 key: spotify_client_secret
 persistence:
   data:
-    type: emptyDir
+    existingClaim: muse-data
+    globalMounts:
+      - path: /data
+
 # persistence:
 #   data:
 #     type: persistentVolumeClaim

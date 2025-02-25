@@ -4,6 +4,7 @@ resources:
   - pvc/jellyfin.yaml
   - pvc/homeassistant.yaml
   - pvc/filebrowser.yaml
+  - pvc/muse.yaml
 
 commonAnnotations:
   argocd.argoproj.io/sync-options: Delete=false

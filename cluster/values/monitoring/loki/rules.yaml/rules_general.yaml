@@ -9,7 +9,7 @@ data:
         rules:
           - alert: Jellyfin_auth
             expr: |
-              count_over_time({container="jellyfin"} |~ `Authentication` |= `denied`[5m]) > 0
+              count_over_time({app_kubernetes_io_name="jellyfin"} |~ `Authentication` |= `denied`[5m]) > 0
             labels:
               severity: "critical"
             annotations:
@@ -18,7 +18,7 @@ data:
         rules:
           - alert: SSH_login_failed
             expr: |
-              count_over_time({job="varlogs"} |= `sshd` |= `failure`[2m]) > 0
+              count_over_time({job="hostlogs"} |= `sshd` |= `failure`[2m]) > 0
             labels:
               severity: "critical"
             annotations:
