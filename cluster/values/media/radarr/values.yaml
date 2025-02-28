@@ -14,7 +14,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/onedr0p/radarr
-          tag: 5.18.4
+          tag: 5.19.3
           pullPolicy: IfNotPresent
 service:
   app:
