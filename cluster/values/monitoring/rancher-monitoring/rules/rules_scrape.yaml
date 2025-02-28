@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    app: prometheus-operator
+    release: bukla
+  name: rules-scrape
+spec:
+  groups:
+    - name: ./rules-scrape
+      rules:
+        - alert: ChangedetectionIO exporter no data
+          expr: absent_over_time(changedetectionio_price[1h]) > 0
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            summary: Theres no data from the exporter
+            description: "Theres no data from the exporter 15 min\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
