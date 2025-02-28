@@ -10,6 +10,7 @@ additionalLoggingSources:
 disablePvc: false
 loggingOverlay:
   spec:
+    errorOutputRef: "error-output-dlq"
     fluentd:
       scaling:
         replicas: 2
