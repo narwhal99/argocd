@@ -39,6 +39,9 @@ spec:
           - name: filebrowser
             namespace: apps
             targetRevision: master
+          - name: minecraft
+            namespace: apps
+            targetRevision: master
   template:
     metadata:
       name: '{{ .name }}'

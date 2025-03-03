@@ -1,0 +1,76 @@
+---
+controllers:
+    minecraft:
+      containers:
+        main:
+          image:
+            repository: itzg/minecraft-server
+            tag: 2025.2.1
+            pullPolicy: IfNotPresent
+          env:
+            - name: VERSION
+              value: "1.21.4"
+            - name: EULA
+              value: true
+            - name: INIT_MEMORY
+              value: 128m
+            - name: MAX_MEMORY
+              value: 2048m
+            - name: VIEW_DISTANCE
+              value: 30
+            - name: TZ
+              value: Europe/Budapest
+            - name: MODE
+              value: survival
+            - name: DIFFICULTY
+              value: hard
+          resources:
+            limits:
+              cpu: 3
+              memory: 8Gi
+            requests:
+              cpu: 500m
+              memory: 4Gi
+service:
+  # Configure a service for the main application
+  app:
+    controller: minecraft
+    type: LoadBalancer
+    ports:
+      tcp:
+        port: 25565
+      udp:
+        port: 25565
+        protocol: UDP
+    annotations:
+      metallb.universe.tf/allow-shared-ip: 10.20.0.151
+      metallb.universe.tf/ip-allocated-from-pool: external
+      metallb.universe.tf/loadBalancerIPs: 10.20.0.151
+
+persistence:
+  data:
+    existingClaim: minecraft-data
+    globalMounts:
+      - path: /data
+
+# configMaps:
+#       config:
+#         enabled: true
+#         data:
+#           config.yml: |
+#             service:
+#               enableregistration: false
+#               timezone: Europe/Budapest
+#               frontendUrl: https://vikunja.bukla.hu
+#             auth:
+#               local:
+#                 enabled: false
+#               openid:
+#                 enabled: true
+#                 redirecturl: https://vikunja.bukla.com/auth/openid/
+#                 providers:
+#                   - name: Authentik
+#                     authurl: https://authentik.bukla.hu/application/o/authorize/
+#                     logouturl: https://authentik.bukla.hu/application/o/vikunja/end-session/
+#                     clientid: $authentik-client-id
+#                     clientsecret: $authentik.client.secret
