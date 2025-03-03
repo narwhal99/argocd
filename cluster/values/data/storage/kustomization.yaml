@@ -5,6 +5,7 @@ resources:
   - pvc/homeassistant.yaml
   - pvc/filebrowser.yaml
   - pvc/muse.yaml
+  - pvc/minecraft.yaml
 
 commonAnnotations:
   argocd.argoproj.io/sync-options: Delete=false
