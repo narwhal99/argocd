@@ -15,7 +15,7 @@ controllers:
             - name: INIT_MEMORY
               value: 128m
             - name: MAX_MEMORY
-              value: 2048m
+              value: 10240m
             - name: VIEW_DISTANCE
               value: 30
             - name: TZ
@@ -26,8 +26,8 @@ controllers:
               value: hard
           resources:
             limits:
-              cpu: 3
-              memory: 8Gi
+              cpu: 4
+              memory: 12Gi
             requests:
               cpu: 500m
               memory: 4Gi
