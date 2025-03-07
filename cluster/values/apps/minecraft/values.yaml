@@ -7,6 +7,8 @@ controllers:
             repository: itzg/minecraft-server
             tag: 2025.2.1
             pullPolicy: IfNotPresent
+          tty: true
+          stdin: true
           env:
             - name: VERSION
               value: "1.21.4"
@@ -29,7 +31,7 @@ controllers:
               cpu: 4
               memory: 12Gi
             requests:
-              cpu: 500m
+              cpu: 1
               memory: 4Gi
 service:
   # Configure a service for the main application
