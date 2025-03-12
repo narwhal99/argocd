@@ -1,4 +1,15 @@
 ---
+defaultPodOptions:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        preference:
+          matchExpressions:
+          - key: node
+            operator: NotIn
+            values:
+            - HAsrv
 controllers:
     minecraft:
       containers:
