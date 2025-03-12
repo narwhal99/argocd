@@ -15,32 +15,13 @@ server:
       - hosts:
         - argocd.bukla.hu
         secretName: wildcard-bukla-tls
-  # tolerations:
-  #  - key: "HAsrv"
-  #    operator: "Equal"
-  #    value: "true"
-  #    effect: "NoExecute"
-
 configs:
+  controller.sync.timeout.seconds: 120
   rbac:
     policy.csv: | 
       g, authentik Admins, role:admin
   cm:
     create: true
-    # dex.config: |
-    #   connectors:
-    #   - config:
-    #       issuer: https://authentik.bukla.hu/application/o/argocd/
-    #       clientID: oU1vXwPUBb2lxv9QvLTaLIc3na2lpkgVbsAaPdky
-    #       clientSecret: $dex.authentik.clientSecret
-    #       insecureEnableGroups: true
-    #       scopes:
-    #         - openid
-    #         - profile
-    #         - email
-    #     name: authentik
-    #     type: oidc
-    #     id: authentik
     url: https://argocd.bukla.hu
     oidc.config: |
       name: Authentik
@@ -54,34 +35,3 @@ configs:
         - openid
         - profile
         - email
-# dex:
-#   metrics:
-#     enabled: true
-#     serviceMonitor:
-#       enabled: true
-#   volumeMounts:
-#   - mountPath: /etc/ssl/certs # -- REWWORK THIS!!!
-#     name: etc-ssl-certs
-#     readOnly: true
-
-#   volumes:
-#    - name: etc-ssl-certs
-#      hostPath:
-#        path: /etc/ssl/certs
-#        type: DirectoryOrCreate
-
-# url: http://argocd.company
-# dex.config: |
-#     connectors:
-#     - config:
-#         issuer: http://authentik.company/application/o/<application slug defined in step 2>/
-#         clientID: <client ID from the Provider above>
-#         clientSecret: $dex.authentik.clientSecret
-#         insecureEnableGroups: true
-#         scopes:
-#           - openid
-#           - profile
-#           - email
-#       name: authentik
-#       type: oidc
-#       id: authentik
