@@ -7,8 +7,10 @@ spec:
     url: http://loki-gateway.logging.svc
     configure_kubernetes_labels: true
     buffer:
-      timekey: 30s
-      timekey_wait: 10s
-      timekey_use_utc: true
-      flush_interval: 1m
       chunk_limit_size: 8Mi
+      timekey: 1m
+      timekey_wait: 30s
+      flush_interval: 5s
+      timekey_use_utc: true
+      overfow_action: drop_oldest_chunk
+      flush_mode: interval
