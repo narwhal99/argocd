@@ -1,0 +1,43 @@
+---
+controllers:
+    pinchflat:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/kieraneglin/pinchflat
+            tag: v2025.3.17
+            pullPolicy: IfNotPresent
+service:
+  # Configure a service for the main application
+  app:
+    controller: pinchflat
+    type: ClusterIP
+    ports:
+      http:
+        port: 8945
+ingress:
+  # Configure an Ingress for the main application
+  app:
+    className: "nginx-internal"
+    hosts:
+      - host: ytdl.bukla.hu
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: app
+              port: http
+    tls:
+      - hosts:
+          - ytdl.bukla.hu
+        secretName: wildcard-bukla-tls
+
+persistence:
+  config:
+    existingClaim: pinchflat-config
+  torrent:
+    type: nfs
+    server: 10.20.0.21
+    path: /mnt/tank/torrent
+    globalMounts:
+      - path: /torrent
