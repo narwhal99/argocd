@@ -42,7 +42,7 @@ spec:
           - name: minecraft
             namespace: apps
             targetRevision: master
-          - name: pinchflat
+          - name: ytdl
             namespace: apps
             targetRevision: master
   template:

@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rancher
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: rancher
+    repoURL: https://releases.rancher.com/server-charts/latest
+    targetRevision: 2.10.3
+    helm:
+      valueFiles:
+      - $repo/cluster/values/infrastructure/rancher/values.yaml
+      releaseName: rancher
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/infrastructure/rancher
+    targetRevision: master
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: cattle-system
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
