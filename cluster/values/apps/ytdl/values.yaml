@@ -1,20 +1,20 @@
 ---
 controllers:
-    pinchflat:
+    ytdl:
       containers:
         main:
           image:
-            repository: ghcr.io/kieraneglin/pinchflat
-            tag: v2025.3.17
+            repository: ghcr.io/alexta69/metube
+            tag: 2025-03-07
             pullPolicy: IfNotPresent
 service:
   # Configure a service for the main application
   app:
-    controller: pinchflat
+    controller: ytdl
     type: ClusterIP
     ports:
       http:
-        port: 8945
+        port: 8081
 ingress:
   # Configure an Ingress for the main application
   app:
@@ -33,11 +33,9 @@ ingress:
         secretName: wildcard-bukla-tls
 
 persistence:
-  config:
-    existingClaim: pinchflat-config
-  torrent:
+  downloads:
     type: nfs
     server: 10.20.0.21
     path: /mnt/tank/torrent
     globalMounts:
-      - path: /torrent
+      - path: /downloads

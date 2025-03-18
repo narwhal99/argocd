@@ -1,0 +1,6 @@
+hostname: rancher.bukla.hu
+ingress:
+  enabled: true
+  ingressClassName: "nginx-internal"
+  tls:
+    secretName: wildcard-bukla-tls

@@ -30,7 +30,7 @@ controllers:
             - name: MAX_MEMORY
               value: 10240m
             - name: VIEW_DISTANCE
-              value: 30
+              value: 15
             - name: TZ
               value: Europe/Budapest
             - name: MODE
