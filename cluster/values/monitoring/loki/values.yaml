@@ -100,10 +100,12 @@ networkPolicy:
 monitoring:
   dashboards:
     enabled: true
-    namespace: monitoring
   rules:
     enabled: true
-    namespace: monitoring
+    labels:
+      release: bukla
+  serviceMonitor:
+    enabled: true
 backend:
   replicas: 0
 read:
