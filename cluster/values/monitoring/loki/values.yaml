@@ -100,10 +100,10 @@ networkPolicy:
 monitoring:
   dashboards:
     enabled: true
-    namespace: monitoring
+    labels: grafana_dashboard
   rules:
     enabled: true
-    namespace: monitoring
+    release: bukla
 backend:
   replicas: 0
 read:
