@@ -1,6 +1,18 @@
+global:
+  cattle:
+    psp: false
 hostname: rancher.bukla.hu
 ingress:
   enabled: true
   ingressClassName: "nginx-internal"
   tls:
+    source: secret
     secretName: wildcard-bukla-tls
+letsEncrypt:
+  ingress:
+    class: "nginx-internal"
+extraEnv:
+- name: CATTLE_FEATURES
+  value: "fleet=false,continuous-delivery=false,istio-virtual-service-ui=false,uiextension=false,harvester=false"
+
+# features: "fleet=false,	continuous-delivery=false"

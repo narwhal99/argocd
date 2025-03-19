@@ -12,5 +12,5 @@ spec:
       timekey_wait: 30s
       flush_interval: 5s
       timekey_use_utc: true
-      overfow_action: drop_oldest_chunk
+      overflow_action: drop_oldest_chunk
       flush_mode: interval
