@@ -37,6 +37,8 @@ controllers:
               value: survival
             - name: DIFFICULTY
               value: hard
+            - name: TYPE
+              value: "FOLIA"
             - name: PLUGINS
               value: |
                 https://github.com/sladkoff/minecraft-prometheus-exporter/releases/download/v3.1.2/minecraft-prometheus-exporter-3.1.2.jar
@@ -49,6 +51,12 @@ controllers:
               memory: 4Gi
 service:
   # Configure a service for the main application
+  prometheus:
+    controller: minecraft
+    type: ClusterIP
+    ports:
+      http:
+        port: 9940  
   app:
     controller: minecraft
     type: LoadBalancer
