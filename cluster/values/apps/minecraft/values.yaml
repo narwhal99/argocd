@@ -37,6 +37,9 @@ controllers:
               value: survival
             - name: DIFFICULTY
               value: hard
+            - name: PLUGINS
+              value: |
+                https://github.com/sladkoff/minecraft-prometheus-exporter/releases/download/v3.1.2/minecraft-prometheus-exporter-3.1.2.jar
           resources:
             limits:
               cpu: 4
