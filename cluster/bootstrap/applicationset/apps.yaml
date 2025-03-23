@@ -45,6 +45,9 @@ spec:
           - name: ytdl
             namespace: apps
             targetRevision: master
+          - name: plantit
+            namespace: apps
+            targetRevision: master
   template:
     metadata:
       name: '{{ .name }}'

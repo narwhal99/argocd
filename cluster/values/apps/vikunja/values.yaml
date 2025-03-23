@@ -22,7 +22,21 @@ controllers:
               valueFrom:
                 secretKeyRef:
                   name: vikunja-secret
-                  key: vikunja-database-pw
+                  key: database_password
+            - name: VIKUNJA_DATABASE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: vikunja-secret
+                  key: database_host
+            - name: VIKUNJA_DATABASE_TYPE 
+              value: mysql
+            - name: VIKUNJA_DATABASE_USER 
+              valueFrom:
+                secretKeyRef:
+                  name: vikunja-secret
+                  key: database_username
+            - name: VIKUNJA_DATABASE_DATABASE 
+              value: vikunja
             - name: VIKUNJA_SERVICE_JWTSECRET
               valueFrom:
                 secretKeyRef:
@@ -30,14 +44,6 @@ controllers:
                   key: vikunja-service-jwtsecret
             - name: VIKUNJA_SERVICE_PUBLICURL
               value: https://vikunja.bukla.hu
-            - name: VIKUNJA_DATABASE_HOST 
-              value: mariadb.bukla.hu
-            - name: VIKUNJA_DATABASE_TYPE 
-              value: mysql
-            - name: VIKUNJA_DATABASE_USER 
-              value: vikunja
-            - name: VIKUNJA_DATABASE_DATABASE 
-              value: vikunja
 
 service:
   # Configure a service for the main application
