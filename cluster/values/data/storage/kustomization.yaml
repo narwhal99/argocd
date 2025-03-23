@@ -6,5 +6,6 @@ resources:
   - pvc/filebrowser.yaml
   - pvc/muse.yaml
   - pvc/minecraft.yaml
+  - pvc/plantit.yaml
 commonAnnotations:
   argocd.argoproj.io/sync-options: Delete=false
