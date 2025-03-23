@@ -1,0 +1,69 @@
+ui:
+  enabled: true
+server:
+  ingress:
+    enabled: true
+    ingressClassName: "nginx-internal"
+    hosts:
+      - host: vault.bukla.hu
+    tls:
+      - secretName: wildcard-bukla-tls
+        hosts:
+          - vault.bukla.hu
+  dataStorage:
+    enabled: true
+    mountPath: "/vault/data"
+    storageClass: longhorn
+    accessMode: ReadWriteOnce
+
+  volumes:
+    - name: vault-secrets
+      secret:
+        secretName: vault-secrets
+        items:
+          - key: priv-key.pem
+            path: priv-key.pem
+          - key: config
+            path: config
+  volumeMounts:
+    - mountPath: "/home/vault/.oci/"
+      name: vault-secrets
+      readOnly: true
+
+  standalone:
+    config: |-
+      ui = true
+
+      listener "tcp" {
+        tls_disable = 1
+        address = "[::]:8200"
+        cluster_address = "[::]:8201"
+      }
+      storage "file" {
+        path = "/vault/data"
+      }
+
+      seal "ocikms" {
+          auth_type_api_key   = "true"
+      }
+
+  extraEnvironmentVars:
+    VAULT_SEAL_TYPE: ocikms
+  extraSecretEnvironmentVars:
+    - envName: VAULT_OCIKMS_SEAL_KEY_ID
+      secretName: vault-secrets
+      secretKey: ocikms_seal_key_id
+    - envName: VAULT_OCIKMS_CRYPTO_ENDPOINT
+      secretName: vault-secrets
+      secretKey: ocikms_crypto_endpoint
+    - envName: VAULT_OCIKMS_MANAGEMENT_ENDPOINT
+      secretName: vault-secrets
+      secretKey: ocikms_management_endpoint
+  logFormat: "json"
+serverTelemetry:
+  serviceMonitor:
+    enabled: true
+  prometheusRules:
+    enabled: true
+    labels:
+      release: bukla
