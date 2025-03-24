@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: rancher-logging-crd
     repoURL: https://charts.rancher.io
-    targetRevision: 105.2.1+up4.10.0
+    targetRevision: 105.2.2+up4.10.0-rancher.1
   destination:
     name: in-cluster
     namespace: logging
