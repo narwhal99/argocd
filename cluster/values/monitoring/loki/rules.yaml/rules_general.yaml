@@ -14,15 +14,24 @@ data:
               severity: "critical"
             annotations:
               title: 'Wrong auth within 5 min'
-      - name: SSH Login failed
+      - name: SSH Login failed by pw
         rules:
-          - alert: SSH_login_failed
+          - alert: SSH_login_failed_pw
             expr: |
-              count_over_time({job="hostlogs"} |= `sshd` |= `failure`[2m]) > 0
+              sum by (user,ip) (count_over_time({job="hostlogs"} |= "Failed password" | pattern "<_> user <user> from <ip> <_>"[15m])) > 3
             labels:
               severity: "critical"
             annotations:
-              title: 'SSH Login failed'
+              title: 'SSH Login failed - User: {{ $labels.user }}, IP: {{ $labels.ip }}'
+      - name: SSH Login failed by key
+        rules:
+          - alert: SSH_login_failed_key
+            expr: |
+              sum by (user,ip) (count_over_time({job="hostlogs"} |~ "sshd" |~ "Connection closed" | pattern "<_> user <user> <ip> <_>"[15m])) > 3
+            labels:
+              severity: "critical"
+            annotations:
+              title: 'SSH Login failed - User: {{ $labels.user }}, IP: {{ $labels.ip }}'
       - name: Mikrotik login failed
         rules:
           - alert: Mikrotik_login_failed
