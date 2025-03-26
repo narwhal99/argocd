@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: scriptexporter
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: script-exporter
+    repoURL: ghcr.io/ricoberger/charts
+    targetRevision: 1.0.0
+    helm:
+      valueFiles:
+      - $repo/cluster/values/apps/scriptexporter/values.yaml
+      releaseName: scriptexporter
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/apps/scriptexporter
+    targetRevision: master
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: apps
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+  ignoreDifferences:
+    - group: external-secrets.io
+      kind: ExternalSecret
+      jqPathExpressions:
+        - .spec.data[].remoteRef.conversionStrategy
+        - .spec.data[].remoteRef.decodingStrategy
+        - .spec.data[].remoteRef.metadataPolicy
