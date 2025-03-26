@@ -1,0 +1,23 @@
+volumes:
+  - name: scripts
+    secret:
+      secretName: scripts
+      defaultMode: 0755
+volumeMounts:
+  - mountPath: "/scripts"
+    name: scripts
+    readOnly: true
+
+serviceMonitor:
+  enabled: true
+  autoCreate:
+    enabled: false
+  targets:
+    - name: webscraper
+      script: webscraper
+      interval: 10m
+
+config: |
+  scripts:
+    - name: webscraper
+      command: /scripts/webscraper
