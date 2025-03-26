@@ -1,0 +1,13 @@
+volumes:
+  - name: scripts
+    secret:
+      secretName: scripts
+volumeMounts:
+  - mountPath: "/scripts"
+    name: scripts
+    readOnly: true
+
+config: |
+  scripts:
+    - name: webscraper
+      command: /scripts/webscraper
