@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: script-exporter
     repoURL: ghcr.io/ricoberger/charts
-    targetRevision: 1.0.0
+    targetRevision: 2.0.1
     helm:
       valueFiles:
       - $repo/cluster/values/apps/scriptexporter/values.yaml
