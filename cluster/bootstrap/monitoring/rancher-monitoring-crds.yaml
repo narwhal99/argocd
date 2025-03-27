@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: rancher-monitoring-crd
     repoURL: https://charts.rancher.io
-    targetRevision: 105.1.3+up61.3.2
+    targetRevision: 106.0.0+up66.7.1-rancher.2
   destination:
     name: in-cluster
     namespace: monitoring
