@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: vault
     repoURL: https://helm.releases.hashicorp.com
-    targetRevision: 0.29.1
+    targetRevision: 0.30.0
     helm:
       valueFiles:
       - $repo/cluster/values/infrastructure/vault/values.yaml
