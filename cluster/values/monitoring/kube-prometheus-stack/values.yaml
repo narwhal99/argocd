@@ -31,6 +31,11 @@ grafana:
       labelValue: "1"
       searchNamespace: ALL
   additionalDataSources:
+    - name: Thanos
+      type: prometheus
+      url: http://thanos-query:9090/
+      isDefault: true
+      editable: false
     - name: influxdb
       type: influxdb
       editable: false
@@ -72,8 +77,6 @@ grafana:
     GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups, 'authentik Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'"
     GF_AUTH_GENERIC_OAUTH_SCOPES: "openid profile email"
     GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: true
-thanos:
-  enabled: false
 
 prometheus:
   ingress:
@@ -89,6 +92,10 @@ prometheus:
   #  admissionWebhooks:
   #    certManager:
   #      enabled: true
+  thanosService:
+    enabled: true
+  thanosServiceMonitor:
+    enabled: true
   prometheusSpec:
     # replicas: 1
     podMonitorSelectorNilUsesHelmValues: false 
@@ -111,7 +118,11 @@ prometheus:
             requests:
               storage: 10Gi
           storageClassName: nfs-csi
-
+    thanos:
+      objectStorageConfig:
+        existingSecret:
+          name: thanos-objectstore-secret
+          key: objstore.yml
 # prometheus-node-exporter:
 #   tolerations:
 #     - key: "HAsrv"
