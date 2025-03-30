@@ -5,6 +5,16 @@ metadata:
 spec:
   filters:
     - tag_normaliser: {}
+    - parser:
+        parse:
+          type: multi_format
+          patterns:
+            - format: json
+            - format: regexp
+              expression: /^(?<log>.*)$/
+        remove_key_name_field: true
+        reserve_data: true
+        key_name: log
   match:
     - select: {}
   globalOutputRefs:

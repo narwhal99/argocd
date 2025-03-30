@@ -47,6 +47,11 @@ fluentbit:
     serviceMonitor: true
     prometheusRules: true
 
+fluentbitAgentOverlay:
+  spec:
+    inputTail:
+      multiline.parser: ["docker", "cri"]
+
 monitoring:
   serviceMonitor:
     enabled: true
