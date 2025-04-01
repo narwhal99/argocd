@@ -32,6 +32,8 @@ grafana:
       - ReadWriteOnce
     size: 20Gi
   sidecar:
+    plugins:
+      enabled: true
     dashboards:
       enabled: true
       label: grafana_dashboard
