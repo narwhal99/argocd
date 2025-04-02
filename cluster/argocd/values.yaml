@@ -16,7 +16,7 @@ server:
         - argocd.bukla.hu
         secretName: wildcard-bukla-tls
 configs:
-  controller.sync.timeout.seconds: 120
+  controller.sync.timeout.seconds: 240
   rbac:
     policy.csv: | 
       g, authentik Admins, role:admin
