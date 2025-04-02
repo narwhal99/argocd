@@ -14,8 +14,8 @@ controllers:
     containers:
       app:
         image:
-          repository: ghcr.io/onedr0p/readarr-develop
-          tag: 0.3.32
+          repository: linuxserver/readarr
+          tag: 0.4.13-develop
           pullPolicy: IfNotPresent
 service:
   app:
