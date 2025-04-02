@@ -1,0 +1,14 @@
+envFrom:
+  - secretRef:
+      name: renovate-env-secrets
+
+renovate:
+  # -- Inline global renovate config.json
+  # See https://docs.renovatebot.com/self-hosted-configuration
+  config: |
+    {
+      "platform": "github",
+      "autodiscover": false,
+      "printConfig": true,
+      "repositories": ["narwhal99/argocd"]
+    }
