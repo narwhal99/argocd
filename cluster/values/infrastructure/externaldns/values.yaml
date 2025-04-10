@@ -4,8 +4,8 @@ domainFilters:
 rfc2136:
   host: 10.10.0.4
   zone: bukla.hu
-  tsigKeyname: externaldnsrke2
   tsigSecretAlg: hmac-sha512
+  tsigKeyname: externaldns
   secretName: tsig-secret
   tsigAxfr: true
 

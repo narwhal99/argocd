@@ -3,11 +3,11 @@ controller:
   extraArgs:
     # default-ssl-certificate: ""
     enable-ssl-passthrough: "true"
-  metrics:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-      scrapeInterval: 15s
+  #metrics:
+    #enabled: false
+    #serviceMonitor:
+      #enabled: false
+      #scrapeInterval: 15s
   service:
     externalTrafficPolicy: Local
     annotations:

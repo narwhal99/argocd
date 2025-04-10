@@ -1,8 +1,6 @@
 prometheus-adapter:
   prometheus:
     url: http://rancher-monitoring-prometheus.monitoring.svc
-rancherMonitoring:
-  enabled: false
 namespaceOverride: "monitoring"
 grafana:
   enabled: true
