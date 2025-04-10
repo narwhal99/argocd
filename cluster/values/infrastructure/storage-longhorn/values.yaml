@@ -12,11 +12,13 @@ preUpgradeChecker:
 persistence:
   reclaimPolicy: Retain
   defaultClass: false
-  defaultClassReplicaCount: 3
+  defaultClassReplicaCount: 2
 
 defaultBackupStore:
   backupTarget: nfs://10.20.0.21:/mnt/tank/vault/backups/longhorn
-
+defaultSettings:
+  defaultDataPath: /var/longhorn
 metrics:
   serviceMonitor:
-    enabled: true
+    enabled: false
+#enablePSP: true

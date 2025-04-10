@@ -60,10 +60,10 @@ server:
       secretName: vault-secrets
       secretKey: ocikms_management_endpoint
   logFormat: "json"
-serverTelemetry:
-  serviceMonitor:
-    enabled: true
-  prometheusRules:
-    enabled: true
-    labels:
-      release: bukla
+  serverTelemetry:
+    serviceMonitor:
+      enabled: true
+    prometheusRules:
+      enabled: true
+      labels:
+        release: bukla
