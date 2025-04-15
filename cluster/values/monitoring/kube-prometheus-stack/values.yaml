@@ -1,6 +1,3 @@
-prometheus-adapter:
-  prometheus:
-    url: http://rancher-monitoring-prometheus.monitoring.svc
 namespaceOverride: "monitoring"
 grafana:
   enabled: true
@@ -102,7 +99,7 @@ prometheus:
       - key: release
         operator: In
         values:
-          - rancher-monitoring
+          - kube-prometheus-stack
           - bukla
     storageSpec:
       volumeClaimTemplate:

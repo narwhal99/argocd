@@ -1,57 +1,41 @@
-global:
-  cattle:
-    psp:
-      enabled: false
+replicaCount: 1
 
-additionalLoggingSources:
-  rke:
-    enabled: true
-
-disablePvc: false
-loggingOverlay:
-  spec:
-    fluentd:
-      scaling:
-        replicas: 2
-      security:
-        podSecurityContext:
-          runAsUser: 100
-        podSecurityPolicyCreate: false
-        roleBasedAccessControlCreate: true
-fluentd:
-  resources:
-    limits:
-      cpu: 1
-      memory: 2Gi
-  metrics:
-    serviceMonitor: true
-    prometheusRules: true
-  bufferStorageVolume:
-    pvc:
-      spec:
-        storageClassName: longhorn
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 3Gi
-fluentbit:
-  resources:
-    limits:
-      cpu: 500m
-      memory: 250Mi
-    requests:
-      cpu: 200m
-      memory: 50Mi
-  metrics:
-    serviceMonitor: true
-    prometheusRules: true
-
-fluentbitAgentOverlay:
-  spec:
+logging:
+  enabled: true
+  fluentd:
+    resources:
+      limits:
+        cpu: 1
+        memory: 2Gi
+    bufferStorageVolume:
+      pvc:
+        spec:
+          storageClassName: longhorn
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 3Gi
+  fluentbit:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 250Mi
+      requests:
+        cpu: 200m
+        memory: 50Mi
     inputTail:
       multiline.parser: ["docker", "cri"]
-
+    tolerations:
+      - key: "node-role.kubernetes.io/control-plane"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/control-plane
+        value: "true"
+      - effect: NoExecute
+        key: node-role.kubernetes.io/etcd
+        value: "true"
 monitoring:
   serviceMonitor:
     enabled: true
