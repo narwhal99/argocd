@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cilium
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - repoURL: https://helm.cilium.io/
+    chart: cilium
+    targetRevision: 1.17.3
+    helm:
+      valueFiles:
+      - $repo/cluster/values/infrastructure/cilium/values.yaml
+      releaseName: external-dns
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/infrastructure/cilium
+    targetRevision: master
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
