@@ -25,7 +25,7 @@ spec:
             namespace: apps
             targetRevision: master
           - name: homeassistant
-            namespace: apps
+            namespace: hass
             targetRevision: master
           # - name: technitiumdns
           #   namespace: infraservices
