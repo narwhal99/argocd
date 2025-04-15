@@ -1,29 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rancher
+  name: logging-operator
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   sources:
-  - chart: rancher
-    repoURL: https://releases.rancher.com/server-charts/latest
-    targetRevision: 2.11.0
+  - chart: logging-operator
+    repoURL: ghcr.io/kube-logging/helm-charts
+    targetRevision: 5.2.0
     helm:
       valueFiles:
-      - $repo/cluster/values/infrastructure/rancher/values.yaml
-      releaseName: rancher
+        - $repo/cluster/values/monitoring/logging-operator/values.yaml
   - repoURL: git@github.com:narwhal99/argocd.git
-    path: cluster/values/infrastructure/rancher
+    path: cluster/values/monitoring/logging-operator
     targetRevision: master
     ref: repo
   destination:
     name: in-cluster
-    namespace: cattle-system
+    namespace: logging
   syncPolicy:
     automated:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
+    - ServerSideApply=true

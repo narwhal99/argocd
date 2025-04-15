@@ -27,9 +27,6 @@ spec:
           - name: homeassistant
             namespace: apps
             targetRevision: master
-          - name: drawio
-            namespace: apps
-            targetRevision: master
           # - name: technitiumdns
           #   namespace: infraservices
           #   targetRevision: master

@@ -3,14 +3,12 @@ kind: Application
 metadata:
   name: cluster
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: git@github.com:narwhal99/argocd.git
     path: cluster/bootstrap
-    targetRevision: HEAD
+    targetRevision: master
     directory:
       recurse: true
 
