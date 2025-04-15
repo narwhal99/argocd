@@ -4,9 +4,9 @@ controller:
     # default-ssl-certificate: ""
     enable-ssl-passthrough: "true"
   metrics:
-    enabled: true
+    enabled: false
     serviceMonitor:
-      enabled: true
+      enabled: false
       scrapeInterval: 15s
   service:
     externalTrafficPolicy: Local
