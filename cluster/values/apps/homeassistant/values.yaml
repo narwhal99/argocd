@@ -8,10 +8,10 @@
 #     supplementalGroups:
 #       - 65539
 defaultPodOptions:
-  tolerations:
-   - key: "HAsrv"
-     operator: "Exists"
-     effect: "NoSchedule"
+  #tolerations:
+  # - key: "HAsrv"
+  #   operator: "Exists"
+  #   effect: "NoSchedule"
   nodeSelector:
     node: HAsrv
 controllers:
