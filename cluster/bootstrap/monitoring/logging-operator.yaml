@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: logging-operator
     repoURL: ghcr.io/kube-logging/helm-charts
-    targetRevision: 5.2.0
+    targetRevision: 5.3.0
     helm:
       valueFiles:
         - $repo/cluster/values/monitoring/logging-operator/values.yaml
