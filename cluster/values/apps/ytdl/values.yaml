@@ -36,6 +36,6 @@ persistence:
   downloads:
     type: nfs
     server: 10.20.0.21
-    path: /mnt/tank/torrent
+    path: /mnt/tank/torrent/downloads/metube
     globalMounts:
       - path: /downloads
