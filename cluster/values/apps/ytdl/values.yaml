@@ -7,6 +7,9 @@ controllers:
             repository: ghcr.io/alexta69/metube
             tag: 2025-03-07
             pullPolicy: IfNotPresent
+          env:
+            - name: MAX_CONCURRENT_DOWNLOADS
+              value: 15
 service:
   # Configure a service for the main application
   app:
