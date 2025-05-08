@@ -58,8 +58,6 @@ grafana:
   grafana.ini:
     "auth.generic_oauth":
       enabled: true
-    "auth.anonymous":
-      enabled: true
     check_for_updates: "false"
     server:
       root_url: "https://grafana.bukla.hu"
