@@ -3,6 +3,8 @@ replicaCount: 1
 logging:
   enabled: true
   fluentd:
+    metrics:
+      serviceMonitor: true
     resources:
       limits:
         cpu: 1
@@ -17,6 +19,8 @@ logging:
             requests:
               storage: 3Gi
   fluentbit:
+    metrics:
+        serviceMonitor: true
     resources:
       limits:
         cpu: 500m
@@ -36,6 +40,7 @@ logging:
       - effect: NoExecute
         key: node-role.kubernetes.io/etcd
         value: "true"
+
 monitoring:
   serviceMonitor:
     enabled: true
