@@ -15,7 +15,7 @@ controllers:
       app:
         image:
           repository: linuxserver/readarr
-          tag: 0.4.15-develop
+          tag: 0.4.16-develop
           pullPolicy: IfNotPresent
 service:
   app:
