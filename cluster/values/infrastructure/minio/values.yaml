@@ -1,0 +1,51 @@
+existingSecret: "root-auth"
+
+mode: "standalone"
+resources:
+  requests:
+    memory: 2Gi
+  limits:
+    memory: 4Gi
+
+persistence:
+  enabled: true
+  storageClass: "longhorn"
+  size: 5Gi
+
+ingress:
+  enabled: enable
+  ingressClassName: "ngnix-internal"
+  hosts:
+    - minio.bukla.hu
+  tls:
+   - secretName: wildcard-bukla-tls
+     hosts:
+       - minio.bukla.hu
+
+consoleIngress:
+  enabled: enable
+  ingressClassName: "ngnix-internal"
+  hosts:
+    - minio-console.bukla.hu
+  tls:
+   - secretName: wildcard-bukla-tls
+     hosts:
+       - minio-console.bukla.hu
+buckets:
+  - name: thanos
+    policy: none
+    purge: false
+
+oidc:
+  enabled: true
+  configUrl: "https://auth.bukla.hu/application/o/minio/.well-known/openid-configuration"
+  existingClientSecretName: "oidc-auth"
+  existingClientIdKey: "oidc-clientid"
+  existingClientSecretKey: "oidc-clientsecretkey"
+  scopes: "openid,profile,email"
+  claimName: "policy"
+  redirectUri: "https://minio-console.bukla.hu/oauth_callback"
+
+metrics:
+  serviceMonitor:
+    enabled: true

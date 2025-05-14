@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minio
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: minio
+    repoURL: https://charts.min.io/
+    targetRevision: 5.4.0
+    helm:
+      valueFiles:
+      - $repo/cluster/values/infrastructure/minio/values.yaml
+      releaseName: minio
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/infrastructure/minio
+    targetRevision: minio
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: minio
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
