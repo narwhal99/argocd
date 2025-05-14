@@ -1,8 +1,25 @@
 hubble:
+  metrics:
+    dashboards:
+      enabled: true
+      namespace: monitoring
+    enableOpenMetrics: true
+    serviceMonitor:
+      enabled: true
   relay:
     enabled: true
   ui:
     enabled: true
+    ingress:
+      className: nginx-internal 
+      enabled: true
+      hosts:
+        - hubble.bukla.hu
+      tls:
+        - hosts:
+          - hubble.bukla.hu
+          secretName: wildcard-bukla-tls
+      replicas: 1
 ipam:
   mode: kubernetes
 kubeProxyReplacement: true
