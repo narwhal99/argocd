@@ -29,7 +29,7 @@ loki:
   tracing:
     enabled: true
   querier:
-    max_concurrent: 8
+    max_concurrent: 4
   rulerConfig:
     storage:
       type: local
@@ -60,18 +60,18 @@ gateway:
 
 deploymentMode: SingleBinary
 singleBinary:
-  replicas: 1
+  replicas: 2
   resources:
     limits:
       cpu: 3
-      memory: 4Gi
+      memory: 12Gi
     requests:
       cpu: 2
       memory: 2Gi
   extraEnv:
     # Keep a little bit lower than memory limits
     - name: GOMEMLIMIT
-      value: 3750MiB
+      value: 10240MiB
   persistence:
     storageClass: nfs-csi
     enabled: true

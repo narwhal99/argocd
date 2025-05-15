@@ -12,7 +12,7 @@ preUpgradeChecker:
 persistence:
   reclaimPolicy: Retain
   defaultClass: false
-  defaultClassReplicaCount: 2
+  defaultClassReplicaCount: 1
 
 defaultBackupStore:
   backupTarget: nfs://10.20.0.21:/mnt/tank/vault/backups/longhorn
