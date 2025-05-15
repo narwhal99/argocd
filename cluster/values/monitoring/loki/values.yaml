@@ -1,20 +1,26 @@
 ---
 loki:
   auth_enabled: false
+
   storage:
     type: filesystem
+
   commonConfig:
     replication_factor: 1
+
   compactor:
     retention_enabled: true
     delete_request_store: filesystem
+
   limits_config:
     retention_period: 60d
     max_label_names_per_series: 30
     # reject_old_samples: false
-  server:
-    grpc_server_max_recv_msg_size: 15728640
-    grpc_server_max_send_msg_size: 15728640
+
+  #server:
+    #grpc_server_max_recv_msg_size: 15728640
+    #grpc_server_max_send_msg_size: 15728640
+
   schemaConfig:
     configs:
       - from: 2023-01-01
@@ -24,12 +30,16 @@ loki:
         index:
           prefix: loki_index_
           period: 24h
+
   ingester: # In Loki, the chunk_encoding field specifies the type of encoding to use for compressing log data chunks
     chunk_encoding: snappy
+
   tracing:
     enabled: true
+
   querier:
     max_concurrent: 4
+
   rulerConfig:
     storage:
       type: local
@@ -58,31 +68,15 @@ gateway:
           - loki-gateway.bukla.hu
         secretName: wildcard-bukla-tls
 
-deploymentMode: SingleBinary
-singleBinary:
-  replicas: 2
-  resources:
-    limits:
-      cpu: 3
-      memory: 12Gi
-    requests:
-      cpu: 2
-      memory: 2Gi
-  extraEnv:
-    # Keep a little bit lower than memory limits
-    - name: GOMEMLIMIT
-      value: 10240MiB
-  persistence:
-    storageClass: nfs-csi
+monitoring:
+  dashboards:
     enabled: true
-    size: 5Gi
-  extraVolumeMounts:
-    - name: rules
-      mountPath: "/var/loki/rules/fake"
-  extraVolumes:
-    - name: rules
-      configMap:
-        name: loki-alerting-rules
+  rules:
+    enabled: true
+    labels:
+      release: bukla
+  serviceMonitor:
+    enabled: true
 
 networkPolicy:
   alertmanager:
@@ -93,17 +87,41 @@ networkPolicy:
     podSelector:
     # -- Specifies the namespace the alertmanager is running in
     namespaceSelector: {}
-# Zero out replica counts of other deployment modes
 
-monitoring:
-  dashboards:
-    enabled: true
-  rules:
-    enabled: true
-    labels:
-      release: bukla
-  serviceMonitor:
-    enabled: true
+deploymentMode: Distributed
+
+ingester:
+  replicas: 3
+querier:
+  replicas: 3
+  maxUnavailable: 2
+queryFrontend:
+  replicas: 2
+  maxUnavailable: 1
+queryScheduler:
+  replicas: 2
+distributor:
+  replicas: 3
+  maxUnavailable: 2
+compactor:
+  replicas: 1
+indexGateway:
+  replicas: 2
+  maxUnavailable: 1
+
+# optional experimental components
+bloomPlanner:
+  replicas: 0
+bloomBuilder:
+  replicas: 0
+bloomGateway:
+  replicas: 0
+
+# Enable minio for storage
+minio:
+  enabled: false
+
+# Zero out replica counts of other deployment modes
 backend:
   replicas: 0
 read:
@@ -111,21 +129,6 @@ read:
 write:
   replicas: 0
 
-ingester:
+singleBinary:
   replicas: 0
-querier:
-  replicas: 0
-queryFrontend:
-  replicas: 0
-queryScheduler:
-  replicas: 0
-distributor:
-  replicas: 0
-compactor:
-  replicas: 0
-indexGateway:
-  replicas: 0
-bloomCompactor:
-  replicas: 0
-bloomGateway:
-  replicas: 0
+
