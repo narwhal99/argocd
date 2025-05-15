@@ -14,7 +14,7 @@ persistence:
 
 ingress:
   enabled: enable
-  ingressClassName: "ngnix-internal"
+  ingressClassName: "nginx-internal"
   hosts:
     - minio.bukla.hu
   tls:
@@ -24,9 +24,9 @@ ingress:
 
 consoleIngress:
   enabled: enable
-  ingressClassName: "ngnix-internal"
+  ingressClassName: "nginx-internal"
   hosts:
-    - minio-console.bukla.hu
+    -  minio-console.bukla.hu
   tls:
    - secretName: wildcard-bukla-tls
      hosts:
