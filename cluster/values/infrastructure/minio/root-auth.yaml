@@ -15,3 +15,7 @@ spec:
       remoteRef:
         key: kv/apps/minio
         property: rootPassword
+    - secretKey: tminio_rw_password
+      remoteRef:
+        key: kv/apps/minio
+        property: tminio_rw_password
