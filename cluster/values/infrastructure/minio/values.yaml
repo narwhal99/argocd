@@ -9,8 +9,7 @@ resources:
 
 persistence:
   enabled: true
-  storageClass: "longhorn"
-  size: 5Gi
+  existingClaim: "minio"
 
 ingress:
   enabled: enable
@@ -31,6 +30,14 @@ consoleIngress:
    - secretName: wildcard-bukla-tls
      hosts:
        - minio-console.bukla.hu
+
+## List of users to be created after minio install
+users:
+  - accessKey: tminio_rw
+    existingSecret: root-auth
+    existingSecretKey: tminio_rw_password
+    policy: readwrite
+
 buckets:
   - name: thanos
     policy: none
@@ -38,6 +45,11 @@ buckets:
   - name: loki
     policy: none
     purge: false
+svcaccts:
+  - accessKey: loki-accesskey
+    existingSecret: svcaccts
+    existingSecretKey: loki-secretkey
+    user: tminio_rw
 
 oidc:
   enabled: true
