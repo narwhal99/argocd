@@ -1,0 +1,21 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: root-auth
+spec:
+  secretStoreRef:
+    name: vault
+    kind: ClusterSecretStore
+  data:
+    - secretKey: rootUser
+      remoteRef:
+        key: kv/apps/minio
+        property: rootUser
+    - secretKey: rootPassword
+      remoteRef:
+        key: kv/apps/minio
+        property: rootPassword
+    - secretKey: tminio_rw_password
+      remoteRef:
+        key: kv/apps/minio
+        property: tminio_rw_password

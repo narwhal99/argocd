@@ -1,0 +1,13 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: svcaccts
+spec:
+  secretStoreRef:
+    name: vault
+    kind: ClusterSecretStore
+  data:
+    - secretKey: loki-secretkey 
+      remoteRef:
+        key: kv/database/minio
+        property: loki

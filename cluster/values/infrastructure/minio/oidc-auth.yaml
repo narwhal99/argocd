@@ -1,0 +1,17 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: oidc-auth
+spec:
+  secretStoreRef:
+    name: vault
+    kind: ClusterSecretStore
+  data:
+    - secretKey: oidc-clientid
+      remoteRef:
+        key: kv/apps/minio
+        property: oidc-clientid
+    - secretKey: oidc-clientsecretkey
+      remoteRef:
+        key: kv/apps/minio
+        property: oidc-clientsecretkey
