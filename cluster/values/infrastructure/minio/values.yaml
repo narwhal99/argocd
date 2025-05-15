@@ -1,0 +1,66 @@
+existingSecret: "root-auth"
+
+mode: "standalone"
+resources:
+  requests:
+    memory: 2Gi
+  limits:
+    memory: 4Gi
+
+persistence:
+  enabled: true
+  existingClaim: "minio"
+
+ingress:
+  enabled: enable
+  ingressClassName: "nginx-internal"
+  hosts:
+    - minio.bukla.hu
+  tls:
+   - secretName: wildcard-bukla-tls
+     hosts:
+       - minio.bukla.hu
+
+consoleIngress:
+  enabled: enable
+  ingressClassName: "nginx-internal"
+  hosts:
+    -  minio-console.bukla.hu
+  tls:
+   - secretName: wildcard-bukla-tls
+     hosts:
+       - minio-console.bukla.hu
+
+## List of users to be created after minio install
+users:
+  - accessKey: tminio_rw
+    existingSecret: root-auth
+    existingSecretKey: tminio_rw_password
+    policy: readwrite
+
+buckets:
+  - name: thanos
+    policy: none
+    purge: false
+  - name: loki
+    policy: none
+    purge: false
+svcaccts:
+  - accessKey: loki-accesskey
+    existingSecret: svcaccts
+    existingSecretKey: loki-secretkey
+    user: tminio_rw
+
+oidc:
+  enabled: true
+  configUrl: "https://auth.bukla.hu/application/o/minio/.well-known/openid-configuration"
+  existingClientSecretName: "oidc-auth"
+  existingClientIdKey: "oidc-clientid"
+  existingClientSecretKey: "oidc-clientsecretkey"
+  scopes: "openid,profile,email"
+  claimName: "policy"
+  redirectUri: "https://minio-console.bukla.hu/oauth_callback"
+
+metrics:
+  serviceMonitor:
+    enabled: true
