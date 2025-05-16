@@ -3,24 +3,38 @@ global:
   extraEnvFrom:
     - secretRef:
         name: minio-auth
+  extraArgs:
+    - '-config.expand-env=true'
 loki:
   auth_enabled: false
 
-  compactor:
-    retention_enabled: true
-    delete_request_store: s3
+  #compactor:
+    #retention_enabled: true
+    #delete_request_store: s3
   limits_config:
     retention_period: 60d
     max_label_names_per_series: 30
+    ingestion_burst_size_mb: 100 
     # reject_old_samples: false
 
+  storage:
+    type: s3
+    bucketNames:
+      chunks: loki
+      ruler: loki
+      admin: loki
+    s3:
+      access_key_id: ${AWS_ACCESS_KEY_ID}
+      secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
   storage_config:
     use_thanos_objstore: true
     object_store:
       s3:
         bucket_name: loki
         endpoint: minio.bukla.hu
-        access_key_id: loki-accesskey
+  ingester:
+    grpc_client_config:
+      max_message_msg_size: 4194304 
   #server:
     #grpc_server_max_recv_msg_size: 15728640
     #grpc_server_max_send_msg_size: 15728640
@@ -92,23 +106,19 @@ networkPolicy:
 deploymentMode: Distributed
 
 ingester:
-  replicas: 3
+  replicas: 1
 querier:
-  replicas: 3
-  maxUnavailable: 2
+  replicas: 1
 queryFrontend:
-  replicas: 2
-  maxUnavailable: 1
+  replicas: 1
 queryScheduler:
-  replicas: 2
+  replicas: 1
 distributor:
-  replicas: 3
-  maxUnavailable: 2
+  replicas: 1
 compactor:
   replicas: 1
 indexGateway:
-  replicas: 2
-  maxUnavailable: 1
+  replicas: 1
 
 # optional experimental components
 bloomPlanner:

@@ -7,7 +7,11 @@ spec:
     name: vault
     kind: ClusterSecretStore
   data:
+    - secretKey: AWS_ACCESS_KEY_ID
+      remoteRef:
+        key: kv/database/minio/loki
+        property: access_key
     - secretKey: AWS_SECRET_ACCESS_KEY
       remoteRef:
-        key: kv/database/minio
-        property: loki
+        key: kv/database/minio/loki
+        property: access_secret

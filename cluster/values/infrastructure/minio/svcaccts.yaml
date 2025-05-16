@@ -9,5 +9,5 @@ spec:
   data:
     - secretKey: loki-secretkey 
       remoteRef:
-        key: kv/database/minio
-        property: loki
+        key: kv/database/loki
+        property: access_secret
