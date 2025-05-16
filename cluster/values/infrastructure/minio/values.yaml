@@ -33,9 +33,9 @@ consoleIngress:
 
 ## List of users to be created after minio install
 users:
-  - accessKey: tminio_rw
+  - accessKey: tminio
     existingSecret: root-auth
-    existingSecretKey: tminio_rw_password
+    existingSecretKey: tminio_password
     policy: readwrite
 
 buckets:
@@ -49,7 +49,7 @@ svcaccts:
   - accessKey: loki-accesskey
     existingSecret: svcaccts
     existingSecretKey: loki-secretkey
-    user: tminio_rw
+    user: tminio
 
 oidc:
   enabled: true
