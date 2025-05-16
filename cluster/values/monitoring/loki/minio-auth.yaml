@@ -1,0 +1,13 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: minio-auth
+spec:
+  secretStoreRef:
+    name: vault
+    kind: ClusterSecretStore
+  data:
+    - secretKey: AWS_SECRET_ACCESS_KEY
+      remoteRef:
+        key: kv/database/minio
+        property: loki

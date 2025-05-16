@@ -1,22 +1,26 @@
 ---
+global:
+  extraEnvFrom:
+    - secretRef:
+        name: minio-auth
 loki:
   auth_enabled: false
 
-  storage:
-    type: filesystem
-
-  commonConfig:
-    replication_factor: 1
-
   compactor:
     retention_enabled: true
-    delete_request_store: filesystem
-
+    delete_request_store: s3
   limits_config:
     retention_period: 60d
     max_label_names_per_series: 30
     # reject_old_samples: false
 
+  storage_config:
+    use_thanos_objstore: true
+    object_store:
+      s3:
+        bucket_name: loki
+        endpoint: minio.bukla.hu
+        access_key_id: loki-accesskey
   #server:
     #grpc_server_max_recv_msg_size: 15728640
     #grpc_server_max_send_msg_size: 15728640
@@ -25,7 +29,7 @@ loki:
     configs:
       - from: 2023-01-01
         store: tsdb
-        object_store: filesystem
+        object_store: s3
         schema: v13
         index:
           prefix: loki_index_
@@ -36,9 +40,6 @@ loki:
 
   tracing:
     enabled: true
-
-  querier:
-    max_concurrent: 4
 
   rulerConfig:
     storage:
