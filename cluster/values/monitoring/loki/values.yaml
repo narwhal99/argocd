@@ -16,6 +16,8 @@ loki:
     max_label_names_per_series: 30
     ingestion_burst_size_mb: 100 
     # reject_old_samples: false
+    per_stream_rate_limit: 5M
+    per_stream_rate_limit_burst: 20M
 
   storage:
     type: s3
@@ -32,12 +34,25 @@ loki:
       s3:
         bucket_name: loki
         endpoint: minio.bukla.hu
-  ingester:
+
+  server:
+    grpc_server_max_recv_msg_size: 52428800
+    grpc_server_max_send_msg_size: 52428800
+
+  query_scheduler:
     grpc_client_config:
-      max_message_msg_size: 4194304 
-  #server:
-    #grpc_server_max_recv_msg_size: 15728640
-    #grpc_server_max_send_msg_size: 15728640
+      max_recv_msg_size: 52428800
+      max_send_msg_size: 52428800
+  
+  frontend_worker:
+    grpc_client_config:
+      max_recv_msg_size: 52428800
+      max_send_msg_size: 52428800
+  
+  ingester_client:
+    grpc_client_config:
+      max_recv_msg_size: 52428800
+      max_send_msg_size: 52428800
 
   schemaConfig:
     configs:
