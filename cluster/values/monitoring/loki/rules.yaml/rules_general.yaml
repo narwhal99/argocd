@@ -11,12 +11,12 @@ data:
         rules:
           - alert: Jellyfin_auth
             expr: |
-              count_over_time({app_kubernetes_io_name="jellyfin"} |~ `Authentication` |= `denied`[5m]) > 0
+              count_over_time({app_kubernetes_io_name="jellyfin"} |~ "Authentication" |= "denied"[5m]) > 0
             labels:
               severity: "critical"
             annotations:
               title: 'Wrong auth within 5 min'
-      - name: SSH Login failed by pw
+      - name: SSH_Login_failed_by_pw
         rules:
           - alert: SSH_login_failed_pw
             expr: |
@@ -25,7 +25,7 @@ data:
               severity: "critical"
             annotations:
               title: 'SSH Login failed - User: {{ $labels.user }}, IP: {{ $labels.ip }}'
-      - name: SSH Login failed by key
+      - name: SSH_Login_failed_by_key
         rules:
           - alert: SSH_login_failed_key
             expr: |
@@ -34,30 +34,12 @@ data:
               severity: "critical"
             annotations:
               title: 'SSH Login failed - User: {{ $labels.user }}, IP: {{ $labels.ip }}'
-      - name: Mikrotik login failed
+      - name: Mikrotik_login_failed
         rules:
           - alert: Mikrotik_login_failed
             expr: |
-              count_over_time({host="10.10.0.1"} |= `failure`[2m]) > 0
+              count_over_time({host="10.10.0.1"} |= "failure"[2m]) > 0
             labels:
               severity: "critical"
             annotations:
               title: 'Mikrotik Login failed'
-      # - name: Vault_sealed
-      #   rules:
-      #     - alert: Vault-sealed
-      #       expr: |
-      #         (count_over_time({container="vault"} |~ `vault is sealed`[5m])) > 0
-      #       labels:
-      #         severity: "critical"
-      #       annotations:
-      #         title: 'The vault is sealed!'
-      # - name: Mikrotik_user_logged_in
-      #   rules:
-      #     - alert: Mikrotik_user_logged_in
-      #       expr: |
-      #         (count_over_time({mikrotik="10.10.0.1"} |= "logged in"[5m])) > 0
-      #       labels:
-      #         severity: "warning"
-      #       annotations:
-      #         title: 'The user is logged in mikrotik!'

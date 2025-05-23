@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: loki
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 6.29.0
+    targetRevision: 6.30.0
     helm:
       valueFiles:
         - $repo/cluster/values/monitoring/loki/values.yaml
@@ -29,10 +29,10 @@ spec:
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
-   ignoreDifferences:
-     - group: external-secrets.io
-       kind: ExternalSecret
-       jqPathExpressions:
-         - .spec.data[].remoteRef.conversionStrategy
-         - .spec.data[].remoteRef.decodingStrategy
-         - .spec.data[].remoteRef.metadataPolicy
+  ignoreDifferences:
+    - group: external-secrets.io
+      kind: ExternalSecret
+      jqPathExpressions:
+        - .spec.data[].remoteRef.conversionStrategy
+        - .spec.data[].remoteRef.decodingStrategy
+        - .spec.data[].remoteRef.metadataPolicy
