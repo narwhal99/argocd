@@ -8,9 +8,13 @@ global:
 loki:
   auth_enabled: false
 
-  #compactor:
-    #retention_enabled: true
-    #delete_request_store: s3
+  analytics:
+    reporting_enabled: false
+    usage_stats_url: ""
+
+  compactor:
+    retention_enabled: true
+    delete_request_store: s3
   limits_config:
     retention_period: 60d
     max_label_names_per_series: 30
@@ -23,7 +27,7 @@ loki:
     type: s3
     bucketNames:
       chunks: loki
-      ruler: loki
+      #ruler: loki
       admin: loki
     s3:
       access_key_id: ${AWS_ACCESS_KEY_ID}
@@ -74,23 +78,29 @@ loki:
     storage:
       type: local
       local:
-        directory: /rules
-    rule_path: /rules
+        directory: /var/loki/rules
+    rule_path: /var/loki/rules/fake
     ring:
       kvstore:
         store: inmemory
     alertmanager_url: http://alertmanager-operated.monitoring:9093
     enable_alertmanager_v2: true
+    enable_api: true
+    wal:
+      dir: /var/loki/ruler-wal
+
 ruler:
   enabled: true
   sidecar: true
   replicas: 1
-  extraVolumeMounts:
-    - name: sc-rules-volume
-      mountPath: /rules
-  extraVolumes:
-    - name: sc-rules-volume
-      emptyDir: {}
+
+sidecar:
+  rules:
+    enabled: true
+    label: loki_rule
+    labelValue: ""
+    folder: "/var/loki/rules/fake"
+    searchNamespace: "logging"
 
 gateway:
   nginxConfig:
