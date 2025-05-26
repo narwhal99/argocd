@@ -78,18 +78,19 @@ loki:
     storage:
       type: local
       local:
-        directory: /var/loki/rules
-    rule_path: /var/loki/rules/fake
+        directory: "/var/loki/rules"
+    rule_path: "/var/loki/rules-temp"
     ring:
       kvstore:
         store: inmemory
     alertmanager_url: http://alertmanager-operated.monitoring:9093
     enable_alertmanager_v2: true
     enable_api: true
-    wal:
-      dir: /var/loki/ruler-wal
 
 ruler:
+  extraArgs:
+    - "-log.level=debug"
+    - "-print-config-stderr"
   enabled: true
   sidecar: true
   replicas: 1
