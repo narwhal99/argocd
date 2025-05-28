@@ -23,7 +23,8 @@ controllers:
             memory: 8Gi
           requests:
             cpu: 500m
-            memory: 4Gi
+            memory: 4Gi
+
 
 service:
   app:
@@ -31,15 +32,17 @@ service:
     ports:
       http:
         port: 8080
-  # p2p:
-  #   controller: qbittorrent
-  #   type: NodePort
-  #   ports:
-  #     p2p:
-  #       nodePort: 32344
-  #       port: 32344
-  #       targetPort: 32344
-  #       protocol: TCP
+  p2p:
+    controller: qbittorrent
+    type: LoadBalancer
+    ports:
+      tcp:
+        port: 32344
+        protocol: TCP
+    annotations:
+      metallb.universe.tf/allow-shared-ip: 10.20.0.151
+      metallb.universe.tf/ip-allocated-from-pool: external
+      metallb.universe.tf/loadBalancerIPs: 10.20.0.151
 
 ingress:
   app:
