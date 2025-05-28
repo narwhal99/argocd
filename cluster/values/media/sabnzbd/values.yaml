@@ -28,7 +28,7 @@ ingress:
   app:
     className: "nginx-internal"
     hosts:
-      - host: sabnzbd-k.bukla.hu
+      - host: sabnzbd.bukla.hu
         paths:
           - path: /
             pathType: Prefix
@@ -37,14 +37,11 @@ ingress:
               port: http
     tls:
       - hosts:
-          - sabnzbd-k.bukla.hu
+          - sabnzbd.bukla.hu
         secretName: wildcard-bukla-tls
 persistence:
   config:
-    type: persistentVolumeClaim
-    storageClass: nfs-subdir
-    accessMode: ReadWriteOnce
-    size: 1Gi
+    existingClaim: sabnzbd-conf
     globalMounts:
       - path: /config
   torrent:

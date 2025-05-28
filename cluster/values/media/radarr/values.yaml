@@ -39,10 +39,7 @@ ingress:
         secretName: wildcard-bukla-tls
 persistence:
   config:
-    type: persistentVolumeClaim
-    storageClass: nfs-subdir
-    accessMode: ReadWriteOnce
-    size: 1Gi
+    existingClaim: radarr-conf
     globalMounts:
       - path: /config
   torrent:
