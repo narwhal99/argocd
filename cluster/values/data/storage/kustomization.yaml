@@ -8,5 +8,14 @@ resources:
   - pvc/minecraft.yaml
   - pvc/plantit.yaml
   - pvc/minio.yaml
+  - pvc/sonarr.yaml
+  - pvc/sabnzbd.yaml
+  - pvc/readarr.yaml
+  - pvc/radarr.yaml
+  - pvc/qbittorrent.yaml
+  - pvc/jellyseerr.yaml
+  - pvc/prowlarr.yaml
+  - pvc/bazarr.yaml
+  - pvc/jackett.yaml
 commonAnnotations:
   argocd.argoproj.io/sync-options: Delete=false

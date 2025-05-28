@@ -50,15 +50,8 @@ ingress:
           - bazarr.bukla.hu
         secretName: wildcard-bukla-tls
 persistence:
-  # config:
-  #   enabled: true
-  #   type: persistentVolumeClaim
-    # existingClaim: bazarr-test
   config:
-    type: persistentVolumeClaim
-    storageClass: nfs-subdir
-    accessMode: ReadWriteOnce
-    size: 1Gi
+    existingClaim: bazarr-conf
     globalMounts:
       - path: /config
   torrent:
