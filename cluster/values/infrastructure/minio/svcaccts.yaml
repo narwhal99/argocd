@@ -11,3 +11,7 @@ spec:
       remoteRef:
         key: kv/database/minio/loki
         property: access_secret
+    - secretKey: thanos-secretkey 
+      remoteRef:
+        key: kv/database/minio/thanos
+        property: access_secret
