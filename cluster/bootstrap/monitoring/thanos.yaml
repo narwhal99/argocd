@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: thanos
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: thanos
+    repoURL: registry-1.docker.io/bitnamicharts
+    targetRevision: 15.13.2
+    helm:
+      valueFiles:
+        - $repo/cluster/values/monitoring/thanos/values.yaml
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/monitoring/thanos
+    targetRevision: master
+    ref: repo
+    directory:
+      recurse: true
+  destination:
+    name: in-cluster
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
