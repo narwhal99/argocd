@@ -50,7 +50,10 @@ svcaccts:
     existingSecret: svcaccts
     existingSecretKey: loki-secretkey
     user: tminio
-
+  - accessKey: thanos-accesskey
+    existingSecret: svcaccts
+    existingSecretKey: thanos-secretkey
+    user: tminio
 oidc:
   enabled: true
   configUrl: "https://auth.bukla.hu/application/o/minio/.well-known/openid-configuration"
