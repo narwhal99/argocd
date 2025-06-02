@@ -20,10 +20,10 @@ grafana:
   persistence:
     enabled: true
     type: sts
-    storageClassName: nfs-csi
+    storageClassName: longhorn
     accessModes:
       - ReadWriteOnce
-    size: 20Gi
+    size: 500M
   sidecar:
     dashboards:
       enabled: true
@@ -120,7 +120,7 @@ prometheus:
           resources:
             requests:
               storage: 10Gi
-          storageClassName: nfs-csi
+          storageClassName: longhorn
     thanos:
       objectStorageConfig:
         existingSecret:
@@ -146,8 +146,8 @@ alertmanager:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 1Gi
-          storageClassName: nfs-csi
+              storage: 50M
+          storageClassName: longhorn
 
   ingress:
     ingressClassName: nginx-internal
