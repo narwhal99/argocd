@@ -12,6 +12,8 @@ persistence:
   existingClaim: "minio"
 
 ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "100M"
   enabled: enable
   ingressClassName: "nginx-internal"
   hosts:
