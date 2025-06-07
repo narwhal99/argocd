@@ -1,7 +1,7 @@
 existingObjstoreSecret: thanos-objectstore-secret
 bucketweb:
   enabled: true
-  resourcesPreset: "nano"
+  resourcesPreset: "small"
   ingress:
     enabled: true
     ingressClassName: "nginx-internal"
@@ -13,7 +13,7 @@ bucketweb:
 
 storegateway:
   enabled: true
-  resourcesPreset: "nano"
+  resourcesPreset: "small"
   persistence:
     enabled: true
     storageClass: "longhorn"
@@ -21,9 +21,10 @@ storegateway:
 
 compactor:
   enabled: true
+  resourcesPreset: "small"
   retentionResolutionRaw: 30d
-  retentionResolution5m: 30d
-  retentionResolution1h: 10y
+  retentionResolution5m: 60d
+  retentionResolution1h: 90d
   ingress:
     enabled: true
     ingressClassName: "nginx-internal"
@@ -33,12 +34,15 @@ compactor:
         secretName: wildcard-bukla-tls
     hostname: thanos-compactor.bukla.hu
   persistence:
-    enabled: false
+    enabled: true
+    size: 15Gi
+    storageClass: "longhorn"
+
 query:
   enabled: true
   replicaLabel:
     - replica
-  resourcesPreset: "nano"
+  resourcesPreset: "small"
   dnsDsicovery:
     sidecarsNamespace: monitoring
     sidecarsService: prometheus-operated
@@ -47,7 +51,7 @@ query:
 
 queryFrontend:
   enabled: true
-  resourcesPreset: "nano"
+  resourcesPreset: "small"
   ingress:
     enabled: true
     ingressClassName: "nginx-internal"
