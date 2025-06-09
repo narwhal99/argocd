@@ -12,6 +12,8 @@ persistence:
   existingClaim: "minio"
 
 ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "100M"
   enabled: enable
   ingressClassName: "nginx-internal"
   hosts:
@@ -50,9 +52,12 @@ svcaccts:
     existingSecret: svcaccts
     existingSecretKey: loki-secretkey
     user: tminio
-
+  - accessKey: thanos-accesskey
+    existingSecret: svcaccts
+    existingSecretKey: thanos-secretkey
+    user: tminio
 oidc:
-  enabled: true
+  enabled: false
   configUrl: "https://auth.bukla.hu/application/o/minio/.well-known/openid-configuration"
   existingClientSecretName: "oidc-auth"
   existingClientIdKey: "oidc-clientid"

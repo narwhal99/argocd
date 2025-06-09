@@ -1,0 +1,62 @@
+existingObjstoreSecret: thanos-objectstore-secret
+bucketweb:
+  enabled: true
+  resourcesPreset: "small"
+  ingress:
+    enabled: true
+    ingressClassName: "nginx-internal"
+    extraTls:
+      - hosts:
+        - thanos-bucket.bukla.hu
+        secretName: wildcard-bukla-tls
+    hostname: thanos-bucket.bukla.hu
+
+storegateway:
+  enabled: true
+  resourcesPreset: "small"
+  persistence:
+    enabled: true
+    storageClass: "longhorn"
+    size: 10Gi
+
+compactor:
+  enabled: true
+  resourcesPreset: "small"
+  retentionResolutionRaw: 30d
+  retentionResolution5m: 60d
+  retentionResolution1h: 90d
+  ingress:
+    enabled: true
+    ingressClassName: "nginx-internal"
+    extraTls:
+      - hosts:
+        - thanos-compactor.bukla.hu
+        secretName: wildcard-bukla-tls
+    hostname: thanos-compactor.bukla.hu
+  persistence:
+    enabled: true
+    size: 15Gi
+    storageClass: "longhorn"
+
+query:
+  enabled: true
+  replicaLabel:
+    - replica
+  resourcesPreset: "small"
+  dnsDsicovery:
+    sidecarsNamespace: monitoring
+    sidecarsService: prometheus-operated
+  stores:
+    - dnssrv+_grpc._tcp.prometheus-operated.monitoring.svc.cluster.local
+
+queryFrontend:
+  enabled: true
+  resourcesPreset: "small"
+  ingress:
+    enabled: true
+    ingressClassName: "nginx-internal"
+    extraTls:
+      - hosts:
+        - thanos.bukla.hu
+        secretName: wildcard-bukla-tls
+    hostname: thanos.bukla.hu

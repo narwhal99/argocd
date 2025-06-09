@@ -16,7 +16,7 @@ controllers:
       app:
         image:
           repository: linuxserver/jackett
-          tag: 0.22.1947
+          tag: 0.22.1999
           pullPolicy: IfNotPresent
 
 service:
@@ -43,10 +43,7 @@ ingress:
         secretName: wildcard-bukla-tls
 persistence:
   config:
-    type: persistentVolumeClaim
-    storageClass: nfs-subdir
-    accessMode: ReadWriteOnce
-    size: 1Gi
+    existingClaim: jackett-conf
     globalMounts:
       - path: /config
   # torrent:

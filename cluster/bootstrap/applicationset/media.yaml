@@ -18,9 +18,6 @@ spec:
           - name: jellyfin
             namespace: media
             targetRevision: master
-          - name: jellyseerr
-            namespace: media
-            targetRevision: master
           - name: prowlarr
             namespace: media
             targetRevision: master
@@ -39,6 +36,9 @@ spec:
           - name: sonarr
             namespace: media
             targetRevision: master
+          # - name: jellyseerr
+          #   namespace: media
+          #   targetRevision: master
   template:
     metadata:
       name: '{{ .name }}'
@@ -48,7 +48,7 @@ spec:
       sources:
         - chart: app-template
           repoURL: https://bjw-s-labs.github.io/helm-charts/
-          targetRevision: 3.7.3
+          targetRevision: 4.0.1
           helm:
             valueFiles:
             - $repo/cluster/values/media/{{ .name }}/values.yaml
