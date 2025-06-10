@@ -45,10 +45,7 @@ service:
 
 persistence:
   config:
-    type: persistentVolumeClaim
-    storageClass: nfs-subdir
-    accessMode: ReadWriteOnce
-    size: 10Gi
+    existingClaim: factorio-conf
     globalMounts:
       - path: /factorio
 
