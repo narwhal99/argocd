@@ -9,7 +9,9 @@ resources:
 
 persistence:
   enabled: true
-  existingClaim: "minio"
+  storageClass: "nfs-csi"
+  size: 150Gi
+  #existingClaim: "minio"
 
 ingress:
   annotations:
