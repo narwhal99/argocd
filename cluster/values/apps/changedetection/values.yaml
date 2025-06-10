@@ -5,10 +5,14 @@ controllers:
       containers:
         changedetection:
           image:
-            repository: ghcr.io/dgtlmoon/changedetection.io
+            repository: lscr.io/linuxserver/changedetection.io
             tag: 0.50.2
             pullPolicy: IfNotPresent
           env:
+            - name: TZ
+              value: Etc/UTC
+            - name: LC_ALL
+              value: en_US.UTF-8
             - name: WEBDRIVER_URL
               value: http://localhost:4444/wd/hub
             - name: PLAYWRIGHT_DRIVER_URL
@@ -66,11 +70,8 @@ ingress:
 
 persistence:
   config:
-    type: persistentVolumeClaim
-    storageClass: nfs-subdir
-    size: 1Gi
-    accessMode: ReadWriteOnce
+    existingClaim: scraper-conf
     advancedMounts:
       main:
         changedetection:
-          - path: /datastore
+          - path: /config

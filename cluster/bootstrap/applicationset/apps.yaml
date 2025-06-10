@@ -18,18 +18,12 @@ spec:
           - name: muse
             namespace: apps
             targetRevision: master
-          - name: vikunja
-            namespace: apps
-            targetRevision: master
           - name: factorio
             namespace: apps
             targetRevision: master
           - name: homeassistant
             namespace: hass
             targetRevision: master
-          # - name: technitiumdns
-          #   namespace: infraservices
-          #   targetRevision: master
           - name: changedetection
             namespace: apps
             targetRevision: master
@@ -45,6 +39,12 @@ spec:
           - name: plantit
             namespace: apps
             targetRevision: master
+          #- name: technitiumdns
+          #  namespace: infraservices
+          #  targetRevision: master
+          #- name: vikunja
+          #  namespace: apps
+          #  targetRevision: master
   template:
     metadata:
       name: '{{ .name }}'
