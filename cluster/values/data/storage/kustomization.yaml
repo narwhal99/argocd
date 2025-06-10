@@ -13,9 +13,9 @@ resources:
   - pvc/readarr.yaml
   - pvc/radarr.yaml
   - pvc/qbittorrent.yaml
-  - pvc/jellyseerr.yaml
   - pvc/prowlarr.yaml
   - pvc/bazarr.yaml
   - pvc/jackett.yaml
+  #- pvc/jellyseerr.yaml
 commonAnnotations:
   argocd.argoproj.io/sync-options: Delete=false
