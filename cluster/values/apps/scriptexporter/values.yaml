@@ -20,4 +20,5 @@ serviceMonitor:
 config: |
   scripts:
     - name: webscraper
-      command: /scripts/webscraper
+      command: 
+        - /scripts/webscraper
