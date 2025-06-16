@@ -18,7 +18,7 @@ resources:
   - pvc/factorio.yaml
   - pvc/pdfstirling.yaml
   - pvc/scraper.yaml
-  #- pvc/minio.yaml
+  - pvc/minio.yaml
   #- pvc/jellyseerr.yaml
 commonAnnotations:
   argocd.argoproj.io/sync-options: Delete=false
