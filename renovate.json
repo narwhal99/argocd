@@ -46,6 +46,19 @@
       ]
     },
     {
+      "matchUpdateTypes": ["minor"],
+      "groupName": "Group minor"
+    },
+    {
+      "matchUpdateTypes": ["patch"],
+      "groupName": "Group patch"
+    },
+    {
+      "description": "Group media apps to one PR",
+      "matchFileNames": ["cluster/values/media/**"],
+      "groupName": "Group media"
+    },
+    {
       "description": "Auto merge latest stable tags for factorio",
       "matchPackageNames": [
         "factoriotools/factorio"
