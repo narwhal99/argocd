@@ -47,3 +47,6 @@ cgroup:
   hostRoot: /sys/fs/cgroup
 k8sServiceHost: localhost
 k8sServicePort: 7445
+
+cni:
+  exclusive: false
