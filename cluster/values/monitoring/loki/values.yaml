@@ -142,7 +142,11 @@ networkPolicy:
 deploymentMode: Distributed
 
 ingester:
-  replicas: 1
+  replicas: 0
+  autoscaling:
+    enabled: true
+  zoneAwareReplication:
+    enabled: false
 querier:
   replicas: 1
 queryFrontend:
