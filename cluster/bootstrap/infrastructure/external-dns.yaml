@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: registry-1.docker.io/bitnamicharts
     chart: external-dns
-    targetRevision: 8.8.6
+    targetRevision: 8.9.1
     helm:
       valueFiles:
       - $repo/cluster/values/infrastructure/externaldns/values.yaml
