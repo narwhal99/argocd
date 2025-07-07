@@ -3,6 +3,8 @@ replicaCount: 1
 logging:
   enabled: true
   fluentd:
+    scaling:
+      replicas: 2
     bufferVolumeMetrics:
       serviceMonitor: true
     metrics:
