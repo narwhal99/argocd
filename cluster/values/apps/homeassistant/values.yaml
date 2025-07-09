@@ -7,13 +7,13 @@
 #     fsGroupChangePolicy: "OnRootMismatch"
 #     supplementalGroups:
 #       - 65539
-defaultPodOptions:
+#defaultPodOptions:
   #tolerations:
   # - key: "HAsrv"
   #   operator: "Exists"
   #   effect: "NoSchedule"
-  nodeSelector:
-    node: HAsrv
+  #nodeSelector:
+  #  node: HAsrv
 controllers:
     homeassistant:
       type: statefulset
@@ -54,7 +54,7 @@ ingress:
 persistence:
   config:
     existingClaim: homeassistant-config
-  bluetooth:
-    enabled: true
-    type: hostPath
-    hostPath: /run/dbus
+  #bluetooth:
+  #  enabled: true
+  #  type: hostPath
+  #  hostPath: /run/dbus
