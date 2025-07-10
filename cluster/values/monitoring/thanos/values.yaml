@@ -13,7 +13,7 @@ bucketweb:
 
 storegateway:
   enabled: true
-  resourcesPreset: "small"
+  resourcesPreset: "large"
   persistence:
     enabled: true
     storageClass: "longhorn"
@@ -42,7 +42,7 @@ query:
   enabled: true
   replicaLabel:
     - replica
-  resourcesPreset: "small"
+  resourcesPreset: "large"
   dnsDsicovery:
     sidecarsNamespace: monitoring
     sidecarsService: prometheus-operated
@@ -51,7 +51,7 @@ query:
 
 queryFrontend:
   enabled: true
-  resourcesPreset: "small"
+  resourcesPreset: "large"
   ingress:
     enabled: true
     ingressClassName: "nginx-internal"
