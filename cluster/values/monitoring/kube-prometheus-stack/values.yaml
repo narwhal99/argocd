@@ -64,6 +64,8 @@ grafana:
   #   mountPath: "/etc/ssl/certs"
   #   secretName: wildcard-bukla-tls
   grafana.ini:
+    dataproxy:
+        timeout: 600
     "auth.generic_oauth":
       enabled: true
     check_for_updates: "false"
