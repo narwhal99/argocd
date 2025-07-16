@@ -15,7 +15,7 @@ controllers:
         main:
           image:
             repository: factoriotools/factorio
-            tag: stable-2.0.55
+            tag: stable-2.0.60
             pullPolicy: Always
           env:
             - name: TOKEN
