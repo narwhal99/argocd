@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: multus
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - repoURL: registry-1.docker.io/bitnamicharts
+    chart: multus-cni
+    targetRevision: 2.2.18
+    helm:
+      valueFiles:
+      - $repo/cluster/values/infrastructure/multus/values.yaml
+      releaseName: multus-cni
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/infrastructure/multus
+    targetRevision: master
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+  ignoreDifferences:
+    - group: external-secrets.io
+      kind: ExternalSecret
+      jqPathExpressions:
+        - .spec.data[].remoteRef.conversionStrategy
+        - .spec.data[].remoteRef.decodingStrategy
+        - .spec.data[].remoteRef.metadataPolicy
