@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: registry-1.docker.io/bitnamicharts
     chart: multus-cni
-    targetRevision: 2.2.18
+    targetRevision: 2.2.19
     helm:
       valueFiles:
       - $repo/cluster/values/infrastructure/multus/values.yaml
