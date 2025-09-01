@@ -12,30 +12,30 @@ spec:
           - name: pdfstirling
             namespace: apps
             targetRevision: master
-          - name: excalidraw
-            namespace: apps
-            targetRevision: master
+          # - name: excalidraw
+          #   namespace: apps
+          #   targetRevision: master
           - name: muse
             namespace: apps
             targetRevision: master
-          - name: factorio
-            namespace: apps
-            targetRevision: master
+          # - name: factorio
+          #   namespace: apps
+          #   targetRevision: master
           - name: homeassistant
             namespace: hass
             targetRevision: master
           - name: changedetection
             namespace: apps
             targetRevision: master
-          - name: minecraft
-            namespace: apps
-            targetRevision: master
+          # - name: minecraft
+          #   namespace: apps
+          #   targetRevision: master
           - name: ytdl
             namespace: apps
             targetRevision: master
-          - name: plantit
-            namespace: apps
-            targetRevision: master
+          # - name: plantit
+          #   namespace: apps
+          #   targetRevision: master
           #- name: filebrowser
           #  namespace: apps
           #  targetRevision: master

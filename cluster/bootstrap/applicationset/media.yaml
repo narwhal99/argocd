@@ -22,7 +22,7 @@ spec:
             namespace: media
             targetRevision: master
           - name: qbittorrent
-            namespace: media
+            namespace: torrent
             targetRevision: master
           - name: radarr
             namespace: media
