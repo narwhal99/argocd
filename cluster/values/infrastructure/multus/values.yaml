@@ -1,5 +1,3 @@
-image:
-  debug: true
 ## Add a volume that points to the host's /var/run/netns directory.
 extraVolumes:
   - name: host-run-netns

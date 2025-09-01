@@ -49,4 +49,4 @@ k8sServiceHost: localhost
 k8sServicePort: 7445
 
 cni:
-  exclusive: false
+  exclusive: true
