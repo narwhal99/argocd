@@ -16,7 +16,7 @@ controllers:
         main:
           image:
             repository: itzg/minecraft-server
-            tag: 2025.6.2
+            tag: 2025.9.0
             pullPolicy: IfNotPresent
           tty: true
           stdin: true
