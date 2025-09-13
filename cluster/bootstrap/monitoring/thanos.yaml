@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: thanos
     repoURL: registry-1.docker.io/bitnamicharts
-    targetRevision: 15.14.1
+    targetRevision: 17.3.1
     helm:
       valueFiles:
         - $repo/cluster/values/monitoring/thanos/values.yaml
