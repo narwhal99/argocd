@@ -28,7 +28,7 @@ controllers:
         main:
           image:
             repository: homeassistant/home-assistant
-            tag: 2025.9.2
+            tag: 2025.9.3
             pullPolicy: IfNotPresent
           env:
             - name: DNS_SERVER_DOMAIN
