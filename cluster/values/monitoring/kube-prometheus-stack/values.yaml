@@ -103,6 +103,7 @@ prometheus:
     enabled: true
   prometheusSpec:
     # replicas: 1
+    retentionSize: "15GiB"
     podMonitorSelectorNilUsesHelmValues: false 
     serviceMonitorSelectorNilUsesHelmValues: false
     ruleSelector:
@@ -121,7 +122,7 @@ prometheus:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 15Gi
+              storage: 20Gi
           storageClassName: longhorn
     thanos:
       objectStorageConfig:
@@ -136,9 +137,6 @@ prometheus:
 #       effect: "NoExecute"
 alertmanager:
   alertmanagerSpec:
-    # useExistingSecret: true
-    secrets:
-      - alertmanager-secrets
     storage:
       volumeClaimTemplate:
         metadata:
@@ -150,7 +148,6 @@ alertmanager:
             requests:
               storage: 50M
           storageClassName: longhorn
-
   ingress:
     ingressClassName: nginx-internal
     enabled: true
@@ -185,7 +182,7 @@ alertmanager:
       group_interval: 5m
       group_wait: 30s
       receiver: discord
-      repeat_interval: 24h      
+      repeat_interval: 1w      
       routes:
         - match:
             severity: none
@@ -196,28 +193,26 @@ alertmanager:
         #   match:
         #     alertname: Watchdog
           # receiver: "null"
-    #receivers:
-    #  - name: "null"
-    #  - name: discord
-    #    webhook_configs:
-    #      - url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
-    #        send_resolved: true
-    #receivers: 
+    receivers:
+     - name: "null"
+     - name: discord
+       discord_configs:
+         - webhook_url: "http://discord-webhook-relay:54432"
+           send_resolved: true
+    # receivers: 
     #  - name: "null"
     #  - name: discord
     #    discord_configs:
     #      - webhook_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook" 
     #        send_resolved: true
-    receivers:
-     - name: "null"
-     - name: discord
-       slack_configs:
-       - channel: 'alerts'
-         username: "Alertmanager"
-         api_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
-         send_resolved: true
-    # templates:
-    # - '/etc/alertmanager/config/*.tmpl'
+    # receivers:
+    #  - name: "null"
+    #  - name: discord
+    #    slack_configs:
+    #    - channel: 'alerts'
+    #      username: "Alertmanager"
+    #      api_url_file: "/etc/alertmanager/secrets/alertmanager-secrets/discord_webhook"
+    #      send_resolved: true
 defaultRules:
   create: true
   rules:

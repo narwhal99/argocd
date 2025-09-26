@@ -1,0 +1,76 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discord-webhook-relay
+  namespace: monitoring
+  labels:
+    app: discord-webhook-relay
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: discord-webhook-relay
+  template:
+    metadata:
+      labels:
+        app: discord-webhook-relay
+    spec:
+      containers:
+      - name: discord-relay
+        image: nginx:1.29.1-alpine
+        ports:
+        - containerPort: 54432
+          name: http-webhook
+        env:
+        - name: DISCORD_WEBHOOK_URL
+          valueFrom:
+            secretKeyRef:
+              name: alertmanager-secrets
+              key: discord_webhook
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/templates
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: discord-webhook-relay-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: discord-webhook-relay
+  namespace: monitoring
+  labels:
+    app: discord-webhook-relay
+spec:
+  selector:
+    app: discord-webhook-relay
+  ports:
+  - name: http-webhook
+    protocol: TCP
+    port: 54432
+    targetPort: http-webhook
+  type: ClusterIP
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: discord-webhook-relay-config
+  namespace: monitoring
+data:
+  webhook_relay.conf.template: |
+    server {
+      listen 54432;
+
+      location / {
+        proxy_pass ${DISCORD_WEBHOOK_URL};
+      }
+    }

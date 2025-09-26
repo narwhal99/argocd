@@ -75,6 +75,11 @@ loki:
   tracing:
     enabled: true
 
+  structuredConfig:
+    ruler_storage: ## https://github.com/grafana/loki/issues/17832
+      backend: local
+      local:
+        directory: /var/loki/rules
   rulerConfig:
     storage:
       type: local
