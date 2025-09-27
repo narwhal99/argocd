@@ -1,20 +1,14 @@
 ---
-ingress:
-  className: nginx-internal
-  enabled: true
-  hosts:
-    - snmp-exporter.bukla.hu
-  tls:
-    - secretName: wildcard-bukla-tls
-      hosts:
-        - snmp-exporter.bukla.hu
-
 serviceMonitor:
   enabled: true
+  path: /snmp
+  module:
+    - mikrotik
+  auth:
+    - public_v2
 
 params:
-  - name: main-mikrotik
+  - name: mikrotik-main
     module:
-      - if_mib
       - mikrotik
-    target: 10.10.0.1
+    target: 10.12.0.1
