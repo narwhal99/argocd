@@ -99,6 +99,7 @@ prometheus:
         static_configs:
           - targets:
             - 10.12.0.1
+            - 10.20.0.4
             - 8.8.8.8
             - 1.1.1.1
         relabel_configs:

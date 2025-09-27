@@ -2,13 +2,13 @@ config:
   modules:
     http_2xx:
       prober: http
-      timeout: 5s
+      timeout: 10s
       http:
         method: GET
         preferred_ip_protocol: "ip4"
     http_2xx_bukla:
       prober: http
-      timeout: 5s
+      timeout: 10s
       http:
         method: GET
         preferred_ip_protocol: "ip4"
@@ -16,11 +16,12 @@ config:
           ca_file: "ssl/ca.pem"
     icmp_ipv4:
       prober: icmp
-      timeout: 5s
+      timeout: 10s
       icmp:
         preferred_ip_protocol: ip4 
     dns_rp_mx:
       prober: dns
+      timeout: 10s
       dns:
         query_name: "cnn.com"
         query_type: "MX"
