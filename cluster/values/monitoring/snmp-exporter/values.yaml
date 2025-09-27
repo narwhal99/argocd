@@ -1,0 +1,28 @@
+---
+serviceMonitor:
+  enabled: true
+  path: /snmp
+  auth:
+    - public_v2
+  params:
+    - name: mikrotik-main
+      module:
+        - mikrotik
+      target: 10.12.0.1
+
+extraVolumes:
+  - name: custom-config
+    emptyDir: {}
+
+extraVolumeMounts:
+  - name: custom-config
+    mountPath: /etc/snmp_exporter/
+    readOnly: true
+
+extraInitContainers:
+  - name: get-config
+    image: curlimages/curl:8.16.0
+    command: ['sh', '-c', "curl -o /etc/snmp_exporter/snmp.yml https://raw.githubusercontent.com/vinzcamp8/MikroTik-Monitor-Container/refs/heads/main/snmp/snmp.yml"]
+    volumeMounts:
+      - name: custom-config
+        mountPath: /etc/snmp_exporter/
