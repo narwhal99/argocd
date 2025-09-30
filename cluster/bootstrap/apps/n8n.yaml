@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: n8n
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: n8n
+    repoURL: 8gears.container-registry.com/library
+    targetRevision: 1.0.15
+    helm:
+      valueFiles:
+      - $repo/cluster/values/apps/n8n/values.yaml
+      releaseName: n8n
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/apps/n8n
+    targetRevision: master
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: apps
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+  ignoreDifferences:
+    - group: external-secrets.io
+      kind: ExternalSecret
+      jqPathExpressions:
+        - .spec.data[].remoteRef.conversionStrategy
+        - .spec.data[].remoteRef.decodingStrategy
+        - .spec.data[].remoteRef.metadataPolicy

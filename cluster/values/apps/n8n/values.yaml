@@ -1,0 +1,46 @@
+image:
+  repository: n8nio/n8n
+  tag: 1.112.6
+
+main:
+  config:
+    webhook_url: https://n8n.bukla.hu
+    n8n:
+      editor_base_url: https://n8n.bukla.hu
+    db:
+      type: postgresdb
+      postgresdb:
+        pool:
+          size: 10
+  extraEnv:
+    DB_POSTGRESDB_DATABASE:
+      value: n8n
+    DB_POSTGRESDB_HOST:
+      value: psql.bukla.hu
+    DB_POSTGRESDB_USER:
+      valueFrom:
+        secretKeyRef:
+          name: n8n-secrets
+          key: psql-user
+    DB_POSTGRESDB_PASSWORD:
+      valueFrom:
+        secretKeyRef:
+          name: n8n-secrets
+          key: psql-password
+  resources:
+    limits:
+      memory: 2048Mi
+    requests:
+      memory: 512Mi
+
+ingress:
+  enabled: true
+  className: nginx-internal
+  hosts:
+    - host: n8n.bukla.hu
+      paths:
+        - /
+  tls:
+    - secretName: wildcard-bukla-tls
+      hosts:
+        - n8n.bukla.hu
