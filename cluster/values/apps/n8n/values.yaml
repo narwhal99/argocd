@@ -17,6 +17,11 @@ main:
       value: n8n
     DB_POSTGRESDB_HOST:
       value: psql.bukla.hu
+    N8N_ENCRYPTION_KEY:
+      valueFrom:
+        secretKeyRef:
+          name: n8n-secrets
+          key: encryptkey
     DB_POSTGRESDB_USER:
       valueFrom:
         secretKeyRef:
