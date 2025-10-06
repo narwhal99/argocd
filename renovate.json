@@ -18,6 +18,14 @@
   },
   "packageRules": [
     {
+      "description": "Do Not automerge critical services",
+      "matchPackageNames": [
+        "/app-template/"
+      ],
+      "automerge": false,
+      "groupName": "Critical services"
+    },
+    {
       "description": "Auto merge container digests",
       "matchDatasources": [
         "docker"
@@ -69,13 +77,6 @@
       "versioning": "regex:^stable-(?<major>\\d+).(?<minor>\\d+).(?<patch>\\d+)?$",
       "automerge": true,
       "automergeType": "pr"
-    },
-    {
-      "description": "Do Not automerge these",
-      "matchPackageNames": [
-        "/app-template/"
-      ],
-      "automerge": false
     }
   ]
 }
