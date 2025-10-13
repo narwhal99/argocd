@@ -20,7 +20,7 @@ data:
         rules:
           - alert: SSH_login_failed_pw
             expr: |
-              sum by (user,ip) (count_over_time({job="hostlogs"} |= "Failed password" | pattern "<_> user <user> from <ip> <_>"[15m])) > 3
+              sum by (user,ip) (count_over_time({job="systemd-journal", syslog_identifier="sshd"} |= "Failed password" | pattern "<_> user <user> from <ip> <_>"[15m])) > 3
             labels:
               severity: "critical"
             annotations:
@@ -29,7 +29,7 @@ data:
         rules:
           - alert: SSH_login_failed_key
             expr: |
-              sum by (user,ip) (count_over_time({job="hostlogs"} |~ "sshd" |~ "Connection closed" | pattern "<_> user <user> <ip> <_>"[15m])) > 3
+              sum by (user,ip) (count_over_time({job="systemd-journal", syslog_identifier="sshd"} |~ "Connection closed" | pattern "<_> user <user> <ip> <_>"[15m])) > 3
             labels:
               severity: "critical"
             annotations:
