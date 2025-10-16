@@ -1,6 +1,0 @@
-apiVersion: longhorn.io/v1beta2
-kind: Setting
-metadata:
-  name: backup-target
-  namespace: storage-longhorn
-value: nfs://10.20.0.21:/mnt/tank/vault/backups/longhorn
