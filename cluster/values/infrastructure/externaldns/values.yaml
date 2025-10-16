@@ -1,22 +1,24 @@
-provider: rfc2136
 domainFilters:
   - bukla.hu
-rfc2136:
-  host: 10.20.0.4
-  zone: bukla.hu
-  tsigSecretAlg: hmac-sha512
-  tsigKeyname: externaldns
-  secretName: tsig-secret
-  tsigAxfr: true
+provider: rfc2136
 
-metrics:
+extraArgs:
+  - --rfc2136-host=10.20.0.4
+  - --rfc2136-port=53
+  - --rfc2136-zone=bukla.hu
+  - --rfc2136-min-ttl=0s
+  - --rfc2136-tsig-axfr
+  - --rfc2136-tsig-secret-alg=hmac-sha512
+  - --rfc2136-tsig-keyname=externaldns
+
+env:
+  - name: EXTERNAL_DNS_RFC2136_TSIG_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: tsig-secret
+        key: rfc2136_tsig_secret
+
+serviceMonitor:
   enabled: true
-  serviceMonitor:
-    enabled: true
 
 policy: sync
-# tolerations:
-#   - key: "HAsrv"
-#     operator: "Equal"
-#     value: "true"
-#     effect: "NoExecute"
