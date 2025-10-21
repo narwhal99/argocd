@@ -18,6 +18,7 @@ resources:
   - pvc/pdfstirling.yaml
   - pvc/scraper.yaml
   - pvc/minio.yaml
+  - pvc/mosquitto.yaml
   #- pvc/readarr.yaml
   #- pvc/jellyseerr.yaml
 commonAnnotations:
