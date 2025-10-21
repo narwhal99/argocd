@@ -1,0 +1,45 @@
+---
+controllers:
+  zigbee2mqtt:
+    type: deployment
+    containers:
+      app:
+        image:
+          repository: koenkk/zigbee2mqtt
+          tag: 2.6.2
+          pullPolicy: IfNotPresent
+        env:
+          - name: ZIGBEE2MQTT_CONFIG_MQTT_BASE_TOPIC
+            value: "zigbee2mqtt"
+          - name: ZIGBEE2MQTT_CONFIG_MQTT_SERVER
+            value: "mqtt://mosquitto.apps.svc.cluster.local:1883"
+          - name: ZIGBEE2MQTT_CONFIG_SERIAL_PORT
+            value: "tcp://10.90.0.10:6638"
+          - name: ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER
+            value: "ember"
+          - name: ZIGBEE2MQTT_CONFIG_FRONTEND_ENABLED
+            value: "true"
+          - name: ZIGBEE2MQTT_CONFIG_HOMEASSISTANT_ENABLED
+            value: "true"
+service:
+  app:
+    controller: zigbee2mqtt
+    ports:
+      http:
+        port: 8080
+
+ingress:
+  app:
+    className: "nginx-internal"
+    hosts:
+      - host: zigbee.bukla.hu
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: app
+              port: http
+    tls:
+      - hosts:
+          - zigbee.bukla.hu
+        secretName: wildcard-bukla-tls

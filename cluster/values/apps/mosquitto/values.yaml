@@ -1,0 +1,58 @@
+---
+controllers:
+  mosquitto:
+    type: deployment
+    containers:
+      app:
+        image:
+          repository: eclipse-mosquitto
+          tag: 2.0.22
+          pullPolicy: IfNotPresent
+
+service:
+  app:
+    controller: mosquitto
+    ports:
+      mqtt:
+        port: 1883
+      websocket:
+        port: 9001
+
+configMaps:
+  config:
+    enabled: true
+    data:
+      config.yaml: |
+        allow_anonymous true
+        listener 1883
+        listener 9001
+        protocol websockets
+        persistence true
+        persistence_file mosquitto.db
+        persistence_location /mosquitto/data/
+
+persistence:
+  config:
+    type: configMap
+    identifier: config
+    advancedMounts:
+      mosquitto:
+        app:
+        - path: /mosquitto/config/mosquitto.conf
+          readOnly: true
+          subPath: config.yaml
+  data:
+    existingClaim: mosquitto
+    advancedMounts:
+      mosquitto:
+        app:
+        # - path: /mosquitto/config/
+        #   subPath: config
+        - path: /mosquitto/data/
+          subPath: data
+  log:
+    type: emptyDir
+    advancedMounts:
+      mosquitto:
+        app:
+          - path: /mosquitto/log
