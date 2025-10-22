@@ -6,7 +6,7 @@ controllers:
         changedetection:
           image:
             repository: lscr.io/linuxserver/changedetection.io
-            tag: 0.50.27
+            tag: 0.50.28
             pullPolicy: IfNotPresent
           env:
             - name: TZ
