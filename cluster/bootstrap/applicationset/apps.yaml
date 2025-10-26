@@ -30,6 +30,9 @@ spec:
           - name: zigbee2mqtt
             namespace: apps
             targetRevision: master
+          - name: mktxp
+            namespace: monitoring
+            targetRevision: master
           # - name: excalidraw
           #   namespace: apps
           #   targetRevision: master
@@ -78,8 +81,6 @@ spec:
           - CreateNamespace=true
           - ServerSideApply=true
           - RespectIgnoreDifferences=true
-          # - Replace=true
-          # - PruneLast=true
       ignoreDifferences:
         - group: external-secrets.io
           kind: ExternalSecret

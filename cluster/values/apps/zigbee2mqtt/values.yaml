@@ -43,3 +43,13 @@ ingress:
       - hosts:
           - zigbee.bukla.hu
         secretName: wildcard-bukla-tls
+
+
+persistence:
+  data:
+    existingClaim: zigbee2mqtt-data
+    advancedMounts:
+      zigbee2mqtt:
+        app:
+        - path: /app/data/
+          subPath: data
