@@ -1,0 +1,39 @@
+controllers:
+    mktxp:
+      type: deployment
+      containers:
+        mktxp:
+          image:
+            repository: ghcr.io/akpw/mktxp
+            tag: 1.2.14
+            pullPolicy: IfNotPresent
+          args:
+            - --cfg-dir
+            - /mktxp-config
+            - export
+service:
+  mktxp:
+    controller: mktxp
+    type: ClusterIP
+    ports:
+      http:
+        port: 49090
+
+serviceMonitor:
+  mktxp:
+    enabled: true
+    endpoints:
+      - port: http
+        scheme: http
+        path: /metrics
+        interval: 30s
+
+persistence:
+  config:
+    type: secret
+    name: mktxp-secret
+    advancedMounts:
+      mktxp: 
+        mktxp: 
+          - path: /mktxp-config
+            readOnly: false

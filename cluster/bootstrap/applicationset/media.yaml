@@ -27,12 +27,12 @@ spec:
           - name: radarr
             namespace: media
             targetRevision: master
-          - name: sabnzbd
-            namespace: media
-            targetRevision: master
           - name: sonarr
             namespace: media
             targetRevision: master
+          # - name: sabnzbd
+          #   namespace: media
+          #   targetRevision: master
           # - name: readarr
           #   namespace: media
           #   targetRevision: master

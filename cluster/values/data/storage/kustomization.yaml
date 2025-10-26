@@ -19,6 +19,7 @@ resources:
   - pvc/scraper.yaml
   - pvc/minio.yaml
   - pvc/mosquitto.yaml
+  - pvc/zigbee2mqtt.yaml
   #- pvc/readarr.yaml
   #- pvc/jellyseerr.yaml
 commonAnnotations:
