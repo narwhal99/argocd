@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: discord-relay
-        image: nginx:1.29.2-alpine
+        image: nginx:1.29.3-alpine
         ports:
         - containerPort: 54432
           name: http-webhook
