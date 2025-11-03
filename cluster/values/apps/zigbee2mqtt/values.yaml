@@ -47,7 +47,7 @@ ingress:
 
 persistence:
   data:
-    existingClaim: zigbee2mqtt-data
+    existingClaim: zigbee2mqtt
     advancedMounts:
       zigbee2mqtt:
         app:
