@@ -21,7 +21,7 @@ extraVolumeMounts:
 
 extraInitContainers:
   - name: get-config
-    image: curlimages/curl:8.16.0
+    image: curlimages/curl:8.17.0
     command: ['sh', '-c', "curl -o /etc/snmp_exporter/snmp.yml https://raw.githubusercontent.com/vinzcamp8/MikroTik-Monitor-Container/refs/heads/main/snmp/snmp.yml"]
     volumeMounts:
       - name: custom-config
