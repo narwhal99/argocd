@@ -39,9 +39,9 @@ service:
         port: 34197
         protocol: UDP
     annotations:
-      metallb.universe.tf/allow-shared-ip: 10.20.0.151
+      metallb.universe.tf/allow-shared-ip: 10.20.110.11
       metallb.universe.tf/ip-allocated-from-pool: external
-      metallb.universe.tf/loadBalancerIPs: 10.20.0.151
+      metallb.universe.tf/loadBalancerIPs: 10.20.110.11
 
 persistence:
   config:

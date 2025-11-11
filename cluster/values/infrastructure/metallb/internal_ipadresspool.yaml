@@ -6,5 +6,5 @@ metadata:
   namespace: metallb
 spec:
   addresses:
-    - 10.20.0.110-10.20.0.120
+    - 10.20.100.10-10.20.100.20
   avoidBuggyIPs: true

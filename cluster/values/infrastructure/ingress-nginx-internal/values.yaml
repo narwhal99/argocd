@@ -11,10 +11,11 @@ controller:
   service:
     externalTrafficPolicy: Local
     annotations:
-      metallb.universe.tf/allow-shared-ip: 10.20.0.110
+      metallb.universe.tf/allow-shared-ip: 10.20.100.10
       metallb.universe.tf/ip-allocated-from-pool: internal
-      metallb.universe.tf/loadBalancerIPs: 10.20.0.110
+      metallb.universe.tf/loadBalancerIPs: 10.20.100.10
   config:
+    annotations-risk-level: Critical
     enable-real-ip: "true"
     enable-underscores-in-headers: "true"
     server-tokens: "false"
