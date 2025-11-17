@@ -1,0 +1,37 @@
+expose:
+  tls:
+    enabled: true
+    secret:
+      secretName: "wildcard-bukla-tls"
+    certSource: secret
+  ingress:
+    hosts:
+      core: harbor.bukla.hu
+    className: "nginx-internal"
+externalURL: https://harbor.bukla.hu
+
+database:
+  type: external
+  external:
+    host: "vmdocker04.bukla.hu"
+    port: "5432"
+    username: "harbor"
+    coreDatabase: "harbor"
+    existingSecret: "harbor-secret"
+
+persistence:
+  enabled: true
+  persistentVolumeClaim:
+    registry:
+      existingClaim: "harbor"
+      subPath: "registry"
+    jobservice:
+      jobLog:
+        existingClaim: "harbor"
+        subPath: "jobservice"
+    redis:
+      storageClass: "longhorn"
+      size: 1Gi
+
+trivy:
+  enabled: false

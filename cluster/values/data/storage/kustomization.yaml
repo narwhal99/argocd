@@ -20,6 +20,7 @@ resources:
   - pvc/minio.yaml
   - pvc/mosquitto.yaml
   - pvc/zigbee2mqtt.yaml
+  - pvc/harbor.yaml
   #- pvc/readarr.yaml
   #- pvc/jellyseerr.yaml
 commonAnnotations:
