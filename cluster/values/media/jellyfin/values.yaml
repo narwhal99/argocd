@@ -15,7 +15,7 @@ controllers:
       app:
         image:
           repository: jellyfin/jellyfin
-          tag: 10.11.3
+          tag: 10.11.4
           pullPolicy: IfNotPresent
 service:
   app:
