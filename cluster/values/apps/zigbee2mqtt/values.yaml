@@ -6,7 +6,7 @@ controllers:
       app:
         image:
           repository: koenkk/zigbee2mqtt
-          tag: 2.6.3
+          tag: 2.7.0
           pullPolicy: IfNotPresent
         env:
           - name: ZIGBEE2MQTT_CONFIG_MQTT_BASE_TOPIC
