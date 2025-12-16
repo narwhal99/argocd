@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: n8n
     repoURL: 8gears.container-registry.com/library
-    targetRevision: 1.1.0
+    targetRevision: 2.0.1
     helm:
       valueFiles:
       - $repo/cluster/values/apps/n8n/values.yaml
