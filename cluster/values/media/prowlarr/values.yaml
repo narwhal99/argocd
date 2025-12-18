@@ -14,7 +14,7 @@ controllers:
     containers:
       app:
         image:
-          repository: ghcr.io/onedr0p/prowlarr-develop
+          repository: ghcr.io/home-operations/prowlarr-develop
           tag: 1.32
           pullPolicy: IfNotPresent
 service:
