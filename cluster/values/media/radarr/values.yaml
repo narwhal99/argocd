@@ -13,8 +13,8 @@ controllers:
     containers:
       app:
         image:
-          repository: ghcr.io/onedr0p/radarr
-          tag: 5.19.3
+          repository: ghcr.io/home-operations/radarr
+          tag: 6.1.0.10309
           pullPolicy: IfNotPresent
 service:
   app:

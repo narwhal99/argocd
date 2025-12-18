@@ -13,8 +13,8 @@ controllers:
     containers:
       app:
         image:
-          repository: ghcr.io/onedr0p/sonarr
-          tag: 4.0.13
+          repository: ghcr.io/home-operations/sonarr
+          tag: 4.0.16.2943
           pullPolicy: IfNotPresent
 service:
   app:
