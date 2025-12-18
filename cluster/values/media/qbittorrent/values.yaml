@@ -18,7 +18,7 @@ controllers:
       qbit:
         image:
           repository: ghcr.io/home-operations/qbittorrent
-          tag: 5.0.4
+          tag: 5.1.4
           pullPolicy: IfNotPresent
         resources:
           limits:
