@@ -22,7 +22,7 @@ spec:
             namespace: apps
             targetRevision: master
           - name: ytdl
-            namespace: apps
+            namespace: torrent
             targetRevision: master
           - name: mosquitto
             namespace: apps
