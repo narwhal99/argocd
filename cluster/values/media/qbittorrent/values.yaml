@@ -41,19 +41,12 @@ controllers:
             value: "10.0.0.0/8"
           - name: FIREWALL_INPUT_PORTS
             value: 8080
-          #TESTING
-          # - name: DNS_ADDRESS
-          #   valueFrom:
-          #     secretKeyRef:
-          #       name: qbittorrent-secret
-          #       key: vpn_dns_ip
           - name: BLOCK_MALICIOUS
             value: off
           - name: BLOCK_SURVEILLANCE
             value: off
           - name: BLOCK_ADS
             value: off
-          #TILL
           - name: VPN_TYPE
             value: wireguard
           - name: VPN_INTERFACE
