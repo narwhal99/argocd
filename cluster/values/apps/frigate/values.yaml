@@ -1,0 +1,60 @@
+---
+controllers:
+    frigate:
+      type: deployment
+      containers:
+        frigate:
+          image:
+            repository: ghcr.io/blakeblackshear/frigate
+            tag: 0.16.3
+            pullPolicy: IfNotPresent
+service:
+  frigate:
+    controller: frigate
+    type: ClusterIP
+    ports:
+      http:
+        port: 5000
+
+ingress:
+  frigate:
+    className: "nginx-internal"
+    hosts:
+      - host: cam.bukla.hu
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: frigate
+              port: http
+    tls:
+      - hosts:
+          - cam.bukla.hu
+        secretName: wildcard-bukla-tls
+
+persistence:
+  data:
+    existingClaim: frigate
+    advancedMounts:
+      frigate:
+        frigate:
+        - path: /media/frigate
+          subPath: records
+        - path: /config
+          subPath: config
+  tmp:
+    type: emptyDir
+    medium: Memory
+    sizeLimit: 1Gi
+    advancedMounts:
+      frigate:
+        frigate:
+        - path: /tmp/
+  dshm:
+    type: emptyDir
+    medium: Memory
+    sizeLimit: 1Gi
+    advancedMounts:
+      frigate:
+        frigate:
+        - path: /dev/shm

@@ -33,6 +33,9 @@ spec:
           - name: mktxp
             namespace: monitoring
             targetRevision: master
+          - name: frigate
+            namespace: apps
+            targetRevision: master
           # - name: excalidraw
           #   namespace: apps
           #   targetRevision: master
