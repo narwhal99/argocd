@@ -23,7 +23,7 @@
   #  node: HAsrv
 controllers:
     homeassistant:
-      type: statefulset
+      type: deployment
       containers:
         main:
           image:

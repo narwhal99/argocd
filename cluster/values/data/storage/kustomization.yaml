@@ -21,6 +21,7 @@ resources:
   - pvc/mosquitto.yaml
   - pvc/zigbee2mqtt.yaml
   - pvc/harbor.yaml
+  - pvc/frigate.yaml
   #- pvc/readarr.yaml
   #- pvc/jellyseerr.yaml
 commonAnnotations:

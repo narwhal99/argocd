@@ -24,6 +24,7 @@ spec:
     namespace: authentik
   syncPolicy:
     automated:
+      prune: true
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
