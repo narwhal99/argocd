@@ -10,7 +10,7 @@
 
 controllers:
   sabnzbd:
-    type: statefulset
+    type: deployment
     containers:
       app:
         image:
