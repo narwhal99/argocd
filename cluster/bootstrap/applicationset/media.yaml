@@ -30,6 +30,9 @@ spec:
           - name: sonarr
             namespace: media
             targetRevision: master
+          - name: audiobookshelf
+            namespace: media
+            targetRevision: master
           # - name: sabnzbd
           #   namespace: media
           #   targetRevision: master

@@ -11,7 +11,7 @@ defaultPodOptions:
 
 controllers:
   jackett:
-    type: statefulset
+    type: deployment
     containers:
       app:
         image:

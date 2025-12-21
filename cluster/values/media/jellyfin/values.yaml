@@ -10,7 +10,7 @@ defaultPodOptions:
 
 controllers:
   jellyfin:
-    type: statefulset
+    type: deployment
     containers:
       app:
         image:

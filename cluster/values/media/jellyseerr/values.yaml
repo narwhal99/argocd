@@ -10,7 +10,7 @@ defaultPodOptions:
 
 controllers:
   jellyseerr:
-    type: statefulset
+    type: deployment
     # type: statefulset
     # replicas: 3
     # statefulset:

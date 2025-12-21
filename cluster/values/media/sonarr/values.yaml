@@ -9,7 +9,7 @@ defaultPodOptions:
 
 controllers:
   sonarr:
-    type: statefulset
+    type: deployment
     containers:
       app:
         image:

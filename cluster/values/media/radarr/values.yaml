@@ -9,7 +9,7 @@ defaultPodOptions:
 
 controllers:
   radarr:
-    type: statefulset
+    type: deployment
     containers:
       app:
         image:

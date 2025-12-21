@@ -1,0 +1,64 @@
+---
+defaultPodOptions:
+  securityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
+    fsGroupChangePolicy: "OnRootMismatch"
+    supplementalGroups:
+      - 65539
+
+controllers:
+  audiobookshelf:
+    type: deployment
+    containers:
+      audiobookshelf:
+        image:
+          repository: ghcr.io/advplyr/audiobookshelf
+          tag: 2.31.0
+          pullPolicy: IfNotPresent
+service:
+  audiobookshelf:
+    controller: audiobookshelf
+    ports:
+      http:
+        port: 80
+
+ingress:
+  audiobookshelf:
+    className: "nginx-internal"
+    hosts:
+      - host: book.bukla.hu
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: audiobookshelf
+              port: http
+    tls:
+      - hosts:
+          - book.bukla.hu
+        secretName: wildcard-bukla-tls
+
+persistence:
+  config:
+    existingClaim: audiobookshelf
+    advancedMounts:
+      audiobookshelf:
+        audiobookshelf:
+        - path: /config
+          subPath: config
+        - path: /metadata
+          subPath: metadata
+  podcasts:
+    type: nfs
+    server: 10.20.0.21
+    path: /mnt/tank/torrent/books/podcasts
+    globalMounts:
+      - path: /podcasts
+  audiobooks:
+    type: nfs
+    server: 10.20.0.21
+    path: /mnt/tank/torrent/books/audiobooks
+    globalMounts:
+      - path: /audiobooks

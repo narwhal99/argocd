@@ -22,6 +22,7 @@ resources:
   - pvc/zigbee2mqtt.yaml
   - pvc/harbor.yaml
   - pvc/frigate.yaml
+  - pvc/audiobookshelf.yaml
   #- pvc/readarr.yaml
   #- pvc/jellyseerr.yaml
 commonAnnotations:
