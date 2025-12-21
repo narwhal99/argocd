@@ -4,16 +4,16 @@
     "config:recommended"
   ],
   "argocd": {
-    "fileMatch": [
-      "cluster/bootstrap/.+\\.yaml$",
-      "cluster/argocd/.+\\.yaml$",
-      "cluster/cluster\\.yaml$"
+    "managerFilePatterns": [
+      "/cluster/bootstrap/.+\\.yaml$/",
+      "/cluster/argocd/.+\\.yaml$/",
+      "/cluster/cluster\\.yaml$/"
     ]
   },
   "helm-values": {
     "commitMessageTopic": "helm values {{depName}}",
-    "fileMatch": [
-      "cluster/values/.*\\.yaml$"
+    "managerFilePatterns": [
+      "/cluster/values/.*\\.yaml$/"
     ]
   },
   "packageRules": [
@@ -54,16 +54,22 @@
       ]
     },
     {
-      "matchUpdateTypes": ["minor"],
+      "matchUpdateTypes": [
+        "minor"
+      ],
       "groupName": "Group minor"
     },
     {
-      "matchUpdateTypes": ["patch"],
+      "matchUpdateTypes": [
+        "patch"
+      ],
       "groupName": "Group patch"
     },
     {
       "description": "Group media apps to one PR",
-      "matchFileNames": ["cluster/values/media/**"],
+      "matchFileNames": [
+        "cluster/values/media/**"
+      ],
       "groupName": "Group media"
     },
     {
