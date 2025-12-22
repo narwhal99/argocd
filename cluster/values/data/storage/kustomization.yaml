@@ -23,7 +23,6 @@ resources:
   - pvc/harbor.yaml
   - pvc/frigate.yaml
   - pvc/audiobookshelf.yaml
-  #- pvc/readarr.yaml
   #- pvc/jellyseerr.yaml
 commonAnnotations:
   argocd.argoproj.io/sync-options: Delete=false
