@@ -36,9 +36,6 @@ spec:
           # - name: sabnzbd
           #   namespace: media
           #   targetRevision: master
-          # - name: readarr
-          #   namespace: media
-          #   targetRevision: master
           # - name: jellyseerr
           #   namespace: media
           #   targetRevision: master
@@ -64,7 +61,9 @@ spec:
         namespace: '{{ .namespace }}'
         server: https://kubernetes.default.svc
       syncPolicy:
-        automated: {}
+        automated:
+          prune: true
+          selfHeal: true
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true
