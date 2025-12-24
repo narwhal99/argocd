@@ -18,6 +18,10 @@
   },
   "packageRules": [
     {
+      "matchPackageNames": ["mktxp"],
+      "allowedVersions": "<=1.2.15"
+    },
+    {
       "description": "Do Not automerge critical services",
       "matchPackageNames": [
         "/app-template/"
