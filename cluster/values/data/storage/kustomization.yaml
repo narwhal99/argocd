@@ -3,10 +3,8 @@ kind: Kustomization
 resources:
   - pvc/jellyfin.yaml
   - pvc/homeassistant.yaml
-  - pvc/filebrowser.yaml
   - pvc/muse.yaml
   - pvc/minecraft.yaml
-  - pvc/plantit.yaml
   - pvc/sonarr.yaml
   - pvc/sabnzbd.yaml
   - pvc/radarr.yaml
@@ -14,7 +12,6 @@ resources:
   - pvc/prowlarr.yaml
   - pvc/bazarr.yaml
   - pvc/jackett.yaml
-  - pvc/factorio.yaml
   - pvc/pdfstirling.yaml
   - pvc/scraper.yaml
   - pvc/minio.yaml
@@ -23,6 +20,9 @@ resources:
   - pvc/harbor.yaml
   - pvc/frigate.yaml
   - pvc/audiobookshelf.yaml
+  #- pvc/factorio.yaml
+  #- pvc/filebrowser.yaml
+  #- pvc/plantit.yaml
   #- pvc/jellyseerr.yaml
 commonAnnotations:
   argocd.argoproj.io/sync-options: Delete=false
