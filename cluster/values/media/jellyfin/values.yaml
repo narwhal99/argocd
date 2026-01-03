@@ -17,6 +17,13 @@ controllers:
           repository: jellyfin/jellyfin
           tag: 10.11.5
           pullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 3
+            memory: 2Gi
+          requests:
+            cpu: 3
+            memory: 2Gi
 service:
   app:
     controller: jellyfin
