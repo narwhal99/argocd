@@ -103,6 +103,7 @@ prometheus:
     enabled: true
   prometheusSpec:
     # replicas: 1
+    scrapeInterval: "60s"
     retentionSize: "15GiB"
     podMonitorSelectorNilUsesHelmValues: false 
     serviceMonitorSelectorNilUsesHelmValues: false
