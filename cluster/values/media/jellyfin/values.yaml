@@ -22,8 +22,8 @@ controllers:
             cpu: 3
             memory: 2Gi
           requests:
-            cpu: 3
-            memory: 2Gi
+            cpu: 1
+            memory: 1Gi
 service:
   app:
     controller: jellyfin
