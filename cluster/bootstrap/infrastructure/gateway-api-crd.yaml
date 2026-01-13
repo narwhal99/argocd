@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gateway-api-crds
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:narwhal99/argocd.git
+    targetRevision: master
+    path: cluster/values/infrastructure/gateway-api-crds
+  destination:
+    name: in-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
