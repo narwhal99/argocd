@@ -19,6 +19,7 @@ prometheus:
         static_configs:
           - targets:
             - raspi.bukla.hu:5001
+            - oci01.bukla.hu:5001
             # - lb.bukla.hu:5001
             # - vmeproxy.bukla.hu:5001
       - job_name: node-exporter
