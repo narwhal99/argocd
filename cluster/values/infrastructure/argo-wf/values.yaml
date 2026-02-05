@@ -1,0 +1,24 @@
+server:
+  authModes:
+    - sso
+  ingress:
+    enabled: true
+    ingressClassName: nginx-internal
+    hosts:
+      - argowf.bukla.hu
+    tls:
+      - secretName: wildcard-bukla-tls
+        hosts:
+          - argowf.bukla.hu
+  sso:
+    enabled: true
+    issuer: https://auth.bukla.hu/application/o/argowf/
+    clientId:
+      name: argowf-secrets
+      key: client-id
+    clientSecret:
+      name: argowf-secrets
+      key: client-secret
+    redirectUrl: "https://argowf.bukla.hu/oauth2/callback"
+    rbac:
+      enabled: false
