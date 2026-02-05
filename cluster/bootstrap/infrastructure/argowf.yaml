@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argowf
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+  - chart: argo-workflows
+    repoURL: https://argoproj.github.io/argo-helm
+    targetRevision: 0.47.2
+    helm:
+      valueFiles:
+        - $repo/cluster/values/infrastructure/argo-wf/values.yaml
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/infrastructure/argo-wf/
+    targetRevision: master
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: argowf
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
