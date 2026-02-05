@@ -15,9 +15,9 @@ spec:
     targetRevision: 9.4.0
     helm:
       valueFiles:
-        - $repo/cluster/argocd/values.yaml
+        - $repo/cluster/values/infrastructure/argo-cd/values.yaml
   - repoURL: git@github.com:narwhal99/argocd.git
-    path: cluster/argocd/
+    path: cluster/values/infrastructure/argo-cd/
     targetRevision: master
     ref: repo
   destination:
@@ -26,6 +26,7 @@ spec:
   syncPolicy:
     automated:
       selfHeal: true
+      prune: false
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
