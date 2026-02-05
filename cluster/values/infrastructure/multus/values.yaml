@@ -1,23 +1,27 @@
-## Add a volume that points to the host's /var/run/netns directory.
-extraVolumes:
-  - name: host-run-netns
-    hostPath:
-      path: /var/run/netns/
-      type: Directory
+# ## Add a volume that points to the host's /var/run/netns directory.
+# extraVolumes:
+#   - name: host-run-netns
+#     hostPath:
+#       path: /var/run/netns/
+#       type: Directory
 
-## Mount the new volume into the Multus container at /run/netns.
-extraVolumeMounts:
-  - name: host-run-netns
-    mountPath: /run/netns/
+# ## Mount the new volume into the Multus container at /run/netns.
+# extraVolumeMounts:
+#   - name: host-run-netns
+#     mountPath: /run/netns/
 
-initContainers:
- - command:
-   - /install-cni.sh
-   image: ghcr.io/siderolabs/install-cni:v1.9.0  # adapt to your talos version
-   name: install-cni
-   securityContext:
-     privileged: true
-   volumeMounts:
-   - mountPath: /host/opt/cni/bin
-     mountPropagation: Bidirectional
-     name: cni-bin-dir
+# initContainers:
+#  - command:
+#    - /install-cni.sh
+#    image: ghcr.io/siderolabs/install-cni:v1.9.0  # adapt to your talos version
+#    name: install-cni
+#    securityContext:
+#      privileged: true
+#    volumeMounts:
+#    - mountPath: /host/opt/cni/bin
+#      mountPropagation: Bidirectional
+#      name: cni-bin-dir
+
+cni:
+  netPath: /etc/cni/net.d
+  binPath: /opt/cni/bin

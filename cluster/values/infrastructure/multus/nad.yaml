@@ -1,20 +1,20 @@
-apiVersion: "k8s.cni.cncf.io/v1"
-kind: NetworkAttachmentDefinition
-metadata:
-  name: iot-vlan
-  namespace: kube-system
-spec:
-  config: |-
-    {
-      "cniVersion": "0.3.1",
-      "type": "macvlan",
-      "master": "ens19",
-      "mode": "bridge",
-      "ipam": {
-        "type": "host-local",
-        "subnet": "10.10.0.0/24",
-        "rangeStart": "10.10.0.10",
-        "rangeEnd": "10.10.0.20",
-        "gateway": "10.10.0.1"
-      }
-    }
+# apiVersion: "k8s.cni.cncf.io/v1"
+# kind: NetworkAttachmentDefinition
+# metadata:
+#   name: vlan12
+#   namespace: kube-system
+# spec:
+#   config: |-
+#     {
+#       "cniVersion": "0.3.1",
+#       "type": "macvlan",
+#       "master": "ens19",
+#       "mode": "bridge",
+#       "ipam": {
+#         "type": "host-local",
+#         "subnet": "10.12.0.0/24",
+#         "rangeStart": "10.12.0.10",
+#         "rangeEnd": "10.12.0.20",
+#         "gateway": "10.12.0.1"
+#       }
+#     }
