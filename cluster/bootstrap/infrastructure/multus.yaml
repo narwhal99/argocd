@@ -8,13 +8,13 @@
 # spec:
 #   project: default
 #   sources:
-#   - repoURL: registry-1.docker.io/bitnamicharts
-#     chart: multus-cni
-#     targetRevision: 2.2.21
+#   - repoURL: https://bjw-s-labs.github.io/helm-charts/
+#     chart: multus
+#     targetRevision: 1.1.3
 #     helm:
 #       valueFiles:
 #       - $repo/cluster/values/infrastructure/multus/values.yaml
-#       releaseName: multus-cni
+#       releaseName: multus
 #   - repoURL: git@github.com:narwhal99/argocd.git
 #     path: cluster/values/infrastructure/multus
 #     targetRevision: master
