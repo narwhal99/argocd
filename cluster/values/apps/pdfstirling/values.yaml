@@ -15,7 +15,7 @@ controllers:
         main:
           image:
             repository: stirlingtools/stirling-pdf
-            tag: 2.4.3
+            tag: 2.4.4
             pullPolicy: IfNotPresent
 
 service:
