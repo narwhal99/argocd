@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: common-git
+  namespace: argowf
+spec:
+  serviceAccountName: argo-workflow
+  templates:
+  - name: clone
+    inputs:
+      parameters:
+      - name: repo
+        default: https://github.com/narwhal99/argocd.git
+      - name: branch
+        default: "master"
+      - name: depth
+        default: "1"
+      - name: dest_path
+        default: "source"
+    container:
+      image: alpine/git:latest
+      workingDir: /workspace
+      command: [sh, -c]
+      args: 
+        - |
+          echo "Preparing to clone {{inputs.parameters.repo}}..."
+
+          git clone --depth {{inputs.parameters.depth}} \
+                    --branch {{inputs.parameters.branch}} \
+                    {{inputs.parameters.repo}} \
+                    {{inputs.parameters.dest_path}}
+
+          echo "Clone complete."
+          ls -al {{inputs.parameters.dest_path}}
+      volumeMounts:
+      - name: workdir
+        mountPath: /workspace
