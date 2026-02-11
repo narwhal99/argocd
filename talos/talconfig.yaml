@@ -1,6 +1,6 @@
 ---
 clusterName: talos-cluster
-talosVersion: v1.12.2
+talosVersion: v1.12.3
 kubernetesVersion: v1.34.2
 endpoint: https://k8s-api.bukla.hu:6443
 cniConfig:
