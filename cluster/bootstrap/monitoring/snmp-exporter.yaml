@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: prometheus-snmp-exporter
     repoURL: https://prometheus-community.github.io/helm-charts 
-    targetRevision: 9.11.1
+    targetRevision: 9.12.0
     helm:
       valueFiles:
         - $repo/cluster/values/monitoring/snmp-exporter/values.yaml
