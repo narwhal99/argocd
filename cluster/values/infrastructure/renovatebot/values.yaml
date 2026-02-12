@@ -1,6 +1,6 @@
 envFrom:
   - secretRef:
-      name: renovate-env-secrets
+      name: github-auth-token
 
 renovate:
   # -- Inline global renovate config.json

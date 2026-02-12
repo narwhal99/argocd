@@ -10,8 +10,8 @@ spec:
   project: default
   sources:
   - chart: renovate
-    repoURL: https://docs.renovatebot.com/helm-charts
-    targetRevision: 45.88.1
+    repoURL: ghcr.io/renovatebot/charts
+    targetRevision: 46.8.4
     helm:
       valueFiles:
       - $repo/cluster/values/infrastructure/renovatebot/values.yaml
