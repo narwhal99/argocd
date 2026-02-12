@@ -37,7 +37,7 @@ spec:
         arguments:
           parameters:
           - name: vault-token
-            value: "{{steps.vault-login.outputs.parameters.token}}"
+            value: "{{steps.vault-login.outputs.result}}"
 
   - name: vault-login
     container:
@@ -48,12 +48,7 @@ spec:
           export VAULT_ADDR=https://vault.bukla.hu
           vault write -field=token auth/kubernetes/login \
             role=argo-workflow \
-            jwt=@/var/run/secrets/kubernetes.io/serviceaccount/token > /tmp/token
-    outputs:
-      parameters:
-      - name: token
-        valueFrom:
-          path: /tmp/token
+            jwt=@/var/run/secrets/kubernetes.io/serviceaccount/token
 
   - name: talos-validate-deploy
     inputs:
