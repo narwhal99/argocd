@@ -1,0 +1,85 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: talos-deployment
+  namespace: argowf
+spec:
+  volumeClaimTemplates:
+  - metadata:
+      name: workdir
+    spec:
+      storageClassName: longhorn
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 250M
+  serviceAccountName: argo-workflow
+  entrypoint: talos-pipeline
+  templates:
+  - name: talos-pipeline
+    steps:
+    - - name: checkout
+        templateRef: 
+          name: common-git
+          template: clone
+        arguments:
+          parameters:
+          - name: repo
+            value: "https://github.com/narwhal99/argocd.git"
+          - name: branch
+            value: "talos"
+          - name: dest_path
+            value: "source"
+      - name: vault-login
+        template: vault-login
+    - - name: validate-and-deploy
+        template: talos-validate-deploy
+        arguments:
+          parameters:
+          - name: vault-token
+            value: "{{steps.vault-login.outputs.result}}"
+
+  - name: vault-login
+    container:
+      image: hashicorp/vault:1.21
+      command: ["sh", "-c"]
+      args:
+        - |
+          export VAULT_ADDR=https://vault.bukla.hu
+          vault write -field=token auth/kubernetes/login \
+            role=argo-workflow \
+            jwt=@/var/run/secrets/kubernetes.io/serviceaccount/token
+
+  - name: talos-validate-deploy
+    inputs:
+      parameters:
+      - name: vault-token
+    container:
+      image: ghcr.io/budimanjojo/talhelper:v3.1.4
+      workingDir: /workspace/source/talos
+      env:
+        - name: VAULT_TOKEN
+          value: "{{inputs.parameters.vault-token}}"
+      command: [sh, -c]
+      args:
+        - |
+          apk add --no-cache curl openssl
+          curl -sL https://talos.dev/install | sh
+
+          talhelper validate talconfig ./talconfig.yaml
+          talhelper genconfig
+          
+          talhelper gencommand apply | while read -r cmd; do
+            NODE_IP=$(echo "$cmd" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')
+            echo "Applying config to node: $NODE_IP"
+            eval "$cmd"
+
+            if ! echo "$cmd" | grep -q "wn"; then
+              echo "Waiting for node $NODE_IP to be healthy..."
+              talosctl health --talosconfig=./clusterconfig/talosconfig --nodes "$NODE_IP"
+              echo "Node $NODE_IP is healthy!"
+            fi
+          done
+      volumeMounts:
+      - name: workdir
+        mountPath: /workspace

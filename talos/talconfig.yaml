@@ -1,0 +1,132 @@
+---
+clusterName: talos-cluster
+talosVersion: v1.12.3
+kubernetesVersion: v1.34.2
+endpoint: https://k8s-api.bukla.hu:6443
+cniConfig:
+  name: none
+additionalMachineCertSans:
+  - k8s-api.bukla.hu
+patches:
+  - |-
+    machine:
+      features:
+        rbac: true
+        apidCheckExtKeyUsage: true
+    cluster:
+      extraManifests:
+        - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+      proxy:
+        disabled: true
+nodes:
+  - hostname: vmtalcp01.bukla.hu
+    ipAddress: 10.20.0.42
+    controlPlane: true
+    arch: amd64
+    installDisk: /dev/sda
+    nameservers:
+      - 10.20.0.1
+  - hostname: vmtalcp02.bukla.hu
+    ipAddress: 10.20.0.43
+    controlPlane: true
+    arch: amd64
+    installDisk: /dev/sda
+    nameservers:
+      - 10.20.0.1
+  - hostname: vmtalcp03.bukla.hu
+    ipAddress: 10.20.0.44
+    controlPlane: true
+    arch: amd64
+    installDisk: /dev/sda
+    nameservers:
+      - 10.20.0.1
+  - hostname: vmtalwn01.bukla.hu
+    ipAddress: 10.20.0.45
+    controlPlane: false
+    arch: amd64
+    installDisk: /dev/sda
+    nameservers:
+      - 10.20.0.1
+    patches:
+      - |-
+        machine:
+          network:
+            interfaces:
+              - interface: ens18
+                addresses:
+                  - 10.20.0.45/24
+                routes:
+                  - network: 0.0.0.0/0
+                    gateway: 10.20.0.1
+                dhcp: true
+              - interface: ens19
+                dhcp: false
+                ignore: true
+  - hostname: vmtalwn02.bukla.hu
+    ipAddress: 10.20.0.46
+    controlPlane: false
+    arch: amd64
+    installDisk: /dev/sda
+    nameservers:
+      - 10.20.0.1
+    patches:
+      - |-
+        machine:
+          network:
+            interfaces:
+              - interface: ens18
+                addresses:
+                  - 10.20.0.46/24
+                routes:
+                  - network: 0.0.0.0/0
+                    gateway: 10.20.0.1
+                dhcp: true
+              - interface: ens19
+                dhcp: false
+                ignore: true
+controlPlane:
+  patches:
+    - |-
+      cluster:
+        controllerManager:
+          extraArgs:
+            bind-address: 0.0.0.0
+        scheduler:
+          extraArgs:
+            bind-address: 0.0.0.0
+  schematic:
+    customization:
+      systemExtensions:
+        officialExtensions:
+          - siderolabs/qemu-guest-agent
+          - siderolabs/iscsi-tools
+          - siderolabs/util-linux-tools
+worker:
+  patches:
+    - |-
+      machine:
+        kubelet:
+          extraMounts:
+            - destination: /var/longhorn
+              type: bind
+              source: /var/longhorn
+              options:
+                - bind
+                - rshared
+                - rw
+        disks:
+          - device: /dev/sdb
+            partitions:
+              - mountpoint: /var/longhorn
+  disks:
+    - device: /dev/sdb
+      partitions:
+        - mountpoint: /var/longhorn
+  schematic:
+    customization:
+      systemExtensions:
+        officialExtensions:
+          - siderolabs/qemu-guest-agent
+          - siderolabs/iscsi-tools
+          - siderolabs/util-linux-tools
+
