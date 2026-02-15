@@ -14,7 +14,7 @@ controllers:
         ytdl:
           image:
             repository: ghcr.io/alexta69/metube
-            tag: 2026.02.13
+            tag: 2026.02.14
             pullPolicy: IfNotPresent
           env:
             - name: MAX_CONCURRENT_DOWNLOADS
