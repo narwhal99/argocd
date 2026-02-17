@@ -44,7 +44,8 @@ ingress:
   hosts:
     - host: n8n.bukla.hu
       paths:
-        - /
+        - path: /
+          pathType: Prefix
   tls:
     - secretName: wildcard-bukla-tls
       hosts:

@@ -17,7 +17,7 @@ server:
         secretName: wildcard-bukla-tls
 configs:
   params:
-    controller.sync.timeout.seconds: 240
+    controller.sync.timeout.seconds: 1024
   rbac:
     policy.csv: | 
       g, authentik Admins, role:admin
