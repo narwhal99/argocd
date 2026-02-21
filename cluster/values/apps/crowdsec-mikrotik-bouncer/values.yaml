@@ -1,12 +1,12 @@
 ---
-defaultPodOptions:
-  annotations:
-    k8s.v1.cni.cncf.io/networks: |
-      [{
-        "name": "iot-vlan",
-        "namespace": "kube-system",
-        "ips": ["10.10.0.16/24"]
-      }]
+# defaultPodOptions:
+#   annotations:
+#     k8s.v1.cni.cncf.io/networks: |
+#       [{
+#         "name": "iot-vlan",
+#         "namespace": "kube-system",
+#         "ips": ["10.10.0.16/24"]
+#       }]
 
 controllers:
     cs-mikrotik-bouncer:
