@@ -33,10 +33,10 @@ spec:
           - name: audiobookshelf
             namespace: media
             targetRevision: master
+          - name: seerr
+            namespace: media
+            targetRevision: master
           # - name: sabnzbd
-          #   namespace: media
-          #   targetRevision: master
-          # - name: jellyseerr
           #   namespace: media
           #   targetRevision: master
   template:

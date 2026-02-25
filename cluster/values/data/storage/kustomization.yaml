@@ -20,9 +20,9 @@ resources:
   - pvc/harbor.yaml
   - pvc/frigate.yaml
   - pvc/audiobookshelf.yaml
+  - pvc/seerr.yaml
   #- pvc/factorio.yaml
   #- pvc/filebrowser.yaml
   #- pvc/plantit.yaml
-  #- pvc/jellyseerr.yaml
 commonAnnotations:
   argocd.argoproj.io/sync-options: Delete=false

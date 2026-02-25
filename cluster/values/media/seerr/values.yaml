@@ -9,27 +9,17 @@ defaultPodOptions:
       - 65539
 
 controllers:
-  jellyseerr:
+  seerr:
     type: deployment
-    # type: statefulset
-    # replicas: 3
-    # statefulset:
-    #   volumeClaimTemplates:
-    #   - name: "storage"
-    #     globalMounts:
-    #       - path: /config
-    #     accessMode: "ReadWriteOnce"
-    #     size: "1Gi"
-    #     storageClass: "nfs-csi"
     containers:
       app:
         image:
-          repository: fallenbagel/jellyseerr
-          tag: 2.7.3
+          repository: ghcr.io/seerr-team/seerr
+          tag: v3.0.1
           pullPolicy: IfNotPresent
 service:
   app:
-    controller: jellyseerr
+    controller: seerr
     ports:
       http:
         port: 5055
@@ -38,7 +28,7 @@ ingress:
   app:
     className: "nginx-internal"
     hosts:
-      - host: jellyseerr-k.bukla.hu
+      - host: seerr.bukla.hu
         paths:
           - path: /
             pathType: Prefix
@@ -47,10 +37,10 @@ ingress:
               port: http
     tls:
       - hosts:
-          - jellyseerr-k.bukla.hu
+          - seerr.bukla.hu
         secretName: wildcard-bukla-tls
 persistence:
   config:
-    existingClaim: jellyseerr-conf
+    existingClaim: seerr-conf
     globalMounts:
-      - path: /config
+      - path: /app/config
