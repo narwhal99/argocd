@@ -36,6 +36,9 @@ spec:
           - name: seerr
             namespace: media
             targetRevision: master
+          - name: calibre
+            namespace: media
+            targetRevision: master
           # - name: sabnzbd
           #   namespace: media
           #   targetRevision: master

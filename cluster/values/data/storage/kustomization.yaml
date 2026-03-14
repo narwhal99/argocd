@@ -21,6 +21,7 @@ resources:
   - pvc/frigate.yaml
   - pvc/audiobookshelf.yaml
   - pvc/seerr.yaml
+  - pvc/calibre.yaml
   #- pvc/factorio.yaml
   #- pvc/filebrowser.yaml
   #- pvc/plantit.yaml
