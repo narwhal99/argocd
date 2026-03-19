@@ -61,6 +61,10 @@ queryFrontend:
         secretName: wildcard-bukla-tls
     hostname: thanos.bukla.hu
 
+image:
+  registry: quay.io
+  repository: thanos/thanos
+  tag: v0.41.0
 
 metrics:
   enabled: true
