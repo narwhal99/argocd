@@ -66,6 +66,10 @@ image:
   repository: thanos/thanos
   tag: v0.41.0
 
+global:
+  security:
+    allowInsecureImages: true
+
 metrics:
   enabled: true
   serviceMonitor:
