@@ -22,6 +22,7 @@ resources:
   - pvc/audiobookshelf.yaml
   - pvc/seerr.yaml
   - pvc/calibre.yaml
+  - pvc/trek.yaml
   #- pvc/factorio.yaml
   #- pvc/filebrowser.yaml
   #- pvc/plantit.yaml

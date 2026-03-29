@@ -36,6 +36,9 @@ spec:
           - name: frigate
             namespace: apps
             targetRevision: master
+          - name: trek
+            namespace: apps
+            targetRevision: master
           # - name: excalidraw
           #   namespace: apps
           #   targetRevision: master
