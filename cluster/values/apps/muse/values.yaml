@@ -15,7 +15,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/museofficial/muse
-          tag: 2.11.1
+          tag: 2.11.2
           pullPolicy: IfNotPresent
         env:
           - name: DISCORD_TOKEN
