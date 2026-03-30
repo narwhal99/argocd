@@ -1,0 +1,27 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: gateway-internal-eg
+  namespace: gateway-envoy
+spec:
+  infrastructure:
+    annotations:
+      metallb.io/address-pool: internal
+      metallb.io/loadBalancerIPs: 10.20.100.12
+  gatewayClassName: eg
+  addresses:
+  - type: IPAddress
+    value: 10.20.100.12
+  listeners:
+  - name: wildcard-bukla-tls
+    protocol: HTTPS
+    port: 443
+    hostname: "*.bukla.hu"
+    tls:
+      certificateRefs:
+      - kind: Secret
+        group: ""
+        name: wildcard-bukla-tls
+    allowedRoutes:
+      namespaces:
+        from: All

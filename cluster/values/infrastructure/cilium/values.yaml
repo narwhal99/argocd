@@ -52,6 +52,6 @@ cni:
   exclusive: true
 
 gatewayAPI:
-  enabled: true
+  enabled: false
   gatewayClass:
     create: auto

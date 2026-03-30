@@ -16,21 +16,24 @@ service:
       http:
         port: 5000
 
-ingress:
+route:
   frigate:
-    className: "nginx-internal"
-    hosts:
-      - host: cam.bukla.hu
-        paths:
-          - path: /
-            pathType: Prefix
-            service:
-              identifier: frigate
-              port: http
-    tls:
-      - hosts:
-          - cam.bukla.hu
-        secretName: wildcard-bukla-tls
+    enabled: true
+    kind: HTTPRoute
+    parentRefs:
+      - kind: Gateway
+        name: gateway-internal-eg
+        namespace: gateway-envoy
+    hostnames:
+      - "cam.bukla.hu"
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - identifier: frigate
+            port: http
 
 persistence:
   data:

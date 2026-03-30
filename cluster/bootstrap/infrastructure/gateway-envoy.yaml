@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gateway-envoy
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  project: default
+  sources:
+  - repoURL: docker.io/envoyproxy
+    chart: gateway-helm
+    targetRevision: v1.7.1
+    helm:
+      valueFiles:
+      - $repo/cluster/values/infrastructure/gateway-envoy/values.yaml
+      releaseName: gateway-envoy
+  - repoURL: git@github.com:narwhal99/argocd.git
+    targetRevision: master
+    path: cluster/values/infrastructure/gateway-envoy/
+    ref: repo
+  destination:
+    name: in-cluster
+    namespace: gateway-envoy
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
