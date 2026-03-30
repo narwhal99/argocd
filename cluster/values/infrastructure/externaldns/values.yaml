@@ -22,3 +22,9 @@ serviceMonitor:
   enabled: true
 
 policy: sync
+
+sources:
+  - service
+  - ingress
+  - gateway-grpcroute
+  - gateway-httproute
