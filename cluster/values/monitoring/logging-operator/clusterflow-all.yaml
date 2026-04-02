@@ -16,6 +16,9 @@ spec:
         reserve_data: true
         key_name: log
   match:
+    - exclude:
+        namespaces:
+          - storage-longhorn
     - select: {}
   globalOutputRefs:
     - clusteroutput-loki
