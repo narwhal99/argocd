@@ -5,7 +5,7 @@ controllers:
       trek:
         image:
           repository: mauriceboe/trek
-          tag: 2.6.2
+          tag: 2.7.2
           pullPolicy: IfNotPresent
 
 service:
