@@ -5,7 +5,7 @@ controllers:
       trek:
         image:
           repository: mauriceboe/trek
-          tag: 2.9.10
+          tag: 2.9.11
           pullPolicy: IfNotPresent
         env:
           - name: APP_URL
