@@ -2,7 +2,7 @@ prometheus:
   prometheusSpec:
     additionalScrapeConfigs:
       - job_name: cadvisor
-        scrape_interval: 60s
+        scrape_interval: 30s
         static_configs:
           - targets:
             - vmdocker04.bukla.hu:8080
@@ -14,7 +14,7 @@ prometheus:
             # - vmgames.bukla.hu:8080
             # - vmeproxy.bukla.hu:8080
       - job_name: haproxy
-        scrape_interval: 60s
+        scrape_interval: 30s
         metrics_path: /metrics
         static_configs:
           - targets:
@@ -23,7 +23,7 @@ prometheus:
             # - lb.bukla.hu:5001
             # - vmeproxy.bukla.hu:5001
       - job_name: node-exporter
-        scrape_interval: 60s
+        scrape_interval: 30s
         static_configs:
           - targets:
             - vmdocker04.bukla.hu:9100
@@ -52,6 +52,7 @@ prometheus:
       #       replacement: raspi.bukla.hu:9116
       - job_name: blackbox
         metrics_path: /probe
+        scrape_interval: 30s
         params:
           module: [http_2xx] 
         static_configs:
@@ -67,6 +68,7 @@ prometheus:
             replacement: prometheus-blackbox-exporter.monitoring:9115  # The blackbox exporter's real hostname:port.
       - job_name: blackbox_icmp
         metrics_path: /probe
+        scrape_interval: 30s
         params:
           module: [icmp_ipv4]
         static_configs:
@@ -82,6 +84,7 @@ prometheus:
             replacement: prometheus-blackbox-exporter.monitoring:9115  # The blackbox exporter's real hostname:port.
       - job_name: blackbox_dns
         metrics_path: /probe
+        scrape_interval: 30s
         params:
           module: [dns_rp_mx]
         static_configs:
@@ -99,7 +102,7 @@ prometheus:
             replacement: prometheus-blackbox-exporter.monitoring:9115  # The blackbox exporter's real hostname:port.
       - job_name: graphite-exporter 
         metrics_path: /metrics
-        scrape_interval: 60s
+        scrape_interval: 30s
         static_configs:
           - targets:
             - raspi.bukla.hu:9108
