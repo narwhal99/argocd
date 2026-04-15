@@ -19,6 +19,12 @@ controllers:
           env:
             - name: MAX_CONCURRENT_DOWNLOADS
               value: 2
+            - name: DOWNLOAD_DIR
+              value: "/torrent"
+            - name: DOWNLOAD_DIRS_INDEXABLE
+              value: true
+            - name: STATE_DIR
+              value: "/torrent/downloads/metube/"
         gluetun:
           dependsOn: ytdl
           image:
@@ -94,6 +100,6 @@ persistence:
   downloads:
     type: nfs
     server: 10.20.0.21
-    path: /mnt/tank/torrent/downloads/metube
+    path: /mnt/tank/torrent
     globalMounts:
-      - path: /downloads
+      - path: /torrent
