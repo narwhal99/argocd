@@ -4,7 +4,6 @@ resources:
   - pvc/jellyfin.yaml
   - pvc/homeassistant.yaml
   - pvc/muse.yaml
-  - pvc/minecraft.yaml
   - pvc/sonarr.yaml
   - pvc/sabnzbd.yaml
   - pvc/radarr.yaml
@@ -23,6 +22,7 @@ resources:
   - pvc/seerr.yaml
   - pvc/calibre.yaml
   - pvc/trek.yaml
+  #- pvc/minecraft.yaml
   #- pvc/factorio.yaml
   #- pvc/filebrowser.yaml
   #- pvc/plantit.yaml

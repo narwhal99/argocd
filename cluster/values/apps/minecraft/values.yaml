@@ -1,15 +1,4 @@
 ---
-defaultPodOptions:
-  affinity:
-    nodeAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 100
-        preference:
-          matchExpressions:
-          - key: node
-            operator: NotIn
-            values:
-            - HAsrv
 controllers:
     minecraft:
       containers:
@@ -22,13 +11,13 @@ controllers:
           stdin: true
           env:
             - name: VERSION
-              value: "1.21.4"
+              value: "26.1.2"
             - name: EULA
               value: true
             - name: INIT_MEMORY
               value: 128m
             - name: MAX_MEMORY
-              value: 10240m
+              value: 4096m
             - name: VIEW_DISTANCE
               value: 15
             - name: TZ
@@ -37,26 +26,25 @@ controllers:
               value: survival
             - name: DIFFICULTY
               value: hard
-            - name: TYPE
-              value: "FOLIA"
-            - name: PLUGINS
-              value: |
-                https://github.com/sladkoff/minecraft-prometheus-exporter/releases/download/v3.1.2/minecraft-prometheus-exporter-3.1.2.jar
+            # - name: TYPE
+            #   value: "FOLIA"
+            # - name: PLUGINS
+            #   value: |
+            #     https://github.com/sladkoff/minecraft-prometheus-exporter/releases/download/v3.1.2/minecraft-prometheus-exporter-3.1.2.jar
           resources:
             limits:
-              cpu: 4
-              memory: 12Gi
+              cpu: 2
+              memory: 4Gi
             requests:
               cpu: 1
-              memory: 4Gi
+              memory: 1Gi
 service:
-  # Configure a service for the main application
-  prometheus:
-    controller: minecraft
-    type: ClusterIP
-    ports:
-      http:
-        port: 9940  
+  # prometheus:
+  #   controller: minecraft
+  #   type: ClusterIP
+  #   ports:
+  #     http:
+  #       port: 9940  
   app:
     controller: minecraft
     type: LoadBalancer
@@ -71,39 +59,17 @@ service:
       metallb.universe.tf/ip-allocated-from-pool: external
       metallb.universe.tf/loadBalancerIPs: 10.20.110.15
 
-serviceMonitor:
-  main:
-    enabled: true
-    serviceName: minecraft-prometheus
-    endpoints:
-      - port: http
-        scheme: http
-        path: /metrics
-        scrapeTimeout: 10s
+# serviceMonitor:
+#   main:
+#     enabled: true
+#     serviceName: minecraft-prometheus
+#     endpoints:
+#       - port: http
+#         scheme: http
+#         path: /metrics
+#         scrapeTimeout: 10s
 persistence:
   data:
-    existingClaim: minecraft-data
+    existingClaim: minecraft-data-202604
     globalMounts:
       - path: /data
-
-# configMaps:
-#       config:
-#         enabled: true
-#         data:
-#           config.yml: |
-#             service:
-#               enableregistration: false
-#               timezone: Europe/Budapest
-#               frontendUrl: https://vikunja.bukla.hu
-#             auth:
-#               local:
-#                 enabled: false
-#               openid:
-#                 enabled: true
-#                 redirecturl: https://vikunja.bukla.com/auth/openid/
-#                 providers:
-#                   - name: Authentik
-#                     authurl: https://authentik.bukla.hu/application/o/authorize/
-#                     logouturl: https://authentik.bukla.hu/application/o/vikunja/end-session/
-#                     clientid: $authentik-client-id
-#                     clientsecret: $authentik.client.secret

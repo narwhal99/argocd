@@ -39,13 +39,13 @@ spec:
           - name: trek
             namespace: apps
             targetRevision: master
+          - name: minecraft
+            namespace: apps
+            targetRevision: master
           # - name: excalidraw
           #   namespace: apps
           #   targetRevision: master
           # - name: factorio
-          #   namespace: apps
-          #   targetRevision: master
-          # - name: minecraft
           #   namespace: apps
           #   targetRevision: master
           # - name: plantit
