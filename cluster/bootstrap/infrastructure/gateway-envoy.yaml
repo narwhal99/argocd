@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: docker.io/envoyproxy
     chart: gateway-helm
-    targetRevision: v1.7.1
+    targetRevision: 1.7.2
     helm:
       valueFiles:
       - $repo/cluster/values/infrastructure/gateway-envoy/values.yaml
