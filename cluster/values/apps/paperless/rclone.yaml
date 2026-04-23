@@ -1,0 +1,55 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: rclone-sync-job
+  namespace: apps
+spec:
+  schedule: "*/10 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+          initContainers:
+          - name: copy-config
+            image: busybox:latest
+            command: ['sh', '-c', 'cp /config-ro/rclone.conf /config/rclone.conf']
+            volumeMounts:
+            - name: rclone-config-ro
+              mountPath: /config-ro
+              readOnly: true
+            - name: rclone-config-rw
+              mountPath: /config
+          containers:
+          - name: rclone
+            image: rclone/rclone:latest
+            command: ["rclone"]
+            args:
+              - "move"
+              - "paperless:paperless"
+              - "/data/paperless-consume"
+              - "--config"
+              - "/config/rclone.conf"
+              - "--delete-empty-src-dirs"
+            volumeMounts:
+              - name: paperless-consume-volume
+                mountPath: /data/paperless-consume
+                subPath: consume
+              - name: rclone-config-rw
+                mountPath: /config
+          restartPolicy: OnFailure
+          volumes:
+            - name: paperless-consume-volume
+              persistentVolumeClaim:
+                claimName: paperless-data
+            - name: rclone-config-ro
+              secret:
+                secretName: paperless-secrets
+                items:
+                  - key: rclone_config_file
+                    path: rclone.conf
+            - name: rclone-config-rw
+              emptyDir: {}
