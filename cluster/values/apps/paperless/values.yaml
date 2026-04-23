@@ -23,12 +23,16 @@ controllers:
                 secretKeyRef:
                   name: paperless-secrets
                   key: redis-url
+            - name: PAPERLESS_OCR_LANGUAGES
+              value: eng deu
+            - name: PAPERLESS_URL
+              value: "https://paper.bukla.hu"
             - name: POSTGRES_DB
               value: paperless
             - name: PAPERLESS_APPS
               value: allauth.socialaccount.providers.openid_connect
             - name: PAPERLESS_LOGOUT_REDIRECT_URL
-              value: "https://authentik.company/application/o/paperless/end-session/"
+              value: "https://auth.bukla.hu/application/o/paperless/end-session/"
             - name: PAPERLESS_DISABLE_REGULAR_LOGIN
               value: true
             - name: PAPERLESS_SOCIAL_AUTO_SIGNUP
@@ -42,8 +46,8 @@ controllers:
                   key: oidc-config
           resources:
             limits:
-              cpu: 500m
-              memory: 1Gi
+              cpu: 1
+              memory: 2Gi
             requests:
               cpu: 100m
               memory: 250M
