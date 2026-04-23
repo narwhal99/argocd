@@ -18,8 +18,14 @@ controllers:
                 secretKeyRef:
                   name: paperless-secrets
                   key: db_user
+            - name: PAPERLESS_REDIS
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-secrets
+                  key: redis-url
             - name: POSTGRES_DB
               value: paperless
+
           resources:
             limits:
               cpu: 500m
