@@ -1,0 +1,12 @@
+architecture: standalone
+replicaCount: 3
+clusterReplicaCount: 0
+auth:
+  enabled: true
+  existingSecret: "redis-secret"
+  existingSecretPasswordKey: "redis-password"
+
+persistence:
+  enabled: true
+  size: 8Gi
+  storageClass: "longhorn"
