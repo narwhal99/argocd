@@ -3,11 +3,10 @@ global:
   extraEnvFrom:
     - secretRef:
         name: minio-auth
-  extraArgs:
-    - '-config.expand-env=true'
 loki:
   auth_enabled: false
-
+  extraArgs:
+    - '-config.expand-env=true'
   analytics:
     reporting_enabled: false
     usage_stats_url: ""
