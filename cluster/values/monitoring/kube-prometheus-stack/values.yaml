@@ -124,7 +124,7 @@ prometheus:
           resources:
             requests:
               storage: 20Gi
-          storageClassName: longhorn
+          storageClassName: longhorn-cache
     thanos:
       objectStorageConfig:
         existingSecret:

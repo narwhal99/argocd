@@ -16,7 +16,7 @@ storegateway:
   resourcesPreset: "medium"
   persistence:
     enabled: true
-    storageClass: "longhorn"
+    storageClass: "longhorn-cache"
     size: 10Gi
 
 compactor:

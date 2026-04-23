@@ -1,9 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - pvc/jellyfin.yaml
   - pvc/homeassistant.yaml
-  - pvc/muse.yaml
   - pvc/sonarr.yaml
   - pvc/sabnzbd.yaml
   - pvc/radarr.yaml
@@ -16,8 +14,6 @@ resources:
   - pvc/minio.yaml
   - pvc/mosquitto.yaml
   - pvc/zigbee2mqtt.yaml
-  - pvc/harbor.yaml
-  - pvc/frigate.yaml
   - pvc/audiobookshelf.yaml
   - pvc/seerr.yaml
   - pvc/calibre.yaml

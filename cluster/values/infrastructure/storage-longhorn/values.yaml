@@ -13,6 +13,9 @@ persistence:
   reclaimPolicy: Retain
   defaultClass: false
   defaultClassReplicaCount: 1
+  recurringJobSelector:
+    enable: true
+    jobList: '[{"name":"backup", "isGroup":true}]'
 
 defaultBackupStore:
   backupTarget: nfs://10.20.0.21:/mnt/tank/vault/backups/longhorn

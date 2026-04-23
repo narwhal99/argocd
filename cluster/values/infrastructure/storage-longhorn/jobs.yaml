@@ -9,10 +9,9 @@ spec:
   retain: 3
   cron: 0 4 * * *
   groups:
-  - default
+  - backup
   labels: {}
   name: daily-snapshot
-
   task: snapshot
 ---
 apiVersion: longhorn.io/v1beta2
@@ -25,7 +24,7 @@ spec:
   retain: 3
   cron: 0 5 * * 0
   groups:
-  - default
+  - backup
   labels: {}
   name: weekly-backup
   task: backup

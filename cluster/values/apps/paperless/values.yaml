@@ -46,7 +46,7 @@ controllers:
                   key: oidc-config
           resources:
             limits:
-              cpu: 1
+              cpu: 2
               memory: 2Gi
             requests:
               cpu: 100m
@@ -89,3 +89,5 @@ persistence:
           subPath: data
         - path: /usr/src/paperless/media
           subPath: media
+        - path: /usr/src/paperless/consume
+          subPath: consume

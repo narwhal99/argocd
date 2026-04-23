@@ -16,7 +16,7 @@ logging:
     bufferStorageVolume:
       pvc:
         spec:
-          storageClassName: longhorn
+          storageClassName: longhorn-cache
           accessModes:
             - ReadWriteOnce
           resources:

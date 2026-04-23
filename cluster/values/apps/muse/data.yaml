@@ -3,10 +3,12 @@ kind: PersistentVolumeClaim
 metadata:
   name: muse-data
   namespace: apps
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
+  storageClassName: longhorn-cache
   resources:
     requests:
       storage: 240Mi
