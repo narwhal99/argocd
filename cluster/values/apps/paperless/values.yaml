@@ -1,0 +1,67 @@
+---
+controllers:
+    app:
+      containers:
+        paperless:
+          image:
+            repository: ghcr.io/paperless-ngx/paperless-ngx
+            tag: 2.20.14
+            pullPolicy: IfNotPresent
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-secrets
+                  key: db_pw
+            - name: POSTGRES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-secrets
+                  key: db_user
+            - name: POSTGRES_DB
+              value: paperless
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 250M
+service:
+  app:
+    controller: app
+    type: ClusterIP
+    ports:
+      http:
+        port: 8000
+
+
+route:
+  app:
+    enabled: true
+    kind: HTTPRoute
+    parentRefs:
+      - kind: Gateway
+        name: gateway-internal-eg
+        namespace: gateway-envoy
+    hostnames:
+      - "paper.bukla.hu"
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - identifier: app
+            port: http
+
+persistence:
+  data:
+    existingClaim: paperless-data
+    advancedMounts:
+      app:
+        paperless:
+        - path: /usr/src/paperless/data
+          subPath: data
+        - path: /usr/src/paperless/media
+          subPath: media
