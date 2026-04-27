@@ -4,3 +4,8 @@ talos-cluster-vmtalcp03.bukla.hu.yaml
 talos-cluster-vmtalwn01.bukla.hu.yaml
 talos-cluster-vmtalwn02.bukla.hu.yaml
 talosconfig
+talos-cluster-vmtalcp01.raymol.com.yaml
+talos-cluster-vmtalcp02.raymol.com.yaml
+talos-cluster-vmtalcp03.raymol.com.yaml
+talos-cluster-vmtalwn01.raymol.com.yaml
+talos-cluster-vmtalwn02.raymol.com.yaml

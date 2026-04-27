@@ -9,10 +9,10 @@
 #       - 65539
 
 controllers:
-    factorio:
+    main:
       type: statefulset
       containers:
-        main:
+        factorio:
           image:
             repository: factoriotools/factorio
             tag: stable-2.0.76
@@ -29,8 +29,8 @@ controllers:
               value: narwhal99
 service:
   # Configure a service for the main application
-  app:
-    controller: factorio
+  main:
+    controller: main
     type: LoadBalancer
     ports:
       tcp:

@@ -1,8 +1,8 @@
 ---
 controllers:
-    plantit:
+    main:
       containers:
-        main:
+        plantit:
           image:
             repository: msdeluise/plant-it-server
             tag: 0.10.0
@@ -58,8 +58,8 @@ controllers:
             # - name: CACHE_PORT
             #   value: 6379
 service:
-  plantit:
-    controller: plantit
+  maion:
+    controller: main
     type: ClusterIP
     ports:
       http:
@@ -67,7 +67,7 @@ service:
       api:
         port: 8080
 ingress:
-  plantit:
+  main:
     className: "nginx-internal"
     hosts:
       - host: plant.bukla.hu
@@ -80,7 +80,7 @@ ingress:
           - path: /api
             pathType: Prefix
             service:
-              identifier: plantit
+              identifier: main
               port: api
     tls:
       - hosts:

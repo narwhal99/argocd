@@ -9,36 +9,40 @@ defaultPodOptions:
     #   - 65539
 
 controllers:
-  prowlarr:
+  main:
     type: deployment
     containers:
-      app:
+      prowlarr:
         image:
           repository: ghcr.io/home-operations/prowlarr
           tag: 2.3.6.5351
           pullPolicy: IfNotPresent
 service:
-  app:
-    controller: prowlarr
+  main:
+    controller: main
     ports:
       http:
         port: 9696
 
-ingress:
-  app:
-    className: "nginx-internal"
-    hosts:
-      - host: prowlarr.bukla.hu
-        paths:
-          - path: /
-            pathType: Prefix
-            service:
-              identifier: app
-              port: http
-    tls:
-      - hosts:
-          - prowlarr.bukla.hu
-        secretName: wildcard-bukla-tls
+route:
+  main:
+    enabled: true
+    kind: HTTPRoute
+    parentRefs:
+      - kind: Gateway
+        name: gateway-internal-eg
+        namespace: gateway-envoy
+    hostnames:
+      - "prowlarr.raymol.com"
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - identifier: main
+            port: http
+
 persistence:
   config:
     existingClaim: prowlarr-conf

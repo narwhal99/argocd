@@ -2,11 +2,11 @@
 clusterName: talos-cluster
 talosVersion: v1.12.3
 kubernetesVersion: v1.34.2
-endpoint: https://k8s-api.bukla.hu:6443
+endpoint: https://k8s-api.raymol.com:6443
 cniConfig:
   name: none
 additionalMachineCertSans:
-  - k8s-api.bukla.hu
+  - k8s-api.raymol.com
 patches:
   - |-
     machine:
@@ -19,28 +19,28 @@ patches:
       proxy:
         disabled: true
 nodes:
-  - hostname: vmtalcp01.bukla.hu
+  - hostname: vmtalcp01.raymol.com
     ipAddress: 10.20.0.42
     controlPlane: true
     arch: amd64
     installDisk: /dev/sda
     nameservers:
       - 10.20.0.1
-  - hostname: vmtalcp02.bukla.hu
+  - hostname: vmtalcp02.raymol.com
     ipAddress: 10.20.0.43
     controlPlane: true
     arch: amd64
     installDisk: /dev/sda
     nameservers:
       - 10.20.0.1
-  - hostname: vmtalcp03.bukla.hu
+  - hostname: vmtalcp03.raymol.com
     ipAddress: 10.20.0.44
     controlPlane: true
     arch: amd64
     installDisk: /dev/sda
     nameservers:
       - 10.20.0.1
-  - hostname: vmtalwn01.bukla.hu
+  - hostname: vmtalwn01.raymol.com
     ipAddress: 10.20.0.45
     controlPlane: false
     arch: amd64
@@ -62,7 +62,7 @@ nodes:
               - interface: ens19
                 dhcp: false
                 ignore: true
-  - hostname: vmtalwn02.bukla.hu
+  - hostname: vmtalwn02.raymol.com
     ipAddress: 10.20.0.46
     controlPlane: false
     arch: amd64

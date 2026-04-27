@@ -22,41 +22,43 @@
   #nodeSelector:
   #  node: HAsrv
 controllers:
-    homeassistant:
+    main:
       type: deployment
       containers:
-        main:
+        homeassistant:
           image:
             repository: homeassistant/home-assistant
             tag: 2026.4.4
             pullPolicy: IfNotPresent
           env:
             - name: DNS_SERVER_DOMAIN
-              value: hass.bukla.hu
+              value: hass.raymol.com
 service:
-  # Configure a service for the main application
-  app:
-    controller: homeassistant
+  main:
+    controller: main
     type: ClusterIP
     ports:
       http:
         port: 8123
-ingress:
-  # Configure an Ingress for the main application
-  app:
-    className: "nginx-internal"
-    hosts:
-      - host: hass.bukla.hu
-        paths:
-          - path: /
-            pathType: Prefix
-            service:
-              identifier: app
-              port: http
-    tls:
-      - hosts:
-          - hass.bukla.hu
-        secretName: wildcard-bukla-tls
+
+route:
+  main:
+    enabled: true
+    kind: HTTPRoute
+    parentRefs:
+      - kind: Gateway
+        name: gateway-internal-eg
+        namespace: gateway-envoy
+    hostnames:
+      - "hass.raymol.com"
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - identifier: main
+            port: http
 
 persistence:
   config:

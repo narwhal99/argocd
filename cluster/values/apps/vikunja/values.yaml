@@ -9,10 +9,10 @@ defaultPodOptions:
       - 65539
 
 controllers:
-    vikunja:
+    main:
       type: statefulset
       containers:
-        main:
+        vikunja:
           image:
             repository: vikunja/vikunja
             tag: latest
@@ -47,8 +47,8 @@ controllers:
 
 service:
   # Configure a service for the main application
-  app:
-    controller: vikunja
+  main:
+    controller: main
     type: ClusterIP
     ports:
       http:
@@ -56,7 +56,7 @@ service:
 
 ingress:
   # Configure an Ingress for the main application
-  app:
+  main:
     className: "nginx-internal"
     hosts:
       - host: vikunja.bukla.hu
@@ -64,7 +64,7 @@ ingress:
           - path: /
             pathType: Prefix
             service:
-              identifier: app
+              identifier: main
               port: http
 persistence:
   config:

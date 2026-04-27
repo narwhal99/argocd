@@ -1,17 +1,17 @@
 ---
 controllers:
-  mosquitto:
+  main:
     type: deployment
     containers:
-      app:
+      mosquitto:
         image:
           repository: eclipse-mosquitto
           tag: 2.0.22
           pullPolicy: IfNotPresent
 
 service:
-  app:
-    controller: mosquitto
+  main:
+    controller: main
     ports:
       mqtt:
         port: 1883
@@ -36,16 +36,16 @@ persistence:
     type: configMap
     identifier: config
     advancedMounts:
-      mosquitto:
-        app:
+      main:
+        mosquitto:
         - path: /mosquitto/config/mosquitto.conf
           readOnly: true
           subPath: config.yaml
   data:
     existingClaim: mosquitto
     advancedMounts:
-      mosquitto:
-        app:
+      main:
+        mosquitto:
         # - path: /mosquitto/config/
         #   subPath: config
         - path: /mosquitto/data/
@@ -53,6 +53,6 @@ persistence:
   log:
     type: emptyDir
     advancedMounts:
-      mosquitto:
-        app:
+      main:
+        mosquitto:
           - path: /mosquitto/log

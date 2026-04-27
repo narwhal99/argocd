@@ -5,6 +5,16 @@ global:
     - configMapRef:
         name: authentik-envs
 server:
+  route:
+    main:
+      enabled: true
+      kind: HTTPRoute
+      parentRefs:
+        - kind: Gateway
+          name: gateway-internal-eg
+          namespace: gateway-envoy
+      hostnames:
+        - "auth.raymol.com"
   ingress:
     enabled: true
     ingressClassName: nginx-internal

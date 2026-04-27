@@ -13,15 +13,15 @@ spec:
   - type: IPAddress
     value: 10.20.100.12
   listeners:
-  - name: wildcard-bukla-tls
+  - name: wildcard-raymol-tls
     protocol: HTTPS
     port: 443
-    hostname: "*.bukla.hu"
+    hostname: "*.raymol.com"
     tls:
       certificateRefs:
       - kind: Secret
         group: ""
-        name: wildcard-bukla-tls
+        name: wildcard-raymol-tls
     allowedRoutes:
       namespaces:
         from: All

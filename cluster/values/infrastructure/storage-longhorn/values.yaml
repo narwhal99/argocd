@@ -1,9 +1,12 @@
-ingress:
-  ingressClassName: nginx-internal
+httproute:
   enabled: true
-  host: longhorn.bukla.hu
-  tls: true
-  tlsSecret: wildcard-bukla-tls
+  parentRefs:
+  - kind: Gateway
+    name: gateway-internal-eg
+    namespace: gateway-envoy
+  hostnames:
+    - "longhorn.raymol.com"
+  path: /
 
 preUpgradeChecker:
   # -- Setting that allows Longhorn to perform pre-upgrade checks. Disable this setting when installing Longhorn using Argo CD or other GitOps solutions.

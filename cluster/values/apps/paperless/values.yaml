@@ -6,7 +6,7 @@ defaultPodOptions:
     fsGroup: 568
 
 controllers:
-    app:
+    main:
       containers:
         paperless:
           image:
@@ -36,13 +36,13 @@ controllers:
             - name: PAPERLESS_OCR_LANGUAGES
               value: eng deu
             - name: PAPERLESS_URL
-              value: "https://paper.bukla.hu"
+              value: "https://paper.raymol.com"
             - name: POSTGRES_DB
               value: paperless
             - name: PAPERLESS_APPS
               value: allauth.socialaccount.providers.openid_connect
             - name: PAPERLESS_LOGOUT_REDIRECT_URL
-              value: "https://auth.bukla.hu/application/o/paperless/end-session/"
+              value: "https://auth.raymol.com/application/o/paperless/end-session/"
             - name: PAPERLESS_DISABLE_REGULAR_LOGIN
               value: true
             - name: PAPERLESS_SOCIAL_AUTO_SIGNUP
@@ -62,8 +62,8 @@ controllers:
               cpu: 100m
               memory: 250M
 service:
-  app:
-    controller: app
+  main:
+    controller: main
     type: ClusterIP
     ports:
       http:
@@ -71,7 +71,7 @@ service:
 
 
 route:
-  app:
+  main:
     enabled: true
     kind: HTTPRoute
     parentRefs:
@@ -79,21 +79,21 @@ route:
         name: gateway-internal-eg
         namespace: gateway-envoy
     hostnames:
-      - "paper.bukla.hu"
+      - "paper.raymol.com"
     rules:
       - matches:
           - path:
               type: PathPrefix
               value: /
         backendRefs:
-          - identifier: app
+          - identifier: main
             port: http
 
 persistence:
   data:
     existingClaim: paperless-data
     advancedMounts:
-      app:
+      main:
         paperless:
         - path: /usr/src/paperless/data
           subPath: data

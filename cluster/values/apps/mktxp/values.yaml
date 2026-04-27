@@ -1,5 +1,5 @@
 controllers:
-    mktxp:
+    main:
       type: deployment
       containers:
         mktxp:
@@ -13,15 +13,15 @@ controllers:
             - /mktxp-config
             - export
 service:
-  mktxp:
-    controller: mktxp
+  main:
+    controller: main
     type: ClusterIP
     ports:
       http:
         port: 49090
 
 serviceMonitor:
-  mktxp:
+  main:
     enabled: true
     endpoints:
       - port: http
@@ -33,7 +33,7 @@ persistence:
     type: secret
     name: mktxp-secret
     advancedMounts:
-      mktxp: 
+      main: 
         mktxp: 
           - path: /mktxp-config
             readOnly: false

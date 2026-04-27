@@ -9,11 +9,11 @@ controllers:
           pullPolicy: IfNotPresent
         env:
           - name: APP_URL
-            value: https://travel.bukla.hu
+            value: https://travel.raymol.com
           - name: OIDC_ONLY
             value: true
           - name: OIDC_ISSUER
-            value: https://auth.bukla.hu/application/o/trek/
+            value: https://auth.raymol.com/application/o/trek/
           - name: OIDC_CLIENT_ID
             valueFrom:
               secretKeyRef:
@@ -55,7 +55,7 @@ route:
         name: gateway-internal-eg
         namespace: gateway-envoy
     hostnames:
-      - "travel.bukla.hu"
+      - "travel.raymol.com"
     rules:
       - matches:
           - path:

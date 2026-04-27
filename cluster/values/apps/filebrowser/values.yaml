@@ -1,9 +1,9 @@
 ---
 controllers:
-    filebrowser:
+    main:
       type: statefulset
       containers:
-        main:
+        filebrowser:
           image:
             repository: docker.io/filebrowser/filebrowser
             tag: v2.63.2
@@ -11,8 +11,8 @@ controllers:
 
 service:
   # Configure a service for the main application
-  app:
-    controller: filebrowser
+  main:
+    controller: main
     type: ClusterIP
     ports:
       http:
@@ -20,7 +20,7 @@ service:
 
 ingress:
   # Configure an Ingress for the main application
-  app:
+  main:
     className: "nginx-external"
     hosts:
       - host: file.bukla.hu

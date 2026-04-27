@@ -1,6 +1,6 @@
 ---
 controllers:
-    frigate:
+    main:
       type: deployment
       containers:
         frigate:
@@ -9,15 +9,15 @@ controllers:
             tag: 0.17.1
             pullPolicy: IfNotPresent
 service:
-  frigate:
-    controller: frigate
+  main:
+    controller: main
     type: ClusterIP
     ports:
       http:
         port: 5000
 
 route:
-  frigate:
+  main:
     enabled: true
     kind: HTTPRoute
     parentRefs:
@@ -25,21 +25,21 @@ route:
         name: gateway-internal-eg
         namespace: gateway-envoy
     hostnames:
-      - "cam.bukla.hu"
+      - "cam.raymol.com"
     rules:
       - matches:
           - path:
               type: PathPrefix
               value: /
         backendRefs:
-          - identifier: frigate
+          - identifier: main
             port: http
 
 persistence:
   data:
     existingClaim: frigate
     advancedMounts:
-      frigate:
+      main:
         frigate:
         - path: /media/frigate
           subPath: records
@@ -50,7 +50,7 @@ persistence:
     medium: Memory
     sizeLimit: 1Gi
     advancedMounts:
-      frigate:
+      main:
         frigate:
         - path: /tmp/
   dshm:
@@ -58,6 +58,6 @@ persistence:
     medium: Memory
     sizeLimit: 1Gi
     advancedMounts:
-      frigate:
+      main:
         frigate:
         - path: /dev/shm

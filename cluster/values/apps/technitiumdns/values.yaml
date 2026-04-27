@@ -16,10 +16,10 @@
   # nodeSelector:
   #   node: HAsrv
 controllers:
-    technitiumdns:
+    main:
       type: statefulset
       containers:
-        main:
+        technitiumdns:
           image:
             repository: technitium/dns-server
             tag: 13.1
@@ -29,8 +29,8 @@ controllers:
               value: tech-dns02.bukla.hu
 service:
   # Configure a service for the main application
-  app:
-    controller: technitiumdns
+  main:
+    controller: main
     type: LoadBalancer
     ports:
       tcp:
@@ -48,7 +48,7 @@ service:
 
 ingress:
   # Configure an Ingress for the main application
-  app:
+  main:
     className: "nginx-internal"
     hosts:
       - host: tech-dns02.bukla.hu
