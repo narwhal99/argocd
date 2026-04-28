@@ -15,7 +15,7 @@ controllers:
       audiobookshelf:
         image:
           repository: ghcr.io/advplyr/audiobookshelf
-          tag: 2.33.2
+          tag: 2.34.0
           pullPolicy: IfNotPresent
 service:
   main:
