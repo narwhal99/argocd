@@ -32,9 +32,28 @@ service:
         port: 8096
 
 route:
-  main:
+  internal:
     enabled: true
     kind: HTTPRoute
+    parentRefs:
+      - kind: Gateway
+        name: gateway-internal-eg
+        namespace: gateway-envoy
+    hostnames:
+      - "jellyfin.raymol.com"
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - identifier: main
+            port: http
+  external:
+    enabled: true
+    kind: HTTPRoute
+    annotations:
+      external-dns.alpha.kubernetes.io/controller: thiscanbeanything-just-to-be-ignored
     parentRefs:
       - kind: Gateway
         name: gateway-external-eg
