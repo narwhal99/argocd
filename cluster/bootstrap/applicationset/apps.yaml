@@ -45,6 +45,9 @@ spec:
           - name: paperless
             namespace: apps
             targetRevision: master
+          - name: cyberchef
+            namespace: apps
+            targetRevision: master
           # - name: excalidraw
           #   namespace: apps
           #   targetRevision: master
