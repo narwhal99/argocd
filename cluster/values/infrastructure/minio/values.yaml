@@ -58,13 +58,13 @@ svcaccts:
     user: tminio
 oidc:
   enabled: false
-  configUrl: "https://auth.bukla.hu/application/o/minio/.well-known/openid-configuration"
+  configUrl: "https://auth.raymol.com/application/o/minio/.well-known/openid-configuration"
   existingClientSecretName: "oidc-auth"
   existingClientIdKey: "oidc-clientid"
   existingClientSecretKey: "oidc-clientsecretkey"
   scopes: "openid,profile,email"
   claimName: "policy"
-  redirectUri: "https://minio-console.bukla.hu/oauth_callback"
+  redirectUri: "https://minio-console.raymol.com/oauth_callback"
 
 metrics:
   serviceMonitor:

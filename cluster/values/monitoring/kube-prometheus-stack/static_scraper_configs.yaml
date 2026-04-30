@@ -5,35 +5,35 @@ prometheus:
         scrape_interval: 30s
         static_configs:
           - targets:
-            - vmdocker04.bukla.hu:8080
-            - raspi.bukla.hu:8080
-            - oci01.bukla.hu:8080
-            # - lb.bukla.hu:8080
-            # - vmdocker02.bukla.hu:8080
-            # - vmfail2ban.bukla.hu:8080
-            # - vmgames.bukla.hu:8080
-            # - vmeproxy.bukla.hu:8080
+            - vmdocker04.raymol.com:8080
+            - raspi.raymol.com:8080
+            - oci01.raymol.com:8080
+            # - lb.raymol.com:8080
+            # - vmdocker02.raymol.com:8080
+            # - vmfail2ban.raymol.com:8080
+            # - vmgames.raymol.com:8080
+            # - vmeproxy.raymol.com:8080
       - job_name: haproxy
         scrape_interval: 30s
         metrics_path: /metrics
         static_configs:
           - targets:
-            - raspi.bukla.hu:5001
-            - oci01.bukla.hu:5001
-            # - lb.bukla.hu:5001
-            # - vmeproxy.bukla.hu:5001
+            - raspi.raymol.com:5001
+            - oci01.raymol.com:5001
+            # - lb.raymol.com:5001
+            # - vmeproxy.raymol.com:5001
       - job_name: node-exporter
         scrape_interval: 30s
         static_configs:
           - targets:
-            - vmdocker04.bukla.hu:9100
-            - raspi.bukla.hu:9100
-            - pve01.bukla.hu:9100
-            - oci01.bukla.hu:9100
-            # - lb.bukla.hu:9100
-            # - vmeproxy.bukla.hu:9100
-            # - vmdocker02.bukla.hu:9100
-            # - vmgames.bukla.hu:9100
+            - vmdocker04.raymol.com:9100
+            - raspi.raymol.com:9100
+            - pve01.raymol.com:9100
+            - oci01.raymol.com:9100
+            # - lb.raymol.com:9100
+            # - vmeproxy.raymol.com:9100
+            # - vmdocker02.raymol.com:9100
+            # - vmgames.raymol.com:9100
       # - job_name: mikrotik
       #   scrape_interval: 10s
       #   static_configs:
@@ -49,7 +49,7 @@ prometheus:
       #       target_label: instance
       #     - target_label: __address__
       #       # replacement: 10.20.0.61:9116 # KUBE SNMP NOT WORKING
-      #       replacement: raspi.bukla.hu:9116
+      #       replacement: raspi.raymol.com:9116
       - job_name: blackbox
         metrics_path: /probe
         scrape_interval: 30s
@@ -57,8 +57,8 @@ prometheus:
           module: [http_2xx] 
         static_configs:
           - targets:
-            - https://jellyfin.bukla.hu
-            # - https://file.bukla.hu
+            - https://jellyfin.raymol.com
+            # - https://file.raymol.com
         relabel_configs:
           - source_labels: [__address__]
             target_label: __param_target
@@ -73,7 +73,7 @@ prometheus:
           module: [icmp_ipv4]
         static_configs:
           - targets:
-            - pve01.mgmt.bukla.hu
+            - pve01.mgmt.raymol.com
             - 10.75.0.1
         relabel_configs:
           - source_labels: [__address__]
@@ -105,4 +105,4 @@ prometheus:
         scrape_interval: 30s
         static_configs:
           - targets:
-            - raspi.bukla.hu:9108
+            - raspi.raymol.com:9108

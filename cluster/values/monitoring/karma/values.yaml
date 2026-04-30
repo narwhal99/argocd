@@ -2,11 +2,20 @@ ingress:
   enabled: true
   ingressClassName: nginx-internal
   hosts:
-    - karma.bukla.hu
+    - karma.raymol.com
   tls:
     - secretName: wildcard-bukla-tls
       hosts:
-        - karma.bukla.hu
+        - karma.raymol.com
+httpRoute:
+  enabled: true
+  kind: HTTPRoute
+  parentRefs:
+    - kind: Gateway
+      name: gateway-internal-eg
+      namespace: gateway-envoy
+  hostnames:
+    - "karma.raymol.com"
 
 configMap:
   enabled: true
@@ -16,7 +25,7 @@ configMap:
       servers:
         - name: prometheus
           uri: http://alertmanager-operated:9093
-          external_uri: "https://alertmanager.bukla.hu"
+          external_uri: "https://alertmanager.raymol.com"
           proxy: true
           healthcheck:
             filters:

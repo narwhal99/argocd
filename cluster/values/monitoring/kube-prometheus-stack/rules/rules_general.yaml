@@ -29,7 +29,7 @@ spec:
             summary: Host high CPU load (instance {{ $labels.instance }})
             description: "CPU load is > 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
         - alert: HostCpuHighIowait
-          expr: (avg by (instance) (rate(node_cpu_seconds_total{mode="iowait", instance!="raspi.bukla.hu:9100"}[5m])) * 100 > 10) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+          expr: (avg by (instance) (rate(node_cpu_seconds_total{mode="iowait", instance!="raspi.raymol.com:9100"}[5m])) * 100 > 10) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
           for: 5m
           labels:
             severity: warning
@@ -57,7 +57,7 @@ spec:
     - name: rules-general-storage
       rules:
         - alert: HostUnusualDiskReadLatency
-          expr: (rate(node_disk_read_time_seconds_total{instance!="raspi.bukla.hu:9100"}[1m]) / rate(node_disk_reads_completed_total{instance!="raspi.bukla.hu:9100"}[1m]) > 0.1 and rate(node_disk_reads_completed_total{instance!="raspi.bukla.hu:9100"}[1m]) > 0) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+          expr: (rate(node_disk_read_time_seconds_total{instance!="raspi.raymol.com:9100"}[1m]) / rate(node_disk_reads_completed_total{instance!="raspi.raymol.com:9100"}[1m]) > 0.1 and rate(node_disk_reads_completed_total{instance!="raspi.raymol.com:9100"}[1m]) > 0) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
           for: 2m
           labels:
             severity: warning
@@ -65,7 +65,7 @@ spec:
             summary: Host unusual disk read latency (instance {{ $labels.instance }})
             description: "Disk latency is growing (read operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
         - alert: HostUnusualDiskWriteLatency
-          expr: (rate(node_disk_write_time_seconds_total{instance!="raspi.bukla.hu:9100"}[1m]) / rate(node_disk_writes_completed_total[1m]) > 0.1 and rate(node_disk_writes_completed_total{instance!="raspi.bukla.hu:9100"}[1m]) > 0) * on (instance) group_left (nodename) node_uname_info{nodename=~".+"}
+          expr: (rate(node_disk_write_time_seconds_total{instance!="raspi.raymol.com:9100"}[1m]) / rate(node_disk_writes_completed_total[1m]) > 0.1 and rate(node_disk_writes_completed_total{instance!="raspi.raymol.com:9100"}[1m]) > 0) * on (instance) group_left (nodename) node_uname_info{nodename=~".+"}
           for: 2m
           labels:
             severity: warning

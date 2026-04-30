@@ -16,14 +16,14 @@ server:
               value: /
   sso:
     enabled: true
-    issuer: https://auth.bukla.hu/application/o/argowf/
+    issuer: https://auth.raymol.com/application/o/argowf/
     clientId:
       name: argowf-secrets
       key: client-id
     clientSecret:
       name: argowf-secrets
       key: client-secret
-    redirectUrl: "https://argowf.bukla.hu/oauth2/callback"
+    redirectUrl: "https://argowf.raymol.com/oauth2/callback"
     rbac:
       enabled: false
 singleNamespace: true

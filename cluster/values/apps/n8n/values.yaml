@@ -16,7 +16,7 @@ main:
     DB_POSTGRESDB_DATABASE:
       value: n8n
     DB_POSTGRESDB_HOST:
-      value: psql.bukla.hu
+      value: psql.raymol.com
     N8N_ENCRYPTION_KEY:
       valueFrom:
         secretKeyRef:

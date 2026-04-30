@@ -4,16 +4,19 @@ expose:
     secret:
       secretName: "wildcard-bukla-tls"
     certSource: secret
-  ingress:
+  route:
+    parentRefs:
+    - kind: Gateway
+      name: gateway-internal-eg
+      namespace: gateway-envoy
     hosts:
-      core: harbor.bukla.hu
-    className: "nginx-internal"
-externalURL: https://harbor.bukla.hu
+    - "harbor.raymol.com"
+externalURL: https://harbor.raymol.com
 
 database:
   type: external
   external:
-    host: "vmdocker04.bukla.hu"
+    host: "vmdocker04.raymol.com"
     port: "5432"
     username: "harbor"
     coreDatabase: "harbor"

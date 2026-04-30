@@ -111,18 +111,16 @@ sidecar:
 gateway:
   nginxConfig:
     clientMaxBodySize: 50M
-  ingress:
-    ingressClassName: "nginx-internal"
-    enabled: true
-    hosts:
-      - host: loki-gateway.bukla.hu
-        paths:
-          - path: /
-            pathType: Prefix
-    tls:
-      - hosts:
-          - loki-gateway.bukla.hu
-        secretName: wildcard-bukla-tls
+  route:
+    main:
+      enabled: true
+      kind: HTTPRoute
+      parentRefs:
+        - kind: Gateway
+          name: gateway-internal-eg
+          namespace: gateway-envoy
+      hostnames:
+        - "loki-gateway.raymol.com"
 
 monitoring:
   dashboards:

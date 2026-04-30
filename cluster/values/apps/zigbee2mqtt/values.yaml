@@ -53,7 +53,7 @@ persistence:
   data:
     existingClaim: zigbee2mqtt
     advancedMounts:
-      zigbee2mqtt:
-        app:
+      main:
+        zigbee2mqtt:
         - path: /app/data/
           subPath: data
