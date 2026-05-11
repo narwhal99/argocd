@@ -39,9 +39,9 @@ spec:
           - name: trek
             namespace: apps
             targetRevision: master
-          - name: minecraft
-            namespace: apps
-            targetRevision: master
+        #  - name: minecraft
+        #    namespace: apps
+        #    targetRevision: master
           - name: paperless
             namespace: apps
             targetRevision: master
