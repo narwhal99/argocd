@@ -52,7 +52,7 @@ grafana:
         token: $influxdb_token
     - name: Loki
       type: loki
-      url: https://loki-gateway.bukla.hu
+      url: https://loki-gateway.raymol.com
       # alertmanager:
       #   enabled: true
       #   name: Alertmanager
