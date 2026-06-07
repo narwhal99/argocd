@@ -1,39 +1,39 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: harbor
-  namespace: argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-spec:
-  project: default
-  sources:
-  - repoURL: https://helm.goharbor.io
-    chart: harbor
-    targetRevision: 1.19.1
-    helm:
-      valueFiles:
-      - $repo/cluster/values/infrastructure/harbor/values.yaml
-      releaseName: harbor
-  - repoURL: git@github.com:narwhal99/argocd.git
-    path: cluster/values/infrastructure/harbor
-    targetRevision: master
-    ref: repo
-  destination:
-    name: in-cluster
-    namespace: harbor
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
-    syncOptions:
-    - CreateNamespace=true
-    - ServerSideApply=true
-  ignoreDifferences:
-    - group: external-secrets.io
-      kind: ExternalSecret
-      jqPathExpressions:
-        - .spec.data[].remoteRef.conversionStrategy
-        - .spec.data[].remoteRef.decodingStrategy
-        - .spec.data[].remoteRef.metadataPolicy
-        - .spec.data[].remoteRef.nullBytePolicy
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: harbor
+#   namespace: argocd
+#   finalizers:
+#   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: default
+#   sources:
+#   - repoURL: https://helm.goharbor.io
+#     chart: harbor
+#     targetRevision: 1.19.1
+#     helm:
+#       valueFiles:
+#       - $repo/cluster/values/infrastructure/harbor/values.yaml
+#       releaseName: harbor
+#   - repoURL: git@github.com:narwhal99/argocd.git
+#     path: cluster/values/infrastructure/harbor
+#     targetRevision: master
+#     ref: repo
+#   destination:
+#     name: in-cluster
+#     namespace: harbor
+#   syncPolicy:
+#     automated:
+#       selfHeal: true
+#       prune: true
+#     syncOptions:
+#     - CreateNamespace=true
+#     - ServerSideApply=true
+#   ignoreDifferences:
+#     - group: external-secrets.io
+#       kind: ExternalSecret
+#       jqPathExpressions:
+#         - .spec.data[].remoteRef.conversionStrategy
+#         - .spec.data[].remoteRef.decodingStrategy
+#         - .spec.data[].remoteRef.metadataPolicy
+#         - .spec.data[].remoteRef.nullBytePolicy
