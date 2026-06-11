@@ -1,15 +1,21 @@
 #namespaceOverride: "monitoring"
 grafana:
   enabled: true
-  ingress:
-    ingressClassName: nginx-internal
-    enabled: true
-    hosts:
-      - grafana.bukla.hu
-    tls:
-      - secretName: wildcard-bukla-tls
-        hosts:
-          - grafana.bukla.hu
+  route:
+    main:
+      enabled: true
+      apiVersion: gateway.networking.k8s.io/v1
+      kind: HTTPRoute
+      hostnames:
+        - grafana.raymol.com
+      parentRefs:
+        - name: gateway-internal-eg
+          kind: Gateway
+          namespace: gateway-envoy
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
   resources:
     limits:
       memory: 5Gi
@@ -34,6 +40,9 @@ grafana:
       enabled: true
       defaultDatasourceEnabled: false
   additionalDataSources:
+    - name: Loki
+      type: loki
+      url: https://loki-gateway.raymol.com
     - name: Thanos
       type: prometheus
       url: http://thanos-query:9090/
@@ -50,9 +59,6 @@ grafana:
         organization: "bukla"
       secureJsonData:
         token: $influxdb_token
-    - name: Loki
-      type: loki
-      url: https://loki-gateway.raymol.com
       # alertmanager:
       #   enabled: true
       #   name: Alertmanager
@@ -70,7 +76,7 @@ grafana:
       enabled: true
     check_for_updates: "false"
     server:
-      root_url: "https://grafana.bukla.hu"
+      root_url: "https://grafana.raymol.com"
   envFromSecret: "grafana-secret"
   env:
     GF_AUTH_GENERIC_OAUTH_API_URL: https://auth.raymol.com/application/o/userinfo/

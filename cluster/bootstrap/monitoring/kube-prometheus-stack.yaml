@@ -16,11 +16,14 @@ spec:
         - $repo/cluster/values/monitoring/kube-prometheus-stack/values.yaml
         - $repo/cluster/values/monitoring/kube-prometheus-stack/static_scraper_configs.yaml
   - repoURL: git@github.com:narwhal99/argocd.git
-    path: cluster/values/monitoring/kube-prometheus-stack
     targetRevision: master
     ref: repo
+  - repoURL: git@github.com:narwhal99/argocd.git
+    path: cluster/values/monitoring/kube-prometheus-stack
+    targetRevision: master
     directory:
       recurse: true
+      exclude: '{values.yaml,static_scraper_configs.yaml}'
   destination:
     name: in-cluster
     namespace: monitoring
