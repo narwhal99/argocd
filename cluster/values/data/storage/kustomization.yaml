@@ -20,7 +20,6 @@ resources:
   - pvc/trek.yaml
   #- pvc/minecraft.yaml
   #- pvc/factorio.yaml
-  #- pvc/filebrowser.yaml
   #- pvc/plantit.yaml
 commonAnnotations:
   argocd.argoproj.io/sync-options: Delete=false

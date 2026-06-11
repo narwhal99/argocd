@@ -57,10 +57,10 @@ spec:
           # - name: plantit
           #   namespace: apps
           #   targetRevision: master
-          #- name: filebrowser
-          #  namespace: apps
-          #  targetRevision: master
-          #- name: technitiumdns
+          - name: filebrowser
+            namespace: apps
+            targetRevision: master
+          # - name: technitiumdns
           #  namespace: infraservices
           #  targetRevision: master
           #- name: vikunja
