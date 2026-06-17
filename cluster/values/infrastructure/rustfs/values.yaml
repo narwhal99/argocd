@@ -1,0 +1,50 @@
+ingress:
+  enabled: false
+gatewayApi:
+  enabled: false
+  # gatewayClass: eg
+  # existingGateway: 
+  #   name: gateway-internal-eg
+  #   namespace: gateway-envoy
+  # hostname: rustfs.raymol.com
+
+config:
+  rustfs:
+    obs_log_directory: "" # disable log dir
+mode:
+  standalone:
+    enabled: true
+    existingClaim:
+      dataClaim: rustfs-data
+  distributed:
+    enabled: false
+secret:
+  existingSecret: "rustfs-secret"
+
+
+extraManifests:
+  - apiVersion: gateway.networking.k8s.io/v1
+    kind: HTTPRoute
+    metadata:
+      annotations:
+      name: rustfs-route
+      namespace: rustfs
+    spec:
+      hostnames:
+      - rustfs.raymol.com
+      parentRefs:
+      - group: gateway.networking.k8s.io
+        kind: Gateway
+        name: gateway-internal-eg
+        namespace: gateway-envoy
+      rules:
+      - backendRefs:
+        - group: ""
+          kind: Service
+          name: rustfs-svc
+          port: 9001
+          weight: 1
+        matches:
+        - path:
+            type: PathPrefix
+            value: /

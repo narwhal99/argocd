@@ -2,7 +2,7 @@
 global:
   extraEnvFrom:
     - secretRef:
-        name: minio-auth
+        name: s3-auth
 loki:
   auth_enabled: false
   extraArgs:
@@ -37,7 +37,8 @@ loki:
     object_store:
       s3:
         bucket_name: loki
-        endpoint: minio.bukla.hu
+        endpoint: rustfs-svc.rustfs.svc.cluster.local:9000
+        insecure: true
 
   server:
     grpc_server_max_recv_msg_size: 52428800
