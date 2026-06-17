@@ -114,6 +114,9 @@ prometheus:
     retentionSize: "15GiB"
     podMonitorSelectorNilUsesHelmValues: false 
     serviceMonitorSelectorNilUsesHelmValues: false
+    scrapeConfigSelector:
+      matchLabels:
+        prometheus: kube-prometheus-stack
     ruleSelector:
       matchExpressions:
       - key: release
@@ -193,8 +196,8 @@ alertmanager:
       receiver: discord
       repeat_interval: 1w      
       routes:
-        - match:
-            severity: none
+        - matchers:
+            - severity = "none"
           receiver: "null"
         - receiver: 'discord'
           continue: true

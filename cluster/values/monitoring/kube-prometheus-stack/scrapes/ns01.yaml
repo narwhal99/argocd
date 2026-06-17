@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: dns-metrics
+  namespace: monitoring
+  labels:
+    prometheus: kube-prometheus-stack
+spec:
+  staticConfigs:
+    - targets:
+      - "ns01.raymol.com"
+  scheme: HTTPS
+  metricsPath: /api/dashboard/metrics/text 
+  authorization:
+    type: Bearer
+    credentials:
+      name: scrape-secrets
+      key: ns01_api_token  

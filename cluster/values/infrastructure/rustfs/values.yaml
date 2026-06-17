@@ -10,6 +10,7 @@ gatewayApi:
 
 config:
   rustfs:
+    log_level: "error"
     obs_log_directory: "" # disable log dir
 mode:
   standalone:
@@ -20,31 +21,3 @@ mode:
     enabled: false
 secret:
   existingSecret: "rustfs-secret"
-
-
-extraManifests:
-  - apiVersion: gateway.networking.k8s.io/v1
-    kind: HTTPRoute
-    metadata:
-      annotations:
-      name: rustfs-route
-      namespace: rustfs
-    spec:
-      hostnames:
-      - rustfs.raymol.com
-      parentRefs:
-      - group: gateway.networking.k8s.io
-        kind: Gateway
-        name: gateway-internal-eg
-        namespace: gateway-envoy
-      rules:
-      - backendRefs:
-        - group: ""
-          kind: Service
-          name: rustfs-svc
-          port: 9001
-          weight: 1
-        matches:
-        - path:
-            type: PathPrefix
-            value: /
