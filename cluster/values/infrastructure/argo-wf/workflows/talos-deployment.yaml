@@ -55,7 +55,7 @@ spec:
       parameters:
       - name: vault-token
     container:
-      image: ghcr.io/budimanjojo/talhelper:v3.1.11
+      image: ghcr.io/budimanjojo/talhelper:v3.1.12
       workingDir: /workspace/source/talos
       env:
         - name: VAULT_TOKEN
