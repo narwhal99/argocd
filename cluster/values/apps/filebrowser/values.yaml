@@ -15,7 +15,7 @@ controllers:
         filebrowser:
           image:
             repository: docker.io/filebrowser/filebrowser
-            tag: v2.63.17
+            tag: v2.63.18
             pullPolicy: IfNotPresent
 
 service:
