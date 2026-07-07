@@ -90,6 +90,7 @@ persistence:
 configMaps:
       config:
         enabled: true
+        suffix: config
         data:
           settings.json: |
             {

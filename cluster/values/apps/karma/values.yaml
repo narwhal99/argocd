@@ -11,7 +11,7 @@ controllers:
           - name: CONFIG_FILE
             value: /etc/karma/karma.conf
 service:
-  karma:
+  main:
     controller: main
     type: ClusterIP
     ports:
@@ -19,7 +19,7 @@ service:
         port: 80
 
 route:
-  internal:
+  main:
     enabled: true
     kind: HTTPRoute
     parentRefs:
@@ -51,6 +51,7 @@ persistence:
 configMaps:
   config:
     enabled: true
+    suffix: config
     data:
       settings.yaml: |
         alertmanager:

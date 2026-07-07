@@ -4,9 +4,9 @@ image:
 
 main:
   config:
-    webhook_url: https://n8n.bukla.hu
+    webhook_url: https://n8n.raymol.com
     n8n:
-      editor_base_url: https://n8n.bukla.hu
+      editor_base_url: https://n8n.raymol.com
     db:
       type: postgresdb
       postgresdb:
@@ -38,15 +38,4 @@ main:
     requests:
       memory: 512Mi
 
-ingress:
-  enabled: true
-  className: nginx-internal
-  hosts:
-    - host: n8n.bukla.hu
-      paths:
-        - path: /
-          pathType: Prefix
-  tls:
-    - secretName: wildcard-bukla-tls
-      hosts:
-        - n8n.bukla.hu
+# httproute: https://github.com/8gears/n8n-helm-chart/pull/277

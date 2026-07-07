@@ -2,15 +2,14 @@ existingObjstoreSecret: thanos-objectstore-secret
 bucketweb:
   enabled: true
   resourcesPreset: "small"
-  ingress:
+  httpRoute:
     enabled: true
-    ingressClassName: "nginx-internal"
-    extraTls:
-      - hosts:
-        - thanos-bucket.bukla.hu
-        secretName: wildcard-bukla-tls
-    hostname: thanos-bucket.bukla.hu
-
+    parentRefs:
+      - kind: Gateway
+        name: gateway-internal-eg
+        namespace: gateway-envoy
+    hostnames:
+      - thanos-bucket.raymol.com
 storegateway:
   enabled: true
   resourcesPreset: "medium"
@@ -25,14 +24,14 @@ compactor:
   retentionResolutionRaw: 30d
   retentionResolution5m: 60d
   retentionResolution1h: 90d
-  ingress:
+  httpRoute:
     enabled: true
-    ingressClassName: "nginx-internal"
-    extraTls:
-      - hosts:
-        - thanos-compactor.bukla.hu
-        secretName: wildcard-bukla-tls
-    hostname: thanos-compactor.bukla.hu
+    parentRefs:
+      - kind: Gateway
+        name: gateway-internal-eg
+        namespace: gateway-envoy
+    hostnames:
+      - thanos-compactor.raymol.com
   persistence:
     enabled: true
     size: 100Gi
@@ -52,14 +51,14 @@ query:
 queryFrontend:
   enabled: true
   resourcesPreset: "medium"
-  ingress:
+  httpRoute:
     enabled: true
-    ingressClassName: "nginx-internal"
-    extraTls:
-      - hosts:
-        - thanos.bukla.hu
-        secretName: wildcard-bukla-tls
-    hostname: thanos.bukla.hu
+    parentRefs:
+      - kind: Gateway
+        name: gateway-internal-eg
+        namespace: gateway-envoy
+    hostnames:
+      - thanos.raymol.com
 
 image:
   registry: quay.io

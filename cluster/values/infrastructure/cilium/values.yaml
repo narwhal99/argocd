@@ -10,16 +10,7 @@ hubble:
     enabled: true
   ui:
     enabled: true
-    ingress:
-      className: nginx-internal 
-      enabled: true
-      hosts:
-        - hubble.bukla.hu
-      tls:
-        - hosts:
-          - hubble.bukla.hu
-          secretName: wildcard-bukla-tls
-      replicas: 1
+    # httproute https://github.com/cilium/cilium/pull/46792
 ipam:
   mode: kubernetes
 kubeProxyReplacement: true

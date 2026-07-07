@@ -15,15 +15,6 @@ server:
           namespace: gateway-envoy
       hostnames:
         - "auth.raymol.com"
-  ingress:
-    enabled: true
-    ingressClassName: nginx-internal
-    hosts:
-      - auth.bukla.hu
-    tls:
-      - secretName: wildcard-bukla-tls
-        hosts:
-          - auth.bukla.hu
   metrics:
     enabled: true
     serviceMonitor:

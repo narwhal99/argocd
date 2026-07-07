@@ -45,7 +45,7 @@ spec:
       command: ["sh", "-c"]
       args:
         - |
-          export VAULT_ADDR=https://vault.bukla.hu
+          export VAULT_ADDR=https://vault.raymol.com
           vault write -field=token auth/kubernetes/login \
             role=argo-workflow \
             jwt=@/var/run/secrets/kubernetes.io/serviceaccount/token
