@@ -1,0 +1,70 @@
+controllers:
+  main:
+    type: deployment
+    containers:
+      karma:
+        image:
+          repository: ghcr.io/prymitive/karma
+          tag: v0.131
+          pullPolicy: IfNotPresent
+        env:
+          - name: CONFIG_FILE
+            value: /etc/karma/karma.conf
+service:
+  karma:
+    controller: main
+    type: ClusterIP
+    ports:
+      http:
+        port: 80
+
+route:
+  internal:
+    enabled: true
+    kind: HTTPRoute
+    parentRefs:
+      - kind: Gateway
+        name: gateway-internal-eg
+        namespace: gateway-envoy
+    hostnames:
+      - "karma.raymol.com"
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - identifier: main
+            port: http
+
+persistence:
+  config:
+    type: configMap
+    name: karma-config
+    advancedMounts:
+      main: 
+        karma: 
+          - path: /etc/karma/karma.conf
+            readOnly: true
+            subPath: settings.yaml
+
+configMaps:
+  config:
+    enabled: true
+    data:
+      settings.yaml: |
+        alertmanager:
+          interval: 30s
+          servers:
+            - name: prometheus
+              uri: http://alertmanager-operated:9093
+              external_uri: "https://alertmanager.raymol.com"
+              proxy: true
+              healthcheck:
+                filters:
+                  Watchdog:
+                    - alertname=Watchdog
+                    - severity=none
+        filters:
+          default:
+            - "@state=active"

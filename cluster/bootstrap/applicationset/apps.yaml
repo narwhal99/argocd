@@ -60,6 +60,9 @@ spec:
           - name: filebrowser
             namespace: apps
             targetRevision: master
+          - name: karma
+            namespace: monitoring
+            targetRevision: master
           # - name: technitiumdns
           #  namespace: infraservices
           #  targetRevision: master
