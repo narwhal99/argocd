@@ -11,12 +11,12 @@ controllers:
           - name: CONFIG_FILE
             value: /etc/karma/karma.conf
 service:
-  main:
+  karma:
     controller: main
     type: ClusterIP
     ports:
       http:
-        port: 80
+        port: 8080
 
 route:
   main:
@@ -34,7 +34,7 @@ route:
               type: PathPrefix
               value: /
         backendRefs:
-          - identifier: main
+          - identifier: karma
             port: http
 
 persistence:
