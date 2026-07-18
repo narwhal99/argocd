@@ -10,7 +10,7 @@ spec:
   sources:
   - chart: rustfs
     repoURL: https://charts.rustfs.com
-    targetRevision: 0.8.0
+    targetRevision: 0.10.0
     helm:
       valueFiles:
       - $repo/cluster/values/infrastructure/rustfs/values.yaml

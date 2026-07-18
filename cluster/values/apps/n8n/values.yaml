@@ -1,6 +1,6 @@
 image:
   repository: n8nio/n8n
-  tag: 2.29.6
+  tag: 2.31.3
 
 main:
   config:
