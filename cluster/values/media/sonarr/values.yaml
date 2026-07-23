@@ -41,6 +41,8 @@ route:
         backendRefs:
           - identifier: main
             port: http
+        timeouts:
+          request: 60s
 
 persistence:
   config:
