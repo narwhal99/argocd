@@ -39,15 +39,24 @@ spec:
           - name: trek
             namespace: apps
             targetRevision: master
-        #  - name: minecraft
-        #    namespace: apps
-        #    targetRevision: master
           - name: paperless
             namespace: apps
             targetRevision: master
           - name: cyberchef
             namespace: apps
             targetRevision: master
+          - name: filebrowser
+            namespace: apps
+            targetRevision: master
+          - name: karma
+            namespace: monitoring
+            targetRevision: master
+          - name: vaultwarden
+            namespace: apps
+            targetRevision: master
+          # - name: minecraft
+          #   namespace: apps
+          #   targetRevision: master
           # - name: excalidraw
           #   namespace: apps
           #   targetRevision: master
@@ -57,12 +66,6 @@ spec:
           # - name: plantit
           #   namespace: apps
           #   targetRevision: master
-          - name: filebrowser
-            namespace: apps
-            targetRevision: master
-          - name: karma
-            namespace: monitoring
-            targetRevision: master
           # - name: technitiumdns
           #  namespace: infraservices
           #  targetRevision: master
