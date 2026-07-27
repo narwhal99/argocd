@@ -15,7 +15,7 @@ controllers:
       prowlarr:
         image:
           repository: ghcr.io/home-operations/prowlarr
-          tag: 2.5.2.5491
+          tag: 2.6.0.5494
           pullPolicy: IfNotPresent
 service:
   main:
