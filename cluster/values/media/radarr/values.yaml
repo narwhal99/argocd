@@ -14,7 +14,7 @@ controllers:
       radarr:
         image:
           repository: ghcr.io/home-operations/radarr
-          tag: 6.4.0.10540
+          tag: 6.4.1.10545
           pullPolicy: IfNotPresent
 service:
   main:
