@@ -29,6 +29,11 @@ controllers:
                 secretKeyRef:
                   name: paperless-secrets
                   key: redis-url
+            - name: PAPERLESS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-secrets
+                  key: paperless-secret-key
             - name: PAPERLESS_CONSUMER_POLLING
               value: 60
             - name: PAPERLESS_LOGGING_DIR
