@@ -11,22 +11,31 @@ defaultPodOptions:
 controllers:
   main:
     type: deployment
-    # type: statefulset
-    # replicas: 3
-    # statefulset:
-    #   volumeClaimTemplates:
-    #   - name: "storage"
-    #     globalMounts:
-    #       - path: /config
-    #     accessMode: "ReadWriteOnce"
-    #     size: "1Gi"
-    #     storageClass: "nfs-csi"
     containers:
       bazarr:
         image:
           repository: ghcr.io/home-operations/bazarr
           tag: 1.6.0
           pullPolicy: IfNotPresent
+        env:
+          - name: POSTGRES_ENABLED
+            value: true
+          - name: POSTGRES_HOST
+            value: psql.raymol.com
+          - name: POSTGRES_PORT
+            value: 5432
+          - name: POSTGRES_DATABASE
+            value: bazarr
+          - name: POSTGRES_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: bazarr-secret
+                key: psql_username
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: bazarr-secret
+                key: psql_pw
 service:
   main:
     controller: main
@@ -53,7 +62,8 @@ route:
         backendRefs:
           - identifier: main
             port: http
-
+        timeouts:
+          request: 120s
 persistence:
   config:
     existingClaim: bazarr-conf

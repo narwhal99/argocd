@@ -42,7 +42,7 @@ route:
           - identifier: main
             port: http
         timeouts:
-          request: 60s
+          request: 120s
 
 persistence:
   config:
