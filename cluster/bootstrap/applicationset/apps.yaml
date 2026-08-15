@@ -27,9 +27,6 @@ spec:
           - name: mosquitto
             namespace: apps
             targetRevision: master
-          - name: zigbee2mqtt
-            namespace: apps
-            targetRevision: master
           - name: mktxp
             namespace: monitoring
             targetRevision: master
@@ -54,6 +51,12 @@ spec:
           - name: vaultwarden
             namespace: apps
             targetRevision: master
+          - name: securo
+            namespace: apps
+            targetRevision: master
+          # - name: zigbee2mqtt
+          #   namespace: apps
+          #   targetRevision: master
           # - name: minecraft
           #   namespace: apps
           #   targetRevision: master
