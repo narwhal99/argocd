@@ -1,0 +1,29 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  labels:
+    app.kubernetes.io/instance: firefly
+    app.kubernetes.io/name: importer
+  name: firefly-importer
+  namespace: apps
+spec:
+  hostnames:
+  - finance-import.raymol.com
+  parentRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: gateway-internal-eg
+    namespace: gateway-envoy
+  rules:
+  - backendRefs:
+    - group: ""
+      kind: Service
+      name: firefly-importer
+      port: 80
+      weight: 1
+    matches:
+    - path:
+        type: PathPrefix
+        value: /
+    timeouts:
+      request: 360s

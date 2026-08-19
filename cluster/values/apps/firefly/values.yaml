@@ -1,0 +1,32 @@
+firefly-db:
+  enabled: false
+firefly-iii:
+  enabled: true
+  config:
+    existingSecret: "firefly-secrets"
+    env:
+      DB_HOST: psql.raymol.com
+      DB_CONNECTION: pgsql
+      DB_PORT: "5432"
+      DB_DATABASE: firefly
+      DEFAULT_LANGUAGE: "en_US"
+      DEFAULT_LOCALE: "equal"
+      TZ: "Europe/Berlin"
+      TRUSTED_PROXIES: "**"
+  httpRoute:
+    enabled: true
+    parentRefs:
+      - kind: Gateway
+        name: gateway-internal-eg
+        namespace: gateway-envoy
+    hostnames:
+      - "finance.raymol.com"
+  persistence:
+    enabled: true
+    existingClaim: "firefly"
+importer:
+  enabled: true
+  httpRoute:
+    enabled: false
+  fireflyiii:
+    url: "https://finance.raymol.com"
