@@ -30,3 +30,7 @@ importer:
     enabled: false
   fireflyiii:
     url: "https://finance.raymol.com"
+  config:
+    env:
+      LOG_LEVEL: "error"
+      TZ: "Europe/Berlin"
