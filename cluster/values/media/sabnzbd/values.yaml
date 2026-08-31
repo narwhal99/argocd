@@ -15,7 +15,7 @@ controllers:
       sabnzbd:
         image:
           repository: lscr.io/linuxserver/sabnzbd
-          tag: 4.5.5
+          tag: 5.1.2
           pullPolicy: IfNotPresent
 service:
   main:
