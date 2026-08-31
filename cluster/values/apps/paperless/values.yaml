@@ -11,7 +11,7 @@ controllers:
         paperless:
           image:
             repository: ghcr.io/paperless-ngx/paperless-ngx
-            tag: 3.1.0
+            tag: 3.1.1
             pullPolicy: IfNotPresent
           env:
             - name: POSTGRES_PASSWORD
