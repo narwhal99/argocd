@@ -51,6 +51,9 @@ spec:
           - name: vaultwarden
             namespace: apps
             targetRevision: master
+          - name: homebox
+            namespace: apps
+            targetRevision: master
           # - name: zigbee2mqtt
           #   namespace: apps
           #   targetRevision: master
