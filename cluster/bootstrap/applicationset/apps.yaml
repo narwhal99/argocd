@@ -54,9 +54,9 @@ spec:
           - name: homebox
             namespace: apps
             targetRevision: master
-          # - name: zigbee2mqtt
-          #   namespace: apps
-          #   targetRevision: master
+          - name: zigbee2mqtt
+            namespace: apps
+            targetRevision: master
           # - name: minecraft
           #   namespace: apps
           #   targetRevision: master
