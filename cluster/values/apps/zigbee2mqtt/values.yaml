@@ -21,6 +21,9 @@ controllers:
             value: "true"
           - name: ZIGBEE2MQTT_CONFIG_HOMEASSISTANT_ENABLED
             value: "true"
+          - name: ZIGBEE2MQTT_CONFIG_HOMEASSISTANT_DISCOVERY_TOPIC
+            value: "discovery_topic"
+
 service:
   main:
     controller: main

@@ -18,11 +18,11 @@ grafana:
             value: /
   resources:
     limits:
-      memory: 5Gi
-      cpu: 3
-    requests:
       memory: 2Gi
       cpu: 1
+    requests:
+      memory: 500M
+      cpu: 50m
   persistence:
     enabled: true
     type: sts

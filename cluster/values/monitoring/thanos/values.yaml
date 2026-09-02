@@ -1,7 +1,7 @@
 existingObjstoreSecret: thanos-objectstore-secret
 bucketweb:
   enabled: true
-  resourcesPreset: "small"
+  resourcesPreset: "nano"
   httpRoute:
     enabled: true
     parentRefs:
@@ -12,7 +12,7 @@ bucketweb:
       - thanos-bucket.raymol.com
 storegateway:
   enabled: true
-  resourcesPreset: "medium"
+  resourcesPreset: "nano"
   persistence:
     enabled: true
     storageClass: "longhorn-cache"
@@ -20,7 +20,7 @@ storegateway:
 
 compactor:
   enabled: true
-  resourcesPreset: "medium"
+  resourcesPreset: "micro"
   retentionResolutionRaw: 30d
   retentionResolution5m: 60d
   retentionResolution1h: 90d
@@ -41,7 +41,7 @@ query:
   enabled: true
   replicaLabel:
     - replica
-  resourcesPreset: "medium"
+  resourcesPreset: "nano"
   dnsDsicovery:
     sidecarsNamespace: monitoring
     sidecarsService: prometheus-operated
@@ -50,7 +50,7 @@ query:
 
 queryFrontend:
   enabled: true
-  resourcesPreset: "medium"
+  resourcesPreset: "nano"
   httpRoute:
     enabled: true
     parentRefs:
