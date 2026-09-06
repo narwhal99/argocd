@@ -41,7 +41,7 @@ spec:
 
   - name: vault-login
     container:
-      image: hashicorp/vault:2.0
+      image: hashicorp/vault:2.1
       command: ["sh", "-c"]
       args:
         - |
