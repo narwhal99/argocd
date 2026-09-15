@@ -12,7 +12,7 @@ bucketweb:
       - thanos-bucket.raymol.com
 storegateway:
   enabled: true
-  resourcesPreset: "nano"
+  resourcesPreset: "micro"
   persistence:
     enabled: true
     storageClass: "longhorn-cache"
@@ -41,7 +41,7 @@ query:
   enabled: true
   replicaLabel:
     - replica
-  resourcesPreset: "nano"
+  resourcesPreset: "micro"
   dnsDsicovery:
     sidecarsNamespace: monitoring
     sidecarsService: prometheus-operated
