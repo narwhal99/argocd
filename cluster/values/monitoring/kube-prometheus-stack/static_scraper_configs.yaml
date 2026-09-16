@@ -7,6 +7,7 @@ prometheus:
           - targets:
             - vmdocker04.raymol.com:8080
             - raspi.raymol.com:8080
+            - ppi.raymol.com:8080
             - oci01.raymol.com:8080
             # - lb.raymol.com:8080
             # - vmdocker02.raymol.com:8080
@@ -18,7 +19,7 @@ prometheus:
         metrics_path: /metrics
         static_configs:
           - targets:
-            - raspi.raymol.com:5001
+            - ppi.raymol.com:5001
             - oci01.raymol.com:5001
             # - lb.raymol.com:5001
             # - vmeproxy.raymol.com:5001
@@ -105,4 +106,4 @@ prometheus:
         scrape_interval: 30s
         static_configs:
           - targets:
-            - raspi.raymol.com:9108
+            - ppi.raymol.com:9108
