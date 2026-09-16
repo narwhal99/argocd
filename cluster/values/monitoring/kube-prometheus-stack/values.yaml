@@ -39,20 +39,29 @@ grafana:
     datasources:
       enabled: true
       defaultDatasourceEnabled: false
+  shadowBundledPlugins: true
+  plugins:
+    - loki
+    - influxdb
   additionalDataSources:
     - name: Loki
       type: loki
       url: https://loki-gateway.raymol.com
+      uid: loki
+      acces: proxy
+      editable: false
     - name: Thanos
       type: prometheus
       url: http://thanos-query:9090/
       isDefault: true
       editable: false
+      access: proxy
     - name: influxdb
       type: influxdb
       editable: false
       url: https://influxdb.raymol.com
       uid: influxdb
+      access: proxy
       jsonData:
         version: Flux
         tlsSkipVerify: true
