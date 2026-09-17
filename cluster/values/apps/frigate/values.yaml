@@ -6,7 +6,7 @@ controllers:
         frigate:
           image:
             repository: ghcr.io/blakeblackshear/frigate
-            tag: 0.17.2
+            tag: 0.18.0
             pullPolicy: IfNotPresent
 service:
   main:
