@@ -2,3 +2,5 @@ config:
   envoyGateway:
     gateway:
       controllerName: gateway.envoyproxy.io/gatewayclass-controller
+    extensionApis:
+      enableBackend: true
