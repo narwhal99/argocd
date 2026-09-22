@@ -14,13 +14,28 @@
 #  name: daily-snapshot
 #  task: snapshot
 ---
+# RecurringJob for weekly filesystem trim
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: weekly-trim
+  namespace: storage-longhorn
+spec:
+  task: filesystem-trim
+  # Run every Sunday at 3 AM
+  cron: "0 3 * * 0"
+  retain: 0
+  concurrency: 1
+  groups:
+    - backup
+---
 apiVersion: longhorn.io/v1beta2
 kind: RecurringJob
 metadata:
   name: daily-backup
   namespace: storage-longhorn
 spec:
-  concurrency: 3
+  concurrency: 1
   retain: 14
   cron: 0 5 * * *
   groups:
