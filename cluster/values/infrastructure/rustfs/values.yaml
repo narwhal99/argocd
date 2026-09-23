@@ -21,3 +21,27 @@ mode:
     enabled: false
 secret:
   existingSecret: "rustfs-secret"
+
+extraEnv:
+  - name: RUSTFS_IDENTITY_OPENID_ENABLE
+    value: "on"
+  - name: RUSTFS_IDENTITY_OPENID_CONFIG_URL
+    value: "https://auth.raymol.com/application/o/rustfs/.well-known/openid-configuration"
+  - name: RUSTFS_IDENTITY_OPENID_CLIENT_ID
+    valueFrom:
+      secretKeyRef:
+        name: rustfs-secret
+        key: oidc-client-id
+  - name: RUSTFS_IDENTITY_OPENID_CLIENT_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: rustfs-secret
+        key: oidc-client-secret
+  - name: RUSTFS_IDENTITY_OPENID_SCOPES
+    value: "openid,profile,email"
+  - name: RUSTFS_IDENTITY_OPENID_GROUPS_CLAIM
+    value: "groups"
+  - name: RUSTFS_IDENTITY_OPENID_USERNAME_CLAIM
+    value: "preferred_username"
+  - name: RUSTFS_IDENTITY_OPENID_DISPLAY_NAME
+    value: Authentik
