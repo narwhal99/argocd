@@ -22,11 +22,19 @@ mode:
 secret:
   existingSecret: "rustfs-secret"
 
+podSecurityContext:
+  fsGroupChangePolicy: OnRootMismatch
+  fsGroup: 568
+  runAsGroup: 568
+  runAsUser: 568
+
 extraEnv:
+  - name: RUSTFS_OUTBOUND_ALLOW_ORIGINS
+    value: "https://auth.raymol.com"
   - name: RUSTFS_IDENTITY_OPENID_ENABLE
     value: "on"
   - name: RUSTFS_IDENTITY_OPENID_CONFIG_URL
-    value: "https://auth.raymol.com/application/o/rustfs/.well-known/openid-configuration"
+    value: "https://auth.raymol.com/application/o/rustfs"
   - name: RUSTFS_IDENTITY_OPENID_CLIENT_ID
     valueFrom:
       secretKeyRef:
@@ -37,11 +45,15 @@ extraEnv:
       secretKeyRef:
         name: rustfs-secret
         key: oidc-client-secret
+  - name: RUSTFS_IDENTITY_OPENID_ROLE_POLICY
+    value: "consoleAdmin"
   - name: RUSTFS_IDENTITY_OPENID_SCOPES
-    value: "openid,profile,email"
+    value: "openid,profile,email,groups"
   - name: RUSTFS_IDENTITY_OPENID_GROUPS_CLAIM
     value: "groups"
   - name: RUSTFS_IDENTITY_OPENID_USERNAME_CLAIM
     value: "preferred_username"
   - name: RUSTFS_IDENTITY_OPENID_DISPLAY_NAME
     value: Authentik
+  - name: RUSTFS_DRIVE_TIMEOUT_PROFILE
+    value: "high_latency"

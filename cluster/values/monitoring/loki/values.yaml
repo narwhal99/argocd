@@ -14,6 +14,8 @@ loki:
   compactor:
     retention_enabled: true
     delete_request_store: s3
+    max_compaction_parallelism: 1
+    upload_parallelism: 1
   limits_config:
     retention_period: 60d
     max_label_names_per_series: 30
