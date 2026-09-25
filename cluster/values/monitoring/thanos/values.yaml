@@ -20,7 +20,7 @@ storegateway:
 
 compactor:
   enabled: true
-  resourcesPreset: "micro"
+  resourcesPreset: "small"
   retentionResolutionRaw: 30d
   retentionResolution5m: 60d
   retentionResolution1h: 90d
