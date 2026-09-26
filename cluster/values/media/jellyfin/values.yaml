@@ -49,6 +49,9 @@ route:
         backendRefs:
           - identifier: main
             port: http
+        timeouts:
+          request: 120s
+          backendRequest: 120s
   external:
     enabled: true
     kind: HTTPRoute
@@ -68,6 +71,9 @@ route:
         backendRefs:
           - identifier: main
             port: http
+        timeouts:
+          request: 120s
+          backendRequest: 120s
 
 persistence:
   torrent:
