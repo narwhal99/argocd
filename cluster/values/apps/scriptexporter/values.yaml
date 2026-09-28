@@ -16,9 +16,15 @@ serviceMonitor:
     - name: webscraper
       script: webscraper
       interval: 10m
+    - name: bleibtreusee
+      script: bleibtreusee
+      interval: 1h
 
 config: |
   scripts:
     - name: webscraper
       command: 
         - /scripts/webscraper
+    - name: bleibtreusee
+      command:
+        - /scripts/bleibtreusee
