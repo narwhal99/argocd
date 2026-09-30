@@ -28,3 +28,10 @@ metrics:
   serviceMonitor:
     enabled: true
 #enablePSP: true
+networkPolicies:
+  enabled: true
+  restrictInternalTraffic: true
+  metricsScrapeSources:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: monitoring
