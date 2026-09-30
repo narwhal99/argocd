@@ -6,7 +6,7 @@ controllers:
         homeassistant:
           image:
             repository: mpepping/cyberchef
-            tag: v11.4.0
+            tag: v11.5.0
             pullPolicy: IfNotPresent
 service:
   main:
