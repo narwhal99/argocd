@@ -11,4 +11,4 @@ spec:
   storageClassName: nfs-csi
   resources:
     requests:
-      storage: 100Gi
+      storage: 50Gi

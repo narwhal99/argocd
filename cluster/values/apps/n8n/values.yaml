@@ -1,41 +1,37 @@
-image:
-  repository: n8nio/n8n
-  tag: 2.43.0
+secretRefs:
+  existingSecret: n8n-secrets
+  
+queueMode:
+  enabled: true
+  workerReplicaCount: 1
 
-main:
-  config:
-    webhook_url: https://n8n.raymol.com
-    n8n:
-      editor_base_url: https://n8n.raymol.com
-    db:
-      type: postgresdb
-      postgresdb:
-        pool:
-          size: 10
-  extraEnv:
-    DB_POSTGRESDB_DATABASE:
-      value: n8n
-    DB_POSTGRESDB_HOST:
-      value: psql.raymol.com
-    N8N_ENCRYPTION_KEY:
-      valueFrom:
-        secretKeyRef:
-          name: n8n-secrets
-          key: encryptkey
-    DB_POSTGRESDB_USER:
-      valueFrom:
-        secretKeyRef:
-          name: n8n-secrets
-          key: psql-user
-    DB_POSTGRESDB_PASSWORD:
-      valueFrom:
-        secretKeyRef:
-          name: n8n-secrets
-          key: psql-password
-  resources:
-    limits:
-      memory: 2048Mi
-    requests:
-      memory: 512Mi
+taskRunners:
+  enabled: true
+  customConfig:
+    enabled: true
+    configMapName: "n8n-task-runner-extra"
+    configMapKey: "n8n-task-runners.json"
+  image:
+    repository: harbor.raymol.com/library/custom-n8n-runner
+    tag: "1.0.0"
+database:
+  type: postgresdb
+  useExternal: true
+  host: "psql.raymol.com"
+  port: 5432
+  database: n8n
+  schema: "public"
+  user: n8n
+  passwordSecret:
+    name: "n8n-secrets"
+    key: "psql-password"
 
-# httproute: https://github.com/8gears/n8n-helm-chart/pull/277
+redis:
+  enabled: true
+  useExternal: true
+  host: "redis.redis.svc.cluster.local"
+  port: 6379
+  username: ""
+  passwordSecret:
+    name: "n8n-secrets"
+    key: "redis-password"

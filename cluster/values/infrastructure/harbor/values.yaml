@@ -2,8 +2,9 @@ expose:
   tls:
     enabled: true
     secret:
-      secretName: "wildcard-bukla-tls"
+      secretName: "wildcard-raymol-tls"
     certSource: secret
+  type: route
   route:
     parentRefs:
     - kind: Gateway
@@ -16,7 +17,7 @@ externalURL: https://harbor.raymol.com
 database:
   type: external
   external:
-    host: "vmdocker04.raymol.com"
+    host: "psql.raymol.com"
     port: "5432"
     username: "harbor"
     coreDatabase: "harbor"
@@ -33,8 +34,23 @@ persistence:
         existingClaim: "harbor"
         subPath: "jobservice"
     redis:
-      storageClass: "longhorn"
-      size: 1Gi
+      storageClass: "longhorn-cache"
+      size: 500M
+
+# redis: FIX: https://github.com/goharbor/harbor-helm/pull/2409
+#   type: external
+#   external:
+#     addr: "redis.redis.svc.cluster.local:6379"
+#     existingSecret: "harbor-secret"
 
 trivy:
   enabled: false
+
+
+core:
+  extraEnvVars:
+  - name: CONFIG_OVERWRITE_JSON
+    valueFrom:
+      secretKeyRef:
+        name: harbor-secret
+        key: OIDC_CONFIG
