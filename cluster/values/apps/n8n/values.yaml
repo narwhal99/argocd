@@ -1,6 +1,10 @@
 secretRefs:
   existingSecret: n8n-secrets
-  
+
+config:
+  extraEnv:  
+    - name: N8N_EDITOR_BASE_URL
+      value: https://n8n.raymol.com
 queueMode:
   enabled: true
   workerReplicaCount: 1
