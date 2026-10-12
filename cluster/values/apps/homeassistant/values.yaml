@@ -25,6 +25,10 @@ controllers:
     main:
       type: deployment
       containers:
+        esphome:
+          image:
+            repository: esphome/esphome
+            tag: 2026.9.1
         homeassistant:
           image:
             repository: homeassistant/home-assistant
@@ -34,15 +38,21 @@ controllers:
             - name: DNS_SERVER_DOMAIN
               value: hass.raymol.com
 service:
-  main:
+  homeassistant:
     controller: main
     type: ClusterIP
     ports:
       http:
         port: 8123
+  esphome:
+    controller: main
+    type: ClusterIP
+    ports:
+      http:
+        port: 6052
 
 route:
-  main:
+  homeassistant:
     enabled: true
     kind: HTTPRoute
     parentRefs:
@@ -57,12 +67,41 @@ route:
               type: PathPrefix
               value: /
         backendRefs:
-          - identifier: main
+          - identifier: homeassistant
+            port: http
+  esphome:
+    enabled: true
+    kind: HTTPRoute
+    parentRefs:
+      - kind: Gateway
+        name: gateway-internal-eg
+        namespace: gateway-envoy
+    hostnames:
+      - "esphome.raymol.com"
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - identifier: esphome
             port: http
 
+
 persistence:
-  config:
+  homeassistant:
     existingClaim: homeassistant-config
+    advancedMounts:
+      main:
+        homeassistant:
+          - path: /config
+  esphome:
+    existingClaim: homeassistant-config
+    advancedMounts:
+      main:
+        esphome:
+          - path: /config
+            subPath: esphome
   #bluetooth:
   #  enabled: true
   #  type: hostPath
