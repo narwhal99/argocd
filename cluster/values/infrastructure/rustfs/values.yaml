@@ -50,7 +50,7 @@ extraEnv:
   - name: RUSTFS_IDENTITY_OPENID_SCOPES
     value: "openid,profile,email,groups"
   - name: RUSTFS_IDENTITY_OPENID_GROUPS_CLAIM
-    value: "groups"
+    value: "consoleAdmin"
   - name: RUSTFS_IDENTITY_OPENID_USERNAME_CLAIM
     value: "preferred_username"
   - name: RUSTFS_IDENTITY_OPENID_DISPLAY_NAME
