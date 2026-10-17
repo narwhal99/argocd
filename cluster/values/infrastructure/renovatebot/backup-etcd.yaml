@@ -1,0 +1,75 @@
+---
+apiVersion: talos.dev/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: talos-backup-secrets
+spec:
+  roles:
+    - os:etcd:backup
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: talos-backup
+spec:
+  schedule: '0 2 * * *'
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: talos-backup
+              image: ghcr.io/siderolabs/talos-backup:v0.1.0-beta.3-10-gb9fd478
+              workingDir: /tmp
+              imagePullPolicy: IfNotPresent
+              env:
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: talos-backup-secret
+                      key: access_key
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: talos-backup-secret
+                      key: access_secret
+                - name: CUSTOM_S3_ENDPOINT
+                  value: https://rustfs-api.raymol.com
+                - name: USE_PATH_STYLE
+                  value: 'true'
+                - name: BUCKET
+                  value: etcd
+                - name: CLUSTER_NAME
+                  value: 'prod-cluster'
+                - name: AGE_RECIPIENT_PUBLIC_KEY
+                  value: age180tj3x7djz3uelnxfp55z8g6dsguvsryh3pm0qxja9nh46ppu3zszanjc0
+                - name: ENABLE_COMPRESSION
+                  value: 'true'
+              securityContext:
+                runAsUser: 1000
+                runAsGroup: 1000
+                allowPrivilegeEscalation: false
+                runAsNonRoot: true
+                capabilities:
+                  drop:
+                    - ALL
+                seccompProfile:
+                  type: RuntimeDefault
+              command:
+                - /talos-backup
+              volumeMounts:
+                - mountPath: /tmp
+                  name: tmp
+                - mountPath: /.talos
+                  name: talos
+                - mountPath: /var/run/secrets/talos.dev
+                  name: talos-secrets
+          restartPolicy: OnFailure
+          volumes:
+            - emptyDir: {}
+              name: tmp
+            - emptyDir: {}
+              name: talos
+            - name: talos-secrets
+              secret:
+                secretName: talos-backup-secrets

@@ -8,3 +8,11 @@ cluster:
   apiServer:
     certSANs:
       - k8s-api.raymol.com
+machine:
+  features:
+    kubernetesTalosAPIAccess:
+      enabled: true
+      allowedRoles:
+      - os:etcd:backup
+      allowedKubernetesNamespaces:
+      - renovatebot
