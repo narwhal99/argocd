@@ -5,7 +5,7 @@ controllers:
         homebox:
           image:
             repository: ghcr.io/sysadminsmedia/homebox
-            tag: 0.26.2
+            tag: 0.27.0
             pullPolicy: IfNotPresent
           env:
             - name: HBOX_OIDC_ENABLED
