@@ -25,7 +25,7 @@ controllers:
             - name: MAX_CONCURRENT_DOWNLOADS
               value: 2
             - name: DOWNLOAD_DIR
-              value: "/torrent"
+              value: "/torrent/downloads/completed/"
             - name: DOWNLOAD_DIRS_INDEXABLE
               value: true
             - name: STATE_DIR
