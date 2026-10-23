@@ -15,7 +15,7 @@ controllers:
       jellyfin:
         image:
           repository: jellyfin/jellyfin
-          tag: 12.2.20261005-225228
+          tag: 12.3-arm64.20261023-004511
           pullPolicy: IfNotPresent
         resources:
           limits:
