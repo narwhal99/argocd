@@ -14,8 +14,8 @@ logging:
         cpu: 100m
         memory: 500Mi
       limits:
-        cpu: 1
-        memory: 2Gi
+        cpu: 100m
+        memory: 1Gi
     bufferStorageVolume:
       pvc:
         spec:
@@ -24,7 +24,7 @@ logging:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 3Gi
+              storage: 2Gi
   fluentbit:
     metrics:
         serviceMonitor: true

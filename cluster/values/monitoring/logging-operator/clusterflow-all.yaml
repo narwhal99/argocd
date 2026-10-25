@@ -7,14 +7,10 @@ spec:
     - tag_normaliser: {}
     - parser:
         parse:
-          type: multi_format
-          patterns:
-            - format: json
-            - format: regexp
-              expression: /^(?<log>.*)$/
-        remove_key_name_field: true
+          type: json
+        emit_invalid_record_to_error: false
         reserve_data: true
-        key_name: log
+        remove_key_name_field: true
   match:
     - select: {}
   globalOutputRefs:
