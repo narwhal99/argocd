@@ -5,13 +5,13 @@ metadata:
 spec:
   loki:
     buffer:
-      chunk_limit_size: 2M
-      timekey: 1m
-      timekey_wait: 10s
+      chunk_limit_size: 8M
+      timekey: 10m
+      timekey_wait: 30s
       timekey_use_utc: true
-      flush_interval: 10s
+      flush_interval: 30s
       flush_mode: interval
-      total_limit_size: 2Gi
+      total_limit_size: 4Gi
       overflow_action: drop_oldest_chunk
     configure_kubernetes_labels: true
     url: http://loki-gateway.logging.svc

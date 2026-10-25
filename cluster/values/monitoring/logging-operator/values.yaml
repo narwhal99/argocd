@@ -14,17 +14,8 @@ logging:
         cpu: 100m
         memory: 500Mi
       limits:
-        cpu: 1
-        memory: 2Gi
-    bufferStorageVolume:
-      pvc:
-        spec:
-          storageClassName: longhorn-cache
-          accessModes:
-            - ReadWriteOnce
-          resources:
-            requests:
-              storage: 3Gi
+        cpu: 100m
+        memory: 1Gi
   fluentbit:
     metrics:
         serviceMonitor: true
