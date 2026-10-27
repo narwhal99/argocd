@@ -10,3 +10,9 @@
 #       operator: "Equal"
 #       value: "true"
 #       effect: "NoExecute"
+frr-k8s:
+  frrk8s:
+    livenessProbe:
+      timeoutSeconds: 3
+    readinessProbe:
+      timeoutSeconds: 3
