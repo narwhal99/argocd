@@ -5,7 +5,7 @@ controllers:
       karma:
         image:
           repository: ghcr.io/prymitive/karma
-          tag: v0.133
+          tag: v0.134
           pullPolicy: IfNotPresent
         env:
           - name: CONFIG_FILE
