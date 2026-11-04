@@ -58,6 +58,27 @@ data "talos_image_factory_urls" "this" {
 
 resource "talos_machine_secrets" "this" {}
 
+
+resource "talos_machine" "controlplane" {
+  for_each = var.controlplane_nodes
+
+  node                  = each.value.ip
+  client_configuration  = talos_machine_secrets.this.client_configuration
+  machine_configuration = data.talos_machine_configuration.controlplane[each.key].machine_configuration
+  drain_on_upgrade      = false
+  image                 = data.talos_image_factory_urls.this.urls.installer
+}
+
+resource "talos_machine" "worker" {
+  for_each = var.worker_nodes
+
+  node                  = each.value.ip
+  client_configuration  = talos_machine_secrets.this.client_configuration
+  machine_configuration = data.talos_machine_configuration.worker[each.key].machine_configuration
+  drain_on_upgrade      = false
+  image                 = data.talos_image_factory_urls.this.urls.installer
+}
+
 data "talos_machine_configuration" "controlplane" {
   for_each           = var.controlplane_nodes
 
@@ -66,7 +87,7 @@ data "talos_machine_configuration" "controlplane" {
   machine_type       = "controlplane"
   machine_secrets    = talos_machine_secrets.this.machine_secrets
   kubernetes_version = var.kubernetes_version
-  talos_version      = var.talos_version
+  talos_version      = "v1.13.7" # pinned to the version used to create the cluster; do not bump on every upgrad
 
   config_patches = local.controlplane_patches[each.key]
 }
@@ -79,7 +100,7 @@ data "talos_machine_configuration" "worker" {
   machine_type       = "worker"
   machine_secrets    = talos_machine_secrets.this.machine_secrets
   kubernetes_version = var.kubernetes_version
-  talos_version      = var.talos_version
+  talos_version      = "v1.13.7" # pinned to the version used to create the cluster; do not bump on every upgrad
 
   config_patches = local.worker_patches[each.key]
 }

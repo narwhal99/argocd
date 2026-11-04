@@ -1,7 +1,8 @@
 envFrom:
   - secretRef:
       name: github-auth-token
-
+env:
+  LOG_FORMAT: "json"
 renovate:
   # -- Inline global renovate config.json
   # See https://docs.renovatebot.com/self-hosted-configuration
