@@ -23,6 +23,11 @@
   #  node: HAsrv
 controllers:
     main:
+      pods:
+        dnsConfig:
+          options:
+            - name: ndots
+              value: "2"
       type: deployment
       containers:
         esphome:

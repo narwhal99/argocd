@@ -4,6 +4,10 @@ global:
     - secretRef:
         name: s3-auth
 loki:
+  dnsConfig:
+    options:
+      - name: ndots
+        value: "3"
   auth_enabled: false
   extraArgs:
     - '-config.expand-env=true'
@@ -171,10 +175,6 @@ bloomBuilder:
   replicas: 0
 bloomGateway:
   replicas: 0
-
-# Enable minio for storage
-minio:
-  enabled: false
 
 # Zero out replica counts of other deployment modes
 backend:

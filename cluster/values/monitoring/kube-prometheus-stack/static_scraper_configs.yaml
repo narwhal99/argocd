@@ -58,8 +58,8 @@ prometheus:
           module: [http_2xx] 
         static_configs:
           - targets:
-            - https://jellyfin.raymol.com
-            # - https://file.raymol.com
+            - jellyfin.raymol.com
+            # - file.raymol.com
         relabel_configs:
           - source_labels: [__address__]
             target_label: __param_target
