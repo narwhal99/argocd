@@ -22,21 +22,26 @@
   #nodeSelector:
   #  node: HAsrv
 controllers:
-    main:
-      type: deployment
-      containers:
-        esphome:
-          image:
-            repository: esphome/esphome
-            tag: 2026.10.2
-        homeassistant:
-          image:
-            repository: homeassistant/home-assistant
-            tag: 2026.11.0
-            pullPolicy: IfNotPresent
-          env:
-            - name: DNS_SERVER_DOMAIN
-              value: hass.raymol.com
+  main:
+    pod:
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
+    type: deployment
+    containers:
+      esphome:
+        image:
+          repository: esphome/esphome
+          tag: 2026.10.2
+      homeassistant:
+        image:
+          repository: homeassistant/home-assistant
+          tag: 2026.11.0
+          pullPolicy: IfNotPresent
+        env:
+          - name: DNS_SERVER_DOMAIN
+            value: hass.raymol.com
 service:
   homeassistant:
     controller: main

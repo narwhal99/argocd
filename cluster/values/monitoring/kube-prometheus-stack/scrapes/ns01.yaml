@@ -8,7 +8,7 @@ metadata:
 spec:
   staticConfigs:
     - targets:
-      - "ns01.raymol.com"
+      - "ns01.raymol.com."
   scheme: HTTPS
   metricsPath: /api/dashboard/metrics/text 
   authorization:

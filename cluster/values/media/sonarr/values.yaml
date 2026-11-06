@@ -9,6 +9,11 @@ defaultPodOptions:
 
 controllers:
   main:
+    pod:
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
     type: deployment
     containers:
       sonarr:

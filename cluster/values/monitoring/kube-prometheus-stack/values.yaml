@@ -46,19 +46,19 @@ grafana:
   additionalDataSources:
     - name: Loki
       type: loki
-      url: https://loki-gateway.raymol.com
+      url: https://loki-gateway.raymol.com.
       acces: proxy
       editable: false
     - name: Thanos
       type: prometheus
-      url: http://thanos-query:9090/
+      url: http://thanos-query.:9090/
       isDefault: true
       editable: false
       access: proxy
     - name: influxdb
       type: influxdb
       editable: false
-      url: https://influxdb.raymol.com
+      url: https://influxdb.raymol.com.
       uid: influxdb
       access: proxy
       jsonData:
@@ -84,7 +84,7 @@ grafana:
       enabled: true
     check_for_updates: "false"
     server:
-      root_url: "https://grafana.raymol.com"
+      root_url: "https://grafana.raymol.com."
   envFromSecret: "grafana-secret"
   env:
     GF_AUTH_GENERIC_OAUTH_API_URL: https://auth.raymol.com/application/o/userinfo/
