@@ -16,7 +16,7 @@ controllers:
       jackett:
         image:
           repository: linuxserver/jackett
-          tag: 0.24.3009
+          tag: 0.24.3014
           pullPolicy: IfNotPresent
 
 service:
