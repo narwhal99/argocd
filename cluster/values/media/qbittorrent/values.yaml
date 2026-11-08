@@ -30,6 +30,10 @@ controllers:
         securityContext:
           runAsUser: 568
           runAsGroup: 568
+        ports:
+          - name: http
+            containerPort: 8080
+            protocol: TCP
 
       gluetun:
         dependsOn: qbit

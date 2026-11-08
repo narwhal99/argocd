@@ -17,6 +17,10 @@ controllers:
           repository: ghcr.io/advplyr/audiobookshelf
           tag: 2.37.2
           pullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP
 service:
   main:
     controller: main

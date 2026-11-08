@@ -36,6 +36,10 @@ controllers:
               secretKeyRef:
                 name: bazarr-secret
                 key: psql_pw
+        ports:
+          - name: http
+            containerPort: 6767
+            protocol: TCP
 service:
   main:
     controller: main

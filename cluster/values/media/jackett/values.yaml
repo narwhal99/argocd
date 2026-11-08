@@ -18,6 +18,10 @@ controllers:
           repository: linuxserver/jackett
           tag: 0.24.3021
           pullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 9117
+            protocol: TCP
 
 service:
   main:

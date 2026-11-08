@@ -21,6 +21,10 @@ controllers:
           repository: ghcr.io/home-operations/sonarr
           tag: 5.0.0.2941
           pullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 8989
+            protocol: TCP
 service:
   main:
     controller: main

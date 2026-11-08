@@ -17,6 +17,10 @@ controllers:
           repository: ghcr.io/seerr-team/seerr
           tag: v3.5.1
           pullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 5055
+            protocol: TCP
 service:
   main:
     controller: main
