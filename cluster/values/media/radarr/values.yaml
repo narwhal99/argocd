@@ -19,7 +19,7 @@ controllers:
       radarr:
         image:
           repository: ghcr.io/home-operations/radarr
-          tag: 7.0.2.10888
+          tag: 7.0.3.10912
           pullPolicy: IfNotPresent
         ports:
           - name: http
