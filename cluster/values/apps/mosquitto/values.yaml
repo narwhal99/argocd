@@ -6,7 +6,7 @@ controllers:
       mosquitto:
         image:
           repository: eclipse-mosquitto
-          tag: 2.0.22
+          tag: 2.0.23
           pullPolicy: IfNotPresent
 
 service:
