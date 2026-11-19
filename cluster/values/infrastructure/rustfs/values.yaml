@@ -16,7 +16,7 @@ mode:
   standalone:
     enabled: true
     existingClaim:
-      dataClaim: rustfs-data
+      dataClaim: rustfs-data-ssd
   distributed:
     enabled: false
 secret:

@@ -34,8 +34,7 @@ compactor:
       - thanos-compactor.raymol.com
   persistence:
     enabled: true
-    size: 100Gi
-    storageClass: "nfs-csi"
+    existingClaim: "thanos-compactor-data-ssd"
 
 query:
   enabled: true

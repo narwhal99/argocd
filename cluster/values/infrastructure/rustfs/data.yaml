@@ -1,14 +1,30 @@
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: rustfs-data-ssd-pv
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+spec:
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: 10.20.0.21
+    path: /mnt/ssdone/containers/rustfs
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: rustfs-data
+  name: rustfs-data-ssd
   namespace: rustfs
   annotations:
     argocd.argoproj.io/sync-options: Delete=false
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: nfs-csi
+  volumeName: rustfs-data-ssd-pv
   resources:
     requests:
-      storage: 150Gi
+      storage: 100Gi

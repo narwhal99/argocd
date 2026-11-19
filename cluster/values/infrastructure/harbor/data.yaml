@@ -1,14 +1,30 @@
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: harbor-data-ssd-pv
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+spec:
+  capacity:
+    storage: 15Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: 10.20.0.21
+    path: /mnt/ssdone/containers/harbor
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: harbor
+  name: harbor-data-ssd
   namespace: harbor
   annotations:
     argocd.argoproj.io/sync-options: Delete=false
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: nfs-csi
+  volumeName: harbor-data-ssd-pv
   resources:
     requests:
-      storage: 50Gi
+      storage: 15Gi

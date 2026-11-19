@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: thanos-compactor-data-ssd-pv
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+spec:
+  capacity:
+    storage: 25Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: 10.20.0.21
+    path: /mnt/ssdone/containers/thanos-compactor
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: thanos-compactor-data-ssd
+  namespace: monitoring
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeName: thanos-compactor-data-ssd-pv
+  resources:
+    requests:
+      storage: 25Gi
