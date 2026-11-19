@@ -27,15 +27,15 @@ persistence:
   enabled: true
   persistentVolumeClaim:
     registry:
-      existingClaim: "harbor"
+      existingClaim: "harbor-data-ssd"
       subPath: "registry"
     jobservice:
       jobLog:
-        existingClaim: "harbor"
+        existingClaim: "harbor-data-ssd"
         subPath: "jobservice"
     redis:
       storageClass: "longhorn-cache"
-      size: 500M
+      size: 150M
 
 # redis: FIX: https://github.com/goharbor/harbor-helm/pull/2409
 #   type: external
