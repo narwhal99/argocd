@@ -33,7 +33,7 @@ controllers:
       esphome:
         image:
           repository: esphome/esphome
-          tag: 2026.11.0
+          tag: 2026.11.1
         env:
           - name: build_path
             value: "/build"
