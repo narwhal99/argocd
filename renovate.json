@@ -75,7 +75,14 @@
       "groupName": "Group media"
     },
     {
+       "matchPackageNames": [	
+         "ghcr.io/blakeblackshear/frigate"
+       ],
+       "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
+    },
+    {
       "matchPackageNames": ["/jellyfin/"],
+      "allowedVersions": "/^\d+\.\d+$/",
       "versioning": "loose"
     },
     {
